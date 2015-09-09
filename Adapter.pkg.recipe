@@ -84,13 +84,15 @@
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
+                <key>pkgname</key>
+                <string>%NAME%-%version%</string>
                 <key>pkg_request</key>
                 <dict>
-                    <key>pkgname</key>
-                    <string>%NAME%-%version%</string>
-                    <key>version</key>
-                    <string>%version%</string>
-                     <key>options</key>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
+                    <key>id</key>
+                    <string>%PKG_ID%</string>
+                    <key>options</key>
                     <string>purge_ds_store</string>
                     <key>chown</key>
                     <array>

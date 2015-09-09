@@ -10,8 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>Adapter</string>
-        <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps/adapter</string>
+        <key>PKG_ID</key>
+        <string>com.adapter.Adapter</string>
         <key>SPARKLE_FEED_URL</key>
         <string>http://www.macroplant.com/adapter/adapterAppcast.xml</string>
     </dict>

@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest Adapter and imports it into munki</string>
     <key>Identifier</key>
-    <string>com.github.uib.autopkg-recipes.munki.Adapter</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.Adapter</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

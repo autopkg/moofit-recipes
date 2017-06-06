@@ -10,7 +10,7 @@ they now support only a single OS X build architecture (Intel 64-bit) starting f
 version 2.1.0. For this reason, the appcast_url variable is now hardcoded in the recipe.
 </string>
     <key>Identifier</key>
-    <string>ccom.github.amsysuk.amsys-recipes.download.VLC</string>
+    <string>com.github.amsysuk.amsys-recipes.download.VLC</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Uses parent download recipe to download the latest Excel 2016 installer package.</string>
+	<string>Uses parent download recipe to download the latest OneNote 2016 installer package.</string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.Excel2016</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.OneNote2016</string>
 	<key>Input</key>
 	<dict>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.1</string>
 	<key>ParentRecipe</key>
-	<string>com.github.amsysuk.amsys-recipes.download.Excel2016</string>
+	<string>com.github.amsysuk.amsys-recipes.download.OneNote2016</string>
 	<key>Process</key>
 	<array>
         <dict>

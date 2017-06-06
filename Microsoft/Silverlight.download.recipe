@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads latest Silverlight installer.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Silverlight</string>
+    <string>com.github.amsysuk.amsys-recipes.download.Silverlight</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

@@ -12,7 +12,7 @@ See the following URLs for more info:
     http://ftp.mozilla.org/pub/firefox/releases/latest-esr/README.txt
     http://ftp.mozilla.org/pub/firefox/releases/latest-beta/README.txt</string>
     <key>Identifier</key>
-    <string>ccom.github.amsysuk.amsys-recipes.download.firefox-rc-en_US</string>
+    <string>com.github.amsysuk.amsys-recipes.download.firefox-rc-en_US</string>
     <key>Input</key>
     <dict>
         <key>RELEASE</key>

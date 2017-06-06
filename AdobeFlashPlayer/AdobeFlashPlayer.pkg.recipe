@@ -9,7 +9,7 @@
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>AdobeFlashPlayer</string>
+        <string>Adobe Flash Player</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.0</string>

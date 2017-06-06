@@ -11,7 +11,7 @@ See the following URLs for more info:
     http://ftp.mozilla.org/pub/thunderbird/releases/latest/README.txt
     http://ftp.mozilla.org/pub/thunderbird/releases/latest-beta/README.txt</string>
     <key>Identifier</key>
-    <string>ccom.github.amsysuk.amsys-recipes.download.thunderbird</string>
+    <string>com.github.amsysuk.amsys-recipes.download.thunderbird</string>
     <key>Input</key>
     <dict>
         <key>RELEASE</key>

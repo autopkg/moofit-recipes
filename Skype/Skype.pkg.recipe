@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads latest Skype disk image and builds a package.</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.pkg.Skype</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.Skype</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>0.6.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.download.Skype</string>
+    <string>com.github.amsysuk.amsys-recipes.download.Skype</string>
     <key>Process</key>
     <array>
         <dict>

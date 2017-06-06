@@ -21,7 +21,7 @@ VERSION currently only supports one value: 'latest', which will download
 the latest full update for the given CHANNEL.
 </string>
     <key>Identifier</key>
-    <string>om.github.amsysuk.amsys-recipes.download.PowerPoint2016</string>
+    <string>com.github.amsysuk.amsys-recipes.download.PowerPoint2016</string>
     <key>MinimumVersion</key>
     <string>0.4.2</string>
     <key>Input</key>

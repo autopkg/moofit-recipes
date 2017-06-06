@@ -12,7 +12,7 @@
 	<key>MinimumVersion</key>
 	<string>0.4.1</string>
 	<key>ParentRecipe</key>
-	<string>om.github.amsysuk.amsys-recipes.pkg.Excel2016</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.Excel2016</string>
 	<key>Process</key>
 	<array>
         <dict>

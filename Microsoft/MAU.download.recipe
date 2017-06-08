@@ -31,7 +31,7 @@ the latest full update for the given CHANNEL.
         <key>LOCALE_ID</key>
         <string>1033</string>
         <key>NAME</key>
-        <string>MS Auto Updater</string>
+        <string>Microsoft Auto Updater</string>
         <key>VERSION</key>
         <string>latest</string>
     </dict>

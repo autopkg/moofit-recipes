@@ -3,17 +3,17 @@
 <plist version="1.0">
     <dict>
         <key>Identifier</key>
-        <string>local.pkg.Adobe.AcrobatDC17</string>
+        <string>com.github.amsysuk.amsys-recipes.AcrobatDC17</string>
         <key>Input</key>
         <dict>
             <key>NAME</key>
-            <string>AdobeAcrobatDC</string>
+            <string>Adobe Acrobat</string>
             <key>ORG_NAME</key>
             <string>ADMIN_PLEASE_CHANGE</string>
             <key>ccpinfo</key>
             <dict>
                 <key>matchOSLanguage</key>
-                <true/>
+                <false/>
                 <key>rumEnabled</key>
                 <true/>
                 <key>updatesEnabled</key>
@@ -48,6 +48,6 @@
             <true/>
         </dict>
         <key>ParentRecipe</key>
-        <string>com.github.mosen.pkg.Adobe.CreativeCloudApp</string>
+        <string>com.github.amsysuk.amsys-recipes.pkg.CreativeCloudApp</string>
     </dict>
 </plist>

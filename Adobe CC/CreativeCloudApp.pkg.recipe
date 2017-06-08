@@ -23,7 +23,7 @@ A previous version can be specified.
 
 Other Input values here correspond to options provided in the CCP UI.</string>
         <key>Identifier</key>
-        <string>com.github.mosen.pkg.Adobe.CreativeCloudApp</string>
+        <string>com.github.amsysuk.amsys-recipes.pkg.CreativeCloudApp</string>
         <key>Input</key>
         <dict>
             <key>NAME</key>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Description</key>
+        <string>Use Creative Cloud Packager to configure and build a package for a creative cloud
+product which uses the 'HyperDrive' installer engine. This recipe must be overridden
+and have at least NAME, PRODUCT_ID, BASE_VERSION and ORG_NAME defined for a given
+product.
+
+A 'product' is a unique combination of a PRODUCT_ID and a BASE_VERSION. For example,
+Photoshop CC 2017 would be PRODUCT_ID 'PHSP' and BASE_VERSION '18.0'.
+
+Internally Adobe calls these PRODUCT_IDs "SAP Codes", and these can be found here:
+https://helpx.adobe.com/creative-cloud/packager/apps-deployed-without-their-base-versions.html
+
+There a script in this recipe's directory, 'listfeed.py', which when run will query
+the product feed and display all known versions, their SAP codes and base versions.
+Only products with base versions defined can be used with this recipe.
+
+VERSION defaults to 'latest', which will retrieve the latest version for that product.
+A previous version can be specified.
+
+Other Input values here correspond to options provided in the CCP UI.</string>
+        <key>Identifier</key>
+        <string>com.github.mosen.pkg.Adobe.CreativeCloudApp</string>
+        <key>Input</key>
+        <dict>
+            <key>NAME</key>
+            <string>CreativeCloudApp</string>
+            <key>ccpinfo</key>
+            <dict>
+                <!-- Boolean flags -->
+
+                <!-- Build a package using the language set in the operating system -->
+                <key>matchOSLanguage</key>
+                <true/>
+
+                <!-- Enable Remote Update Manager -->
+                <key>rumEnabled</key>
+                <true/>
+
+                <!-- Updates Enabled -->
+                <key>updatesEnabled</key>
+                <false/>
+
+                <!-- Users may install apps via the Apps panel -->
+                <key>appsPanelEnabled</key>
+                <true/>
+
+                <!-- CCDA will have admin privileges, allowing Standard users to install Apps -->
+                <key>adminPrivilegesEnabled</key>
+                <true/>
+
+                <!-- Name of the organization (can be retrieved from ~/Library/Logs/PDApp.log) -->
+                <key>organizationName</key>
+                <string>ADMIN_PLEASE_CHANGE</string>
+
+                <!-- The customer license type: team or enterprise -->
+                <key>customerType</key>
+                <string>team</string>
+                <key>Language</key>
+                <string>en_US</string>
+
+                <!-- Products -->
+                <key>Products</key>
+                <array>
+                    <dict>
+                        <key>sapCode</key>
+                        <string></string>
+                        <key>baseVersion</key>
+                        <string></string>
+                        <key>version</key>
+                        <string>latest</string>
+                    </dict>
+                </array>
+            </dict>
+        </dict>
+        <key>MinimumVersion</key>
+        <string>0.4.0</string>
+        <key>Process</key>
+        <array>
+            <dict>
+                <key>Processor</key>
+                <string>CreativeCloudFeed</string>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>EndOfCheckPhase</string>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>CreativeCloudPackager</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>package_name</key>
+                    <string>%NAME%</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>CreativeCloudVersioner</string>
+            </dict>
+        </array>
+    </dict>
+</plist>

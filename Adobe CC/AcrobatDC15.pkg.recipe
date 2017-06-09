@@ -3,7 +3,7 @@
 <plist version="1.0">
     <dict>
         <key>Identifier</key>
-        <string>local.pkg.Adobe.AcrobatDC</string>
+        <string>com.github.amsysuk.amsys-recipes.AcrobatDC</string>
         <key>Input</key>
         <dict>
             <key>NAME</key>
@@ -46,6 +46,6 @@
             </dict>
         </dict>
         <key>ParentRecipe</key>
-        <string>com.github.mosen.pkg.Adobe.CreativeCloudApp</string>
+        <string>com.github.amsysuk.amsys-recipes.pkg.CreativeCloudApp</string>
     </dict>
 </plist>

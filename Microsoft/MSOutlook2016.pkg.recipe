@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Uses parent download recipe to download the latest Outlook 2016 installer package.</string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.Outlook2016</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.MSOutlook2016</string>
 	<key>Input</key>
 	<dict>
         <key>NAME</key>
@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>0.4.1</string>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.download.MSEOutlook2016</string>
+	<string>com.github.autopkg.download.MSOutlook2016</string>
 	<key>Process</key>
 	<array>
         <dict>

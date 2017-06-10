@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Uses parent download recipe to download the latest Excel 2016 installer package.</string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.MAU</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.MSAutoUpdate</string>
 	<key>Input</key>
 	<dict>
         <key>NAME</key>

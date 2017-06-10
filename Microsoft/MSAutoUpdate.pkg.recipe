@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>0.4.1</string>
 	<key>ParentRecipe</key>
-	<string>com.github.amsysuk.amsys-recipes.download.MAU</string>
+	<string>com.github.autopkg.download.MSAutoUpdate</string>
 	<key>Process</key>
 	<array>
         <dict>

@@ -26,7 +26,7 @@ http://www.oracle.com/technetwork/java/javase/terms/license/index.html
     <key>MinimumVersion</key>
     <string>0.2.9</string>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk.amsys-recipes.download.OracleJava8</string>
+    <string>com.github.autopkg.download.OracleJava8</string>
     <key>Process</key>
     <array>
         <dict>

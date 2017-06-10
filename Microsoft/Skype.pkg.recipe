@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>0.6.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk.amsys-recipes.download.Skype</string>
+    <string>com.github.autopkg.download.Skype</string>
     <key>Process</key>
     <array>
         <dict>

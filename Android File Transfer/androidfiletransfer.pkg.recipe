@@ -10,7 +10,7 @@
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>AndroidFileTransfer</string>
+        <string>Android File Transfer</string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.aysiu.download.androidfiletransfer</string>

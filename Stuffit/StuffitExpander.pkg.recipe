@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads StuffIt Expander archive and builds a package. The installer package includes a preinstall script that will check for an existing "StuffIt Expander.app" in /Applications and remove it if found. Adapted from rtrouton's Firefox pkg recipe.</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.kernsb.pkg.StuffItExpander</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.recipe</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>0.2.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.download</string>
+    <string>com.github.keeleysam.recipes.StuffItExpander.download</string>
     <key>Process</key>
     <array>
         <dict>

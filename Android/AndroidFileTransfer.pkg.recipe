@@ -6,7 +6,7 @@
     <string>Downloads latest Android File Transfer disk image and builds a package. Note: Code signature verification cannot be added into this recipe
     because the Android File Transfer.app still uses a version 1 signature.</string>
     <key>Identifier</key>
-    <string>uk.co.amsys.pkg.androidfiletransfer</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.androidfiletransfer</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

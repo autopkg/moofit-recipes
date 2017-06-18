@@ -25,7 +25,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
                 <key>pkgdirs</key>
                 <dict>
                     <key>Applications</key>
@@ -38,28 +38,8 @@
             <string>SparkleUpdateInfoProvider</string>
             <key>Arguments</key>
             <dict>
-                <key>info_path</key>
-                <string>%pkgroot%/Adapter.app/Contents/Info.plist</string>
-                <key>url</key>
-                <string>http://cdn.macroplant.com/release/</string>
                 <key>appcast_url</key>
                 <string>%SPARKLE_FEED_URL%</string>
-                <key>Arguments</key>
-                <dict>
-                    <key>filename</key>
-                    <string>%NAME%.dmg</string>
-                </dict>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>PlistReader</string>
-            <key>plist_keys</key>
-            <dict>
-                <key>CFBundleShortVersionString</key>
-                <string>version</string>
-                <key>CFBundleIdentifier</key>
-                <string>bundleid</string>
             </dict>
         </dict>
         <dict>
@@ -79,6 +59,22 @@
                 <string>%pkgroot%/Adapter.app</string>
                 <key>destination_path</key>
                 <string>%pkgroot%/Applications/Adapter.app</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%pkgroot%/Applications/Adapter.app</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>CFBundleIdentifier</key>
+                    <string>bundleid</string>
+                </dict>
             </dict>
         </dict>
         <dict>

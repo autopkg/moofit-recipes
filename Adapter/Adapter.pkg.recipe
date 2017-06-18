@@ -41,7 +41,7 @@
                 <key>info_path</key>
                 <string>%pkgroot%/Adapter.app/Contents/Info.plist</string>
                 <key>url</key>
-                <string>http://cdn.macroplant.com/release/Adapter-2.1.5.dmg</string>
+                <string>http://cdn.macroplant.com/release/Adapter-2.1.6.dmg</string>
                 <key>appcast_url</key>
                 <string>%SPARKLE_FEED_URL%</string>
                 <key>Arguments</key>

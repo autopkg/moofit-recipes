@@ -41,12 +41,11 @@
                 <key>archive_path</key>
                 <string>%pathname%</string>
                 <key>destination_path</key>
-                <string>%NAME%-%VERSION%.pkg/</string>
+                <string>%RECIPE_CACHE_DIR%</string>
                 <key>purge_destination</key>
                 <true/>
             </dict>
         </dict>
-
         <dict>
             <key>Processor</key>
             <string>PkgCopier</string>

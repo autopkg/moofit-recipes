@@ -12,7 +12,7 @@
         <string>i1Profiler</string>
         <key>SPARKLE_FEED_URL</key>
         <string>https://www.xrite.com/Downloads/Autoupdate/i1profiler_mac_appcast.xml</string>
-	</dict>
+    </dict>
     <key>Process</key>
     <array>
         <dict>
@@ -33,7 +33,6 @@
                 <string>%NAME%.zip</string>
             </dict>
         </dict>
-        <dict>
         <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
@@ -61,6 +60,7 @@
                 <true/>
             </dict>
         </dict>
+	<dict>
             <key>Processor</key>
             <string>Versioner</string>
             <key>Arguments</key>

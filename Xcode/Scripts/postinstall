@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# xcodeSetup.sh
+# Created by Stephen Warneford-Bygrave on 2016-06-17
+
+# Remove comment to enable debugging messages
+# DEBUG=1
+
+# Set variables
+osvers=$(sw_vers -productVersion | awk -F "." '{print $2}')
+cmdlinetoolstmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
+
+# Enable DevToolsSecurity
+/usr/sbin/DevToolsSecurity -enable
+
+# Accept Xcode License
+/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license accept
+
+# Installing Additional Components
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target /
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target /
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target /
+
+# Installing the latest Xcode command line tools on 10.9.x or higher
+
+if [[ "$osvers" -ge 9 ]]; then
+
+    # Create the placeholder file which is checked by the softwareupdate tool 
+    # before allowing the installation of the Xcode command line tools.
+    touch "$cmdlinetoolstmp"
+
+    # Find the last listed update in the Software Update feed with "Command Line Tools" in the name
+    cmd_line_tools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
+
+    #Install the command line tools
+    softwareupdate -i "$cmd_line_tools"
+
+    # Remove the temp file
+    if [[ -f "$cmdlinetoolstmp" ]]; then
+        rm "$cmdlinetoolstmp"
+    fi
+fi
+
+sleep 5
+
+# Add everyone to Developer group
+/usr/sbin/dseditgroup -o edit -a everyone -t group _developer
+
+exit 0

@@ -19,10 +19,10 @@ from autopkglib import Processor, ProcessorError
 import subprocess
 import os.path
 
-__all__ = ["Self"]
+__all__ = ["Yo"]
 
-class Self(Processor):
-    description = "Provides an output of self.env."
+class Yo(Processor):
+    description = "Provides a Yo notification if anything was imported."
     input_variables = {
     }
     output_variables = {
@@ -31,8 +31,10 @@ class Self(Processor):
     __doc__ = description
 
     def main(self):
-            self.output(self.env)
+        self.output(self.env)
+
+
 
 if __name__ == "__main__":
-    processor = Self()
+    processor = Yo()
     processor.execute_shell()

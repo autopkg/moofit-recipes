@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the current release version of i1 Profiler as a Zip archive (via Sparkle) and packages it.</string>
+    <string>Downloads the current release version of i1 Profiler as a Zip archive (via Sparkle) and saves it as a package.</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.i1profiler</string>
     <key>Input</key>

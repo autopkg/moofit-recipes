@@ -57,7 +57,6 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
             </dict>
         </dict>
-        
         <dict>          
             <key>Processor</key>
             <string>EndOfCheckPhase</string>

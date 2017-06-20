@@ -40,7 +40,7 @@
             <dict>
                 <key>archive_path</key>
                 <string>%pathname%</string>
-                <key>destination_path</string>
+                <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
                 <key>purge_destination</key>
                 <true/>

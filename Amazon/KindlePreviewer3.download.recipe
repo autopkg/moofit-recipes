@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Built on the Kindle Previewer recipe from Foigus
+	
+	Downloads latest Kindle Previewer 3 disk image.
+
+NOTE: The Kindle Previewer postinstall script (at least as of 3.11) is the following:
+####
+#!/bin/sh
+
+sudo chmod -R 755 /Applications/Kindle\ Previewer.app
+sudo chown -R $USER /Applications/Kindle\ Previewer.app
+####
+
+And Kindle Previewer, when running, writes files and directories under:
+/Applications/Kindle Previewer.app/Contents/MacOS
+
+Depending on your management system, you may need to address this issue.</string>
+	<key>Identifier</key>
+	<string>uk.co.amsys.download.kindlepreviewer</string>
+	<key>Input</key>
+	<dict>
+		<key>DOWNLOAD_URL</key>
+		<string>https://kindlepreviewer3.s3.amazonaws.com/KindlePreviewerInstaller.pkg</string>
+		<key>NAME</key>
+		<string>Kindle Previewer 3</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.0</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>filename</key>
+				<string>%NAME%.pkg</string>
+				<key>url</key>
+				<string>%DOWNLOAD_URL%</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>expected_authority_names</key>
+				<array>
+					<string>Developer ID Installer: AMZN Mobile LLC (94KV3E626L)</string>
+					<string>Developer ID Certification Authority</string>
+					<string>Apple Root CA</string>
+				</array>
+				<key>input_path</key>
+				<string>%pathname%</string>
+			</dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+		</dict>
+	</array>
+</dict>
+</plist>

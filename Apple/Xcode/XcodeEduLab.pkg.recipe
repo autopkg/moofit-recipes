@@ -7,7 +7,7 @@
 	e.g. `autopkg run XcodeEduLab.pkg -p /path/to/download/Xcode8.3.3.xip`
 	Will also add a postflight script to install the command-line tools and configure these for education lab use</string>
 	<key>Identifier</key>
-	<string>uk.co.amsys.pkg.XcodeEduLab</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.XcodeEduLab</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

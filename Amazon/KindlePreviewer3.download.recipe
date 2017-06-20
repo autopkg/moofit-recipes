@@ -4,7 +4,7 @@
 <dict>
 	<key>Description</key>
 	<string>Built on the Kindle Previewer recipe from Foigus
-	
+
 	Downloads latest Kindle Previewer 3 disk image.
 
 NOTE: The Kindle Previewer postinstall script (at least as of 3.11) is the following:
@@ -20,7 +20,7 @@ And Kindle Previewer, when running, writes files and directories under:
 
 Depending on your management system, you may need to address this issue.</string>
 	<key>Identifier</key>
-	<string>uk.co.amsys.download.kindlepreviewer</string>
+	<string>com.github.amsysuk.amsys-recipes.download.kindlepreviewer</string>
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_URL</key>

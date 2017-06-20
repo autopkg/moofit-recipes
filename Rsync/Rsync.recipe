@@ -7,7 +7,14 @@
 	<key>Identifier</key>
 	<string>com.github.amsysuk.amsys-recipes.Rsync</string>
 	<key>Input</key>
-	<dict/>
+	<dict>
+        <key>source_path</key>
+        <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+        <key>destination_path</key>
+        <string>/Users/Shared/Packaging/Development</string>
+        <key>rsync_arguments</key>
+        <string>-a</string>
+    </dict>
 	<key>MinimumVersion</key>
 	<string>0.5.2</string>
 	<key>Process</key>

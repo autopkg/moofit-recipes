@@ -19,15 +19,6 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
             <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>
@@ -42,13 +33,24 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>Copier</string>
+            <string>Unarchiver</string>
             <key>Arguments</key>
             <dict>
-                <key>source_path</key>
-                <string>%pathname%/EasyFind.app</string>
+                <key>archive_path</key>
+                <string>%pathname%</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/EasyFind.app</string>
+                <string>%pkgroot%/Applications/</string>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%pkgroot%/Applications/EasyFind.app/Contents/Info.plist</string>
             </dict>
         </dict>
         <dict>

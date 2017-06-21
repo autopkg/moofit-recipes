@@ -11,7 +11,7 @@
         <key>NAME</key>
         <string>Eclipse</string>
         <key>SELECTION</key>
-        <string>Eclipse IDE for Java Developers</string>
+        <string>Eclipse IDE for Java Developers.</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.8</string>

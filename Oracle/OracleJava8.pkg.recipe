@@ -46,14 +46,14 @@ http://www.oracle.com/technetwork/java/javase/terms/license/index.html
                 <key>pkgroot</key>
                 <string>%RECIPE_CACHE_DIR%/unpack/root</string>
                 <key>pkgdirs</key>
-            </dict>
-            <dict>
-                <key>Library</key>
-                <string>0755</string>
-                <key>Library/Internet Plug-Ins</key>
-                <string>0755</string>
-                <key>Library/Internet Plug-Ins/JavaAppletPlugin.plugin</key>
-                <string>0755</string>
+                <dict>
+                    <key>Library</key>
+                    <string>0755</string>
+                    <key>Library/Internet Plug-Ins</key>
+                    <string>0755</string>
+                    <key>Library/Internet Plug-Ins/JavaAppletPlugin.plugin</key>
+                    <string>0755</string>
+                </dict>
             </dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>

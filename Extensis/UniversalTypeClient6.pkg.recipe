@@ -121,15 +121,6 @@
 			<key>Processor</key>
 			<string>PkgPayloadUnpacker</string>
 		</dict>           
-        	<dict>
-        	    <key>Processor</key>
-        	    <string>FileFinder</string>
-        	    <key>Arguments</key>
-        	    <dict>
-        	        <key>pattern</key>
-        	        <string>%RECIPE_CACHE_DIR%/%NAME%/*</string>
-        	    </dict>
-        	</dict>
 		<dict>
 			<key>Arguments</key>
 			<dict>
@@ -138,18 +129,7 @@
 			</dict>
 			<key>Processor</key>
 			<string>Versioner</string>
-		</dict>
-        <dict>
-            <key>Processor</key>
-            <string>FileMover</string>
-            <key>Arguments</key>
-            <dict>
-                <key>source</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-                <key>target</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-            </dict>
-        </dict>		
+		</dict>	
     </array>
 </dict>
 </plist>

@@ -30,15 +30,15 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>PkgCopier</string>
+            <string>PkgExtractor</string>
             <key>Arguments</key>
             <dict>
-                <key>source_pkg</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-            </dict>
-        </dict>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg
+                <key>extract_root</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/</string>
+            <dict>
+        <dict>
     </array>
 </dict>
 </plist>

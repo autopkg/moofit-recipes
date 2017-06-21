@@ -6,7 +6,7 @@
     <string>Downloads the current Adobe Acrobat Reader DC pkg and repackages, replacing a problematic preinstall script,
 and enabling installation on non-boot volumes.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.AdobeReaderDC</string>
+    <string>com.github.autopkg.pkg.AdobeReaderDC</string>
     <key>Input</key>
     <dict>
         <key>LANGUAGE</key>

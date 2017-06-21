@@ -10,6 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>Universal Type Client</string>
+	<key>PKG_POSTINSTALL</key>
+	<string>UniversalTypeClient5.postinstall</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.8</string>
@@ -130,28 +132,15 @@
 				<string>anchor apple generic and identifier &quot;com.extensis.UniversalTypeClient&quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */) and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = J6MMHGD9D6</string>
 			</dict>
 		</dict>             
-        <dict>
-            <key>Processor</key>
-            <string>FileFinder</string>
-            <key>Arguments</key>
-            <dict>
-                <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/*</string>
-            </dict>
-        </dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>faux_root</key>
-				<string>%RECIPE_CACHE_DIR%/pkgroot</string>
-				<key>installs_item_paths</key>
-				<array>
-					<string>/Applications/Universal Type Client.app</string>
-				</array>
-			</dict>
-			<key>Processor</key>
-			<string>MunkiInstallsItemsCreator</string>
-		</dict>
+        	<dict>
+        	    <key>Processor</key>
+        	    <string>FileFinder</string>
+        	    <key>Arguments</key>
+        	    <dict>
+        	        <key>pattern</key>
+        	        <string>%RECIPE_CACHE_DIR%/%NAME%/*</string>
+        	    </dict>
+        	</dict>
 		<dict>
 			<key>Arguments</key>
 			<dict>

@@ -23,21 +23,23 @@ cmdlinetoolstmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 
 # Installing the latest Xcode command line tools on 10.9.x or higher
 
-if [[ "$osvers" -ge 9 ]]; then
+if [[ "${osvers}" -ge 9 ]];
+then
 
-    # Create the placeholder file which is checked by the softwareupdate tool 
+    # Create the placeholder file which is checked by the softwareupdate tool
     # before allowing the installation of the Xcode command line tools.
-    touch "$cmdlinetoolstmp"
+    touch "${cmdlinetoolstmp}"
 
     # Find the last listed update in the Software Update feed with "Command Line Tools" in the name
-    cmd_line_tools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
+    cmdlinetools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
 
     #Install the command line tools
-    softwareupdate -i "$cmd_line_tools"
+    softwareupdate -i "${cmdlinetools}"
 
     # Remove the temp file
-    if [[ -f "$cmdlinetoolstmp" ]]; then
-        rm "$cmdlinetoolstmp"
+    if [[ -f "${cmdlinetoolstmp}" ]];
+    then
+        rm "${cmdlinetoolstmp}"
     fi
 fi
 

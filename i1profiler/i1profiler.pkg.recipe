@@ -67,7 +67,7 @@
                 <key>rsync_arguments</key>
                 <string>-a</string>
             </dict>
-        </dict>      
+        </dict>   
     </array>
 </dict>
 </plist>

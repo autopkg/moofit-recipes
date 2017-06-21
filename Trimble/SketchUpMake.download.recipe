@@ -17,27 +17,27 @@
     <string>0.2.0</string>
     <key>Process</key>
     <array>
-    	<dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-			<key>Arguments</key>
-			<dict>
-				<key>url</key>
-				<string>https://www.sketchup.com/download/all</string>
-				<key>result_output_var_name</key>
-				<string>url</string>
-				<key>re_pattern</key>
-				<string>&quot;((?:https?:)?//.+/SketchUpMake.*%LANG%.*.dmg)&quot;</string>
-				<key>re_flags</key>
-				<array>
-					<string>IGNORECASE</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-		</dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>https://www.sketchup.com/download/all</string>
+                <key>result_output_var_name</key>
+                <string>url</string>
+                <key>re_pattern</key>
+                <string>&quot;((?:https?:)?//.+/SketchUpMake.*%LANG%.*.dmg)&quot;</string>
+                <key>re_flags</key>
+                <array>
+                    <string>IGNORECASE</string>
+                </array>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>

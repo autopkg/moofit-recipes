@@ -94,6 +94,19 @@ http://www.oracle.com/technetwork/java/javase/terms/license/index.html
                 <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
             </dict>
         </dict>
+        <dict>
+            <key>Processor</key>
+            <string>com.github.amsysuk.amsys-recipes.Processors/Rsync</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>destination_path</key>
+                <string>/Users/Shared/Packaging/Live</string>
+                <key>rsync_arguments</key>
+                <string>-a</string>
+            </dict>
+        </dict>
     </array>
 </dict>
 </plist>

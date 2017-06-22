@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# xcodeSetup.sh
+# Created by Stephen Warneford-Bygrave on 2016-06-17
+
+# Remove comment to enable debugging messages
+# DEBUG=1
+
+# Set variables
+osvers=$(sw_vers -productVersion | awk -F "." '{print $2}')
+cmdlinetoolstmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
+
+
+# Enable DevToolsSecurity
+/bin/echo "Enable DevToolsSecurity"
+/usr/sbin/DevToolsSecurity -enable
+
+# Accept Xcode License
+/bin/echo "Accept Xcode License"
+/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license accept
+
+# Installing Additional Components
+/bin/echo "Installing Additional Components"
+/bin/echo " - MobileDevice.pkg"
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
+/bin/echo " - - Result is: ${?}"
+/bin/echo " - MobileDeviceDevelopment.pkg"
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
+/bin/echo " - - Result is: ${?}"
+/bin/echo " - XcodeSystemResources.pkg"
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
+
+# Installing the latest Xcode command line tools on 10.9.x or higher
+/bin/echo "Installing the latest Xcode command line tools on 10.9.x or higher"
+if [[ "${osvers}" -ge 9 ]];
+then
+
+    # Create the placeholder file which is checked by the softwareupdate tool
+    # before allowing the installation of the Xcode command line tools.
+    touch "${cmdlinetoolstmp}"
+
+    # Find the last listed update in the Software Update feed with "Command Line Tools" in the name
+    cmdlinetools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
+
+    #Install the command line tools
+    softwareupdate -i "${cmdlinetools}"
+
+    # Remove the temp file
+    if [[ -f "${cmdlinetoolstmp}" ]];
+    then
+        rm "${cmdlinetoolstmp}"
+    fi
+fi
+
+sleep 5
+
+# Add everyone to Developer group
+/bin/echo "Add everyone to Developer group"
+/usr/sbin/dseditgroup -o edit -a everyone -t group _developer
+
+exit 0

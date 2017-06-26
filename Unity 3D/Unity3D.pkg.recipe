@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>uk.co.amsys.pkg.Unity3D</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.Unity3D</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

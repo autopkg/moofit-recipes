@@ -20,8 +20,26 @@
     <key>Process</key>
     <array>
         <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%/TypeTool 3 Installer.pkg</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
             <key>Processor</key>
-            <string>DmgMounter</string>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+            <key>Arguments</key>
+            <dict>
+				<key>source_pkg</key>
+                <string>%pathname%/TypeTool 3 Installer.pkg</string>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+            </dict>
         </dict>
         <dict>
             <key>Processor</key>

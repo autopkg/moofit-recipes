@@ -9,7 +9,7 @@
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_PATTERN</key>
-		<string>(https://go.microsoft.com/fwlink/?linkid=830196)</string>
+		<string>(https://go.microsoft.com/fwlink/?linkid=800050)</string>
 		<key>DOWNLOAD_URL</key>
 		<string>https://macadmins.software</string>
 		<key>NAME</key>

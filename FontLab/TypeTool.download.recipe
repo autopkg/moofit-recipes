@@ -11,7 +11,7 @@
         <key>NAME</key>
         <string>TypeTool</string>
         <key>DOWNLOAD_URL</key>
-        <string>http://www.fontlab.com/downloads/Installers/TT3MacFull.dmg</string>
+        <string>http://old.fontlab.com/downloads/Installers/TT3MacFull.dmg</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.0</string>

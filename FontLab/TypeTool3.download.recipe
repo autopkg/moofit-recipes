@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest Type Tool from FontLab.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.download.TypeTool</string>
+    <string>com.github.amsysuk.amsys-recipes.download.TypeTool3</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

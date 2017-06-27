@@ -5,13 +5,13 @@
 	<key>Description</key>
 	<string>Downloads the latest version of the Microsoft Sharepoint Browser Plugin.</string>
 	<key>Identifier</key>
-	<string>om.github.amsysuk.amsys-recipes.download.MSSharePointPlugin</string>
+	<string>com.github.amsysuk.amsys-recipes.download.MSSharePointPlugin</string>
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_PATTERN</key>
 		<string>(https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/OfficeMac/Microsoft_SharePoint_2016_+[0-9].+[0-9].+[0-9]_SharePointPlugin.pkg)</string>
 		<key>DOWNLOAD_URL</key>
-		<string>https://www.wacom.com/en-us/support/product-support/drivers</string>
+		<string>https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/OfficeMac</string>
 		<key>NAME</key>
 		<string>Wacom Intuos Driver</string>
 	</dict>

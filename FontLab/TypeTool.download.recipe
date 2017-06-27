@@ -24,6 +24,11 @@
             <dict>
                 <key>url</key>
                 <string>%DOWNLOAD_URL%</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>User-Agent</key>
+                    <string>Mozilla/5.0 (Macintosh; Intel Mac OS X)</string>
+                </dict>
             </dict>
         </dict>
         <dict>

@@ -36,7 +36,7 @@
 				<key>source_pkg</key>
                 <string>%pathname%/TypeTool 3 Installer.pkg</string>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
             </dict>
         </dict>
         <dict>

@@ -9,11 +9,11 @@
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_PATTERN</key>
-		<string>(https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/OfficeMac/Microsoft_SharePoint_2016_+[0-9].+[0-9].+[0-9]_SharePointPlugin.pkg)</string>
+		<string>(https://go.microsoft.com/fwlink/?linkid=830196)</string>
 		<key>DOWNLOAD_URL</key>
-		<string>https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/OfficeMac</string>
+		<string>https://macadmins.software</string>
 		<key>NAME</key>
-		<string>Wacom Intuos Driver</string>
+		<string>Microsoft Sharepoint Plugin</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>

@@ -42,22 +42,8 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>pkgdirs</key>
-                <dict>
-                    <key>Applications</key>
-                    <string>0755</string>
-                </dict>
-                <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgRootCreator</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
                 <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/pkgroot/Applications</string>
+                <string>%RECIPE_CACHE_DIR%/tmp</string>
                 <key>pkg_payload_path</key>
                 <string>%pkg_path%/Contents/Archive.pax.gz</string>
             </dict>

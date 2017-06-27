@@ -11,7 +11,7 @@
         <key>NAME</key>
         <string>TypeTool</string>
         <key>DOWNLOAD_URL</key>
-        <string>http://old.fontlab.com/downloads/Installers/TT3MacFull.dmg</string>
+        <string>https://old.fontlab.com/downloads/Installers/TT3MacFull.dmg</string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.amsysuk.amsys-recipes.download.TypeTool</string>
@@ -21,12 +21,7 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
-            </dict>
+            <string>DmgMounter</string>
         </dict>
         <dict>
             <key>Processor</key>

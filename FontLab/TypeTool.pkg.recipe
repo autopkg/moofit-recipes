@@ -29,6 +29,17 @@
             <string>FileFinder</string>
         </dict>
         <dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+            <key>Arguments</key>
+            <dict>
+				<key>source_pkg</key>
+                <string>%pathname%/TypeTool 3 Installer.pkg</string>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+            </dict>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>pkgdirs</key>
@@ -48,21 +59,10 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/pkgroot/Applications</string>
                 <key>pkg_payload_path</key>
-                <string>%pathname%/TypeTool 3 Installer.pkg/Contents</string>
+                <string>%pkg_path%/Contents</string>
             </dict>
             <key>Processor</key>
             <string>PkgPayloadUnpacker</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-            <key>Arguments</key>
-            <dict>
-				<key>source_pkg</key>
-                <string>%pathname%/TypeTool 3 Installer.pkg</string>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-            </dict>
         </dict>
         <dict>
             <key>Processor</key>

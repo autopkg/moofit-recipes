@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest Type Tool from FontLab and extracts the pkg file from the dmg.</string>
+    <key>Identifier</key>
+    <string>com.github.amsysuk.amsys-recipes.pkg.TypeTool</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>TypeTool</string>
+        <key>DOWNLOAD_URL</key>
+        <string>http://www.fontlab.com/downloads/Installers/TT3MacFull.dmg</string>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.amsysuk.amsys-recipes.download.TypeTool</string>
+    <key>MinimumVersion</key>
+    <string>0.2.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>extract_root</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+                <key>pkg_path</key>
+                <string>%found_filename%</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgExtractor</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+    </array>
+</dict>
+</plist>

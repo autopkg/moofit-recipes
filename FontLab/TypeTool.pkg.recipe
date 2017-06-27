@@ -22,13 +22,11 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>flat_pkg_path</key>
-                <string>%pathname%/TypeTool 3 Installer.pkg</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>pattern</key>
+                <string>%pathname%/*.pkg</string>
             </dict>
             <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
+            <string>FileFinder</string>
         </dict>
         <dict>
             <key>Processor</key>

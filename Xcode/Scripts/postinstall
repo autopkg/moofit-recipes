@@ -29,6 +29,7 @@ cmdlinetoolstmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 /bin/echo " - - Result is: ${?}"
 /bin/echo " - XcodeSystemResources.pkg"
 /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
+/bin/echo " - - Result is: ${?}"
 
 # Installing the latest Xcode command line tools on 10.9.x or higher
 /bin/echo "Installing the latest Xcode command line tools on 10.9.x or higher"

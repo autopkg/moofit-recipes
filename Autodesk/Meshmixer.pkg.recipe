@@ -38,7 +38,7 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack</string>
                 <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/expanded/Meshmixer.pkg/Payload</string>
+                <string>%RECIPE_CACHE_DIR%/expanded/Meshmixer.pkg/com.meshmixer.meshmixer09.pkg/Payload</string>
             </dict>
         </dict>
          <dict>
@@ -59,7 +59,7 @@
             <dict>
                 <key>path_list</key>
                 <array>
-                    <string>%RECIPE_CACHE_DIR%/downloads/Meshmixer.pkg</string>
+                    <string>%RECIPE_CACHE_DIR%/downloads/Meshmixer\.pkg</string>
                 </array>
             </dict>
         </dict>

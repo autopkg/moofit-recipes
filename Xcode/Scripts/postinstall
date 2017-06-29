@@ -19,17 +19,21 @@ cmdlinetoolstmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 /bin/echo "Accept Xcode License"
 /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license accept
 
+### Removed by DW - Amsys - 2017.06.29
+## This is because the below 3 package installations do not work as a postinstall script :SadPanda:
+
 # Installing Additional Components
-/bin/echo "Installing Additional Components"
-/bin/echo " - MobileDevice.pkg"
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
-/bin/echo " - - Result is: ${?}"
-/bin/echo " - MobileDeviceDevelopment.pkg"
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
-/bin/echo " - - Result is: ${?}"
-/bin/echo " - XcodeSystemResources.pkg"
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
-/bin/echo " - - Result is: ${?}"
+# /bin/echo "Installing Additional Components"
+# /bin/echo " - MobileDevice.pkg"
+# /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
+# /bin/echo " - - Result is: ${?}"
+# /bin/echo " - MobileDeviceDevelopment.pkg"
+# /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
+# /bin/echo " - - Result is: ${?}"
+# /bin/echo " - XcodeSystemResources.pkg"
+# /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
+# /bin/echo " - - Result is: ${?}"
+/bin/echo "Ensure to install the (currently) 3 packages inside the Xcode bundle, located at /Applications/Xcode.app/Contents/Resources/Packages/"
 
 # Installing the latest Xcode command line tools on 10.9.x or higher
 /bin/echo "Installing the latest Xcode command line tools on 10.9.x or higher"

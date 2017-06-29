@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version of Meshmixer.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkgdownload.Meshmixer</string>
+    <string>com.github.amsysuk.amsys-recipes.download.Meshmixer</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

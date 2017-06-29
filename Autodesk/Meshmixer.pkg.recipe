@@ -9,7 +9,7 @@
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>Autodesk Meshmixer</string>
+		<string>Meshmixer</string>
 		<key>SEARCH_PATTERN</key>
 		<string>(?P&lt;url&gt;https://s3\.amazonaws\.com/meshmixer\.release/Autodesk_Meshmixer_v[A-Za-z0-9_.]+_macOS\.pkg)</string>
 		<key>SEARCH_URL</key>

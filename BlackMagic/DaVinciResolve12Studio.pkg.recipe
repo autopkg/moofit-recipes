@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads latest version of DaVinci Resolve 12 Studioand turns it into a package.
+Note:	This App and containing folder has the same name
+This product requires registration in order to download, so
+you _must_ override all input variables beginning with 'REG_'
+and they must contain data.</string>
+	<key>Identifier</key>
+	<string>com.github.amsysuk.amsys-recipes.pkg.DaVinciResolve12Studio</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>DaVinci Resolve Studio</string>
+		<key>PRODUCT_NAME_PATTERN</key>
+		<string>^DaVinci Resolve (?P&lt;version&gt;12(\.\d+)*) Studio( Update)*$</string>
+		<key>REG_CITY</key>
+		<string></string>
+		<key>REG_EMAIL</key>
+		<string></string>
+		<key>REG_FIRSTNAME</key>
+		<string></string>
+		<key>REG_LASTNAME</key>
+		<string></string>
+		<key>REG_PHONE</key>
+		<string></string>
+		<key>REG_STATE</key>
+		<string></string>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.amsysuk.amsys-recipes.download.DaVinciResolve12Studio</string>
+	<key>Process</key>
+    <array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>archive_path</key>
+				<string>%pathname%</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<key>purge_destination</key>
+				<true/>
+			</dict>
+			<key>Processor</key>
+			<string>Unarchiver</string>
+		</dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+				<key>source_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/DaVinci_Resolve_Studio_*_Mac.dmg</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/ResolveStudio.dmg</string>
+            </dict>
+		</dict>
+		<dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+				<key>source_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/ResolveStudio.dmg/Install Resolve*.pkg</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/ResolveStudio.pkg</string>
+            </dict>
+		</dict>
+		<dict>   
+   		 <key>Processor</key>   
+  		  <string>CodeSignatureVerifier</string>   
+  		  <key>Arguments</key>   
+  		  <dict>   
+  		      <key>input_path</key>   
+     		   <string>%RECIPE_CACHE_DIR%/%NAME%/ResolveStudio.pkg</string>
+     		   <key>expected_authority_names</key>
+     		   <array>
+     		       <string>Developer ID Installer: Blackmagic Design Inc (9ZGFBWLSYP)</string>
+     		       <string>Developer ID Certification Authority</string>
+					<string>Apple Root CA</string>
+     		   </array>
+  		 </dict>
+  		</dict> 
+		<dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/expanded</string>
+                <key>flat_pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/ResolveStudio.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/expanded/Manifest.pkg/Payload</string>
+            </dict>
+        </dict>      
+        <dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Applications/DaVinci Resolve/DaVinci Resolve.app/Contents/Info.plist</string>
+                <key>plist_version_key</key>
+                <string>CFBundleShortVersionString</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>source_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/ResolveStudio.pkg</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

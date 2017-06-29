@@ -9,7 +9,7 @@
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>Meshmixer</string>
+		<string>Autodesk Meshmixer</string>
 		<key>SEARCH_PATTERN</key>
 		<string>(?P&lt;url&gt;https://s3\.amazonaws\.com/meshmixer\.release/Autodesk_Meshmixer_v[A-Za-z0-9_.]+_macOS\.pkg)</string>
 		<key>SEARCH_URL</key>
@@ -27,7 +27,7 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/expanded</string>
                 <key>flat_pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/Meshmixer.pkg</string>
+                <string>%RECIPE_CACHE_DIR%/downloads/Autodesk Meshmixer.pkg</string>
             </dict>
         </dict>
         <dict>

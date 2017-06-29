@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest version of Dragonframe 4</string>
+	<string>Downloads the latest version of Dragonframe 3</string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.download.Dragonframe4</string>
+	<string>com.github.amsysuk.amsys-recipes.download.Dragonframe3</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>Dragonframe 4</string>
+		<string>Dragonframe 3</string>
 		<key>CHECK_PAGE_URL</key>
 		<string>http://www.dragonframe.com/downloads</string>
 		<key>USER_AGENT</key>
@@ -29,7 +29,7 @@
 				<key>result_output_var_name</key>
 				<string>url</string>
 				<key>re_pattern</key>
-				<string>Dragonframe_4.*?\.pkg</string>
+				<string>Dragonframe_3.*?\.pkg</string>
 				<key>re_flags</key>
 				<array>
 					<string>IGNORECASE</string>

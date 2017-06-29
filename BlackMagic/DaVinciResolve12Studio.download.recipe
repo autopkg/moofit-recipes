@@ -10,7 +10,7 @@ This product requires registration in order to download, so
 you _must_ override all input variables beginning with 'REG_'
 and they must contain data.</string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.DaVinciResolve12</string>
+	<string>com.github.amsysuk.amsys-recipes.download.DaVinciResolve12Studio</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

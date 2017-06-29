@@ -18,17 +18,17 @@ and they must contain data.</string>
 		<key>PRODUCT_NAME_PATTERN</key>
 		<string>^DaVinci Resolve (?P&lt;version&gt;12(\.\d+)*) Studio( Update)*$</string>
 		<key>REG_CITY</key>
-		<string>CHANGEME</string>
+		<string></string>
 		<key>REG_EMAIL</key>
-		<string>CHANGEME</string>
+		<string></string>
 		<key>REG_FIRSTNAME</key>
-		<string>CHANGEME</string>
+		<string></string>
 		<key>REG_LASTNAME</key>
-		<string>CHANGEME</string>
+		<string></string>
 		<key>REG_PHONE</key>
-		<string>CHANGEME</string>
+		<string></string>
 		<key>REG_STATE</key>
-		<string>CHANGEME</string>
+		<string></string>
 	</dict>
 	<key>ParentRecipe</key>
 	<string>com.github.timsutton.download.davinciresolve12</string>

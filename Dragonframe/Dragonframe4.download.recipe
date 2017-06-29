@@ -47,7 +47,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>url</key>
-				<string>http://www.%url%</string>
+				<string>http://www.dragonframe.com/download/%url%</string>
 			</dict>
 		</dict>
 		<dict>

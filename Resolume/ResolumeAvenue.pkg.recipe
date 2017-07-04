@@ -75,7 +75,7 @@
                     <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Scripts/postinstall</string>
                 </array>
             </dict>
-        </dict>        
+        </dict>
         <dict>
             <key>Processor</key>
             <string>FlatPkgPacker</string>

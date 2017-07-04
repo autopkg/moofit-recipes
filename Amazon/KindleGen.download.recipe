@@ -12,6 +12,8 @@
 		<string>KindleGen</string>
 		<key>CHECK_PAGE_URL</key>
 		<string>https://www.amazon.com/gp/feature.html?docId=1000765211</string>
+		<key>%DOWNLOAD_PAGE_URL%</key>
+		<string>http://kindlegen.s3.amazonaws.com</string>		
 		<key>USER_AGENT</key>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
 	</dict>
@@ -27,7 +29,7 @@
 				<key>url</key>
 				<string>%CHECK_PAGE_URL%</string>
 				<key>result_output_var_name</key>
-				<string>url</string>
+				<string>file</string>
 				<key>re_pattern</key>
 				<string>KindleGen_Mac_i386_v.*\.zip</string>
 				<key>re_flags</key>
@@ -47,7 +49,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>url</key>
-				<string>%DOWNLOAD_PAGE_URL%/%url%</string>
+				<string>%DOWNLOAD_PAGE_URL%/%file%</string>
 			</dict>
 		</dict>
 		<dict>

@@ -22,70 +22,20 @@
         <key>Process</key>
         <array>
             <dict>
-                <key>Processor</key>
-                <string>FlatPkgUnpacker</string>
                 <key>Arguments</key>
                 <dict>
-                    <key>destination_path</key>
-                    <string>%RECIPE_CACHE_DIR%/expanded</string>
-                    <key>flat_pkg_path</key>
-                    <string>%pathname%/Isadora USB Key Installer.pkg</string>
+                    <key>info_path</key>
+                    <string>%pathname%/Isadora USB Key Installer.pkg/Contents</string>
+                    <key>plist_keys</key>
+                    <dict>
+                        <key>CFBundleIdentifier</key>
+                        <string>bundleid</string>
+                        <key>CFBundleShortVersionString</key>
+                        <string>version</string>
+                    </dict>
                 </dict>
-            </dict>
-            <dict>
                 <key>Processor</key>
-                <string>PkgPayloadUnpacker</string>
-                <key>Arguments</key>
-                <dict>
-                    <key>destination_path</key>
-                    <string>%RECIPE_CACHE_DIR%/unpack</string>
-                    <key>pkg_payload_path</key>
-                    <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Payload</string>
-                </dict>
-            </dict>
-            <dict>
-                <key>Processor</key>
-                <string>PkgCopier</string>
-                <key>Arguments</key>
-                <dict>
-                    <key>pkg_path</key>
-                    <string>%RECIPE_CACHE_DIR%/downloads/Info.plist</string>
-                    <key>source_pkg</key>
-                    <string>%RECIPE_CACHE_DIR%/unpack/Applications/Resolume Avenue */Avenue.app/Contents/Info.plist</string>
-                </dict>
-            </dict>
-            <dict>
-                <key>Processor</key>
-                <string>Versioner</string>
-                <key>Arguments</key>
-                <dict>
-                    <key>input_plist_path</key>
-                    <string>%RECIPE_CACHE_DIR%/downloads/Info.plist</string>
-                    <key>plist_version_key</key>
-                    <string>CFBundleVersion</string>
-                </dict>
-            </dict>
-            <dict>
-                <key>Processor</key>
-                <string>PathDeleter</string>
-                <key>Arguments</key>
-                <dict>
-                    <key>path_list</key>
-                    <array>
-                        <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Scripts/postinstall</string>
-                    </array>
-                </dict>
-            </dict>
-            <dict>
-                <key>Processor</key>
-                <string>FlatPkgPacker</string>
-                <key>Arguments</key>
-                <dict>
-                    <key>destination_pkg</key>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-                    <key>source_flatpkg_dir</key>
-                    <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg</string>
-                </dict>
+                <string>PlistReader</string>
             </dict>
         </array>
     </dict>

@@ -13,7 +13,7 @@
             <key>CHECK_PAGE_URL</key>
             <string>https://troikatronix.com/get-it/</string>
             <key>DOWNLOAD_PAGE_URL</key>
-            <string>https://troikatronix.com</string>
+            <string>https://troikatronix.com/files</string>
             <key>USER_AGENT</key>
             <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
         </dict>
@@ -31,7 +31,7 @@
                     <key>result_output_var_name</key>
                     <string>url</string>
                     <key>re_pattern</key>
-                    <string>\/files\/isadoramac-.*-usb\.dmg</string>
+                    <string>isadoramac-.*-usb\.dmg</string>
                     <key>re_flags</key>
                     <array>
                         <string>IGNORECASE</string>
@@ -49,7 +49,7 @@
                 <key>Arguments</key>
                 <dict>
                     <key>url</key>
-                    <string>%CHECK_PAGE_URL%/%url%</string>
+                    <string>%CDOWNLOAD_PAGE_URL%/%url%</string>
                 </dict>
             </dict>
             <dict>

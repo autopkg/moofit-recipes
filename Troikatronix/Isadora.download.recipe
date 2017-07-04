@@ -9,11 +9,9 @@
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>Avenue</string>
+		<string>Isadora</string>
 		<key>CHECK_PAGE_URL</key>
-		<string>https://resolume.com/download?file=latest_avenue</string>
-		<key>DOWNLOAD_PAGE_URL</key>
-		<string>https://d19j6z4lvv1vde.cloudfront.net</string>
+		<string>https://troikatronix.com</string>
 		<key>USER_AGENT</key>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
 	</dict>
@@ -31,15 +29,15 @@
 				<key>result_output_var_name</key>
 				<string>url</string>
 				<key>re_pattern</key>
-				<string>resolume.*?\.dmg</string>
+				<string>\/files\/isadoramac-.*-usb\.dmg</string>
 				<key>re_flags</key>
 				<array>
 					<string>IGNORECASE</string>
 				</array>
                 <key>request_headers</key>
                 <dict>
-                        <key>user-agent</key>
-                        <string>%USER_AGENT%</string>
+                    <key>user-agent</key>
+                    <string>%USER_AGENT%</string>
                 </dict>
 			</dict>
 		</dict>
@@ -49,7 +47,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>url</key>
-				<string>%DOWNLOAD_PAGE_URL%/%url%</string>
+				<string>%CHECK_PAGE_URL%/%url%</string>
 			</dict>
 		</dict>
 		<dict>

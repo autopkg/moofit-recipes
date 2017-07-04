@@ -65,11 +65,11 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>pkgdirs</key>
                 <dict>
-                    <key>/usr</key>
+                    <key>usr</key>
                     <string>0755</string>
-                    <key>/usr/local</key>
+                    <key>usr/local</key>
                     <string>0755</string>
-                    <key>/usr/local/bin</key>
+                    <key>usr/local/bin</key>
                     <string>0775</string>
                 </dict>
             </dict>

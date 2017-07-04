@@ -25,7 +25,7 @@
                 <key>Arguments</key>
                 <dict>
                     <key>info_path</key>
-                    <string>%pathname%/Isadora USB Key Installer.pkg/Contents</string>
+                    <string>%pathname%/Isadora USB Key Installer.pkg/Contents/Info.plist</string>
                     <key>plist_keys</key>
                     <dict>
                         <key>CFBundleIdentifier</key>

@@ -40,7 +40,7 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack</string>
                 <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Payload</string>
+                <string>%RECIPE_CACHE_DIR%/expanded/Payload</string>
             </dict>
         </dict>
         <dict>

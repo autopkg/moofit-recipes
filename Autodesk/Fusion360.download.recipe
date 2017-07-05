@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Autodesk Fusion 360.</string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.download.AutodeskFusion360</string>
+	<string>com.github.amsysuk.amsys-recipes.download.Fusion360</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

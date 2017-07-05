@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Resolume Avenue</string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.download.ResolumeAvenue</string>
+	<string>com.github.amsysuk.amsys-recipes.download.Avenue</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -56,12 +56,12 @@
 			<key>Processor</key>
 			<string>EndOfCheckPhase</string>
 		</dict>
-		<dict>   
-   		 <key>Processor</key>   
-  		  <string>CodeSignatureVerifier</string>   
-  		  <key>Arguments</key>   
-  		  <dict>   
-  		      <key>input_path</key>   
+		<dict>
+   		 <key>Processor</key>
+  		  <string>CodeSignatureVerifier</string>
+  		  <key>Arguments</key>
+  		  <dict>
+  		      <key>input_path</key>
      		   <string>%pathname%/Resolume Avenue * Installer.pkg</string>
      		   <key>expected_authority_names</key>
      		   <array>

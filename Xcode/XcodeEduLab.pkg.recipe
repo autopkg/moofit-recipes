@@ -26,7 +26,7 @@
       		<string>XcodeXIPUnpacker</string>
             <dict>
                 <key>PKG</key>
-                <string>%RECIPE_CACHE_DIR%/*.xip</string>
+                <string>%RECIPE_CACHE_DIR%/XIP/*.xip</string>
       		<key>Comment</key>
       		<string>Borrowed from Facebook's Xcode recipe
       		https://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>

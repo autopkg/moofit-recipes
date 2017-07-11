@@ -29,7 +29,7 @@
             <key>Arguments</key>
             <dict>
                 <key>PKG</key>
-                <string>%RECIPE_CACHE_DIR%/XIP/*.xip</string>
+                <string>%RECIPE_DIR%/XIP/*.xip</string>
             </dict>
             <key>Comment</key>
             <string>Borrowed from Facebook's Xcode recipehttps://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>

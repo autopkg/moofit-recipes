@@ -12,6 +12,8 @@
     <dict>
         <key>NAME</key>
         <string>Xcode</string>
+        <key>XIPNAME</key>
+        <string>Xcode8.3.3.xip</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.1</string>
@@ -29,7 +31,7 @@
             <key>Arguments</key>
             <dict>
                 <key>PKG</key>
-                <string>%RECIPE_DIR%/XIP/*.xip</string>
+                <string>%RECIPE_DIR%/XIP/%XIPNAME%</string>
             </dict>
             <key>Comment</key>
             <string>Borrowed from Facebook's Xcode recipehttps://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>

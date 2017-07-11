@@ -17,10 +17,12 @@
     <string>0.5.1</string>
     <key>Process</key>
     <array>
+        <!--
         <dict>
             <key>Processor</key>
             <string>PackageRequired</string>
         </dict>
+        -->
         <dict>
             <key>Processor</key>
             <string>XcodeXIPUnpacker</string>

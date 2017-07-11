@@ -23,11 +23,18 @@
 	<array>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
+            <string>PlistReader</string>
             <key>Arguments</key>
             <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
+                <key>info_path</key>
+                <string>%pathname%/%NAME%.app</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>CFBundleIdentifier</key>
+                    <string>bundleid</string>
+                </dict>
             </dict>
         </dict>
         <dict>
@@ -67,7 +74,7 @@
                     <key>pkgdir</key>
                     <string>%RECIPE_CACHE_DIR%</string>
                     <key>id</key>
-                    <string>com.axure.AxureRP8</string>
+                    <string>%bundleid%</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>chown</key>

@@ -149,6 +149,20 @@ grantAccess ()
 
 }
 
+loadLaunchD ()
+{
+    # Loading LaunchDaemon to set off Additional Component installs
+    writelog ""
+    writelog "# Loading LaunchDaemon..."
+    if [[ -e "/private/tmp/uk.co.amsys.Xcode.components.plist" ]];
+    then
+        /bin/launchctl load -w "/private/tmp/uk.co.amsys.Xcode.components.plist"
+        testExit
+        writelog "# - Result is: ${exitCode}"
+    else
+        writelog "# LaunchDaemon not found. Please install additional components manually."
+}
+
 ##### Run script
 
 if [[ ${debug} -eq 1 ]];
@@ -167,3 +181,4 @@ enableSecurity
 # installAdditionalComponents
 installCommandLineTools
 grantAccess
+loadLaunchD

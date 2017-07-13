@@ -127,6 +127,48 @@
                             <string>Applications</string>
                             <key>user</key>
                             <string>root</string>
+                            <key>mode</key>
+                            <string>0775</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>private</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>mode</key>
+                            <string>0755</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>private/tmp</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>mode</key>
+                            <string>0777</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>private/tmp/componentsInstaller.sh</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>mode</key>
+                            <string>0755</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>private/tmp/uk.co.amsys.Xcode.components.plist</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>mode</key>
+                            <string>0755</string>
                         </dict>
                     </array>
                     <key>id</key>

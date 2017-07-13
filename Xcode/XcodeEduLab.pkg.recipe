@@ -97,7 +97,7 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/additional/uk.co.amsys.Xcode.components.plist</string>
+                <string>%RECIPE_DIR%/additional/uk.co.amsys.Xcode.components.plist</string>
                 <key>destination_path</key>
                 <string>%pkgroot%/private/tmp/uk.co.amsys.Xcode.components.plist</string>
             </dict>
@@ -108,7 +108,7 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/additional/componentsInstaller.sh</string>
+                <string>%RECIPE_DIR%/additional/componentsInstaller.sh</string>
                 <key>destination_path</key>
                 <string>%pkgroot%/tmp/componentsInstaller.sh</string>
             </dict>

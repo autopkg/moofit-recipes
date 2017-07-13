@@ -110,7 +110,7 @@
                 <key>source_path</key>
                 <string>%RECIPE_DIR%/additional/componentsInstaller.sh</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/tmp/componentsInstaller.sh</string>
+                <string>%pkgroot%/private/tmp/componentsInstaller.sh</string>
             </dict>
         </dict>
         <dict>

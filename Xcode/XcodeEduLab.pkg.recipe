@@ -3,8 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Creates an installer package from a supplied .xip file downloaded from https://developer.apple.com with the '-p' flag.
-    e.g. `autopkg run XcodeEduLab.pkg -p /path/to/download/Xcode8.3.3.xip`
+    <string>Creates an installer package from a supplied .xip file downloaded from https://developer.apple.com. The xip file
+    needs to be copied to /Path/To/AutoPkg/RecipeRepos/com.github.amsysuk.amsys-recipes/Xcode/XIP, and the name of the XIP
+    file needs to be specified in the XIPNAME input variable.
     Will also add a postflight script to install the command-line tools and configure these for education lab use</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.pkg.XcodeEduLab</string>
@@ -56,6 +57,10 @@
                 <dict>
                     <key>Applications</key>
                     <string>0775</string>
+                    <key>private</key>
+                    <string>0755</string>
+                    <key>private/tmp</key>
+                    <string>0777</string>
                 </dict>
             </dict>
         </dict>
@@ -87,6 +92,28 @@
             <string>PlistReader</string>
         </dict>
         <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/additional/uk.co.amsys.Xcode.components.plist</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/private/tmp/uk.co.amsys.Xcode.components.plist</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/additional/componentsInstaller.sh</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/tmp/componentsInstaller.sh</string>
+            </dict>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>pkg_request</key>
@@ -101,13 +128,31 @@
                             <key>user</key>
                             <string>root</string>
                         </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>/tmp/uk.co.amsys.Xcode.components.plist</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>/tmp/componentsInstaller.sh</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>mode</key>
+                            <string>0755</string>
+                        </dict>
                     </array>
                     <key>id</key>
                     <string>%bundleid%</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>scripts</key>
-                    <string>Scripts</string>
+                    <string>scripts</string>
                     <key>pkgdir</key>
                     <string>%RECIPE_CACHE_DIR%</string>
                 </dict>

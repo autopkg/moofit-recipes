@@ -1,66 +1,169 @@
 #!/bin/bash
 
-# xcodeSetup.sh
-# Created by Stephen Warneford-Bygrave on 2016-06-17
+# Author:   Stephen Bygrave - Amsys
+# Name:     postinstall
+#
+# Purpose:  Xcode Tools Postinstall to install extra components and command line
+#           tools
+# Usage:    Postinstall script within pkg file
+#
+# Version 1.0.0, 2017-07-12
+#   Initial Creation
 
-# Remove comment to enable debugging messages
-# DEBUG=1
+# Use at your own risk.  Amsys will accept no responsibility for loss or damage
+# caused by this script.
 
-# Set variables
-osvers=$(sw_vers -productVersion | awk -F "." '{print $2}')
-cmdlinetoolstmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
+# If running natively as a script, Add "-d or --debug" at run time to enable
+# debugging messages.
 
-
-# Enable DevToolsSecurity
-/bin/echo "Enable DevToolsSecurity"
-/usr/sbin/DevToolsSecurity -enable
-
-# Accept Xcode License
-/bin/echo "Accept Xcode License"
-/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license accept
-
-### Removed by DW - Amsys - 2017.06.29
-## This is because the below 3 package installations do not work as a postinstall script :SadPanda:
-
-# Installing Additional Components
-# /bin/echo "Installing Additional Components"
-# /bin/echo " - MobileDevice.pkg"
-# /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
-# /bin/echo " - - Result is: ${?}"
-# /bin/echo " - MobileDeviceDevelopment.pkg"
-# /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
-# /bin/echo " - - Result is: ${?}"
-# /bin/echo " - XcodeSystemResources.pkg"
-# /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
-# /bin/echo " - - Result is: ${?}"
-/bin/echo "Ensure to install the (currently) 3 packages inside the Xcode bundle, located at /Applications/Xcode.app/Contents/Resources/Packages/"
-
-# Installing the latest Xcode command line tools on 10.9.x or higher
-/bin/echo "Installing the latest Xcode command line tools on 10.9.x or higher"
-if [[ "${osvers}" -ge 9 ]];
+if [[ "${1}" == --debug || "${1}" == -d ]];
 then
-
-    # Create the placeholder file which is checked by the softwareupdate tool
-    # before allowing the installation of the Xcode command line tools.
-    touch "${cmdlinetoolstmp}"
-
-    # Find the last listed update in the Software Update feed with "Command Line Tools" in the name
-    cmdlinetools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
-
-    #Install the command line tools
-    softwareupdate -i "${cmdlinetools}"
-
-    # Remove the temp file
-    if [[ -f "${cmdlinetoolstmp}" ]];
-    then
-        rm "${cmdlinetoolstmp}"
-    fi
+    set +x
+    debug=1
 fi
 
-sleep 5
+##### Set variables
 
-# Add everyone to Developer group
-/bin/echo "Add everyone to Developer group"
-/usr/sbin/dseditgroup -o edit -a everyone -t group _developer
+osVers=$(sw_vers -productVersion | awk -F "." '{print $2}')
+cmdlineToolsTmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
+logFile="/Library/Logs/Amsys_Installs.log"
 
-exit 0
+##### Declare functions
+
+writelog()
+{
+	/bin/echo "$(/bin/date) ${1}" >> "${logFile}"
+	/bin/echo "${1}"
+}
+
+echoVariables ()
+{
+    writelog "OS Version is ${osVers}"
+    writelog "Log file is saved at ${logFile}"
+}
+
+testExit ()
+{
+    if [[ $? -eq 0 ]];
+    then
+        exitCode="0"
+    else
+        exitCode="1"
+    fi
+}
+
+testSuccess ()
+{
+    if [[ "${exitCode}" -ne "0" ]];
+    then
+        writelog "# Error while installing ${1}. Bailing..."
+        exit 1
+    else
+        writelog "# ${1} installed."
+    fi
+}
+
+enableSecurity ()
+{
+    # Enabling Development Tools Security
+    writelog ""
+    writelog "# Enabling Development Tools Security..."
+    /usr/sbin/DevToolsSecurity -enable
+    testExit
+    writelog "# - Result is: ${exitCode}"
+    writelog "# Accepting license..."
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license accept
+    testExit
+    writelog "# - Result is: ${exitCode}"
+}
+
+# installAdditionalComponents ()
+# {
+#     # Installing Additional Components
+#     writelog ""
+#     writelog "# Installing additional components..."
+#
+#     # Installing MobileDevice
+#     writelog "# MobileDevice.pkg..."
+#     /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
+#     testExit
+#     writelog "# - Result is: ${exitCode}"
+#     testSuccess MobileDevice.pkg
+#     sleep 10
+#
+#     # Installing MobileDeviceDevelopment
+#     writelog "# MobileDeviceDevelopment.pkg..."
+#     /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
+#     testExit
+#     writelog "# - Result is: ${exitCode}"
+#     testSuccess MobileDeviceDevelopment.pkg
+#     sleep 10
+#
+#     # Installing XcodeSystemResources
+#     writelog "# XcodeSystemResources.pkg..."
+#     /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
+#     testExit
+#     writelog "# - Result is: ${exitCode}"
+#     testSuccess XcodeSystemResources.pkg
+#     sleep 10
+# }
+
+installCommandLineTools ()
+{
+    # Installing Command Line tools
+    writelog ""
+    writelog "# Installing Xcode command line Tools on 10.9.x or higher..."
+    if [[ "${osVers}" -ge 9 ]];
+    then
+
+        # Create the placeholder file which is checked by the softwareupdate
+        # tool before allowing the installation of the Xcode command line tools.
+        touch "${cmdlineToolsTmp}"
+
+        # Find the last listed update in the Software Update feed with "Command Line Tools" in the name
+        cmdlineTools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
+
+        # Install the command line tools
+        writelog "# Installing via softwareupdate..."
+        softwareupdate -i "${cmdlineTools}"
+        testExit
+        writelog "# - Result is: ${exitCode}"
+        testSuccess "Command Line Tools"
+
+        # Remove the temp file
+        if [[ -f "${cmdlineToolsTmp}" ]];
+        then
+            rm "${cmdlineToolsTmp}"
+        fi
+    fi
+}
+
+grantAccess ()
+{
+    # Add everyone to Developer group
+    writelog ""
+    writelog "# Adding all users to Developer group..."
+    /usr/sbin/dseditgroup -o edit -a everyone -t group _developer
+    testExit
+    writelog "# - Result is: ${exitCode}"
+
+}
+
+##### Run script
+
+if [[ ${debug} -eq 1 ]];
+then
+    writelog ""
+    writelog "##### Debug Mode"
+    writelog ""
+    echoVariables
+fi
+
+writelog ""
+writelog "##### Xcode Installer postinstall"
+writelog ""
+
+enableSecurity
+# installAdditionalComponents
+installCommandLineTools
+grantAccess

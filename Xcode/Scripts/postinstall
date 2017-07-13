@@ -77,37 +77,6 @@ enableSecurity ()
     writelog "# - Result is: ${exitCode}"
 }
 
-# installAdditionalComponents ()
-# {
-#     # Installing Additional Components
-#     writelog ""
-#     writelog "# Installing additional components..."
-#
-#     # Installing MobileDevice
-#     writelog "# MobileDevice.pkg..."
-#     /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
-#     testExit
-#     writelog "# - Result is: ${exitCode}"
-#     testSuccess MobileDevice.pkg
-#     sleep 10
-#
-#     # Installing MobileDeviceDevelopment
-#     writelog "# MobileDeviceDevelopment.pkg..."
-#     /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
-#     testExit
-#     writelog "# - Result is: ${exitCode}"
-#     testSuccess MobileDeviceDevelopment.pkg
-#     sleep 10
-#
-#     # Installing XcodeSystemResources
-#     writelog "# XcodeSystemResources.pkg..."
-#     /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
-#     testExit
-#     writelog "# - Result is: ${exitCode}"
-#     testSuccess XcodeSystemResources.pkg
-#     sleep 10
-# }
-
 installCommandLineTools ()
 {
     # Installing Command Line tools
@@ -161,6 +130,7 @@ loadLaunchD ()
         writelog "# - Result is: ${exitCode}"
     else
         writelog "# LaunchDaemon not found. Please install additional components manually."
+    fi
 }
 
 ##### Run script
@@ -178,7 +148,6 @@ writelog "##### Xcode Installer postinstall"
 writelog ""
 
 enableSecurity
-# installAdditionalComponents
 installCommandLineTools
 grantAccess
 loadLaunchD

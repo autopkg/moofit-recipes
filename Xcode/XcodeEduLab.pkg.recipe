@@ -128,24 +128,6 @@
                             <key>user</key>
                             <string>root</string>
                         </dict>
-                        <dict>
-                            <key>group</key>
-                            <string>admin</string>
-                            <key>path</key>
-                            <string>/tmp/uk.co.amsys.Xcode.components.plist</string>
-                            <key>user</key>
-                            <string>root</string>
-                        </dict>
-                        <dict>
-                            <key>group</key>
-                            <string>admin</string>
-                            <key>path</key>
-                            <string>/tmp/componentsInstaller.sh</string>
-                            <key>user</key>
-                            <string>root</string>
-                            <key>mode</key>
-                            <string>0755</string>
-                        </dict>
                     </array>
                     <key>id</key>
                     <string>%bundleid%</string>

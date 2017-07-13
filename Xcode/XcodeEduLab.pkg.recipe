@@ -3,10 +3,20 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Creates an installer package from a supplied .xip file downloaded from https://developer.apple.com. The xip file
-    needs to be copied to /Path/To/AutoPkg/RecipeRepos/com.github.amsysuk.amsys-recipes/Xcode/XIP, and the name of the XIP
-    file needs to be specified in the XIPNAME input variable.
-    Will also add a postflight script to install the command-line tools and configure these for education lab use</string>
+    <string>Creates an installer package from a supplied .xip file downloaded
+    from https://developer.apple.com/download/. The xip file needs to be copied
+    to /Path/To/AutoPkg/RecipeRepos/com.github.amsysuk.amsys-recipes/Xcode/xip,
+    and the name of the xip file needs to be specified in the XIPNAME input
+    variable. Will also add a postflight script to install the command-line
+    tools and configure these for education lab use.
+
+    Due to Apple signed packages not being able to install to SIP protected
+    areas when called via a postflight, the additional packages are installed
+    by a self-destrictible LaunchDaemon which is called immediately after the
+    "parent" Xcode installer is complete. This LaunchDaemon runs a script (both
+    stored in /tmp) which installs all 3 additional component packages, and then
+    unloads and deletes the launchdaemon, and itself.
+    </string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.pkg.XcodeEduLab</string>
     <key>Input</key>

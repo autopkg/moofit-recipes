@@ -45,7 +45,7 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/tmp</string>
                 <key>pkg_payload_path</key>
-                <string>%found_filename%/Contents/Archive.pax.gz</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg/Contents/Archive.pax.gz</string>
             </dict>
             <key>Processor</key>
             <string>PkgPayloadUnpacker</string>

@@ -29,23 +29,12 @@
             <string>FileFinder</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-            <key>Arguments</key>
-            <dict>
-				<key>source_pkg</key>
-                <string>%pathname%/TypeTool 3 Installer.pkg</string>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-            </dict>
-        </dict>
-        <dict>
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/tmp</string>
                 <key>pkg_payload_path</key>
-                <string>%pkg_path%/Contents/Archive.pax.gz</string>
+                <string>%found_filename%/Contents/Archive.pax.gz</string>
             </dict>
             <key>Processor</key>
             <string>PkgPayloadUnpacker</string>

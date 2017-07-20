@@ -61,7 +61,14 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>EndOfCheckPhase</string>
+            <string>PathDeleter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/tmp</string>
+                </array>
+            </dict>
         </dict>
         <dict>
             <key>Processor</key>

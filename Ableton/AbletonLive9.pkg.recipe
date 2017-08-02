@@ -65,6 +65,17 @@ EDITION: one of 'intro', 'standard', and 'suite'.</string>
         </dict>
         <dict>
             <key>Processor</key>
+            <string>PathDeleter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%pkgroot%/Applications/%app_name%/Contents/App-Resources/Extensions/SoundCloud</string>
+                </array>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>

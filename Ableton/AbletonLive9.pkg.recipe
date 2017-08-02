@@ -36,7 +36,7 @@ EDITION: one of 'intro', 'standard', and 'suite'.</string>
         </dict>
         <dict>
             <key>Processor</key>
-            <string>VersionSplitter</string>
+            <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
         </dict>
         <dict>
             <key>Processor</key>

@@ -7,7 +7,9 @@
 Supports two additional variables to get different editions and builds:
 
 ARCH: either '64' or '32'
-EDITION: one of 'intro', 'standard', and 'suite'.</string>
+EDITION: one of 'intro', 'standard', and 'suite'.
+Please note, that this pkg recipe strips out the Soundcloud extension as
+it presents an issue with pkgbuild</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.pkg.AbletonLive9</string>
     <key>Input</key>

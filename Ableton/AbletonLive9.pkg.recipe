@@ -36,6 +36,10 @@ EDITION: one of 'intro', 'standard', and 'suite'.</string>
         </dict>
         <dict>
             <key>Processor</key>
+            <string>VersionSplitter</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>

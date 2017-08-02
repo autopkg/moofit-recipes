@@ -27,11 +27,13 @@ EDITION: one of 'intro', 'standard', and 'suite'.</string>
     <array>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
+            <string>Versioner</string>
             <key>Arguments</key>
             <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
+                <key>input_plist_path</key>
+                <string>%pathname%/*.app/Contents/Resources/Info.plist</string>
+                <key>plist_version_key</key>
+                <string>CFBundleShortVersionString</string>
             </dict>
         </dict>
         <dict>
@@ -67,7 +69,7 @@ EDITION: one of 'intro', 'standard', and 'suite'.</string>
                 <key>pkg_request</key>
                 <dict>
                     <key>pkgname</key>
-                    <string>%NAME%</string>
+                    <string>%NAME%-%version%</string>
                     <key>version</key>
                     <string>%version%</string>
                     <key>id</key>

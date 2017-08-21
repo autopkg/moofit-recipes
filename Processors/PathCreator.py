@@ -46,9 +46,9 @@ class PathCreator(Processor):
             if not os.path.exists(directory):
                 os.makedirs(self.env['path_to_create'])
                 self.output("Created %s" % self.env['path_to_create'])
-        # except OSError as err:
-        #     raise ProcessorError("Can't create %s: %s" % (self.env['path_to_create'],
-        #                                                   err.strerror))
+        except OSError as err:
+            raise ProcessorError("Can't create %s: %s" % (self.env['path_to_create'],
+                                                          err.strerror))
 
 if __name__ == '__main__':
     PROCESSOR = PathCreator()

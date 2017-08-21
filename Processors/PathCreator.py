@@ -43,8 +43,9 @@ class PathCreator(Processor):
     def main(self):
         # Create path_to_create. autopkghelper sets it to root:admin 01775.
         try:
-            os.makedirs(self.env['path_to_create'])
-            self.output("Created %s" % self.env['path_to_create'])
+            if not os.path.exists(directory):
+                os.makedirs(self.env['path_to_create'])
+                self.output("Created %s" % self.env['path_to_create'])
         # except OSError as err:
         #     raise ProcessorError("Can't create %s: %s" % (self.env['path_to_create'],
         #                                                   err.strerror))

@@ -30,12 +30,6 @@
     <string>0.5.1</string>
     <key>Process</key>
     <array>
-        <!--
-        <dict>
-            <key>Processor</key>
-            <string>PackageRequired</string>
-        </dict>
-        -->
         <dict>
             <key>Processor</key>
             <string>XcodeXIPUnpacker</string>
@@ -45,7 +39,7 @@
                 <string>%RECIPE_DIR%/XIP/%XIPNAME%</string>
             </dict>
             <key>Comment</key>
-            <string>Borrowed from Facebook's Xcode recipehttps://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>
+            <string>Borrowed from Facebook's Xcode recipe https://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>
         </dict>
         <dict>
             <key>Processor</key>

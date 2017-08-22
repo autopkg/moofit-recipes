@@ -8,6 +8,8 @@
         <string>com.github.amsysuk.amsys-recipes.pkg.MSOneDrive</string>
         <key>MinimumVersion</key>
         <string>0.6.0</string>
+        <key>ParentRecipe</key>
+        <string>com.github.apettinen.download.MSOneDrive</string>
         <key>Input</key>
         <dict>
             <key>NAME</key>
@@ -25,7 +27,7 @@
                     <key>destination_path</key>
                     <string>%RECIPE_CACHE_DIR%/expanded</string>
                     <key>flat_pkg_path</key>
-                    <string>%RECIPE_CACHE_DIR%/downloads/OneDrive.pkg</string>
+                    <string>%pathname%</string>
                 </dict>
             </dict>
             <dict>

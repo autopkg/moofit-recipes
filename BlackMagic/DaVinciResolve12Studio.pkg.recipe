@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest version of DaVinci Resolve 12 Studioand turns it into a package.
+    <string>Downloads latest version of DaVinci Resolve 12 Studio and turns it into a package.
 Note:	This App and containing folder has the same name
 This product requires registration in order to download, so
 you _must_ override all input variables beginning with 'REG_'
@@ -68,12 +68,12 @@ and they must contain data.</string>
 				<string>%RECIPE_CACHE_DIR%/%NAME%/ResolveStudio.pkg</string>
             </dict>
 		</dict>
-		<dict>   
-   		 <key>Processor</key>   
-  		  <string>CodeSignatureVerifier</string>   
-  		  <key>Arguments</key>   
-  		  <dict>   
-  		      <key>input_path</key>   
+		<dict>
+   		 <key>Processor</key>
+  		  <string>CodeSignatureVerifier</string>
+  		  <key>Arguments</key>
+  		  <dict>
+  		      <key>input_path</key>
      		   <string>%RECIPE_CACHE_DIR%/%NAME%/ResolveStudio.pkg</string>
      		   <key>expected_authority_names</key>
      		   <array>
@@ -82,7 +82,7 @@ and they must contain data.</string>
 					<string>Apple Root CA</string>
      		   </array>
   		 </dict>
-  		</dict> 
+  		</dict>
 		<dict>
             <key>Processor</key>
             <string>FlatPkgUnpacker</string>
@@ -104,7 +104,7 @@ and they must contain data.</string>
                 <key>pkg_payload_path</key>
                 <string>%RECIPE_CACHE_DIR%/expanded/Manifest.pkg/Payload</string>
             </dict>
-        </dict>      
+        </dict>
         <dict>
             <key>Processor</key>
             <string>Versioner</string>

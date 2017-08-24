@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Download recipe for the latest version of AD.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.pkg.ad</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.ad</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

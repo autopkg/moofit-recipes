@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Download recipe for the latest version of Cubase 9.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.pkg.Cubase 9</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.Cubase9</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -71,7 +71,7 @@
                 <key>plist_version_key</key>
                 <string>CFBundleShortVersionString</string>
             </dict>
-        </dict>        
+        </dict>
         <dict>
             <key>Processor</key>
             <string>PkgCopier</string>

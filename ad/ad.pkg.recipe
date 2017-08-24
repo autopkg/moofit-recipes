@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Download recipe for the latest version of Cubase 9.</string>
+    <string>Download recipe for the latest version of AD.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.pkg.Cubase 9</string>
+    <string>com.github.amsysuk.pkg.ad</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -23,14 +23,14 @@
                 <key>url</key>
                 <string>https://www.fosshub.com/Audacity.html</string>
                 <key>re_pattern</key>
-                <string>https://www.fosshub.com/Audacity.html/audacity-macos-/[0-9]+\.+[0-9]+\.+[0-9]+\.dmg</string>
+                <string>Audacity.html/audacity-macos-[0-9]+\.+[0-9]+\.+[0-9]+\.dmg</string>
             </dict>
         </dict>
         <dict>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%match%</string>
+                <string>https://www.fosshub.com/%match%</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>

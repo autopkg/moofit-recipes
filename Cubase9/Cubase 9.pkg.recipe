@@ -61,6 +61,17 @@
                 <string>%RECIPE_CACHE_DIR%/expanded/Cubase 9.pkg/Payload</string>
             </dict>
         </dict>
+         <dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Cubase 9.app/Contents/Info.plist</string>
+                <key>plist_version_key</key>
+                <string>CFBundleShortVersionString</string>
+            </dict>
+        </dict>        
     </array>
 </dict>
-</plist>
+</plist>    

@@ -2,23 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Turns the download of the zipped KindleGen binary and turns it into a package at /usr/local/bin/</string>
-	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.KindleGen</string>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>KindleGen</string>
-		<key>CHECK_PAGE_URL</key>
-		<string>https://www.amazon.com/gp/feature.html?docId=1000765211</string>
-		<key>DOWNLOAD_PAGE_URL</key>
-		<string>http://kindlegen.s3.amazonaws.com</string>		
-		<key>USER_AGENT</key>
+    <key>Identifier</key>
+    <string>com.github.amsysuk.amsys-recipes.pkg.KindleGen</string>
+    <key>Description</key>
+    <string>Turns the download of the zipped KindleGen binary and turns it into
+a package at /usr/local/bin/</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>KindleGen</string>
+        <key>CHECK_PAGE_URL</key>
+        <string>https://www.amazon.com/gp/feature.html?docId=1000765211</string>
+        <key>DOWNLOAD_PAGE_URL</key>
+        <string>http://kindlegen.s3.amazonaws.com</string>
+        <key>USER_AGENT</key>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
-	</dict>
-	<key>ParentRecipe</key>
-	<string>com.github.amsysuk.amsys-recipes.download.KindleGen</string>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.amsysuk.amsys-recipes.download.KindleGen</string>
     <key>Process</key>
     <array>
         <dict>
@@ -34,30 +35,30 @@
                 <true/>
             </dict>
         </dict>
-        <dict>   
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-			<key>Arguments</key>
-			<dict>
-				<key>url</key>
-				<string>%CHECK_PAGE_URL%</string>
-				<key>result_output_var_name</key>
-				<string>version</string>
-				<key>re_pattern</key>
-				<string>KindleGen v(.*) for Mac</string>
-				<key>re_flags</key>
-				<array>
-					<string>IGNORECASE</string>
-				</array>
+        <dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%CHECK_PAGE_URL%</string>
+                <key>result_output_var_name</key>
+                <string>version</string>
+                <key>re_pattern</key>
+                <string>KindleGen v(.*) for Mac</string>
+                <key>re_flags</key>
+                <array>
+                    <string>IGNORECASE</string>
+                </array>
                 <key>request_headers</key>
                 <dict>
                         <key>user-agent</key>
                         <string>%USER_AGENT%</string>
                 </dict>
-			</dict>
-		</dict>
-		<dict>
-        	<key>Processor</key>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>
@@ -74,7 +75,7 @@
                 </dict>
             </dict>
         </dict>
-		<dict>
+        <dict>
             <key>Processor</key>
             <string>Copier</string>
             <key>Arguments</key>
@@ -84,7 +85,7 @@
                 <key>destination_path</key>
                 <string>%pkgroot%/usr/local/bin/kindlegen</string>
             </dict>
-        </dict>	   
+        </dict>
         <dict>
             <key>Processor</key>
             <string>PkgCreator</string>

@@ -2,10 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Downloads the latest Type Tool from FontLab and extracts the pkg file from the dmg.</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.pkg.TypeTool3</string>
+    <key>Description</key>
+    <string>Downloads the latest Type Tool from FontLab and extracts the pkg
+file from the dmg.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

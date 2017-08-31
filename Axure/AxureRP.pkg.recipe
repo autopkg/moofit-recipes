@@ -2,25 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Downloads latest Axure RP disk image.</string>
-	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.AxureRP</string>
-	<key>Input</key>
-	<dict>
-		<key>DOWNLOAD_URL</key>
-		<string>https://axure.cachefly.net/AxureRP-Setup.dmg</string>
-		<key>MAJOR_VERSION</key>
-		<string>8</string>
-		<key>NAME</key>
-		<string>Axure RP %MAJOR_VERSION%</string>
-	</dict>
+    <key>Identifier</key>
+    <string>com.github.amsysuk.amsys-recipes.pkg.AxureRP</string>
+    <key>Description</key>
+    <string>Downloads latest Axure RP disk image.</string>
+    <key>Input</key>
+    <dict>
+        <key>DOWNLOAD_URL</key>
+        <string>https://axure.cachefly.net/AxureRP-Setup.dmg</string>
+        <key>MAJOR_VERSION</key>
+        <string>8</string>
+        <key>NAME</key>
+        <string>Axure RP %MAJOR_VERSION%</string>
+    </dict>
     <key>ParentRecipe</key>
     <string>com.github.thenikola.download.AxureRP</string>
-	<key>MinimumVersion</key>
-	<string>0.3.1</string>
-	<key>Process</key>
-	<array>
+    <key>MinimumVersion</key>
+    <string>0.3.1</string>
+    <key>Process</key>
+    <array>
         <dict>
             <key>Processor</key>
             <string>PlistReader</string>
@@ -91,6 +91,6 @@
                 </dict>
             </dict>
         </dict>
-	</array>
+    </array>
 </dict>
 </plist>

@@ -2,16 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Identifier</key>
+    <string>com.github.amsysuk.amsys-recipes.pkg.AbletonLive9</string>
     <key>Description</key>
     <string>Downloads the most recent version of Ableton Live 9.
 Supports two additional variables to get different editions and builds:
-
 ARCH: either '64' or '32'
 EDITION: one of 'intro', 'standard', and 'suite'.
 Please note, that this pkg recipe strips out the Soundcloud extension as
 it presents an issue with pkgbuild</string>
-    <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.AbletonLive9</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Downloads the latest FileZilla and creates a package.</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.pkg.FileZilla</string>
+    <key>Description</key>
+    <string>Downloads the latest FileZilla and creates a package.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

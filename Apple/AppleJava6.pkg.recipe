@@ -2,22 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ParentRecipe</key>
-	<string>com.github.n8felton.download.AppleJava6</string>
-	<key>Description</key>
-	<string>Apple Java 6 for OS X</string>
-	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.AppleJava6</string>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>AppleJava6</string>
-	</dict>
-	<key>MinimumVersion</key>
-	<string>0.4.0</string>
-	<key>Process</key>
-	<array>
-		<dict>
+    <key>Identifier</key>
+    <string>com.github.amsysuk.amsys-recipes.pkg.AppleJava6</string>
+    <key>Description</key>
+    <string>Downloads the latest Apple Java 6 for macOS</string>
+    <key>ParentRecipe</key>
+    <string>com.github.n8felton.download.AppleJava6</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>AppleJava6</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
             <key>Processor</key>
             <string>PkgCopier</string>
             <key>Arguments</key>
@@ -28,6 +28,6 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
             </dict>
         </dict>
-	</array>
+    </array>
 </dict>
 </plist>

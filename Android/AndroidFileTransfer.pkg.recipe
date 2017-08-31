@@ -2,18 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Downloads latest Android File Transfer disk image and builds a package. Note: Code signature verification cannot be added into this recipe
-    because the Android File Transfer.app still uses a version 1 signature.</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.pkg.androidfiletransfer</string>
+    <key>Description</key>
+    <string>Downloads latest Android File Transfer disk image and builds a
+package. Note: Code signature verification cannot be added into this recipe
+because the Android File Transfer.app still uses a version 1 signature.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>Android File Transfer</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.aysiu.download.androidfiletransfer</string>
+    <string>com.github.aysiu.download.AndroidFileTransfer</string>
     <key>Process</key>
     <array>
         <dict>

@@ -2,21 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Turns the download of the latest version of Dragonframe4 into a package</string>
-	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.Dragonframe4</string>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>Dragonframe 4</string>
-		<key>CHECK_PAGE_URL</key>
-		<string>http://www.dragonframe.com/downloads</string>
-		<key>USER_AGENT</key>
+    <key>Identifier</key>
+    <string>com.github.amsysuk.amsys-recipes.pkg.Dragonframe4</string>
+    <key>Description</key>
+    <string>Turns the download of the latest version of Dragonframe4 into a
+package</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Dragonframe 4</string>
+        <key>CHECK_PAGE_URL</key>
+        <string>http://www.dragonframe.com/downloads</string>
+        <key>USER_AGENT</key>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
-	</dict>
-	<key>ParentRecipe</key>
-	<string>com.github.amsysuk.amsys-recipes.download.Dragonframe4</string>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.amsysuk.amsys-recipes.download.Dragonframe4</string>
     <key>Process</key>
     <array>
         <dict>
@@ -54,7 +55,7 @@
                 <string>%RECIPE_CACHE_DIR%/expanded/DragonFrame 4.pkg/Payload</string>
             </dict>
         </dict>
-		 <dict>
+         <dict>
             <key>Processor</key>
             <string>Versioner</string>
             <key>Arguments</key>

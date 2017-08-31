@@ -2,10 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Downloads the current release version of i1 Profiler as a Zip archive (via Sparkle) and saves it as a package</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.i1profiler</string>
+    <key>Description</key>
+    <string>Downloads the current release version of i1 Profiler as a Zip
+archive (via Sparkle) and saves it as a package</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

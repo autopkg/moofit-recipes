@@ -2,11 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Downloads the current Adobe Acrobat Reader DC pkg and repackages, replacing a problematic preinstall script,
-and enabling installation on non-boot volumes.</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.AdobeReaderDC</string>
+    <key>Description</key>
+    <string>Downloads the current Adobe Acrobat Reader DC pkg and repackages,
+replacing a problematic preinstall script, and enabling installation on non-boot
+volumes.</string>
     <key>Input</key>
     <dict>
         <key>LANGUAGE</key>

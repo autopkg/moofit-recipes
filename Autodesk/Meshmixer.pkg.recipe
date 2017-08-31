@@ -2,21 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Identifier</key>
+    <string>com.github.amsysuk.amsys-recipes.pkg.Meshmixer</string>
     <key>Description</key>
     <string>Downloads the latest version of Meshmixer and names according to current version</string>
-	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.Meshmixer</string>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>Meshmixer</string>
-		<key>SEARCH_PATTERN</key>
-		<string>(?P&lt;url&gt;https://s3\.amazonaws\.com/meshmixer\.release/Autodesk_Meshmixer_v[A-Za-z0-9_.]+_macOS\.pkg)</string>
-		<key>SEARCH_URL</key>
-		<string>http://www.meshmixer.com/download.html</string>
-	</dict>
-	<key>ParentRecipe</key>
-	<string>com.github.amsysuk.amsys-recipes.download.Meshmixer</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Meshmixer</string>
+        <key>SEARCH_PATTERN</key>
+        <string>(?P&lt;url&gt;https://s3\.amazonaws\.com/meshmixer\.release/Autodesk_Meshmixer_v[A-Za-z0-9_.]+_macOS\.pkg)</string>
+        <key>SEARCH_URL</key>
+        <string>http://www.meshmixer.com/download.html</string>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.amsysuk.amsys-recipes.download.Meshmixer</string>
     <key>Process</key>
     <array>
         <dict>

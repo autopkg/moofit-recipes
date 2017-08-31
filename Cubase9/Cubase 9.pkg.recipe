@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Download recipe for the latest version of Cubase 9.</string>
     <key>Identifier</key>
     <string>com.github.amsysuk.amsys-recipes.pkg.Cubase9</string>
+    <key>Description</key>
+    <string>Download recipe for the latest version of Cubase 9.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

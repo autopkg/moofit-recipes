@@ -3,7 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.Unity3D</string>
+	<string>com.github.amsysuk.pkg.Unity3D</string>
+	<key>Description</key>
+    <string>Creates an installer package from the parent download recipe 
+    com.github.hansen-m.download.Unity3D
+    </string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

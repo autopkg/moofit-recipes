@@ -2,10 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
-        <key>Description</key>
-        <string>Downloads the latest version of OneDrive Standalone installer pkg from Microsoft and exposes the pkg itself</string>
         <key>Identifier</key>
-        <string>com.github.amsysuk.amsys-recipes.pkg.MSOneDrive</string>
+        <string>com.github.amsysuk.pkg.MSOneDrive</string>
+        <key>Description</key>
+        <string>Downloads the latest version of OneDrive Standalone installer 
+        pkg from Microsoft (using the parent 
+        recipe com.github.apettinen.download.MSOneDrive) and exposes the pkg 
+        itself.
+        </string>
         <key>MinimumVersion</key>
         <string>0.6.0</string>
         <key>ParentRecipe</key>

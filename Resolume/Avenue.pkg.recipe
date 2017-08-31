@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Turns the download of the latest version of Resolume Avenue into a package</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Avenue</string>
+    <string>com.github.amsysuk.pkg.Avenue</string>
+    <key>Description</key>
+    <string>Downloads the latest version of Resolume Avenue using the parent 
+    recipe com.github.amsysuk.download.Avenue and turns it into a package
+    </string>
     <key>Input</key>
     <dict>
         <key>CHECK_PAGE_URL</key>
@@ -18,7 +20,7 @@
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk.amsys-recipes.download.Avenue</string>
+    <string>com.github.amsysuk.download.Avenue</string>
     <key>Process</key>
     <array>
         <dict>

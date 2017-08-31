@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Downloads latest Visual Studio Code zip and builds a package.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.VisualStudioCode</string>
+    <string>com.github.amsysuk.pkg.VisualStudioCode</string>
+    <key>Description</key>
+    <string>Downloads latest Visual Studio Code zip using the parent recipe 
+    com.github.valdore86.download.visualstudiocode and builds a package.
+    </string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

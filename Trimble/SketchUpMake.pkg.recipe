@@ -2,11 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Downloads the latest version of SketchUpMake and makes a pkg of it
-</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.SketchUpMake</string>
+    <string>com.github.amsysuk.SketchUpMake</string>
+    <key>Description</key>
+    <string>Downloads the latest version of SketchUpMake using the parent recipe
+    com.github.amsysuk.download.SketchUpMake and makes a package installer
+	</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -19,7 +20,7 @@
     <key>MinimumVersion</key>
     <string>0.2.5</string>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk.amsys-recipes.download.SketchUpMake</string>
+    <string>com.github.amsysuk.download.SketchUpMake</string>
     <key>Process</key>
     <array>
         <dict>

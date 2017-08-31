@@ -2,12 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Identifier</key>
+    <string>com.github.amsysuk.pkg.XcodeEduLab</string>
     <key>Description</key>
     <string>Creates an installer package from a supplied .xip file downloaded
     from https://developer.apple.com/download/. The xip file needs to be copied
-    to /Path/To/AutoPkg/RecipeRepos/com.github.amsysuk.amsys-recipes/Xcode/xip,
-    and the name of the xip file needs to be specified in the XIPNAME input
-    variable. Will also add a postflight script to install the command-line
+    to /Path/To/AutoPkg/RecipeRepos/com.github.amsysuk/Xcode/xip.
+    Will also add a postflight script to install the command-line
     tools and configure these for education lab use.
 
     Due to Apple signed packages not being able to install to SIP protected
@@ -17,14 +18,12 @@
     stored in /tmp) which installs all 3 additional component packages, and then
     unloads and deletes the launchdaemon, and itself.
     </string>
-    <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.XcodeEduLab</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>Xcode</string>
         <key>XIPNAME</key>
-        <string>Xcode8.3.3.xip</string>
+        <string>Xcode*.xip</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.1</string>

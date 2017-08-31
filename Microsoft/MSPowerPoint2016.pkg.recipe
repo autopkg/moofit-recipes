@@ -2,10 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Uses parent download recipe to download the latest PowerPoint 2016 installer package.</string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.MSPowerPoint2016</string>
+	<string>com.github.amsysuk.pkg.MSPowerPoint2016</string>
+	<key>Description</key>
+	<string>Uses parent download recipe 
+	com.github.autopkg.download.MSPowerPoint2016 to download the latest 
+	PowerPoint 2016 installer package. This override renames the package to 
+	"Microsoft PowerPoint-$version"
+	</string>
 	<key>Input</key>
 	<dict>
         <key>NAME</key>

@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Downloads latest Skype disk image and builds a package.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Skype</string>
+    <string>com.github.amsysuk.pkg.Skype</string>
+    <key>Description</key>
+    <string>Downloads latest Skype disk image using the parent recipe 
+    com.github.autopkg.download.Skype and builds a package.
+    </string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.ad</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.AD</string>
     <key>Description</key>
     <string>Download recipe for the latest version of AD.</string>
     <key>Input</key>

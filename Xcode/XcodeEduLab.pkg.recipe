@@ -12,6 +12,10 @@ the same folder that the recipe is running from ("/path/to/amsys-recipes", or
 postflight script to install the command-line tools and configure these for
 education lab use.
 
+The %XIPNAME% variable should contain the name of the Xcode xip file; this also
+enables the use of multiple overrides, if multiple xips are used (i.e if
+different versions of Xcode are required).
+
 Due to Apple signed packages not being able to install to SIP protected areas
 when called via a postflight, the additional packages are installed by a
 self-destrictible LaunchDaemon which is called immediately after the "parent"
@@ -24,7 +28,7 @@ deletes the launchdaemon, and itself.
         <key>NAME</key>
         <string>Xcode</string>
         <key>XIPNAME</key>
-        <string>Xcode-\d.\d.\d.xip</string>
+        <string>Xcode-8.3.3.xip</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.1</string>

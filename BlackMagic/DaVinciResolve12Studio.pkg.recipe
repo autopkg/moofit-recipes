@@ -7,10 +7,9 @@
     <key>Description</key>
     <string>Downloads latest version of DaVinci Resolve 12 Studio and turns it
 into a package.
-Note:	This App and containing folder has the same name
-This product requires registration in order to download, so
-you _must_ override all input variables beginning with 'REG_'
-and they must contain data.</string>
+Note:	This App and containing folder has the same name. This product requires
+registration in order to download, so you _must_ override all input variables
+beginning with 'REG_' and they must contain data.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

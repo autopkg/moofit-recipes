@@ -7,7 +7,8 @@
     <key>Description</key>
     <string>Creates an installer package from a supplied .xip file downloaded
 from https://developer.apple.com/download/. The xip file needs to be copied to
-/Path/To/AutoPkg/RecipeRepos/com.github.amsysuk/Xcode/xip. Will also add a
+the same folder that the recipe is running from ("/path/to/amsys-recipes", or
+"/path/to/overrides_folder" if using an override.). Will also add a
 postflight script to install the command-line tools and configure these for
 education lab use.
 
@@ -35,7 +36,7 @@ deletes the launchdaemon, and itself.
             <key>Arguments</key>
             <dict>
                 <key>PKG</key>
-                <string>%RECIPE_DIR%/XIP/%XIPNAME%</string>
+                <string>%RECIPE_DIR%/%XIPNAME%</string>
             </dict>
             <key>Comment</key>
             <string>Borrowed from Facebook's Xcode recipe https://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>

@@ -14,7 +14,7 @@ because the Android File Transfer.app still uses a version 1 signature.</string>
         <string>Android File Transfer</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.aysiu.download.AndroidFileTransfer</string>
+    <string>com.github.aysiu.download.androidfiletransfer</string>
     <key>Process</key>
     <array>
         <dict>

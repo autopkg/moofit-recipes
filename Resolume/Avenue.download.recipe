@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.download.Avenue</string>
+	<string>com.github.amsysuk.amsys-recipes.download.Avenue</string>
 	<key>Description</key>
 	<string>Downloads the latest version of Resolume Avenue</string>
 	<key>Input</key>

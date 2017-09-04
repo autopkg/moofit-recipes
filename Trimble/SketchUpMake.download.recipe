@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.download.SketchUpMake</string>
+    <string>com.github.amsysuk.amsys-recipes.download.SketchUpMake</string>
     <key>Description</key>
     <string>Downloads the current release version of SketchUpMake</string>
     <key>Input</key>

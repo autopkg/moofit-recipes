@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.pkg.MSPowerPoint2016</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.MSPowerPoint2016</string>
 	<key>Description</key>
-	<string>Uses parent download recipe 
-	com.github.autopkg.download.MSPowerPoint2016 to download the latest 
-	PowerPoint 2016 installer package. This override renames the package to 
+	<string>Uses parent download recipe
+	com.github.autopkg.download.MSPowerPoint2016 to download the latest
+	PowerPoint 2016 installer package. This override renames the package to
 	"Microsoft PowerPoint-$version"
 	</string>
 	<key>Input</key>

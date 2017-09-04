@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.pkg.MSAutoUpdate</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.MSAutoUpdate</string>
 	<key>Description</key>
-	<string>Uses parent download recipe to download the latest Microsoft Auto 
-	Update (MAU) 2016 installer package using the parent recipe 
-	com.github.autopkg.download.MSAutoUpdate. This override renames the package 
+	<string>Uses parent download recipe to download the latest Microsoft Auto
+	Update (MAU) 2016 installer package using the parent recipe
+	com.github.autopkg.download.MSAutoUpdate. This override renames the package
 	to "Microsoft AutoUpdate-$version"
 	</string>
 	<key>Input</key>

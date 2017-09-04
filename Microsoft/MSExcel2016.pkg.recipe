@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.pkg.MSExcel2016</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.MSExcel2016</string>
 	<key>Description</key>
-	<string>Uses parent download recipe 
-	com.github.autopkg.download.MSExcel2016 to download the latest Excel 
-	2016 installer package. This override renames the package to "Microsoft 
+	<string>Uses parent download recipe
+	com.github.autopkg.download.MSExcel2016 to download the latest Excel
+	2016 installer package. This override renames the package to "Microsoft
 	Excel-$version"
 	</string>
 	<key>Input</key>

@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.pkg.StuffitExpander</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.StuffitExpander</string>
     <key>Description</key>
-    <string>Downloads StuffIt Expander archive using the parent recipe 
-    com.github.keeleysam.recipes.StuffItExpander.download and builds a package. 
-    The installer package includes a preinstall script that will check for an 
-    existing "StuffIt Expander.app" in /Applications and remove it if found. 
+    <string>Downloads StuffIt Expander archive using the parent recipe
+    com.github.keeleysam.recipes.StuffItExpander.download and builds a package.
+    The installer package includes a preinstall script that will check for an
+    existing "StuffIt Expander.app" in /Applications and remove it if found.
     Adapted from rtrouton's Firefox pkg recipe.
     </string>
     <key>Input</key>

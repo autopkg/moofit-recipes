@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.pkg.Isadora</string>
+	<string>com.github.amsysuk.amsys-recipes.pkg.Isadora</string>
 	<key>Description</key>
 	<string>Downloads the latest version of Isadora using the parent recipe
-	com.github.amsysuk.download.Isadora and turns this into a package 
+	com.github.amsysuk.download.Isadora and turns this into a package
 	installer.
 	</string>
 	<key>Input</key>

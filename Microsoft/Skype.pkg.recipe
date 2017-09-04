@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.pkg.Skype</string>
+    <string>com.github.amsysuk.amsys-recipes.pkg.Skype</string>
     <key>Description</key>
-    <string>Downloads latest Skype disk image using the parent recipe 
+    <string>Downloads latest Skype disk image using the parent recipe
     com.github.autopkg.download.Skype and builds a package.
     </string>
     <key>Input</key>

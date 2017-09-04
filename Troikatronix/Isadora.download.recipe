@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.download.Isadora</string>
+	<string>com.github.amsysuk.amsys-recipes.download.Isadora</string>
 	<key>Description</key>
 	<string>Downloads the latest version of Isadora</string>
 	<key>Input</key>

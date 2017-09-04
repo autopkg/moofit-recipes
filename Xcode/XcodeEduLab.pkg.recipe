@@ -24,7 +24,7 @@ deletes the launchdaemon, and itself.
         <key>NAME</key>
         <string>Xcode</string>
         <key>XIPNAME</key>
-        <string>Xcode*.xip</string>
+        <string>Xcode-\d.\d.\d.xip</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.1</string>

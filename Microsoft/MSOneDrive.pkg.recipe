@@ -3,7 +3,7 @@
 <plist version="1.0">
     <dict>
         <key>Identifier</key>
-        <string>com.github.amsysuk.pkg.MSOneDrive</string>
+        <string>com.github.amsysuk.amsys-recipes.pkg.MSOneDrive</string>
         <key>Description</key>
         <string>Downloads the latest version of OneDrive Standalone installer
 pkg from Microsoft (using the parent recipe

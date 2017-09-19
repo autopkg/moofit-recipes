@@ -29,7 +29,7 @@
 				<key>result_output_var_name</key>
 				<string>url</string>
 				<key>re_pattern</key>
-				<string>Install_Mimecast_v*.pkg</string>
+				<string>https://system.netsuite.com/core/media/media.nl*</string>
 				<key>re_flags</key>
 				<array>
 					<string>IGNORECASE</string>

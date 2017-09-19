@@ -12,7 +12,7 @@
 	<dict>
 		<key>NAME</key>
 		<string>Mimecast</string>
-		<key>URL</key>
+		<key>CHECK_PAGE_URL</key>
 		<string>https://community.mimecast.com/community/knowledge-base/application-downloads/pages/mimecast-for-mac</string>
 		<key>USER_AGENT</key>
 		<string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>

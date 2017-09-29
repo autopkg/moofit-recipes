@@ -7,7 +7,9 @@
 	<key>Description</key>
 	<string>Uses parent download recipe
 	com.github.autopkg.download.MSOneNote2016 to download the latest OneNote
-	2016 installer package. This override renames the package to "Microsoft
+	2016 installer package.
+
+    This override renames the package to "Microsoft
 	OneNote-$version"
 	</string>
 	<key>Input</key>

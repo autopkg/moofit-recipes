@@ -7,7 +7,9 @@
 	<key>Description</key>
 	<string>Uses parent download recipe
 	com.github.autopkg.download.MSPowerPoint2016 to download the latest
-	PowerPoint 2016 installer package. This override renames the package to
+	PowerPoint 2016 installer package.
+
+    This override renames the package to
 	"Microsoft PowerPoint-$version"
 	</string>
 	<key>Input</key>

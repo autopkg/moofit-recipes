@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.download.Dragonframe4</string>
+    <string>com.github.amsysuk-recipes.download.Dragonframe4</string>
     <key>Description</key>
     <string>Downloads the latest version of Dragonframe 4</string>
     <key>Input</key>

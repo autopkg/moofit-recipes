@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.download.TypeTool3</string>
+    <string>com.github.amsysuk-recipes.download.TypeTool3</string>
     <key>Description</key>
     <string>Downloads the latest Type Tool from FontLab.</string>
     <key>Input</key>

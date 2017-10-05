@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Cubase9</string>
+    <string>com.github.amsysuk-recipes.pkg.Cubase9</string>
     <key>Description</key>
     <string>Download recipe for the latest version of Cubase 9.</string>
     <key>Input</key>

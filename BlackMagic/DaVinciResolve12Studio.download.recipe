@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.download.DaVinciResolve12Studio</string>
+    <string>com.github.amsysuk-recipes.download.DaVinciResolve12Studio</string>
     <key>Description</key>
     <string>Downloads latest version of DaVinci Resolve 12 Studio
 Duplicated from Time Sutton's DaVinci Resolve 12 recipe

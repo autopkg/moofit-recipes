@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.EasyFind</string>
+    <string>com.github.amsysuk-recipes.pkg.EasyFind</string>
     <key>Description</key>
     <string>Downloads EasyFind disk image and builds a package</string>
     <key>Input</key>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.download.KindlePreviewer</string>
+    <string>com.github.amsysuk-recipes.download.KindlePreviewer</string>
     <key>Description</key>
     <string>Downloads latest Kindle Previewer 3 disk image.
 NOTE: The Kindle Previewer postinstall script (at least as of 3.11) is the

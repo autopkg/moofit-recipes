@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.DaVinciResolve12Studio</string>
+    <string>com.github.amsysuk-recipes.pkg.DaVinciResolve12Studio</string>
     <key>Description</key>
     <string>Downloads latest version of DaVinci Resolve 12 Studio and turns it
 into a package.
@@ -30,7 +30,7 @@ beginning with 'REG_' and they must contain data.</string>
         <string></string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk.amsys-recipes.download.DaVinciResolve12Studio</string>
+    <string>com.github.amsysuk-recipes.download.DaVinciResolve12Studio</string>
     <key>Process</key>
     <array>
         <dict>

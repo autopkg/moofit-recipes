@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.androidfiletransfer</string>
+    <string>com.github.amsysuk-recipes.pkg.androidfiletransfer</string>
     <key>Description</key>
     <string>Downloads latest Android File Transfer disk image and builds a
 package. Note: Code signature verification cannot be added into this recipe

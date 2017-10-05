@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.Isadora</string>
+	<string>com.github.amsysuk-recipes.pkg.Isadora</string>
 	<key>Description</key>
 	<string>Downloads the latest version of Isadora using the parent recipe
 	com.github.amsysuk.download.Isadora and turns this into a package
@@ -21,7 +21,7 @@
 		<string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>com.github.amsysuk.amsys-recipes.download.Isadora</string>
+	<string>com.github.amsysuk-recipes.download.Isadora</string>
 	<key>Process</key>
 	<array>
 		<dict>

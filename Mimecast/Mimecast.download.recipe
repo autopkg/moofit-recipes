@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.download.Mimecast</string>
+	<string>com.github.amsysuk-recipes.download.Mimecast</string>
 	<key>Description</key>
 	<string>Downloads the latest version of Mimecast from it's website</string>
 	<key>MinimumVersion</key>

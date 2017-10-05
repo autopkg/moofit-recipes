@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Dragonframe4</string>
+    <string>com.github.amsysuk-recipes.pkg.Dragonframe4</string>
     <key>Description</key>
     <string>Turns the download of the latest version of Dragonframe4 into a
 package</string>
@@ -17,7 +17,7 @@ package</string>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk.amsys-recipes.download.Dragonframe4</string>
+    <string>com.github.amsysuk-recipes.download.Dragonframe4</string>
     <key>Process</key>
     <array>
         <dict>

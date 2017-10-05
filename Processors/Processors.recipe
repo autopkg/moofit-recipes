@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.Processors</string>
+    <string>com.github.amsysuk-recipes.Processors</string>
     <key>Description</key>
     <string>Recipe stub for any Shared Processors in this directory.</string>
     <key>Input</key>

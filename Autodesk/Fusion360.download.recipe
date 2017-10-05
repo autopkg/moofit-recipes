@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.download.Fusion360</string>
+    <string>com.github.amsysuk-recipes.download.Fusion360</string>
     <key>Description</key>
     <string>Downloads the latest version of Autodesk Fusion 360.</string>
     <key>Input</key>

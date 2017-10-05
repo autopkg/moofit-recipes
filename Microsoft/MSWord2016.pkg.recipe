@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk.amsys-recipes.pkg.MSWord2016</string>
+	<string>com.github.amsysuk-recipes.pkg.MSWord2016</string>
 	<key>Description</key>
 	<string>Uses parent download recipe com.github.autopkg.download.MSWord2016
 	to download the latest Word 2016 installer package.

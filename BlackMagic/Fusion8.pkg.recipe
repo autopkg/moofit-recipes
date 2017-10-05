@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Fusion8</string>
+    <string>com.github.amsysuk-recipes.pkg.Fusion8</string>
     <key>Description</key>
     <string>Downloads latest version of Fusion 8.</string>
     <key>Input</key>

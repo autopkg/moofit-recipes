@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Eclipse</string>
+    <string>com.github.amsysuk-recipes.pkg.Eclipse</string>
     <key>Description</key>
     <string>Downloads the latest version of Eclipse and makes a pkg of it.</string>
     <key>Input</key>

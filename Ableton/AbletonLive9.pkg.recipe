@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.AbletonLive9</string>
+    <string>com.github.amsysuk-recipes.pkg.AbletonLive9</string>
     <key>Description</key>
     <string>Downloads the most recent version of Ableton Live 9.
 Supports two additional variables to get different editions and builds:

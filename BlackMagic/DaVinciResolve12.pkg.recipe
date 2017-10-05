@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.DaVinciResolve12</string>
+    <string>com.github.amsysuk-recipes.pkg.DaVinciResolve12</string>
     <key>Description</key>
     <string>Downloads latest version of DaVinci Resolve 12 and turns it into
 a package. Note: This replaces 'DaVinci Resolve Lite' This product requires

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.AppleJava6</string>
+    <string>com.github.amsysuk-recipes.pkg.AppleJava6</string>
     <key>Description</key>
     <string>Downloads the latest Apple Java 6 for macOS</string>
     <key>ParentRecipe</key>

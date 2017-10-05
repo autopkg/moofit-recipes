@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.ElgatoVideoCapture</string>
+    <string>com.github.amsysuk-recipes.pkg.ElgatoVideoCapture</string>
     <key>Description</key>
     <string>Downloads the latest version of Elgato Video Capture and creates a
 package.</string>
@@ -17,7 +17,7 @@ package.</string>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk.amsys-recipes.download.ElgatoVideoCapture</string>
+    <string>com.github.amsysuk-recipes.download.ElgatoVideoCapture</string>
     <key>Process</key>
     <array>
         <dict>

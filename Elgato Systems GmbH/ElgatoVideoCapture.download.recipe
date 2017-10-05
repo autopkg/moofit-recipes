@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.download.ElgatoVideoCapture</string>
+    <string>com.github.amsysuk-recipes.download.ElgatoVideoCapture</string>
     <key>Description</key>
     <string>Downloads the latest version of Elgato Video Capture.</string>
     <key>Input</key>

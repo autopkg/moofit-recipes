@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.StuffitExpander</string>
+    <string>com.github.amsysuk-recipes.pkg.StuffitExpander</string>
     <key>Description</key>
     <string>Downloads StuffIt Expander archive using the parent recipe
     com.github.keeleysam.recipes.StuffItExpander.download and builds a package.

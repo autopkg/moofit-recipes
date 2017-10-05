@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.UniversalTypeClient6</string>
+    <string>com.github.amsysuk-recipes.pkg.UniversalTypeClient6</string>
     <key>Description</key>
     <string>Downloads Universal Type Client 6 and makes a pkg of it.</string>
     <key>Input</key>

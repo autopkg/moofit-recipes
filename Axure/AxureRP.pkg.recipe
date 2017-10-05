@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.AxureRP</string>
+    <string>com.github.amsysuk-recipes.pkg.AxureRP</string>
     <key>Description</key>
     <string>Downloads latest Axure RP disk image.</string>
     <key>Input</key>

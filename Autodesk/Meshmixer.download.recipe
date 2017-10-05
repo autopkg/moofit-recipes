@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.download.Meshmixer</string>
+    <string>com.github.amsysuk-recipes.download.Meshmixer</string>
     <key>Description</key>
     <string>Downloads the latest version of Meshmixer.</string>
     <key>Input</key>

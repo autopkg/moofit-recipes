@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Adapter</string>
+    <string>com.github.amsysuk-recipes.pkg.Adapter</string>
     <key>Description</key>
     <string>Downloads the latest Adapter</string>
     <key>Input</key>

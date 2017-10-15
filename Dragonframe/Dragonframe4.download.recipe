@@ -11,7 +11,7 @@
         <key>NAME</key>
         <string>Dragonframe 4</string>
         <key>CHECK_PAGE_URL</key>
-        <string>http://www.dragonframe.com/downloads</string>
+        <string>https://www.dragonframe.com/downloads</string>
         <key>USER_AGENT</key>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
@@ -47,7 +47,7 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>http://www.dragonframe.com/download/%url%</string>
+                <string>https://www.dragonframe.com/download/%url%</string>
             </dict>
         </dict>
         <dict>

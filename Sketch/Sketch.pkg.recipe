@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest Sketch and creates a package.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk.amsys-recipes.pkg.Sketch</string>
+    <string>com.github.amsysuk-recipes.pkg.Sketch</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

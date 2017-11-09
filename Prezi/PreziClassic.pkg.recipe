@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk-recipes.pkg.Prezi</string>
+    <string>com.github.amsysuk-recipes.pkg.PreziClassic</string>
     <key>Description</key>
-    <string>Downloads Prezi using the parent recipe
+    <string>Downloads Prezi Classic using the parent recipe
     com.github.joshua-d-miller.download.prezi and builds a package.
     </string>
     <key>Input</key>

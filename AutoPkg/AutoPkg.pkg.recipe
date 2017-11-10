@@ -13,7 +13,7 @@ om.github.rtrouton.download.AutoPkg-Release and moves the pkg.</string>
         <string>AutoPkg</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>om.github.rtrouton.download.AutoPkg-Release</string>
+    <string>com.github.rtrouton.download.AutoPkg-Release</string>
     <key>MinimumVersion</key>
     <string>0.3.0</string>
     <key>Process</key>

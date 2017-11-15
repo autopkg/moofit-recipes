@@ -24,7 +24,7 @@ packages into pkg. </string>
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%input_path%</string>
+                <string>%pathname%</string>
             </dict>
         </dict>
         <dict>

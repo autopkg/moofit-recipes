@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Download the current built package of Notify.</string>
+    <string>Download the current built package of moofBark.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk-recipes.download.Notify</string>
+    <string>com.github.amsysuk-recipes.download.moofBark</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>Notify</string>
+        <string>moofBark</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
@@ -23,7 +23,7 @@
             <key>Arguments</key>
             <dict>
                 <key>github_repo</key>
-                <string>amsysuk/Notify</string>
+                <string>amsysuk/moofBark</string>
             </dict>
         </dict>
         <dict>

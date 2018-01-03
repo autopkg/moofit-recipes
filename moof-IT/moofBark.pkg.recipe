@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.amsysuk-recipes.pkg.moofBark</string>
+	<string>com.github.moofit-recipes.pkg.moofBark</string>
 	<key>Description</key>
 	<string>Uses parent download recipe
-	com.github.amsysuk-recipes.download.moofBark to download the latest Notify
+	com.github.moofit-recipes.download.moofBark to download the latest Notify
 	</string>
 	<key>Input</key>
 	<dict>
@@ -16,7 +16,7 @@
 	<key>MinimumVersion</key>
 	<string>0.5.0</string>
 	<key>ParentRecipe</key>
-	<string>com.github.amsysuk-recipes.download.moofBark</string>
+	<string>com.github.moofit-recipes.download.moofBark</string>
 	<key>Process</key>
 	<array>
         <dict>

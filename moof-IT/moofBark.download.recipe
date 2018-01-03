@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Download the current built package of moofBark.</string>
     <key>Identifier</key>
-    <string>com.github.amsysuk-recipes.download.moofBark</string>
+    <string>com.github.moofit-recipes.download.moofBark</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

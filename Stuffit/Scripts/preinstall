@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Remove previous version of StuffIt Expander from /Applications
-
-if [[ -d "$3/Applications/StuffIt Expander.app" ]];
-then
-   rm -rf "$3/Applications/StuffIt Expander.app"
-fi

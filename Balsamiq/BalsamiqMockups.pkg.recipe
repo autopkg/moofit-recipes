@@ -12,7 +12,7 @@
 		<key>NAME</key>
 		<string>Balsamiq Mockups 3</string>
 	</dict>
-    <key>Parent Recipe</key>
+    <key>ParentRecipe</key>
     <string>com.github.thenikola.download.BalsamicMockups</string>
 	<key>MinimumVersion</key>
 	<string>0.2.0</string>

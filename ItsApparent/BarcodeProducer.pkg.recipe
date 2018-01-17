@@ -62,7 +62,9 @@
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>input_plist_path</string>
+                <string>%pathname%/Barcode Producer/Barcode Producer.app</string>
+                <key>plist_keys</key>
+                <string>CFBundleIdentifier: bundleid</string>
             </dict>
         </dict>
         <dict>

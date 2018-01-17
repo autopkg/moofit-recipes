@@ -24,11 +24,11 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
+            <string>Versioner</string>
             <key>Arguments</key>
             <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
+                <key>input_plist_path</key>
+                <string>%pathname%/Barcode Producer/Barcode Producer.app/Contents/Info.plist</string>
             </dict>
         </dict>
         <dict>

@@ -58,6 +58,14 @@
         </dict>
         <dict>
             <key>Processor</key>
+            <string>PlistReader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>input_plist_path</string>
+            </dict>
+        <dict>
+            <key>Processor</key>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>

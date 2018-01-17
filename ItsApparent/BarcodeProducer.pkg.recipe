@@ -64,7 +64,10 @@
                 <key>info_path</key>
                 <string>%pathname%/Barcode Producer/Barcode Producer.app</string>
                 <key>plist_keys</key>
-                <string>CFBundleIdentifier: bundleid</string>
+                <dict>
+                    <key>CFBundleIdentifier</key>
+                    <string>bundleid</string>
+                </dict>
             </dict>
         </dict>
         <dict>

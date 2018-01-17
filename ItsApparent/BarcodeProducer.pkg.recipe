@@ -64,6 +64,7 @@
                 <key>info_path</key>
                 <string>input_plist_path</string>
             </dict>
+        </dict>
         <dict>
             <key>Processor</key>
             <string>PkgCreator</string>

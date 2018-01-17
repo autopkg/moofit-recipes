@@ -51,9 +51,9 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/%app_name%</string>
+                <string>%pathname%/*</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%app_name%</string>
+                <string>%pkgroot%/Applications/*</string>
             </dict>
         </dict>
         <dict>

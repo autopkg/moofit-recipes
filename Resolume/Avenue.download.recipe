@@ -62,7 +62,7 @@
   		  <key>Arguments</key>
   		  <dict>
   		      <key>input_path</key>
-     		   <string>%pathname%/Resolume_Avenue_\d_\d_\d_Installer.pkg</string>
+     		   <string>%pathname%/Resolume Avenue Installer.pkg</string>
      		   <key>expected_authority_names</key>
      		   <array>
      		       <string>Developer ID Installer: Resolume (Z9Y8N6Q4L8)</string>

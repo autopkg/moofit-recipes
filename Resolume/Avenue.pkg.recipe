@@ -10,14 +10,8 @@
     </string>
     <key>Input</key>
     <dict>
-        <key>CHECK_PAGE_URL</key>
-        <string>https://resolume.com/download?file=latest_avenue</string>
-        <key>DOWNLOAD_PAGE_URL</key>
-        <string>https://d19j6z4lvv1vde.cloudfront.net</string>
         <key>NAME</key>
         <string>Avenue</string>
-        <key>USER_AGENT</key>
-        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.amsysuk-recipes.download.Avenue</string>
@@ -31,7 +25,7 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/expanded</string>
                 <key>flat_pkg_path</key>
-                <string>%pathname%/Resolume Avenue * Installer.pkg</string>
+                <string>%pathname%/Resolume Avenue Installer.pkg</string>
             </dict>
         </dict>
         <dict>

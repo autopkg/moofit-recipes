@@ -27,10 +27,20 @@
 				<string>%DOWNLOAD_URL%</string>
 			</dict>
 		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
+            </dict>
+        </dict>
         <dict>
             <key>Processor</key>
             <string>Unarchiver</string>
@@ -39,132 +49,47 @@
                 <key>archive_path</key>
                 <string>%pathname%</string>
                 <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unzipped</string>
+                <string>%pkgroot%/Applications/</string>
                 <key>purge_destination</key>
                 <true/>
             </dict>
         </dict>
         <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
-            </dict>
             <key>Processor</key>
-            <string>FileFinder</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
-                <key>flat_pkg_path</key>
-                <string>%found_filename%</string>
-            </dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>FindResource</string>
-            <key>Arguments</key>
-            <dict>
-                <key>filename</key>
-                <string>%PKG_POSTINSTALL%</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>source_path</key>
-                <string>%found_resource%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/universalTypeClient.pkg/Scripts/postinstall</string>
-                <key>overwrite</key>
-                <true/>
-            </dict>
-            <key>Processor</key>
-            <string>Copier</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>ModeChanger</string>
-            <key>Arguments</key>
-            <dict>
-                <key>filename</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/universalTypeClient.pkg/Scripts/postinstall</string>
-                <key>mode</key>
-                <string>a+x</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_pkg</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-                <key>source_flatpkg_dir</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
-            </dict>
-            <key>Processor</key>
-            <string>FlatPkgPacker</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>pkgdirs</key>
-                <dict>
-                    <key>Applications</key>
-                    <string>0755</string>
-                </dict>
-                <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgRootCreator</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/pkgroot/Applications</string>
-                <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/universalTypeClient.pkg/Payload</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
-        </dict>
-        <dict>
+            <string>Versioner</string>
             <key>Arguments</key>
             <dict>
                 <key>input_plist_path</key>
-                <string>%RECIPE_CACHE_DIR%/pkgroot/Applications/Universal Type Client.app/Contents/Info.plist</string>
-            </dict>
-            <key>Processor</key>
-            <string>Versioner</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>source_pkg</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/*</string>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <string>%pkgroot%/Applications/Principle.app/Contents/Info.plist</string>
             </dict>
         </dict>
         <dict>
             <key>Processor</key>
-            <string>PathDeleter</string>
+            <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
-                <key>path_list</key>
-                <array>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                    <string>%RECIPE_CACHE_DIR%/pkgroot</string>
-                    <string>%RECIPE_CACHE_DIR%/unpack</string>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-                </array>
+                <key>pkgname</key>
+                <string>%NAME%-%version%</string>
+                <key>pkg_request</key>
+                <dict>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
+                    <key>id</key>
+                    <string>com.danielhooper.principle.pkg</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>admin</string>
+                        </dict>
+                    </array>
+                </dict>
             </dict>
         </dict>
     </array>

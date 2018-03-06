@@ -13,7 +13,6 @@
 		<key>DOWNLOAD_URL</key>
 		<string>http://principleformac.com/download/Principle.zip</string>
 	</dict>
-    </dict>
     <key>MinimumVersion</key>
     <string>0.2.8</string>
     <key>Process</key>

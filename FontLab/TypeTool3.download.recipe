@@ -5,7 +5,8 @@
     <key>Identifier</key>
     <string>com.github.amsysuk-recipes.download.TypeTool3</string>
     <key>Description</key>
-    <string>Downloads the latest Type Tool from FontLab.</string>
+    <string>Downloads the latest Type Tool from FontLab.
+    Note: No signature on the downloaded package :(</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

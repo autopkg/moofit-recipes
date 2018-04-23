@@ -5,7 +5,14 @@
     <key>Identifier</key>
     <string>com.github.amsysuk-recipes.pkg.Fusion8</string>
     <key>Description</key>
-    <string>Downloads latest version of Fusion 8.</string>
+    <string>Downloads and packages the latest version of Fusion 8.
+    This product requires registration in order to download, so
+you _must_ override all input variables beginning with 'REG_'
+and they must contain data.
+
+Notably, REG_STATE and REG_COUNTRY must contain sane values:
+- REG_COUNTRY is of the form 'us', 'ca', etc.
+- REG_STATE is a proper name, i.e. 'Maryland'.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -44,6 +51,21 @@
             <key>Processor</key>
             <string>Unarchiver</string>
         </dict>
+        <dict>
+             <key>Arguments</key>
+             <dict>
+                 <key>input_path</key>
+                 <string>%RECIPE_CACHE_DIR%/%NAME%/Blackmagic_Fusion_%version%.dmg/Install Fusion v%version%.pkg</string>
+                 <key>expected_authority_names</key>
+                 <array>
+                     <string>Developer ID Installer: Blackmagic Design Inc</string>
+                     <string>Developer ID Certification Authority</string>
+                     <string>Apple Root CA</string>
+                 </array>
+             </dict>
+             <key>Processor</key>
+             <string>CodeSignatureVerifier</string>
+	    </dict>
         <dict>
         <key>Processor</key>
         <string>PkgCopier</string>

@@ -72,6 +72,21 @@
                 <string>CFBundleShortVersionString</string>
             </dict>
         </dict>
+         <dict>
+             <key>Arguments</key>
+             <dict>
+                 <key>input_path</key>
+                 <string>%pathname%/Cubase 9 Update.pkg</string>
+                 <key>expected_authority_names</key>
+                 <array>
+                     <string>Developer ID Installer: Steinberg Media Technologies GmbH (5PMY476BJ6)</string>
+                     <string>Developer ID Certification Authority</string>
+                     <string>Apple Root CA</string>
+                 </array>
+             </dict>
+             <key>Processor</key>
+             <string>CodeSignatureVerifier</string>
+	    </dict>
         <dict>
             <key>Processor</key>
             <string>PkgCopier</string>

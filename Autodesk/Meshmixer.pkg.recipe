@@ -11,12 +11,12 @@
         <key>NAME</key>
         <string>Meshmixer</string>
         <key>SEARCH_PATTERN</key>
-        <string>(?P&lt;url&gt;https://s3\.amazonaws\.com/meshmixer\.release/Autodesk_Meshmixer_v[A-Za-z0-9_.]+_macOS\.pkg)</string>
+        <string>(?P&lt;url&gt;http://labs-download\.autodesk\.com/us/labs/trials/worldwide/meshmixer/Autodesk_Meshmixer_v[A-Za-z0-9_.]+_MacOS\.pkg)</string>
         <key>SEARCH_URL</key>
         <string>http://www.meshmixer.com/download.html</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk-recipes.download.Meshmixer</string>
+    <string>com.github.hansen-m.download.Meshmixer</string>
     <key>Process</key>
     <array>
         <dict>

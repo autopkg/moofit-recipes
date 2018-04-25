@@ -22,8 +22,6 @@
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
-                <key>filename</key>
-                <string>%NAME%-%version%.pkg</string>
                 <key>url</key>
                 <string>%DOWNLOAD_URL%</string>
             </dict>

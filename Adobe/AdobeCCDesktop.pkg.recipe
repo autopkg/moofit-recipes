@@ -14,8 +14,6 @@
         <string>Adobe</string>
         <key>SOFTWARETITLE</key>
         <string>Creative Cloud Installer</string>
-        <key>NAMEWITHOUTSPACES</key>
-        <string>CreativeCloudInstaller</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
@@ -87,7 +85,7 @@ install_dir=$(dirname $0)
                     <key>pkgroot</key>
                     <string>%RECIPE_CACHE_DIR%/pkgroot</string>
                     <key>pkgname</key>
-                    <string>%VENDOR%%NAMEWITHOUTSPACES%-%version%</string>
+                    <string>%VENDOR%%NAME%-%version%</string>
                     <key>pkgtype</key>
                     <string>flat</string>
                     <key>id</key>

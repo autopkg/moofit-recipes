@@ -60,6 +60,25 @@
         </dict>
         <dict>
             <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/Scripts/postinstall</string>
+                <key>file_mode</key>
+                <string>0755</string>
+                <key>file_content</key>
+                <string>#!/bin/bash
+
+# Determine working directory
+install_dir=$(dirname $0)
+
+# Install the Creative Cloud  application using the Install binary's silent install mode
+"${install_dir}/Creative Cloud Installer.app/Contents/MacOS/Install" --mode=silent</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
@@ -68,7 +87,7 @@
                     <key>pkgroot</key>
                     <string>%RECIPE_CACHE_DIR%/pkgroot</string>
                     <key>pkgname</key>
-                    <string>%SOFTWARETITLE%-%version%</string>
+                    <string>%VENDOR%%NAMEWITHOUTSPACES%-%version%</string>
                     <key>pkgtype</key>
                     <string>flat</string>
                     <key>id</key>

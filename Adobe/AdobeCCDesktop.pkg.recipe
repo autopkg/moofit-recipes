@@ -9,7 +9,7 @@
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>Creative Cloud</string>
+        <string>Adobe Creative Cloud</string>
         <key>VENDOR</key>
         <string>Adobe</string>
         <key>SOFTWARETITLE</key>
@@ -85,7 +85,7 @@ install_dir=$(dirname $0)
                     <key>pkgroot</key>
                     <string>%RECIPE_CACHE_DIR%/pkgroot</string>
                     <key>pkgname</key>
-                    <string>%VENDOR%%NAME%-%version%</string>
+                    <string>%NAME%-%version%</string>
                     <key>pkgtype</key>
                     <string>flat</string>
                     <key>id</key>

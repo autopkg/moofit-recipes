@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Adobe's Creative Cloud Installer and packages it for installation.</string>
+    <string>Downloads the latest version of Adobe's Creative Cloud Installer and
+    packages it for installation. This recipe differs from Mosen's, as it
+    doesn't require CCP.</string>
     <key>Identifier</key>
-    <string>com.github.moof-it.pkg.AdobeCreativeCloudInstaller</string>
+    <string>com.github.moofit-recipes.pkg.AdobeCreativeCloud</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

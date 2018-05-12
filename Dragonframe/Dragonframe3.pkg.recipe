@@ -11,70 +11,11 @@ into a package</string>
     <dict>
         <key>NAME</key>
         <string>Dragonframe 3</string>
-        <key>CHECK_PAGE_URL</key>
-        <string>https://www.dragonframe.com/downloads</string>
-        <key>USER_AGENT</key>
-        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.amsysuk-recipes.download.Dragonframe3</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/DragonFrame3.pkg</string>
-                <key>source_pkg</key>
-                <string>%pathname%</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/expanded</string>
-                <key>flat_pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/DragonFrame3.pkg</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
-                <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/expanded/DragonFrame.pkg/Payload</string>
-            </dict>
-        </dict>
-         <dict>
-            <key>Processor</key>
-            <string>Versioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_plist_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/Applications/Dragonframe/Dragonframe.app/Contents/Info.plist</string>
-                <key>plist_version_key</key>
-                <string>CFBundleShortVersionString</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>PathDeleter</string>
-            <key>Arguments</key>
-            <dict>
-                <key>path_list</key>
-                <array>
-                    <string>%RECIPE_CACHE_DIR%/downloads/DragonFrame3.pkg</string>
-                </array>
-            </dict>
-        </dict>
         <dict>
             <key>Processor</key>
             <string>PkgCopier</string>

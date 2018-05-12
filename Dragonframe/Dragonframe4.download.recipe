@@ -12,6 +12,7 @@
         <string>Dragonframe 4</string>
         <key>CHECK_PAGE_URL</key>
         <string>https://www.dragonframe.com/downloads</string>
+        <string>(?P&lt;url&gt;http:\/\/www\.dragonframe.com\/download\/Dragonframe_(?P&lt;version&gt;3.[\d.]+)\.pkg)</string>
         <key>USER_AGENT</key>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
@@ -26,10 +27,8 @@
             <dict>
                 <key>url</key>
                 <string>%CHECK_PAGE_URL%</string>
-                <key>result_output_var_name</key>
-                <string>url</string>
                 <key>re_pattern</key>
-                <string>Dragonframe_4.*?\.pkg</string>
+                <string>%CHECK_PAGE_PATTERN%</string>
                 <key>re_flags</key>
                 <array>
                     <string>IGNORECASE</string>
@@ -46,8 +45,10 @@
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
+                <key>filename</key>
+                <string>%NAME%-%version%.pkg</string>
                 <key>url</key>
-                <string>https://www.dragonframe.com/download/%url%</string>
+                <string>%url%</string>
             </dict>
         </dict>
         <dict>

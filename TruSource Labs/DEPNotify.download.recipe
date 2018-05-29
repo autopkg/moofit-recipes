@@ -27,7 +27,7 @@
                     <key>url</key>
                     <string>%DOWNLOAD_PAGE_URL%</string>
                     <key>re_pattern</key>
-                    <string>[^"]+\DEPNotify-[^"]+\.zip</string>
+                    <string>[^"]+\DEPNotify-%VERSION%.zip</string>
                     <key>result_output_var_name</key>
                     <string>MATCH</string>
                 </dict>

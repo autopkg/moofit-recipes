@@ -37,6 +37,40 @@
                 <true/>
             </dict>
         </dict>
+        <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%RECIPE_CACHE_DIR%/downloads/MirrorOp.dmg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
+            </dict>
+        </dict>        
+        <dict>
+        	<key>Processor</key>
+        	<string>Copier</string>
+        	<key>Arguments</key>
+        	<dict>
+        		<key>source_path</key>
+        		<string>%pathname%/MirrorOp.app</string>
+        		<key>destination_path</key>
+        		<string>%pkgroot%/Applications/MirrorOp.app</string>
+        	</dict>
+        </dict>        
     </array>
 </dict>
 </plist>

@@ -43,7 +43,7 @@
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%pathname%</string>
+                <string>%pathname%/MirrorOp.dmg</string>
             </dict>
         </dict>
         <dict>

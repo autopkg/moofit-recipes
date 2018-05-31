@@ -18,9 +18,12 @@
         <dict>
             <key>Processor</key>
             <string>URLDownloader</string>
-            <key>url</key>
-            <string>http://mirrorop.com/downloads/MirrorOpSender_mac.zip</string>
-        </dict>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>http://mirrorop.com/downloads/MirrorOpSender_mac.zip</string>
+            </dict>
+        </dict>        
         <dict>
             <key>Processor</key>
             <string>Unarchiver</string>

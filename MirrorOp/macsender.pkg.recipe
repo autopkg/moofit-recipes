@@ -10,8 +10,6 @@
     <dict>
         <key>NAME</key>
         <string>MacSender</string>
-        <key>DOWNLOAD_URL</key>
-        <string>http://mirrorop.com/downloads/MirrorOpSender_mac.zip</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.9</string>
@@ -20,6 +18,8 @@
         <dict>
             <key>Processor</key>
             <string>URLDownloader</string>
+            <key>url</key>
+            <string>http://mirrorop.com/downloads/MirrorOpSender_mac.zip</string>
         </dict>
         <dict>
             <key>Processor</key>

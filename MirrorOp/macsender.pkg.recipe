@@ -43,7 +43,7 @@
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/MirrorOp.dmg</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/MirrorOp.dmg</string>
             </dict>
         </dict>
         <dict>

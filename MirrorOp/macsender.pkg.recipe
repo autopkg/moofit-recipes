@@ -34,7 +34,7 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>purge_destination</key>
-                <true/>
+                <false/>
             </dict>
         </dict>
         <dict>

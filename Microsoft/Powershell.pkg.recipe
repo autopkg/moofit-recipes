@@ -8,12 +8,12 @@
 	<string>Uses parent download recipe to download the latest Powershell
     installer package using the parent recipe
     com.github.autopkg.download.MSAutoUpdate. This override renames the package
-	to "Microsoft AutoUpdate-$version"
+	to "PowerShell-$version"
 	</string>
 	<key>Input</key>
 	<dict>
         <key>NAME</key>
-        <string>Powershell</string>
+        <string>PowerShell</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.1</string>

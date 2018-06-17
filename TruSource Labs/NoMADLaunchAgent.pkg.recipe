@@ -12,8 +12,8 @@
     <dict>
         <key>NAME</key>
 		<string>NoMAD LaunchAgent</string>
-        <key>DOWNLOAD_URL</key>
-        <string>http://orchardgrove.wpengine.com/download/NoMAD-LaunchAgent.pkg</string>
+        <key>DOWNLOAD_PAGE_URL</key>
+		<string>https://nomad.menu/support/</string>
         <key>version</key>
         <string>1.0</string>
     </dict>
@@ -21,11 +21,29 @@
     <array>
         <dict>
             <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%DOWNLOAD_PAGE_URL%</string>
+                <key>result_output_var_name</key>
+                <string>url</string>
+                <key>re_pattern</key>
+                <string>NoMAD-LaunchAgent.pkg</string>
+                <key>re_flags</key>
+                <array>
+                    <string>IGNORECASE</string>
+                </array>
+                <key>request_headers</key>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>%url%</string>
             </dict>
         </dict>
         <dict>

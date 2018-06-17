@@ -24,6 +24,8 @@
             <dict>
                 <key>github_repo</key>
                 <string>wonderunit/storyboarder</string>
+                <key>asset_regex</key>
+                <string>^Storyboarder-.*dmg$</string>
             </dict>
         </dict>
         <dict>
@@ -31,8 +33,6 @@
             <string>URLDownloader</string>
             <key>Comment</key>
             <string>Download latest Storyboarder package.</string>
-            <key>Arguments</key>
-            <dict />
         </dict>
         <dict>
             <key>Processor</key>

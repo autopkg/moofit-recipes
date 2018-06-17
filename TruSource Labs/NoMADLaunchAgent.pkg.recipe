@@ -34,7 +34,6 @@
                 <array>
                     <string>IGNORECASE</string>
                 </array>
-                <key>request_headers</key>
             </dict>
         </dict>
         <dict>

@@ -5,11 +5,11 @@
     <key>Description</key>
     <string>Downloads the latest MirrorOp Mac Sender and creates a package.</string>
     <key>Identifier</key>
-    <string>com.github.moofit-recipes.pkg.MacSender</string>
+    <string>com.github.moofit-recipes.pkg.MirrorOp</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>MacSender</string>
+        <string>MirrorOp</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.9</string>
@@ -23,7 +23,7 @@
                 <key>url</key>
                 <string>http://mirrorop.com/downloads/MirrorOpSender_mac.zip</string>
             </dict>
-        </dict>        
+        </dict>
         <dict>
             <key>Processor</key>
             <string>Unarchiver</string>
@@ -57,7 +57,7 @@
                     <string>0775</string>
                 </dict>
             </dict>
-        </dict>    
+        </dict>
         <dict>
         	<key>Processor</key>
         	<string>Copier</string>
@@ -68,7 +68,7 @@
         		<key>destination_path</key>
         		<string>%pkgroot%/Applications/MirrorOp.app</string>
         	</dict>
-        </dict>   
+        </dict>
         <dict>
             <key>Processor</key>
             <string>PkgCreator</string>
@@ -97,7 +97,7 @@
                     </array>
                 </dict>
             </dict>
-        </dict>        
+        </dict>
     </array>
 </dict>
 </plist>

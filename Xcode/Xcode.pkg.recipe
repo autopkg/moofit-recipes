@@ -177,6 +177,16 @@ rm /tmp/xcodeComponentsInstaller.sh</string>
                             <key>mode</key>
                             <string>0777</string>
                         </dict>
+                        <dict>
+                            <key>path</key>
+                            <string>private/tmp/uk.co.moof-it.xcodeComponentsInstaller.plist</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>mode</key>
+                            <string>0644</string>
+                        </dict>
                     </array>
                     <key>id</key>
                     <string>%bundleid%</string>

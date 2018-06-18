@@ -28,7 +28,11 @@ deletes the launchdaemon, and itself.
         <key>NAME</key>
         <string>Xcode</string>
         <key>XIPNAME</key>
-        <string>Xcode8.3.3.xip</string>
+        <string></string>
+        <key>SCRIPTS</key>
+        <string>scripts</string>
+        <key>ADDITIONALS</key>
+        <string>additionals</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.1</string>
@@ -44,15 +48,6 @@ deletes the launchdaemon, and itself.
             </dict>
             <key>Comment</key>
             <string>Borrowed from Facebook's Xcode recipe https://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>Versioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_plist_path</key>
-                <string>%output_app%/Contents/Info.plist</string>
-            </dict>
         </dict>
         <dict>
             <key>Processor</key>
@@ -105,9 +100,9 @@ deletes the launchdaemon, and itself.
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%RECIPE_DIR%/additional/uk.co.amsys.Xcode.components.plist</string>
+                <string>additional/uk.co.moof-it.Xcode.components.plist</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/private/tmp/uk.co.amsys.Xcode.components.plist</string>
+                <string>%pkgroot%/private/tmp/uk.co.moof-it.Xcode.components.plist</string>
             </dict>
         </dict>
         <dict>
@@ -116,7 +111,7 @@ deletes the launchdaemon, and itself.
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%RECIPE_DIR%/additional/componentsInstaller.sh</string>
+                <string>additional/componentsInstaller.sh</string>
                 <key>destination_path</key>
                 <string>%pkgroot%/private/tmp/componentsInstaller.sh</string>
             </dict>
@@ -142,7 +137,7 @@ deletes the launchdaemon, and itself.
                             <key>group</key>
                             <string>admin</string>
                             <key>path</key>
-                            <string>private</string>
+                            <string>tmp</string>
                             <key>user</key>
                             <string>root</string>
                             <key>mode</key>
@@ -152,17 +147,7 @@ deletes the launchdaemon, and itself.
                             <key>group</key>
                             <string>admin</string>
                             <key>path</key>
-                            <string>private/tmp</string>
-                            <key>user</key>
-                            <string>root</string>
-                            <key>mode</key>
-                            <string>0777</string>
-                        </dict>
-                        <dict>
-                            <key>group</key>
-                            <string>admin</string>
-                            <key>path</key>
-                            <string>private/tmp/componentsInstaller.sh</string>
+                            <string>tmp/componentsInstaller.sh</string>
                             <key>user</key>
                             <string>root</string>
                             <key>mode</key>
@@ -172,7 +157,7 @@ deletes the launchdaemon, and itself.
                             <key>group</key>
                             <string>admin</string>
                             <key>path</key>
-                            <string>private/tmp/uk.co.amsys.Xcode.components.plist</string>
+                            <string>tmp/uk.co.moof-it.Xcode.components.plist</string>
                             <key>user</key>
                             <string>root</string>
                             <key>mode</key>
@@ -184,7 +169,7 @@ deletes the launchdaemon, and itself.
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>scripts</key>
-                    <string>scripts</string>
+                    <string>%SCRIPTS%</string>
                     <key>pkgdir</key>
                     <string>%RECIPE_CACHE_DIR%</string>
                 </dict>

@@ -11,18 +11,12 @@ package</string>
     <dict>
         <key>NAME</key>
         <string>Dragonframe 4</string>
-        <key>CHECK_PAGE_URL</key>
-        <string>https://www.dragonframe.com/downloads</string>
-        <key>USER_AGENT</key>
-        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.amsysuk-recipes.download.Dragonframe4</string>
     <key>Process</key>
     <array>
         <dict>
-            <key>Processor</key>
-            <string>Copier</string>
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
@@ -32,10 +26,10 @@ package</string>
                 <key>overwrite</key>
                 <true/>
             </dict>
+            <key>Processor</key>
+            <string>Copier</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
@@ -43,10 +37,10 @@ package</string>
                 <key>flat_pkg_path</key>
                 <string>%RECIPE_CACHE_DIR%/downloads/DragonFrame4.pkg</string>
             </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
@@ -54,10 +48,10 @@ package</string>
                 <key>pkg_payload_path</key>
                 <string>%RECIPE_CACHE_DIR%/expanded/DragonFrame 4.pkg/Payload</string>
             </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
         </dict>
          <dict>
-            <key>Processor</key>
-            <string>Versioner</string>
             <key>Arguments</key>
             <dict>
                 <key>input_plist_path</key>
@@ -65,10 +59,10 @@ package</string>
                 <key>plist_version_key</key>
                 <string>CFBundleShortVersionString</string>
             </dict>
+            <key>Processor</key>
+            <string>Versioner</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>PathDeleter</string>
             <key>Arguments</key>
             <dict>
                 <key>path_list</key>
@@ -76,10 +70,10 @@ package</string>
                     <string>%RECIPE_CACHE_DIR%/downloads/DragonFrame4.pkg</string>
                 </array>
             </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
             <key>Arguments</key>
             <dict>
                 <key>source_pkg</key>
@@ -87,6 +81,8 @@ package</string>
                 <key>pkg_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
             </dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
         </dict>
     </array>
 </dict>

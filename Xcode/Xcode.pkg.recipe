@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.amsysuk-recipes.pkg.XcodeEduLab</string>
+    <string>com.github.moofit-recipes.pkg.Xcode</string>
     <key>Description</key>
     <string>Creates an installer package from a supplied .xip file downloaded
 from https://developer.apple.com/download/. The xip file needs to be copied to

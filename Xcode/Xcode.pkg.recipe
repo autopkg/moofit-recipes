@@ -28,11 +28,9 @@ deletes the launchdaemon, and itself.
         <key>NAME</key>
         <string>Xcode</string>
         <key>XIPNAME</key>
-        <string></string>
+        <string>[X,x]code.*xip</string>
         <key>SCRIPTS</key>
         <string>scripts</string>
-        <key>ADDITIONALS</key>
-        <string>additionals</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.1</string>
@@ -60,7 +58,7 @@ deletes the launchdaemon, and itself.
             <key>Processor</key>
             <string>FileCreator</string>
             <key>Comment</key>
-            <string>Make postinstall script to install the additional packages</string>
+            <string>Make script to install the additional packages</string>
             <key>Arguments</key>
             <dict>
                 <key>file_path</key>
@@ -106,7 +104,7 @@ rm /tmp/xcodeComponentsInstaller.sh</string>
         </dict>
         <dict>
             <key>Processor</key>
-            <string>XcodeXIPUnpacker</string>
+            <string>com.github.moofit-recipes.Processors/XcodeXIPUnpacker</string>
             <key>Arguments</key>
             <dict>
                 <key>PKG</key>

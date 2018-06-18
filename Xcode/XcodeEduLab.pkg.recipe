@@ -96,24 +96,50 @@ deletes the launchdaemon, and itself.
         </dict>
         <dict>
             <key>Processor</key>
-            <string>Copier</string>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Make postinstall script to install the additional packages</string>
             <key>Arguments</key>
             <dict>
-                <key>source_path</key>
-                <string>additional/uk.co.moof-it.Xcode.components.plist</string>
-                <key>destination_path</key>
-                <string>%pkgroot%/private/tmp/uk.co.moof-it.Xcode.components.plist</string>
+                <key>file_path</key>
+                <string>%pkgroot%/tmp/xcodeComponentsInstaller.sh</string>
+                <key>file_content</key>
+                <string>#!/bin/bash
+
+# Install Xcode components from Xcode.app
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
+
+# Stop and remove LaunchDaemon and script
+/bin/launchctl stop uk.co.moof-it.Xcode.components.plist
+/bin/launchctl remove uk.co.moof-it.Xcode.components.plist
+rm /tmp/uk.co.amsys.Xcode.components.plist
+rm /tmp/componentsInstaller.sh</string>
+                <key>file_mode</key>
+                <string>0755</string>
             </dict>
         </dict>
         <dict>
+            <key>Comment</key>
+            <string>Make launchd plist for the above script at /tmp</string>
             <key>Processor</key>
-            <string>Copier</string>
+            <string>PlistEditor</string>
             <key>Arguments</key>
             <dict>
-                <key>source_path</key>
-                <string>additional/componentsInstaller.sh</string>
-                <key>destination_path</key>
-                <string>%pkgroot%/private/tmp/componentsInstaller.sh</string>
+                <key>output_plist_path</key>
+                <string>%pkgroot%/tmp/uk.co.moof-it.Xcode.components.plist</string>
+                <key>plist_data</key>
+                <dict>
+                    <key>Label</key>
+                    <string>uk.co.amsys.Xcode.components</string>
+                    <key>ProgramArguments</key>
+                    <array>
+                            <string>/tmp/xcodeComponentsInstaller.sh</string>
+                    </array>
+                    <key>RunAtLoad</key>
+                    <true/>
+                </dict>
             </dict>
         </dict>
         <dict>
@@ -138,16 +164,6 @@ deletes the launchdaemon, and itself.
                             <string>admin</string>
                             <key>path</key>
                             <string>tmp</string>
-                            <key>user</key>
-                            <string>root</string>
-                            <key>mode</key>
-                            <string>0755</string>
-                        </dict>
-                        <dict>
-                            <key>group</key>
-                            <string>admin</string>
-                            <key>path</key>
-                            <string>tmp/componentsInstaller.sh</string>
                             <key>user</key>
                             <string>root</string>
                             <key>mode</key>

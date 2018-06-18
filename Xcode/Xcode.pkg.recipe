@@ -28,7 +28,7 @@ deletes the launchdaemon, and itself.
         <key>NAME</key>
         <string>Xcode</string>
         <key>XIPNAME</key>
-        <string>[X,x]code.*xip</string>
+        <string></string>
         <key>SCRIPTS</key>
         <string>scripts</string>
     </dict>

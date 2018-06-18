@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Author:   Stephen Bygrave - Amsys
+# Author:   Stephen Bygrave - Moof IT
 # Name:     postinstall
 #
 # Purpose:  Xcode Tools Postinstall to install extra components and command line
@@ -9,31 +9,23 @@
 #
 # Version 1.0.0, 2017-07-12
 #   Initial Creation
+# Version 1.1.0, 2018-06-19
+#   Amended logging function and path to
 
 # Use at your own risk.  Amsys will accept no responsibility for loss or damage
 # caused by this script.
-
-# If running natively as a script, Add "-d or --debug" at run time to enable
-# debugging messages.
-
-if [[ "${1}" == --debug || "${1}" == -d ]];
-then
-    set +x
-    debug=1
-fi
 
 ##### Set variables
 
 osVers=$(sw_vers -productVersion | awk -F "." '{print $2}')
 cmdlineToolsTmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
-logFile="/Library/Logs/Amsys_Installs.log"
+logProcess="xcodePostinstall"
 
 ##### Declare functions
 
 writelog()
 {
-	/bin/echo "$(/bin/date) ${1}" >> "${logFile}"
-	/bin/echo "${1}"
+	/usr/bin/logger -is -t "${logProcess}" "${1}"
 }
 
 echoVariables ()
@@ -87,14 +79,14 @@ installCommandLineTools ()
 
         # Create the placeholder file which is checked by the softwareupdate
         # tool before allowing the installation of the Xcode command line tools.
-        touch "${cmdlineToolsTmp}"
+        /usr/bin/touch "${cmdlineToolsTmp}"
 
         # Find the last listed update in the Software Update feed with "Command Line Tools" in the name
         cmdlineTools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
 
         # Install the command line tools
         writelog "# Installing via softwareupdate..."
-        softwareupdate -i "${cmdlineTools}"
+        /usr/sbin/softwareupdate -i "${cmdlineTools}"
         testExit
         writelog "# - Result is: ${exitCode}"
         testSuccess "Command Line Tools"
@@ -118,7 +110,7 @@ grantAccess ()
 
 }
 
-loadLaunchD ()
+loadLaunchDaemon ()
 {
     # Loading LaunchDaemon to set off Additional Component installs
     writelog ""
@@ -135,13 +127,7 @@ loadLaunchD ()
 
 ##### Run script
 
-if [[ ${debug} -eq 1 ]];
-then
-    writelog ""
-    writelog "##### Debug Mode"
-    writelog ""
-    echoVariables
-fi
+echoVariables
 
 writelog ""
 writelog "##### Xcode Installer postinstall"
@@ -150,4 +136,4 @@ writelog ""
 enableSecurity
 installCommandLineTools
 grantAccess
-loadLaunchD
+loadLaunchDaemon

@@ -123,9 +123,9 @@ loadLaunchD ()
     # Loading LaunchDaemon to set off Additional Component installs
     writelog ""
     writelog "# Loading LaunchDaemon..."
-    if [[ -e "/private/tmp/uk.co.amsys.Xcode.components.plist" ]];
+    if [[ -e "/private/tmp/uk.co.moof-it.xcodeComponentsInstaller.plist" ]];
     then
-        /bin/launchctl load -w "/private/tmp/uk.co.amsys.Xcode.components.plist"
+        /bin/launchctl load -w "/private/tmp/uk.co.moof-it.xcodeComponentsInstaller.plist"
         testExit
         writelog "# - Result is: ${exitCode}"
     else

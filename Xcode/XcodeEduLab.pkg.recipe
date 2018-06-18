@@ -150,34 +150,34 @@ rm /tmp/xcodeComponentsInstaller.sh</string>
                     <key>chown</key>
                     <array>
                         <dict>
-                            <key>group</key>
-                            <string>admin</string>
                             <key>path</key>
                             <string>Applications</string>
                             <key>user</key>
                             <string>root</string>
+                            <key>group</key>
+                            <string>admin</string>
                             <key>mode</key>
                             <string>0775</string>
                         </dict>
                         <dict>
-                            <key>group</key>
-                            <string>admin</string>
                             <key>path</key>
-                            <string>tmp</string>
+                            <string>private</string>
                             <key>user</key>
                             <string>root</string>
+                            <key>group</key>
+                            <string>wheel</string>
                             <key>mode</key>
                             <string>0755</string>
                         </dict>
                         <dict>
-                            <key>group</key>
-                            <string>admin</string>
                             <key>path</key>
-                            <string>tmp/uk.co.moof-it.Xcode.components.plist</string>
+                            <string>private/tmp</string>
                             <key>user</key>
                             <string>root</string>
+                            <key>group</key>
+                            <string>wheel</string>
                             <key>mode</key>
-                            <string>0755</string>
+                            <string>0777</string>
                         </dict>
                     </array>
                     <key>id</key>

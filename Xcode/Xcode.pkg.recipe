@@ -104,7 +104,7 @@ rm /tmp/xcodeComponentsInstaller.sh</string>
         </dict>
         <dict>
             <key>Processor</key>
-            <string>com.github.moofit-recipes.Processors/XcodeXIPUnpacker</string>
+            <string>com.github.amsysuk-recipes.Processors/XcodeXIPUnpacker</string>
             <key>Arguments</key>
             <dict>
                 <key>PKG</key>

@@ -112,10 +112,10 @@ deletes the launchdaemon, and itself.
 /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
 
 # Stop and remove LaunchDaemon and script
-/bin/launchctl stop uk.co.moof-it.Xcode.components.plist
-/bin/launchctl remove uk.co.moof-it.Xcode.components.plist
-rm /tmp/uk.co.amsys.Xcode.components.plist
-rm /tmp/componentsInstaller.sh</string>
+/bin/launchctl stop uk.co.moof-it.xcodeComponentsInstaller.plist
+/bin/launchctl remove uk.co.moof-it.xcodeComponentsInstaller.plist
+rm /tmp/uk.co.moof-it.xcodeComponentsInstaller.plist
+rm /tmp/xcodeComponentsInstaller.sh</string>
                 <key>file_mode</key>
                 <string>0755</string>
             </dict>
@@ -128,11 +128,11 @@ rm /tmp/componentsInstaller.sh</string>
             <key>Arguments</key>
             <dict>
                 <key>output_plist_path</key>
-                <string>%pkgroot%/tmp/uk.co.moof-it.Xcode.components.plist</string>
+                <string>%pkgroot%/tmp/uk.co.moof-it.xcodeComponentsInstaller.plist</string>
                 <key>plist_data</key>
                 <dict>
                     <key>Label</key>
-                    <string>uk.co.amsys.Xcode.components</string>
+                    <string>uk.co.moof-it.xcodeComponentsInstaller</string>
                     <key>ProgramArguments</key>
                     <array>
                             <string>/tmp/xcodeComponentsInstaller.sh</string>

@@ -13,7 +13,7 @@
         <key>NAME</key>
 		<string>NoMAD LaunchAgent</string>
         <key>DOWNLOAD_URL</key>
-        <string>http://orchardgrove.wpengine.com/download/NoMAD-LaunchAgent.pkg</string>
+		<string>https://files.nomad.menu/NoMAD-LaunchAgent.pkg</string>
         <key>version</key>
         <string>1.0</string>
     </dict>

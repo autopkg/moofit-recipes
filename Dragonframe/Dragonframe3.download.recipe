@@ -65,7 +65,7 @@
                 <string>%pathname%</string>
                 <key>expected_authority_names</key>
                 <array>
-                    <string>Developer ID Installer: DZED Systems LLC</string>
+                    <string>DDeveloper ID Installer: DZED Systems LLC (PG7SM8SD8M)</string>
                     <string>Developer ID Certification Authority</string>
                     <string>Apple Root CA</string>
                 </array>

@@ -64,7 +64,7 @@ deletes the launchdaemon, and itself.
             <key>Arguments</key>
             <dict>
                 <key>file_path</key>
-                <string>%pkgroot%/tmp/xcodeComponentsInstaller.sh</string>
+                <string>%pkgroot%/private/tmp/xcodeComponentsInstaller.sh</string>
                 <key>file_content</key>
                 <string>#!/bin/bash
 
@@ -90,7 +90,7 @@ rm /tmp/xcodeComponentsInstaller.sh</string>
             <key>Arguments</key>
             <dict>
                 <key>output_plist_path</key>
-                <string>%pkgroot%/tmp/uk.co.moof-it.xcodeComponentsInstaller.plist</string>
+                <string>%pkgroot%/private/tmp/uk.co.moof-it.xcodeComponentsInstaller.plist</string>
                 <key>plist_data</key>
                 <dict>
                     <key>Label</key>

@@ -38,6 +38,44 @@ deletes the launchdaemon, and itself.
     <array>
         <dict>
             <key>Processor</key>
+            <string>com.github.amsysuk-recipes.Processors/XcodeXIPUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>PKG</key>
+                <string>%RECIPE_DIR%/%XIPNAME%</string>
+            </dict>
+            <key>Comment</key>
+            <string>Borrowed from Facebook's Xcode recipe https://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PlistReader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/%NAME%.app</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleIdentifier</key>
+                    <string>bundleid</string>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>StopProcessingIf</string>
+            <key>Arguments</key>
+            <dict>
+                <key>predicate</key>
+                <string>pkg_build_matches == YES</string>
+            </dict>
+            <key>comment</key>
+            <string>If a package has already been built with this version and ID (and "force_pkg_build" is False), we're done.</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>
@@ -52,6 +90,17 @@ deletes the launchdaemon, and itself.
                     <key>private/tmp</key>
                     <string>0777</string>
                 </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/%NAME%.app</string>
             </dict>
         </dict>
         <dict>
@@ -101,44 +150,6 @@ rm /tmp/xcodeComponentsInstaller.sh</string>
                     <true/>
                 </dict>
             </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>com.github.amsysuk-recipes.Processors/XcodeXIPUnpacker</string>
-            <key>Arguments</key>
-            <dict>
-                <key>PKG</key>
-                <string>%RECIPE_DIR%/%XIPNAME%</string>
-            </dict>
-            <key>Comment</key>
-            <string>Borrowed from Facebook's Xcode recipe https://github.com/facebook/Recipes-for-AutoPkg/tree/master/Xcode</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
-                <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/%NAME%.app</string>
-            </dict>
-            <key>Processor</key>
-            <string>Copier</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>info_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
-                <key>plist_keys</key>
-                <dict>
-                    <key>CFBundleIdentifier</key>
-                    <string>bundleid</string>
-                    <key>CFBundleShortVersionString</key>
-                    <string>version</string>
-                </dict>
-            </dict>
-            <key>Processor</key>
-            <string>PlistReader</string>
         </dict>
         <dict>
             <key>Arguments</key>

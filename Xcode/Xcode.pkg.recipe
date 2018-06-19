@@ -65,17 +65,6 @@ deletes the launchdaemon, and itself.
         </dict>
         <dict>
             <key>Processor</key>
-            <string>StopProcessingIf</string>
-            <key>Arguments</key>
-            <dict>
-                <key>predicate</key>
-                <string>pkg_build_matches == YES</string>
-            </dict>
-            <key>comment</key>
-            <string>If a package has already been built with this version and ID (and "force_pkg_build" is False), we're done.</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
             <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>

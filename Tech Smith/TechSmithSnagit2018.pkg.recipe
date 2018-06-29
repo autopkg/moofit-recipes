@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.moorit-recipes.pkg.TechSmithSnagit2018</string>
+    <string>com.github.moofit-recipes.pkg.TechSmithSnagit2018</string>
     <key>Description</key>
     <string>Downloads latest TechSmith Snagit disk image and builds a package. 
 This is based on com.github.autopkg.kernsb.download.TechSmithSnagit, but doesn't 

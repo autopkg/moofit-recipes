@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Blackmagic Desktop Video and extracts the installer package file</string>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.DesktopVideo</string>
+    <key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Desktop Video Setup</string>
+		<key>PRODUCT_NAME_PATTERN</key>
+		<string>^Desktop Video (?P&lt;version&gt;\d+\.\d+(\.\d+)?)$</string>
+		<key>REG_CITY</key>
+		<string>override this!</string>
+		<key>REG_COUNTRY</key>
+		<string>override this!</string>
+		<key>REG_EMAIL</key>
+		<string>override this!</string>
+		<key>REG_FIRSTNAME</key>
+		<string>override this!</string>
+		<key>REG_LASTNAME</key>
+		<string>override this!</string>
+		<key>REG_PHONE</key>
+		<string>override this!</string>
+		<key>REG_STATE</key>
+		<string>override this!</string>
+	</dict>
+    <key>MinimumVersion</key>
+    <string>0.2.0</string>
+    <key>ParentRecipe</key>
+    <string>uk.ac.ox.orchard.download.DesktopVideo</string>
+    <key>Process</key>
+    <array>
+      <dict>
+        <key>Processor</key>
+        <string>Unarchiver</string>
+        <key>Arguments</key>
+        <dict>
+          <key>purge_destination</key>
+          <true/>
+        </dict>
+      </dict>
+      <dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>input_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/Blackmagic_Desktop_Video_%version%.dmg/Install Desktop Video %version%.pkg</string>
+				<key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Blackmagic Design Inc (9ZGFBWLSYP)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+			</dict>
+		</dict>
+      <dict>
+        <key>Processor</key>
+        <string>PkgCopier</string>
+        <key>Arguments</key>
+        <dict>
+          <key>source_pkg</key>
+          <string>%RECIPE_CACHE_DIR%/%NAME%/Blackmagic_Desktop_Video_%version%.dmg/Install Desktop Video %version%.pkg</string>
+          <key>pkg_path</key>
+          <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+        </dict>
+      </dict>
+    </array>
+  </dict>
+</plist>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.download.PhoneGapDesktop</string>
+    <key>Description</key>
+    <string>Downloads the latest version of Adobe Phone Gap Desktop</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>PhoneGap</string>
+        <key>INCLUDE_PRERELEASES</key>
+        <string></string>
+        <key>GITHUB_REPO</key>
+        <string>phonegap/phonegap-app-desktop</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^PhoneGap.*?dmg$</string>
+                <key>github_repo</key>
+                <string>%GITHUB_REPO%</string>
+                <key>include_prereleases</key>
+                <string>%INCLUDE_PRERELEASES%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict> 
+      	<dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>input_path</key>
+				<string>%RECIPE_CACHE_DIR%/downloads/PhoneGapDesktop.dmg/%NAME%.app</string>
+				<key>requires</key>
+                <string>identifier "com.electron.phonegap" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Herman Wong (M6QFED29S9)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			</dict>
+		</dict>
+    </array>
+</dict>
+</plist>

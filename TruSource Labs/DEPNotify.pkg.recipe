@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Comment</key>
-    <string>Joel you should really use github.</string>
     <key>Description</key>
-    <string>Downloads the latest version of DEPNotify and creates a package.</string>
+    <string>Downloads a specific version of DEPNotify, as determined by the
+    input field below, and adds in additional resources to allow for
+    customisation</string>
     <key>Identifier</key>
     <string>com.github.moof-it-recipes.pkg.DEPNotify</string>
     <key>Input</key>
@@ -15,7 +15,7 @@
         <key>NAME</key>
         <string>DEPNotify</string>
         <key>VERSION</key>
-        <string></string>
+        <string>1.1.0</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -23,6 +23,15 @@
     <string>com.github.moof-it-recipes.download.DEPNotify</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_to_create</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Application Support/DEPNotify</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.amsysuk-recipes.Processors/PathCreator</string>
+        </dict>
         <dict>
             <key>Arguments</key>
             <dict>
@@ -35,6 +44,30 @@
                             <string>admin</string>
                             <key>path</key>
                             <string>Applications/Utilities</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>path</key>
+                            <string>Library</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>Library/Application Support</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>Library/Application Support/DEPNotify</string>
                             <key>user</key>
                             <string>root</string>
                         </dict>

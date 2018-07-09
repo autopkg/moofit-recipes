@@ -4,7 +4,8 @@
 <dict>
     <key>Description</key>
     <string>Downloads a specific version of DEPNotify, as determined by the
-    input field below.</string>
+    input field below, and adds in additional resources to allow for
+    customisation</string>
     <key>Identifier</key>
     <string>com.github.moof-it-recipes.download.DEPNotify</string>
     <key>Input</key>

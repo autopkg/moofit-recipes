@@ -35,6 +35,33 @@
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>path_to_create</key>
+                <string>%RECIPE_CACHE_DIR%/scripts</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.amsysuk-recipes.Processors/PathCreator</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Create postinstall</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/scripts/postinstall</string>
+                <key>file_content</key>
+                <string>#!/bin/bash
+
+# Setup Path to Plist file
+/usr/bin/defaults write menu.nomad.DEPNotify PathToPlistFile "/Library/Application Support/DEPNotify/"</string>
+                <key>file_mode</key>
+                <string>0755</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
                 <key>pkg_request</key>
                 <dict>
                     <key>chown</key>
@@ -80,6 +107,8 @@
                     <string>%NAME%-%version%</string>
                     <key>pkgroot</key>
                     <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <key>scripts</key>
+                    <string>%RECIPE_CACHE_DIR%/scripts</string>
                     <key>version</key>
                     <string>%version%</string>
                 </dict>

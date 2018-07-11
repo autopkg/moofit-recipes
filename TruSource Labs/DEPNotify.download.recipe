@@ -15,7 +15,7 @@
         <key>NAME</key>
         <string>DEPNotify</string>
         <key>VERSION</key>
-        <string></string>
+        <string>1.1.0</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>

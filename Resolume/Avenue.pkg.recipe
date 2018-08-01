@@ -74,6 +74,38 @@
         </dict>
         <dict>
             <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Create postinstall</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Scripts/postinstall</string>
+                <key>file_content</key>
+                <string>#!/bin/bash
+
+if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libndi.dylib" ]; then
+    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libndi.dylib"
+fi
+
+if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavcodec.55.dylib" ]; then
+    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavcodec.55.dylib"
+fi
+if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavformat.55.dylib" ]; then
+    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavformat.55.dylib"
+fi
+if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavutil.52.dylib" ]; then
+    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavutil.52.dylib"
+fi
+if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libswscale.2.dylib" ]; then
+    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libswscale.2.dylib"
+fi</string>
+                <key>file_mode</key>
+                <string>0755</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>FlatPkgPacker</string>
             <key>Arguments</key>
             <dict>

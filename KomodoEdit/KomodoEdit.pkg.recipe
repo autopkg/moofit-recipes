@@ -62,7 +62,7 @@
                 <key>source_path</key>
                 <string>%pathname%/Komodo*Edit*.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/Komodo*Edit*.app</string>
+                <string>%pkgroot%/Applications/Komodo Edit 11.app</string>
             </dict>
         </dict>
         <dict>
@@ -80,8 +80,6 @@
                     <string>%NAME%-%version%.pkg</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
-                    <key>scripts</key>
-                    <string>Scripts</string>
                     <key>chown</key>
                     <array>
                         <dict>

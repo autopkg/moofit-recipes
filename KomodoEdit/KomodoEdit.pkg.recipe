@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the current release version of Komodo Edit.
+    <string>Downloads the current release version (11) of Komodo Edit.
     </string>
     <key>Identifier</key>
     <string>com.github.moofit.pkg.KomodoEdit</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>KomodoEdit</string>
+        <string>Komodo Edit 11</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.3.1</string>

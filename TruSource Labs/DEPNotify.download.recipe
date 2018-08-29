@@ -7,7 +7,7 @@
     input field below, and adds in additional resources to allow for
     customisation</string>
     <key>Identifier</key>
-    <string>com.github.moof-it-recipes.download.DEPNotify</string>
+    <string>com.github.moofit-recipes.download.DEPNotify</string>
     <key>Input</key>
     <dict>
         <key>DOWNLOAD_PAGE_URL</key>

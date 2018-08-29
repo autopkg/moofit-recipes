@@ -5,14 +5,14 @@
     <key>Description</key>
     <string>Downloads latest Ricoh Theta SC disk image and builds a package.</string>
     <key>Identifier</key>
-    <string>com.github.moof-it-recipes.pkg.RicohThetaSC</string>
+    <string>com.github.moofit-recipes.pkg.RicohThetaSC</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>RICOH THETA</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.moof-it-recipes.download.RicohThetaSC</string>
+    <string>com.github.moofit-recipes.download.RicohThetaSC</string>
     <key>Process</key>
     <array>
         <dict>

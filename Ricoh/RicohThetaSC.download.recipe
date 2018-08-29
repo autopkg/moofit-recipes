@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads latest Ricoh Theta SC disk image.</string>
     <key>Identifier</key>
-    <string>com.github.moof-it-recipes.download.RicohThetaSC</string>
+    <string>com.github.moofit-recipes.download.RicohThetaSC</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

@@ -5,7 +5,7 @@
     <key>Description</key>
     <string></string>
     <key>Identifier</key>
-    <string>com.github.moof-it-recipes.pkg.NoMADLaunchAgent</string>
+    <string>com.github.moofit-recipes.pkg.NoMADLaunchAgent</string>
     <key>MinimumVersion</key>
     <string>0.4.2</string>
     <key>Input</key>

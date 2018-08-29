@@ -6,7 +6,7 @@
     <string>Downloads the current release version (11) of Komodo Edit.
     </string>
     <key>Identifier</key>
-    <string>com.github.moofit.pkg.KomodoEdit</string>
+    <string>com.github.moofit-recipes.pkg.KomodoEdit</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

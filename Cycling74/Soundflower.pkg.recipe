@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.Soundflower</string>
+    <key>Description</key>
+    <string></string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Soundflower</string>
+        <key>GITHUB_REPO</key>
+        <string>mattingalls/Soundflower</string>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.hansen-m.download.Soundflower</string>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%pathname%/Soundflower.pkg</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

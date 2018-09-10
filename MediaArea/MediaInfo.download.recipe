@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.download.MediaInfo</string>
+    <key>Description</key>
+    <string>Downloads the latest version of MediaInfo</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>MediaInfo</string>
+        <key>CHECK_PAGE_URL</key>
+        <string>https://mediaarea.net/en/MediaInfo/Download/Mac_OS</string>
+        <key>CHECK_PAGE_PATTERN</key>
+        <string>//mediaarea.net/download/binary/mediainfo-gui/.*/MediaInfo_GUI_.*_Mac.dmg</string>
+        <key>USER_AGENT</key>
+        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%CHECK_PAGE_URL%</string>
+                <key>re_pattern</key>
+                <string>%CHECK_PAGE_PATTERN%</string>
+                <key>re_flags</key>
+                <array>
+                    <string>IGNORECASE</string>
+                </array>
+                <key>request_headers</key>
+                <dict>
+                        <key>user-agent</key>
+                        <string>%USER_AGENT%</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+                <key>url</key>
+                <string>https:%match%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/MediaInfo.app</string>
+                <key>requirement</key>
+                <string>identifier "net.mediaarea.mediainfo.mac-old" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = C2SZ4M9843</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

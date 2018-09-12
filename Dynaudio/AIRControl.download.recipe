@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.download.AIRControl</string>
+    <key>Description</key>
+    <string></string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>AIR Control</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://www.dynaudio.com/media/3018/mac_aircontrol105.zip</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%DOWNLOAD_URL%</string>
+                <key>filename</key>
+                <string>%NAME%.zip</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+            <key>Arguments</key>
+            <dict>
+                <key>archive_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unzipped</string>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%destination_path%/*.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%found_filename%/*.pkg</string>
+                <key>expected_authority_names</key>
+                  <array>
+                      <string>Developer ID Installer: DISK Multimedia, s.r.o. (6PY9GZ28GJ)</string>
+                      <string>Developer ID Certification Authority</string>
+                      <string>Apple Root CA</string>
+                  </array>
+              </dict>
+          </dict>
+    </array>
+</dict>
+</plist>

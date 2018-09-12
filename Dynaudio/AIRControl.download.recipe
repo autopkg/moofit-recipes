@@ -60,15 +60,48 @@
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
-                <string>%found_filename%/*.pkg</string>
+                <string>%found_filename%/TC Electronic AIR Control.pkg</string>
                 <key>expected_authority_names</key>
-                  <array>
-                      <string>Developer ID Installer: DISK Multimedia, s.r.o. (6PY9GZ28GJ)</string>
-                      <string>Developer ID Certification Authority</string>
-                      <string>Apple Root CA</string>
-                  </array>
-              </dict>
-          </dict>
+                <array>
+                    <string>Developer ID Installer: DISK Multimedia, s.r.o. (6PY9GZ28GJ)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+            </dict>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/expanded</string>
+                <key>flat_pkg_path</key>
+                <string>%found_filename%/TC Electronic AIR Control.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>pkg_payload_path</key>
+                <string>%destination_path%/AIR_Soft_II.pkg/Payload</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%destination_path%/Applications/AIR Control.app/Contents/Info.plist</string>
+                <key>plist_version_key</key>
+                <string>CFBundleShortVersionString</string>
+            </dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+       </dict>
     </array>
 </dict>
 </plist>

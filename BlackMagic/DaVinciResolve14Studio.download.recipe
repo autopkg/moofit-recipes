@@ -29,6 +29,6 @@ in order to download, so you _must_ override all input variables beginning with
         <string></string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.timsutton.download.davinciresolve12</string>
+    <string>com.github.timsutton.download.davinciresolve14</string>
 </dict>
 </plist>

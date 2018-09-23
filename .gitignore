@@ -2,3 +2,5 @@
 *.pyc
 *.xip
 ._*
+*.xcuserdatad
+*.xcuserdatad/**

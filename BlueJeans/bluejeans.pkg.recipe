@@ -2,71 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Description</key>
+	<string>Download the latest version of BlueJeans desktop app and create a package.</string>
 	<key>Identifier</key>
 	<string>com.github.moofit-recipes.pkg.bluejeans</string>
-	<key>Description</key>
-	<string>Uses parent download recipe
-	com.github.moofit-recipes.download.bluejeans to download the latest BlueJeans installer pkg. This recipe renames the package to "BlueJeans-$version"
-	</string>
 	<key>Input</key>
 	<dict>
-        <key>NAME</key>
-        <string>BlueJeans</string>
+		<key>BUNDLE_ID</key>
+		<string>com.bluejeansnet.Blue</string>
+		<key>NAME</key>
+		<string>BlueJeans</string>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>0.4.1</string>
+	<string>1.0.0</string>
 	<key>ParentRecipe</key>
 	<string>com.github.moofit-recipes.download.bluejeans</string>
 	<key>Process</key>
 	<array>
-        <dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
-			<key>Arguments</key>
-			<dict>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/unpack/</string>
-				<key>flat_pkg_path</key>
-				<string>%pathname%</string>
-				<key>purge_destination</key>
-				<string>true</string>
-			</dict>
-		</dict>
 		<dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
+			<key>Processor</key>
+			<string>AppPkgCreator</string>
 			<key>Arguments</key>
 			<dict>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/payload/</string>
-				<key>pkg_payload_path</key>
-				<string>%RECIPE_CACHE_DIR%/unpack/BlueJeansComponentPackage.pkg/Payload</string>
-				<key>purge_destination</key>
-				<string>true</string>
+				<key>app_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/BlueJeans.app</string>
 			</dict>
 		</dict>
-        <dict>
-            <key>Processor</key>
-            <string>Versioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_plist_path</key>
-                <string>%RECIPE_CACHE_DIR%/payload/%NAME%.app/Contents/Info.plist</string>
-                <key>plist_version_key</key>
-                <string>CFBundleVersion</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>source_pkg</key>
-                <string>%pathname%</string>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-            </dict>
-        </dict>
-    </array>
+	</array>
 </dict>
 </plist>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>com.github.moofit-recipes.download.AmazonChime</string>
+	<string>com.github.moofit-recipes.pkg.AmazonChime</string>
 	<key>Description</key>
 	<string>Downloads the latest version of Amazon Chime from Amazon and turns it into a package</string>
 	<key>Input</key>

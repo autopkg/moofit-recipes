@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest Workplace Chat disk image and builds a package.</string>
+    <string>Downloads latest Workplace Chat disk image and builds a package. It puts the app in a subfolder of Applications with permissions set to 777. This enable AutoUpdate on the app without the user being prompt an admin password.</string>
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.workplacechat</string>
     <key>Input</key>
@@ -17,15 +17,6 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
             <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>
@@ -33,8 +24,12 @@
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>pkgdirs</key>
                 <dict>
-                    <key>Applications</key>
+                    <key>payload/Applications</key>
                     <string>0775</string>
+                    <key>payload/Applications/Workplace Chat</key>
+                    <string>0777</string>                    
+                    <key>scripts</key>
+                    <string>0755</string>
                 </dict>
             </dict>
         </dict>
@@ -46,7 +41,26 @@
                 <key>source_path</key>
                 <string>%pathname%/%app_name%</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%app_name%</string>
+                <string>%pkgroot%/payload/Applications/Workplace Chat/%app_name%</string>
+            </dict>
+        </dict>
+                <dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Create postinstall</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/scripts/postinstall</string>
+                <key>file_content</key>
+                <string>#!/bin/bash
+
+# Change permissions on the Workplace Chat folder and enclsoed app.
+chmod -R 777 "$3/Applications/Workplace Chat"
+                </string>
+                <key>file_mode</key>
+                <string>0755</string>
             </dict>
         </dict>
         <dict>
@@ -56,10 +70,16 @@
             <dict>
                 <key>pkg_request</key>
                 <dict>
+                    <key>pkgroot</key>
+                    <string>%pkgroot%/payload</string>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
                     <key>pkgname</key>
                     <string>%NAME%-%version%</string>
                     <key>version</key>
                     <string>%version%</string>
+                    <key>scripts</key>
+                    <string>%pkgroot%/scripts</string>
                     <key>id</key>
                     <string>com.facebook.workplacechat</string>
                     <key>options</key>

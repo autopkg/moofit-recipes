@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of Egnyte Connect and packges into pkg
+		file</string>
+	<key>Identifier</key>
+	<string>com.github.moofit-recipes.pkg.EgnyteConnect</string>
+	<key>Input</key>
+	<dict>
+		<key>LOCALE</key>
+		<string>en-us</string>
+		<key>NAME</key>
+		<string>Egnyte Connect</string>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.moofit-recipes.download.EgnyteConnect</string>
+	<key>MinimumVersion</key>
+	<string>1.0.1</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>source</key>
+				<string>%pathname%</string>
+				<key>target</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileMover</string>
+		</dict>
+	</array>
+</dict>
+</plist>

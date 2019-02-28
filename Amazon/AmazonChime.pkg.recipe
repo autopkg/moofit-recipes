@@ -2,40 +2,31 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Identifier</key>
-    <string>com.github.amsysuk-recipes.pkg.opera</string>
-    <key>Description</key>
-    <string>Downloads latest Opera disk image using the parent recipe
-    com.github.keeleysam.recipes.Opera.download and builds a package.
-    </string>
-    <key>Input</key>
-    <dict>
-        <key>NAME</key>
-        <string>Opera</string>
-    </dict>
-    <key>ParentRecipe</key>
-    <string>com.github.keeleysam.recipes.Opera.download</string>
-    <key>Process</key>
-    <array>
-    	<dict>
-			<key>Processor</key>
-			<string>CodeSignatureVerifier</string>
-			<key>Arguments</key>
-			<dict>
-				<key>input_path</key>
-				<string>%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg/Opera.app</string>
-				<key>requirement</key>
-				<string>identifier "com.operasoftware.Opera" and certificate leaf = H"cdf1c39967986616b6cd64c6bd04833a9cb7450d"</string>
-			</dict>
-		</dict>
+	<key>Identifier</key>
+	<string>com.github.moofit-recipes.pkg.AmazonChime</string>
+	<key>Description</key>
+	<string>Downloads the latest version of Amazon Chime from Amazon and turns it into a package</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Amazon Chime</string>
+		<key>DOWNLOAD_URL</key>
+		<string>https://clients.chime.aws/mac/latest</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.0</string>
+	<key>ParentRecipe</key>
+	<string>com.github.moofit-recipes.download.AmazonChime</string>
+	<key>Process</key>
+	<array>
+	<dict>
+        <key>Processor</key>
+        <string>AppDmgVersioner</string>
+        <key>Arguments</key>
         <dict>
-            <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
-            </dict>
+            <key>dmg_path</key>
+            <string>%pathname%</string>
+        </dict>
         </dict>
         <dict>
             <key>Processor</key>
@@ -91,6 +82,6 @@
                 </dict>
             </dict>
         </dict>
-    </array>
+	</array>
 </dict>
 </plist>

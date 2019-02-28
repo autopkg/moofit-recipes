@@ -7,11 +7,11 @@
     input field below, and adds in additional resources to allow for
     customisation.
 
-    The additional resources should belong in a folder alongside this recipe;
+    The additional resources should belong in a folder alongside this recipe
     when configuring an override:
 
     1. Create a folder next to the override, and add your resources.
-    2. Add the name of the folder to the %RESOURCES% variable below
+    2. Add the name of the folder to the RESOURCES key variable below
     3. The Copier processor will copy the contents of the folder into the
     "/Library/Application Support/DEPNotify" folder.
     4. Call these assets with the various commands after the pkg has been

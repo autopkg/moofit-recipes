@@ -25,7 +25,7 @@
                 <key>url</key>
                 <string>%URL%</string>
                 <key>re_pattern</key>
-                <string>(https://swdl.bluejeans.com/desktop-app/mac/[0-9.]+/[0-9.]+/BlueJeansInstaller.pkg)</string>
+                <string>(https://swdl.bluejeans.com/desktop-app/mac/[0-9.]+/(?P&lt;version&gt;[0-9.]+)/BlueJeansAdminInstaller.pkg)</string>
             </dict>
         </dict>
         <dict>
@@ -36,7 +36,7 @@
                 <key>url</key>
                 <string>%match%</string>
                 <key>filename</key>
-                <string>%NAME%.pkg</string>
+                <string>%NAME%-%version%.pkg</string>
             </dict>
         </dict>
         <dict>

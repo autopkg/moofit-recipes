@@ -10,6 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>moofBark</string>
+        <key>DOWNLOAD_PAGE_URL</key>
+        <string>https://gitlab.com/moofit/moofbark/tags</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
@@ -17,22 +19,25 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>GitHubReleasesInfoProvider</string>
-            <key>Comment</key>
-            <string>Get the latest release package.</string>
+            <string>URLTextSearcher</string>
             <key>Arguments</key>
             <dict>
-                <key>github_repo</key>
-                <string>moofit/moofBark</string>
+                <key>url</key>
+                <string>%DOWNLOAD_PAGE_URL%</string>
+                <key>re_pattern</key>
+                <string>[^"]+\moofBark-%version%.pkg</string>
+                <key>result_output_var_name</key>
+                <string>MATCH</string>
             </dict>
         </dict>
         <dict>
             <key>Processor</key>
             <string>URLDownloader</string>
-            <key>Comment</key>
-            <string>Download latest Notify package.</string>
             <key>Arguments</key>
-            <dict />
+            <dict>
+                <key>url</key>
+                <string>gitlab.com/%MATCH%</string>
+            </dict>
         </dict>
         <dict>
             <key>Processor</key>

@@ -7,15 +7,18 @@
     input field below, and adds in additional resources to allow for
     customisation.
 
-    The additional resources should belong in a folder alongside this recipe;
+    The additional resources should belong in a folder alongside this recipe
     when configuring an override:
 
     1. Create a folder next to the override, and add your resources.
-    2. Add the name of the folder to the %RESOURCES% variable below
+    2. Add the name of the folder to the RESOURCES key variable below
     3. The Copier processor will copy the contents of the folder into the
     "/Library/Application Support/DEPNotify" folder.
     4. Call these assets with the various commands after the pkg has been
     deployed.
+
+    Bear in mind, by repackaging the installer, it will remove the original
+    signature.
     </string>
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.DEPNotify</string>
@@ -37,33 +40,35 @@
     <key>Process</key>
     <array>
         <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>path_to_create</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Library/Application Support/DEPNotify</string>
-            </dict>
             <key>Processor</key>
-            <string>com.github.amsysuk-recipes.Processors/PathCreator</string>
-        </dict>
-        <dict>
+            <string>FlatPkgUnpacker</string>
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
-                <string>%path_to_create%</string>
-                <key>source_path</key>
-                <string>%RESOURCES%/*</string>
+                <string>%RECIPE_CACHE_DIR%/expanded</string>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
             </dict>
-            <key>Processor</key>
-            <string>Copier</string>
         </dict>
         <dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/expanded/DEPNotify-%VERSION%.pkg/Payload</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>com.github.amsysuk-recipes.Processors/PathCreator</string>
             <key>Arguments</key>
             <dict>
                 <key>path_to_create</key>
                 <string>%RECIPE_CACHE_DIR%/scripts</string>
             </dict>
-            <key>Processor</key>
-            <string>com.github.amsysuk-recipes.Processors/PathCreator</string>
         </dict>
         <dict>
             <key>Processor</key>
@@ -78,12 +83,35 @@
                 <string>#!/bin/bash
 
 # Setup Path to Plist file
-/usr/bin/defaults write menu.nomad.DEPNotify PathToPlistFile "/Library/Application Support/DEPNotify/"</string>
+/usr/bin/defaults write menu.nomad.DEPNotify PathToPlistFile "/Library/Application Support/DEPNotify/"
+/usr/bin/defaults write menu.nomad.DEPNotify pathToPlistFile "/Library/Application Support/DEPNotify/DEPNotify.plist"</string>
                 <key>file_mode</key>
                 <string>0755</string>
             </dict>
         </dict>
         <dict>
+            <key>Processor</key>
+            <string>com.github.amsysuk-recipes.Processors/PathCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>path_to_create</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Library/Application Support/DEPNotify</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%path_to_create%</string>
+                <key>source_path</key>
+                <string>%RECIPE_DIR%/%RESOURCES%/*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
                 <key>pkg_request</key>
@@ -128,17 +156,15 @@
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>pkgname</key>
-                    <string>%NAME%-%version%</string>
+                    <string>%NAME%-%VERSION%</string>
                     <key>pkgroot</key>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
                     <key>scripts</key>
                     <string>%RECIPE_CACHE_DIR%/scripts</string>
                     <key>version</key>
-                    <string>%version%</string>
+                    <string>%VERSION%</string>
                 </dict>
             </dict>
-            <key>Processor</key>
-            <string>PkgCreator</string>
         </dict>
     </array>
 </dict>

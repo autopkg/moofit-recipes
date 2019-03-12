@@ -10,8 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>BlueJeans</string>
-        <key>SPARKLE_FEED_URL</key>
-        <string>https://swdl.bluejeans.com/desktop-app/mac/ga.appcast.xml</string>
+        <key>URL</key>
+        <string>https://support.bluejeans.com/knowledge/desktop-app-deployment</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -19,7 +19,7 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>SparkleUpdateInfoProvider</string>
+            <string>URLTextSearcher</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
@@ -40,19 +40,6 @@
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>Unarchiver</string>
-            <key>Arguments</key>
-            <dict>
-                <key>archive_path</key>
-                <string>%pathname%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>purge_destination</key>
-                <true/>
-            </dict>
         </dict>
         <dict>
             <key>Processor</key>

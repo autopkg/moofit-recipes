@@ -10,8 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>BlueJeans</string>
-        <key>SPARKLE_FEED_URL</key>
-        <string>https://swdl.bluejeans.com/desktop-app/mac/ga.appcast.xml</string>
+        <key>URL</key>
+        <string>https://support.bluejeans.com/knowledge/desktop-app-deployment</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -19,7 +19,7 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>SparkleUpdateInfoProvider</string>
+            <string>URLTextSearcher</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
@@ -33,6 +33,8 @@
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
+                <key>url</key>
+                <string>%match%</string>
                 <key>filename</key>
                 <string>%NAME%-%version%.pkg</string>
             </dict>
@@ -43,26 +45,17 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>Unarchiver</string>
-            <key>Arguments</key>
-            <dict>
-                <key>archive_path</key>
-                <string>%pathname%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-                <key>purge_destination</key>
-                <true/>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
             <string>CodeSignatureVerifier</string>
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/BlueJeans.app</string>
-                <key>requirement</key>
-                <string>identifier "com.bluejeansnet.Blue" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = HE4P42JBGN</string>
+                <string>%pathname%</string>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Blue Jeans Network, Inc. (HE4P42JBGN)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
             </dict>
         </dict>
     </array>

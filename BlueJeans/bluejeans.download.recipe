@@ -33,6 +33,8 @@
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
+                <key>url</key>
+                <string>%match%</string>
                 <key>filename</key>
                 <string>%NAME%-%version%.pkg</string>
             </dict>
@@ -47,9 +49,13 @@
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/BlueJeans.app</string>
-                <key>requirement</key>
-                <string>identifier "com.bluejeansnet.Blue" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = HE4P42JBGN</string>
+                <string>%pathname%</string>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Blue Jeans Network, Inc. (HE4P42JBGN)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
             </dict>
         </dict>
     </array>

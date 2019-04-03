@@ -21,7 +21,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>"http:\/\/egnyte-cdn\.egnyte\.com\/egnytedrive\/mac\/%LOCALE%\/(?P&lt;version&gt;[\d\.]+)\/EgnyteConnect_[\d\.]+_(?P&lt;match&gt;[\w]+)\.pkg"</string>
+				<string>"https:\/\/egnyte-cdn\.egnyte\.com\/egnytedrive\/mac\/%LOCALE%\/(?P&lt;version&gt;[\d\.]+)\/EgnyteConnect_[\d\.]+_(?P&lt;match&gt;[\w]+)\.pkg"</string>
 				<key>url</key>
 				<string>https://helpdesk.egnyte.com/hc/%LOCALE%/articles/205237150-Desktop-App-Installers</string>
 			</dict>

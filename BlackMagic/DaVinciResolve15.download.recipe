@@ -14,7 +14,7 @@ and they must contain data.</string>
         <key>NAME</key>
         <string>DaVinciResolve15</string>
         <key>PRODUCT_NAME_PATTERN</key>
-        <string>^DaVinci Resolve (?P&lt;version&gt;15(\.\d+)*) Studio( Update)*$</string>
+        <string>^DaVinci Resolve (?P&lt;version&gt;15(\.\d+)*)( Update)*$</string>
         <key>REG_CITY</key>
         <string></string>
         <key>REG_EMAIL</key>

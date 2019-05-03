@@ -12,9 +12,9 @@ and they must contain data.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>DaVinciResolve12</string>
+        <string>DaVinciResolve15</string>
         <key>PRODUCT_NAME_PATTERN</key>
-        <string>^DaVinci Resolve (?P&lt;version&gt;12(\.\d+)*) Studio( Update)*$</string>
+        <string>^DaVinci Resolve (?P&lt;version&gt;15(\.\d+)*)( Update)*$</string>
         <key>REG_CITY</key>
         <string></string>
         <key>REG_EMAIL</key>

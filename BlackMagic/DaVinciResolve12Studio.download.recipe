@@ -14,7 +14,7 @@ and they must contain data.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>DaVinciResolve12</string>
+        <string>DaVinci Resolve Studio</string>
         <key>PRODUCT_NAME_PATTERN</key>
         <string>^DaVinci Resolve (?P&lt;version&gt;12(\.\d+)*) Studio( Update)*$</string>
         <key>REG_CITY</key>

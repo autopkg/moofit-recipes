@@ -12,7 +12,7 @@
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string></string>
+        <string>Xcode</string>
         <key>APPLE_ID</key>
         <string></string>
         <key>PASSWORD</key>

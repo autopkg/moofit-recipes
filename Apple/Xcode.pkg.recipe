@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.Xcode</string>
+    <key>Description</key>
+    <string>Creates an installer package from a supplied .xip file downloaded
+            using Facebook's "xcode.downloader" recipe, and extracted using
+            their "xcode.extract" recipe from their AutoPkg repo
+            "com.github.facebook.Recipes-for-AutoPkg".</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string></string>
+        <key>APPLE_ID</key>
+        <string></string>
+        <key>PASSWORD</key>
+        <string></string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.1</string>
+    <key>ParentRecipe</key>
+    <string>com.facebook.autopkg.xcode.extract</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/%NAME%.app</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>mode</key>
+                            <string>0775</string>
+                        </dict>
+                    </array>
+                    <key>id</key>
+                    <string>com.apple.dt.Xcode</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
+                </dict>
+                <key>pkgname</key>
+                <string>%NAME%-%version%</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+        </dict>
+    </array>
+</dict>
+</plist>

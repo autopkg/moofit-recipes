@@ -6,7 +6,7 @@
     <string>com.github.amsysuk-recipes.pkg.opera</string>
     <key>Description</key>
     <string>Downloads latest Opera disk image using the parent recipe
-    com.github.keeleysam.recipes.Opera.download and builds a package.
+    com.github.bochoven.recipes.Opera.download and builds a package.
     </string>
     <key>Input</key>
     <dict>
@@ -14,27 +14,23 @@
         <string>Opera</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.keeleysam.recipes.Opera.download</string>
+    <string>com.github.bochoven.recipes.Opera.download</string>
     <key>Process</key>
     <array>
-    	<dict>
-			<key>Processor</key>
-			<string>CodeSignatureVerifier</string>
-			<key>Arguments</key>
-			<dict>
-				<key>input_path</key>
-				<string>%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg/Opera.app</string>
-				<key>requirement</key>
-				<string>identifier "com.operasoftware.Opera" and certificate leaf = H"cdf1c39967986616b6cd64c6bd04833a9cb7450d"</string>
-			</dict>
-		</dict>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
+            <string>PlistReader</string>
             <key>Arguments</key>
             <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Opera.app</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleIdentifier</key>
+                    <string>bundleid</string>
+                    <key>CFBundleVersion</key>
+                    <string>version</string>
+                </dict>
             </dict>
         </dict>
         <dict>
@@ -43,7 +39,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/pkgroot</string>
                 <key>pkgdirs</key>
                 <dict>
                     <key>Applications</key>
@@ -57,7 +53,7 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/%app_name%</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Opera.app</string>
                 <key>destination_path</key>
                 <string>%pkgroot%/Applications/%app_name%</string>
             </dict>

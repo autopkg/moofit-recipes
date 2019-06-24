@@ -39,7 +39,7 @@
                 <key>source_path</key>
                 <string>%RECIPE_CACHE_DIR%/Burn/Burn.localized/Burn.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <string>%pkgroot%/Applications/Burn.app</string>
                 <key>purge_destination</key>
                 <true/>
             </dict>

@@ -55,7 +55,7 @@
                 <key>source_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Opera.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <string>%pkgroot%/Applications/Opera.app</string>
             </dict>
         </dict>
         <dict>

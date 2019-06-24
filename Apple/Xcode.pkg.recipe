@@ -44,9 +44,9 @@
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <string>%pkgroot%/Applications/Xcode.app</string>
                 <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/%NAME%.app</string>
+                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/Xcode.app</string>
             </dict>
         </dict>
         <dict>

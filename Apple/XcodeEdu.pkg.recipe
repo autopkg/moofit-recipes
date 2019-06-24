@@ -63,9 +63,9 @@
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
-                <string>%pkgroot%/payload/Applications/%NAME%.app</string>
+                <string>%pkgroot%/payload/Applications/XcodeEdu.app</string>
                 <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/%NAME%.app</string>
+                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/XcodeEdu.app</string>
             </dict>
         </dict>
         <dict>

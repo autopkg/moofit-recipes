@@ -41,7 +41,7 @@
                 <key>source_path</key>
                 <string>%pathname%/CloudMounter.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <string>%pkgroot%/Applications/CloudMounter.app</string>
                 <key>purge_destination</key>
                 <true/>
             </dict>

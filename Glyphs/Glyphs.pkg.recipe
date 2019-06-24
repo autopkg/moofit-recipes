@@ -53,7 +53,7 @@
                 <key>source_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/Glyphs.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <string>%pkgroot%/Applications/Glyphs.app</string>
             </dict>
         </dict>
         <dict>

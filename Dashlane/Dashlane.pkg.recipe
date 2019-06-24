@@ -25,7 +25,7 @@
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>%pathname%/%NAME%.app</string>
+                <string>%pathname%/Dashlane.app</string>
                 <key>plist_keys</key>
                 <dict>
                     <key>CFBundleVersion</key>
@@ -55,9 +55,9 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/%NAME%.app</string>
+                <string>%pathname%/Dashlane.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <string>%pkgroot%/Applications/Dashlane.app</string>
             </dict>
         </dict>
         <dict>

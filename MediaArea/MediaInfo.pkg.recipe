@@ -23,7 +23,7 @@
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>%pathname%/%NAME%.app</string>
+                <string>%pathname%/MediaInfo.app</string>
                 <key>plist_keys</key>
                 <dict>
                     <key>CFBundleShortVersionString</key>
@@ -53,9 +53,9 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/%NAME%.app</string>
+                <string>%pathname%/MediaInfo.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%NAME%.app</string>
+                <string>%pkgroot%/Applications/MediaInfo.app</string>
             </dict>
         </dict>
         <dict>

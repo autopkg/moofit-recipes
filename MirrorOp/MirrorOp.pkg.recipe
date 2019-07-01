@@ -13,28 +13,10 @@
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.9</string>
+    <key>ParentRecipe</key>
+    <string>com.github.moofit-recipes.download.MirrorOp</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>http://mirrorop.com/downloads/MirrorOpSender_mac.zip</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>Unarchiver</string>
-            <key>Arguments</key>
-            <dict>
-                <key>archive_path</key>
-                <string>%pathname%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
-            </dict>
-        </dict>
         <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
@@ -59,15 +41,15 @@
             </dict>
         </dict>
         <dict>
-        	<key>Processor</key>
-        	<string>Copier</string>
-        	<key>Arguments</key>
-        	<dict>
-        		<key>source_path</key>
-        		<string>%RECIPE_CACHE_DIR%/%NAME%/MirrorOp.dmg/MirrorOp.app</string>
-        		<key>destination_path</key>
-        		<string>%pkgroot%/Applications/MirrorOp.app</string>
-        	</dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/MirrorOp.dmg/MirrorOp.app</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/Applications/MirrorOp.app</string>
+            </dict>
         </dict>
         <dict>
             <key>Processor</key>
@@ -96,6 +78,18 @@
                         </dict>
                     </array>
                 </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%/</string>
+                    <string>%RECIPE_CACHE_DIR%/Pkg/</string>
+                </array>
             </dict>
         </dict>
     </array>

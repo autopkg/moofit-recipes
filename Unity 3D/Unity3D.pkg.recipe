@@ -2,12 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Identifier</key>
-	<string>com.github.amsysuk-recipes.pkg.Unity3D</string>
 	<key>Description</key>
-    <string>Creates an installer package from the parent download recipe
+	<string>Creates an installer package from the parent download recipe
     com.github.hansen-m.download.Unity3D
     </string>
+	<key>Identifier</key>
+	<string>com.github.amsysuk-recipes.pkg.Unity3D</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -15,83 +15,56 @@
 	</dict>
 	<key>ParentRecipe</key>
 	<string>com.github.hansen-m.download.Unity3D</string>
-	<key>ParentRecipeTrustInfo</key>
-	<dict>
-		<key>non_core_processors</key>
-		<dict>
-			<key>Unity3DComponetsURLProvider</key>
-			<dict>
-				<key>git_hash</key>
-				<string>dd7f43dbb125bef2ec6d4941dbbbcd82df202b45</string>
-				<key>path</key>
-				<string>/Users/aadmin/Library/AutoPkg/RecipeRepos/com.github.autopkg.hansen-m-recipes/Unity3D/Unity3DComponetsURLProvider.py</string>
-				<key>sha256_hash</key>
-				<string>b7f1784d2eeec1d61c6616989a889a8e9797ce56020c5151e14f84ca884fa6c5</string>
-			</dict>
-		</dict>
-		<key>parent_recipes</key>
-		<dict>
-			<key>com.github.hansen-m.download.Unity3D</key>
-			<dict>
-				<key>git_hash</key>
-				<string>dd7f43dbb125bef2ec6d4941dbbbcd82df202b45</string>
-				<key>path</key>
-				<string>/Users/aadmin/Library/AutoPkg/RecipeRepos/com.github.autopkg.hansen-m-recipes/Unity3D/Unity3D.download.recipe</string>
-				<key>sha256_hash</key>
-				<string>ef789a559e19a70a6967ed0d96e6d407f1b60ce54071a23b0f64f45343ff457b</string>
-			</dict>
-		</dict>
-	</dict>
 	<key>Process</key>
-    <array>
+	<array>
 		<dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/%NAME%.pkg</string>
-                <key>expected_authority_names</key>
-                <array>
-                    <string>Developer ID Installer: Unity Technologies ApS (BVPN9UFA9B)</string>
-                    <string>Developer ID Certification Authority</string>
-                    <string>Apple Root CA</string>
-                </array>
-            </dict>
-	    </dict>
-	    <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>flat_pkg_path</key>
-                <string>%pathname%</string>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/expand</string>
-            </dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
+			<key>Arguments</key>
+			<dict>
+				<key>expected_authority_names</key>
+				<array>
+					<string>Developer ID Installer: Unity Technologies ApS (BVPN9UFA9B)</string>
+					<string>Developer ID Certification Authority</string>
+					<string>Apple Root CA</string>
+				</array>
+				<key>input_path</key>
+				<string>%RECIPE_CACHE_DIR%/downloads/%NAME%.pkg</string>
+			</dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
 		</dict>
-        <dict>
-            <key>Processor</key>
-            <string>URLTextSearcher</string>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>file:////%RECIPE_CACHE_DIR%/expand/Distribution</string>
-                <key>re_pattern</key>
-                <string>product version="(?P&lt;version&gt;.*?)"</string>
-            </dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/expand</string>
+				<key>flat_pkg_path</key>
+				<string>%pathname%</string>
+			</dict>
+			<key>Processor</key>
+			<string>FlatPkgUnpacker</string>
 		</dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>source_pkg</key>
-                <string>%pathname%</string>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-        </dict>
-    </array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>re_pattern</key>
+				<string>product version="(?P&lt;version&gt;.*?)"</string>
+				<key>url</key>
+				<string>file:////%RECIPE_CACHE_DIR%/expand/Distribution</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLTextSearcher</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+				<key>source_pkg</key>
+				<string>%pathname%</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgCopier</string>
+		</dict>
+	</array>
 </dict>
 </plist>

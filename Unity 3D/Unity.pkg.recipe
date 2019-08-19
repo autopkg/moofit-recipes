@@ -7,7 +7,7 @@
     com.github.joshua-d-miller.autopkg.download.Unity3D
     </string>
 	<key>Identifier</key>
-	<string>com.github.amsysuk-recipes.pkg.Unity3D</string>
+	<string>com.github.amsysuk-recipes.pkg.Unity</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

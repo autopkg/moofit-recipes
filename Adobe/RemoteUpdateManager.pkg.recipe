@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.RemoteUpdateManager</string>
+    <key>Description</key>
+    <string>Downloads the latest version of Adobe's RemoteUpdateManager from
+        Adobe and packages into /usr/local/bin</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Adobe RemoteUpdateManager</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://s3.amazonaws.com/deploymenttools-prod/RemoteUpdateManager_mac.zip</string>
+        <key>IDENTIFIER</key>
+        <string>com.adobe.RemoteUpdateManager</string>
+        <key>VERSION</key>
+        <string>2.3.0.4</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.moofit-recipes.download.RemoteUpdateManager</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/payload</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>usr/local/bin</key>
+                    <string>0755</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/extract/RemoteUpdateManager_mac/RemoteUpdateManager</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/usr/local/bin/RemoteUpdateManager</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>wheel</string>
+                            <key>path</key>
+                            <string>usr</string>
+                            <key>mode</key>
+                            <string>755</string>
+                        </dict>
+                    </array>
+                    <key>id</key>
+                    <string>%IDENTIFIER%</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-%VERSION%</string>
+                    <key>pkgroot</key>
+                    <string>%RECIPE_CACHE_DIR%/payload</string>
+                    <key>version</key>
+                    <string>%VERSION%</string>
+                </dict>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

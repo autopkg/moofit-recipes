@@ -46,10 +46,10 @@
             </dict>
         </dict>
         <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
-                <key>Processor</key>
-                <string>PkgCreator</string>
                 <key>pkg_request</key>
                 <dict>
                     <key>chown</key>

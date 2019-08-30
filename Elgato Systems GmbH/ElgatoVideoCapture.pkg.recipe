@@ -9,8 +9,8 @@
     <string>com.github.moofit-recipes.pkg.ElgatoVideoCapture</string>
     <key>Input</key>
     <dict>
-        <key>BUNDLE_ID</key>
-        <string>com.elgato.VideoCapture</string>
+        <key>URL</key>
+        <string>https://www.elgato.com/en/video-capture/support</string>
         <key>NAME</key>
         <string>Elgato Video Capture</string>
     </dict>
@@ -20,6 +20,19 @@
     <string>com.github.moofit-recipes.download.ElgatoVideoCapture</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%pathname%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
+        </dict>
         <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
@@ -64,7 +77,7 @@
                         </dict>
                     </array>
                     <key>id</key>
-                    <string>%BUNDLE_ID%</string>
+                    <string>%bundleid%</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>pkgname</key>

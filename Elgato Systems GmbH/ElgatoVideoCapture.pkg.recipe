@@ -2,11 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Identifier</key>
-    <string>com.github.amsysuk-recipes.pkg.ElgatoVideoCapture</string>
     <key>Description</key>
-    <string>Downloads the latest version of Elgato Video Capture and creates a
-package.</string>
+    <string>Downloads the current release version of Elgato Video Capture and
+        creates a package.</string>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.ElgatoVideoCapture</string>
     <key>Input</key>
     <dict>
         <key>BUNDLE_ID</key>
@@ -17,10 +17,12 @@ package.</string>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk-recipes.download.ElgatoVideoCapture</string>
+    <string>com.github.moofit-recipes.download.ElgatoVideoCapture</string>
     <key>Process</key>
     <array>
         <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
             <key>Arguments</key>
             <dict>
                 <key>pkgdirs</key>
@@ -31,10 +33,10 @@ package.</string>
                 <key>pkgroot</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
             </dict>
-            <key>Processor</key>
-            <string>PkgRootCreator</string>
         </dict>
         <dict>
+            <key>Processor</key>
+            <string>Copier</string>
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
@@ -42,12 +44,12 @@ package.</string>
                 <key>source_path</key>
                 <string>%pathname%/Elgato Video Capture.app</string>
             </dict>
-            <key>Processor</key>
-            <string>Copier</string>
         </dict>
         <dict>
             <key>Arguments</key>
             <dict>
+                <key>Processor</key>
+                <string>PkgCreator</string>
                 <key>pkg_request</key>
                 <dict>
                     <key>chown</key>
@@ -73,8 +75,6 @@ package.</string>
                     <string>%version%</string>
                 </dict>
             </dict>
-            <key>Processor</key>
-            <string>PkgCreator</string>
         </dict>
     </array>
 </dict>

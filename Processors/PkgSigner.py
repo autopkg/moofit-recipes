@@ -15,6 +15,8 @@
 # limitations under the License.
 
 
+from __future__ import absolute_import
+from __future__ import print_function
 import FoundationPlist
 import subprocess
 import os
@@ -65,7 +67,7 @@ class PkgSigner(Processor):
                               unsigned_pkg_path, \
                               self.env[ "pkg_path" ] ]
 
-        print command_line_list
+        print(command_line_list)
 
         # print command_line_list
         subprocess.call( command_line_list )

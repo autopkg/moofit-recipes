@@ -15,6 +15,7 @@
 # limitations under the License.
 """See docstring for PathCreator class"""
 
+from __future__ import absolute_import
 import os.path
 import shutil
 

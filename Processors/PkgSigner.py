@@ -69,7 +69,7 @@ class PkgSigner(Processor):
 
         print(command_line_list)
 
-        # print command_line_list
+        # print(command_line_list)
         subprocess.call( command_line_list )
 
 
@@ -78,4 +78,3 @@ class PkgSigner(Processor):
 if __name__ == '__main__':
     processor = PkgSigner()
     processor.execute_shell()
-    

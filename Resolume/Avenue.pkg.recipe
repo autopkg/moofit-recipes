@@ -187,8 +187,10 @@ then
 fi
 
 # Setup shared folder structure
-chown -R root:wheel "/Users/Shared/Library/Application Support/Resolume Avenue"
-chmod -R 777 "/Users/Shared/Library/Application Support/Resolume Avenue"
+chown root:wheel "/Users/Shared/Library/Application Support"
+chown root:wheel "/Users/Shared/Library/Application Support/Resolume Avenue"
+chmod 777 "/Users/Shared/Library/Application Support"
+chmod 777 "/Users/Shared/Library/Application Support/Resolume Avenue"
 </string>
                 <key>file_mode</key>
                 <string>0755</string>

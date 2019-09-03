@@ -40,7 +40,9 @@
             <dict>
                 <key>pkgdirs</key>
                 <dict>
-                    <key>Applications</key>
+                    <key>root/Applications</key>
+                    <string>0775</string>
+                    <key>scripts</key>
                     <string>0775</string>
                 </dict>
                 <key>pkgroot</key>
@@ -53,9 +55,33 @@
             <key>Arguments</key>
             <dict>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/Elgato Video Capture.app</string>
+                <string>%pkgroot%/root/Applications/Elgato Video Capture.app</string>
                 <key>source_path</key>
                 <string>%pathname%/Elgato Video Capture.app</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Create postinstall</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%pkgroot%/scripts/postinstall</string>
+                <key>file_content</key>
+                <string>#!/usr/bin/env sh
+
+if [ ! -e "/Users/Shared/Library/Preferences" ]
+then
+    mkdir -p "/Users/Shared/Library/Preferences"
+fi
+
+chown -R root:wheel /Users/Shared/Library/Preferences
+chmod -R 777 /Users/Shared/Library/Preferences
+</string>
+                <key>file_mode</key>
+                <string>0755</string>
             </dict>
         </dict>
         <dict>
@@ -80,10 +106,12 @@
                     <string>%bundleid%</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
+                    <key>scripts</key>
+                    <string>%pkgroot%/scripts</string>
                     <key>pkgname</key>
                     <string>%NAME%-%version%</string>
                     <key>pkgroot</key>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%pkgroot%/root</string>
                     <key>version</key>
                     <string>%version%</string>
                 </dict>

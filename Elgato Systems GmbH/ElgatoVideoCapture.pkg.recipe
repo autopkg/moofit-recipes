@@ -77,8 +77,11 @@ then
     mkdir -p "/Users/Shared/Library/Preferences"
 fi
 
-chown -R root:wheel /Users/Shared/Library/Preferences
-chmod -R 777 /Users/Shared/Library/Preferences
+chown root:wheel /Users/Shared/Library
+chown root:wheel /Users/Shared/Library/Preferences
+
+chmod 777 /Users/Shared/Library
+chmod 777 /Users/Shared/Library/Preferences
 </string>
                 <key>file_mode</key>
                 <string>0755</string>

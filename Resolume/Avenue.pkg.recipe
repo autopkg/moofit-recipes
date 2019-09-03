@@ -47,7 +47,7 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/downloads/Info.plist</string>
                 <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/Applications/Resolume Avenue */Avenue.app/Contents/Info.plist</string>
+                <string>%RECIPE_CACHE_DIR%/unpack/Applications/Resolume Avenue*/Avenue.app/Contents/Info.plist</string>
             </dict>
         </dict>
         <dict>
@@ -68,6 +68,7 @@
             <dict>
                 <key>path_list</key>
                 <array>
+                    <string>%RECIPE_CACHE_DIR%/downloads/Info.plist</string>
                     <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Scripts/postinstall</string>
                 </array>
             </dict>
@@ -82,24 +83,113 @@
                 <key>file_path</key>
                 <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Scripts/postinstall</string>
                 <key>file_content</key>
-                <string>#!/bin/bash
+                <string>#!/usr/bin/env sh
 
-if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libndi.dylib" ]; then
-    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libndi.dylib"
+if [ -e "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libndi.dylib" ]
+then
+    rm "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libndi.dylib"
 fi
 
-if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavcodec.55.dylib" ]; then
-    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavcodec.55.dylib"
+if [ -e "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libavcodec.55.dylib" ]
+then
+    rm "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libavcodec.55.dylib"
 fi
-if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavformat.55.dylib" ]; then
-    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavformat.55.dylib"
+
+if [ -e "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libavformat.55.dylib" ]
+then
+    rm "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libavformat.55.dylib"
 fi
-if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavutil.52.dylib" ]; then
-    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libavutil.52.dylib"
+
+if [ -e "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libavutil.52.dylib" ]
+then
+    rm "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libavutil.52.dylib"
 fi
-if [ -e "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libswscale.2.dylib" ]; then
-    rm "/Applications/Resolume Avenue 6/Avenue.app/Contents/MacOS/libswscale.2.dylib"
-fi</string>
+
+if [ -e "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libswscale.2.dylib" ]
+then
+    rm "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/libswscale.2.dylib"
+fi
+
+# Remove old plugins if they exist
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/Chromakey.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/Chromakey.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/FFGLBarShift.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/FFGLBarShift.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/FFGLEdgeDetection.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/FFGLEdgeDetection.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/FFGLStopMotion.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/FFGLStopMotion.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/FFGLWaveWarp.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/FFGLWaveWarp.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Fragment.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Fragment.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Goo.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Goo.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Iterate.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Iterate.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Kaleidoscope.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Kaleidoscope.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_RadialBlur.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_RadialBlur.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Ripples.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Ripples.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Stripper.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Stripper.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Tunnel.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Tunnel.bundle"
+fi
+
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_VideoWall.bundle" ]
+then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_VideoWall.bundle"
+fi
+
+if [ ! -e "/Users/Shared/Library/Application Support/Resolume Avenue" ]
+then
+    mkdir -p "/Users/Shared/Library/Application Support/Resolume Avenue"
+fi
+
+# Setup shared folder structure
+chown -R root:wheel "/Users/Shared/Library/Application Support/Resolume Avenue"
+chmod -R 777 "/Users/Shared/Library/Application Support/Resolume Avenue"
+</string>
                 <key>file_mode</key>
                 <string>0755</string>
             </dict>

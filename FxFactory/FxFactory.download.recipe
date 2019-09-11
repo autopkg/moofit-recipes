@@ -11,9 +11,7 @@
         <key>NAME</key>
         <string>FxFactory</string>
         <key>DOWNLOAD_URL</key>
-        <string>https://fxfactory.com/download/fxfactory704</string>
-        <key>USER_AGENT</key>
-        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
+        <string>https://fxfactory.com/download/fxfactory714</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.0</string>

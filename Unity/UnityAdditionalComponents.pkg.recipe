@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string></string>
+        <key>ADDITIONAL_COMPONENT</key>
+        <string></string>
+	</dict>
+	<key>Description</key>
+	<string>Downloads the latest version of Unity unity assets. Note, this
+    recipe is designed to be used with an override, pointing to any of the
+    additional unity components listed here:
+
+    https://unity3d.com/unity/whats-new
+
+    The "%ADDITIONAL_COMPONENT%" variable supports one of the following:
+
+    Android
+    AppleTV
+    Facebook
+    iOS
+    Linux
+    Lumin
+    macOS
+    WebGL
+    Windows
+    </string>
+	<key>Identifier</key>
+	<string>com.github.moofit-recipes.pkg.UnityAdditionalComponents</string>
+	<key>MinimumVersion</key>
+	<string>0.5.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.moofit-recipes.download.UnityAdditionalComponents</string>
+	<key>Process</key>
+	<array>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+			<key>Arguments</key>
+			<dict>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/expand</string>
+				<key>flat_pkg_path</key>
+				<string>%pathname%</string>
+			</dict>
+		</dict>
+		<dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+			<key>Arguments</key>
+			<dict>
+				<key>re_pattern</key>
+				<string>product version="(?P&lt;version&gt;.*?)"</string>
+				<key>url</key>
+				<string>file:////%RECIPE_CACHE_DIR%/expand/Distribution</string>
+			</dict>
+		</dict>
+		<dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+				<key>source_pkg</key>
+				<string>%pathname%</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

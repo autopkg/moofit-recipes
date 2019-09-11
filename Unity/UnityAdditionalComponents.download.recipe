@@ -20,13 +20,13 @@
 
     Android
     AppleTV
-    Facebook
+    Facebook-Games
     iOS
     Linux
     Lumin
-    macOS
+    Mac-IL2CPP
     WebGL
-    Windows
+    Windows-Mono
     </string>
 	<key>Identifier</key>
 	<string>com.github.moofit-recipes.download.UnityAdditionalComponents</string>

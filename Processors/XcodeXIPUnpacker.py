@@ -20,13 +20,15 @@
 # pylint: disable=e1101,f0401
 
 
-from autopkglib import Processor, ProcessorError
+from __future__ import absolute_import
+
 import glob
 import os
 import shutil
 import struct
 import subprocess
 
+from autopkglib import Processor, ProcessorError
 
 __all__ = ["XcodeXIPUnpacker"]
 
@@ -135,7 +137,7 @@ class XcodeXIPUnpacker(Processor):
     # f.close()
     magic = self.seekread(f, length=4)
     if magic != 'pbzx':
-      raise "Error: Not a pbzx file"
+      raise ProcessorError("Error: Not a pbzx file")
     # Read 8 bytes for initial flags
     flags = self.seekread(f, length=8)
     # Interpret the flags as a 64-bit big-endian unsigned int
@@ -176,7 +178,7 @@ class XcodeXIPUnpacker(Processor):
         xar_f.write(f_content)
         if tail != 'YZ':
           xar_f.close()
-          raise "Error: Footer is not xar file footer"
+          raise ProcessorError("Error: Footer is not xar file footer")
     try:
       f.close()
       xar_f.close()

@@ -15,22 +15,22 @@
 # limitations under the License.
 
 
-import FoundationPlist
-import subprocess
+from __future__ import absolute_import, print_function
+
 import os
+import subprocess
 
 from autopkglib import Processor, ProcessorError
-
 
 __all__ = ["PkgSigner"]
 
 
 class PkgSigner(Processor):
     description = ( "Signs a package.",
-    				"WARNING: The keychain that contains the signing certificate and key",
-    				"MUST be unlocked. Run the productsign command once manually so that",
-    				"you can give it access to the correct key so that autopkg can run",
-    				"without manual intervention." )
+                    "WARNING: The keychain that contains the signing certificate and key",
+                    "MUST be unlocked. Run the productsign command once manually so that",
+                    "you can give it access to the correct key so that autopkg can run",
+                    "without manual intervention." )
     input_variables = {
         "pkg_path": {
             "required": True,
@@ -51,7 +51,7 @@ class PkgSigner(Processor):
 
     def main(self):
 
-    	# rename unsigned package so that we can slot the signed package into place
+        # rename unsigned package so that we can slot the signed package into place
         pkg_dir = os.path.dirname( self.env[ "pkg_path" ] )
         pkg_base_name = os.path.basename( self.env[ "pkg_path" ] )
         ( pkg_name_no_extension, pkg_extension ) = os.path.splitext( pkg_base_name )
@@ -65,9 +65,9 @@ class PkgSigner(Processor):
                               unsigned_pkg_path, \
                               self.env[ "pkg_path" ] ]
 
-        print command_line_list
+        print(command_line_list)
 
-        # print command_line_list
+        # print(command_line_list)
         subprocess.call( command_line_list )
 
 
@@ -76,4 +76,3 @@ class PkgSigner(Processor):
 if __name__ == '__main__':
     processor = PkgSigner()
     processor.execute_shell()
-    

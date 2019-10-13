@@ -24,13 +24,15 @@
     <string>com.github.moofit-recipes.pkg.DEPNotify</string>
     <key>Input</key>
     <dict>
-        <key>BUNDLE_ID</key>
-        <string>menu.nomad.DEPNotify</string>
         <key>NAME</key>
         <string>DEPNotify</string>
-        <key>RESOURCES</key>
-        <string></string>
         <key>VERSION</key>
+        <string></string>
+        <key>DOWNLOAD_PAGE_URL</key>
+        <string>https://s3.amazonaws.com/nomadbetas/DEPNotify-%VERSION%.pkg</string>
+        <key>BUNDLE_ID</key>
+        <string>menu.nomad.DEPNotify</string>
+        <key>RESOURCES</key>
         <string></string>
     </dict>
     <key>MinimumVersion</key>

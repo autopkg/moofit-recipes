@@ -8,12 +8,12 @@
     <string>com.github.moofit-recipes.download.DEPNotify</string>
     <key>Input</key>
     <dict>
-        <key>DOWNLOAD_PAGE_URL</key>
-        <string>https://gitlab.com/Mactroll/DEPNotify/tags</string>
         <key>NAME</key>
         <string>DEPNotify</string>
         <key>VERSION</key>
         <string></string>
+        <key>DOWNLOAD_PAGE_URL</key>
+        <string>https://s3.amazonaws.com/nomadbetas/DEPNotify-%VERSION%.pkg</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
@@ -21,24 +21,11 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>URLTextSearcher</string>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>%DOWNLOAD_PAGE_URL%</string>
-                <key>re_pattern</key>
-                <string>[^"]+\DEPNotify-%VERSION%.pkg</string>
-                <key>result_output_var_name</key>
-                <string>MATCH</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%MATCH%</string>
+                <string>%DOWNLOAD_PAGE_URL%</string>
             </dict>
         </dict>
         <dict>

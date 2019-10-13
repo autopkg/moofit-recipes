@@ -16,7 +16,7 @@
         <string>https://dl.appstreaming.autodesk.com/production/installers/Autodesk%20Fusion%20360%20Admin%20Install.pkg</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk-recipes.download.Fusion360</string>
+    <string>com.github.homebysix.download.AutodeskFusion360</string>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
     <key>Process</key>

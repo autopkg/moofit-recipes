@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads latest Waves Central disk image.</string>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.download.WavesCentral</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Waves Central</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://www.waves.com/dlrdr?id=central-mac</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.2.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%DOWNLOAD_URL%</string>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/Waves Central.app</string>
+                <key>strict_verification</key>
+                <false/>
+                <key>requirement</key>
+                <string>identifier "com.WavesAudio.central" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GT6E3XD798</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

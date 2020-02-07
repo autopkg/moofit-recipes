@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest ClickShare client and creates a package.</string>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.ClickShare</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>ClickShare</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.2.9</string>
+    <key>ParentRecipe</key>
+    <string>com.github.moofit-recipes.download.ClickShare</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/R3306192_13_ApplicationSw/ClickShare_Setup.dmg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>com.github.homebysix.VersionSplitter/VersionSplitter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>split_on</key>
+                <string>-</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkgroot</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>payload/Applications</key>
+                    <string>0775</string>
+                    <key>scripts</key>
+                    <string>0755</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/R3306192_13_ApplicationSw/ClickShare_Setup.dmg/ClickShare.app</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/payload/Applications/ClickShare.app</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Make postinstall script</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%pkgroot%/scripts/postinstall</string>
+                <key>file_content</key>
+                <string>#!/usr/bin/env sh
+
+# Check for and delete legacy ClickShare Launcher app
+if [ -e "/Applications/ClickShare Launcher.app" ]
+then
+    rm -rf "/Applications/ClickShare Launcher.app"
+    pkgutil --forget com.barco.clicksharelauncher
+fi
+
+# Check for and delete legacy LaunchAgent
+if [ -e "/Library/LaunchAgents/com.barco.clicksharelauncher.plist" ]
+then
+    rm -rf "/Library/LaunchAgents/com.barco.clicksharelauncher.plist"
+fi</string>
+                <key>file_mode</key>
+                <string>0755</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgname</key>
+                <string>%NAME%-%version%</string>
+                <key>pkg_request</key>
+                <dict>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>scripts</key>
+                    <string>%pkgroot%/scripts</string>
+                    <key>pkgroot</key>
+                    <string>%pkgroot%/payload</string>
+                    <key>id</key>
+                    <string>%bundleid%</string>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                            <key>group</key>
+                            <string>admin</string>
+                        </dict>
+                    </array>
+                </dict>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

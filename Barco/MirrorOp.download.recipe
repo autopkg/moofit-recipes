@@ -22,8 +22,8 @@
             <dict>
                 <key>path_list</key>
                 <string>%RECIPE_CACHE_DIR%</string>
-                </dict>
             </dict>
+        </dict>
         <dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -38,6 +38,8 @@
             </dict>
         </dict>
         <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
@@ -45,8 +47,6 @@
                 <key>url</key>
                 <string>https://www.barco.com/services/website/en/TdeFiles/%match%</string>
             </dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
         </dict>
         <dict>
             <key>Processor</key>

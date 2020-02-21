@@ -85,7 +85,6 @@
                 <string>#!/bin/bash
 
 # Setup Path to Plist file
-/usr/bin/defaults write menu.nomad.DEPNotify PathToPlistFile "/Library/Application Support/DEPNotify/"
 /usr/bin/defaults write menu.nomad.DEPNotify pathToPlistFile "/Library/Application Support/DEPNotify/DEPNotify.plist"</string>
                 <key>file_mode</key>
                 <string>0755</string>

@@ -5,9 +5,8 @@
 	<key>Identifier</key>
 	<string>com.github.moofit-recipes.pkg.yo</string>
 	<key>Description</key>
-	<string>Uses parent download recipe
-	com.github.moofit-recipes.download.yo to download the latest Notify
-	</string>
+	<string>Uses parent download recipe com.github.moofit-recipes.download.yo to
+		download the latest yo package.</string>
 	<key>Input</key>
 	<dict>
         <key>NAME</key>

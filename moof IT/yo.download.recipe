@@ -2,16 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Description</key>
-    <string>Download the current built package of yo.</string>
     <key>Identifier</key>
     <string>com.github.moofit-recipes.download.yo</string>
+    <key>Description</key>
+    <string>Download the current built package of yo.</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>yo</string>
         <key>DOWNLOAD_PAGE_URL</key>
-        <string>https://gitlab.com/moofit/yo/tags</string>
+        <string>https://bitbucket.org/moofit/yo/downloads/</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>

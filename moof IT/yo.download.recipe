@@ -36,7 +36,7 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>gitlab.com/%MATCH%</string>
+                <string>https://bitbucket.org%MATCH%</string>
             </dict>
         </dict>
         <dict>

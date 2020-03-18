@@ -2,19 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string></string>
-        <key>ADDITIONAL_COMPONENT</key>
-        <string></string>
-	</dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Unity unity assets. Note, this
+    <key>Description</key>
+    <string>Downloads the latest version of the various Unity assets. Note, this
     recipe is designed to be used with an override, pointing to any of the
     additional unity components listed here:
 
-    https://unity3d.com/unity/whats-new
+    https://unity3d.com/unity-release/latest
 
     The "%ADDITIONAL_COMPONENT%" variable supports one of the following:
 
@@ -27,8 +20,17 @@
     WebGL
     Windows-Mono
     </string>
-	<key>Identifier</key>
+    <key>Identifier</key>
 	<string>com.github.moofit-recipes.download.UnityAdditionalComponents</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string></string>
+        <key>ADDITIONAL_COMPONENT</key>
+        <string></string>
+        <key>URL</key>
+        <string>https://unity3d.com/unity-release/latest</string>
+	</dict>
 	<key>MinimumVersion</key>
 	<string>0.5.0</string>
 	<key>Process</key>
@@ -39,7 +41,11 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>https://unity3d.com/unity/whats-new</string>
+                <string>%URL%</string>
+                <key>curl_opts</key>
+                <array>
+                    <string>-L</string>
+                </array>
                 <key>re_pattern</key>
                 <string>(?P&lt;url&gt;https:\/\/download\.unity3d\.com\/download_unity\/.*\/MacEditorTargetInstaller\/UnitySetup-%ADDITIONAL_COMPONENT%-Support-for-Editor-.*\.pkg)</string>
             </dict>

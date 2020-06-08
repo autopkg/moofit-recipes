@@ -47,7 +47,7 @@
             <key>Arguments</key>
             <dict>
                 <key>filename</key>
-                <string>%NAME%-%version%.pkg</string>
+                <string>%NAME%.pkg</string>
                 <key>url</key>
                 <string>%url%</string>
             </dict>

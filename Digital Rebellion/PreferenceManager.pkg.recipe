@@ -1,49 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Preference Manager and generates a package.</string>
-	<key>Identifier</key>
-	<string>com.github.moofit-recipes.pkg.PreferenceManager</string>
-	<key>Input</key>
 	<dict>
-		<key>NAME</key>
-		<string>Preference Manager</string>
+		<key>Description</key>
+		<string>Downloads the latest version of Preference Manager and generates a package.</string>
+		<key>Identifier</key>
+		<string>com.github.moofit-recipes.pkg.PreferenceManager</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>Preference Manager</string>
+		</dict>
+		<key>ParentRecipe</key>
+		<string>com.github.foigus.download.PreferenceManager</string>
+		<key>MinimumVersion</key>
+		<string>0.2.0</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Processor</key>
+				<string>AppPkgCreator</string>
+			</dict>
+		</array>
 	</dict>
-    <key>ParentRecipe</key>
-    <string>com.github.foigus.download.PreferenceManager</string>
-	<key>MinimumVersion</key>
-	<string>0.2.0</string>
-    <key>Process</key>
-    <array>
-        <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Preference Manager and generates a package.</string>
-	<key>Identifier</key>
-	<string>com.github.moofit-recipes.pkg.PreferenceManager</string>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>Preference Manager</string>
-	</dict>
-    <key>ParentRecipe</key>
-    <string>com.github.foigus.download.PreferenceManager</string>
-	<key>MinimumVersion</key>
-	<string>0.2.0</string>
-    <key>Process</key>
-    <array>
-        <dict>
-		<key>Processor</key>
-			<string>AppPkgCreator</string>
-	</dict>
-    </array>
-</dict>
-</plist>
-
-    </array>
-</dict>
 </plist>

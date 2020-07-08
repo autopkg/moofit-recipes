@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest version of Mindjet MindManager for macOS.</string>
+    <string>Downloads latest version of MindManager for macOS.</string>
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.MindManager</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>Mindjet MindManager</string>
+        <string>MindManager</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.1</string>
@@ -23,7 +23,7 @@
             <key>Arguments</key>
             <dict>
                 <key>info_path</key>
-                <string>%pathname%/Mindjet MindManager.app</string>
+                <string>%pathname%/MindManager.app</string>
                 <key>plist_keys</key>
                 <dict>
                     <key>CFBundleVersion</key>
@@ -53,9 +53,9 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/Mindjet MindManager.app</string>
+                <string>%pathname%/MindManager.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/Mindjet MindManager.app</string>
+                <string>%pkgroot%/Applications/MindManager.app</string>
             </dict>
         </dict>
         <dict>

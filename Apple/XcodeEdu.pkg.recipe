@@ -5,31 +5,34 @@
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.XcodeEdu</string>
     <key>Description</key>
-    <string>Creates an installer package from a supplied .xip file downloaded
-            using Facebook's "xcode.downloader" recipe, and extracted using
-            their "xcode.extract" recipe from their AutoPkg repo
-            "com.github.facebook.Recipes-for-AutoPkg". This recipe also adds a
-            postflight script to the package, to install the command-line tools
-            and configure these for education lab use.
+    <string>Creates an installer package from a supplied .xip file downloaded using Facebook's "xcode.downloader" 
+        recipe, and extracted using their "xcode.extract" recipe from their AutoPkg repo 
+        "com.github.facebook.Recipes-for-AutoPkg".
 
-            Due to Apple signed packages not being able to install to SIP
-            protected areas when called via a postflight, the additional
-            packages are installed by a self-destrictible LaunchDaemon which is
-            called immediately after the "parent" Xcode installer is complete.
-            This LaunchDaemon runs a script (both stored in /tmp) which installs
-            all 3 additional component packages, and then unloads and deletes
-            the launchdaemon, and itself.
+        This recipe also adds a postflight script to the package, to install the command-line tools and configure these 
+        for lab Mac use.
 
-            This kind of installation package would typically be used in lab
-            enviroments, where users don't have admin rights.</string>
+        Due to Apple signed packages not being able to install to SIP protected areas when called via a postflight, the
+        additional packages are installed by a self-destrictible LaunchDaemon which is called immediately after the 
+        "parent" Xcode installer is complete. This LaunchDaemon runs a script (both stored in /tmp) which installs all 3
+        additional component packages, and then unloads and deletes the launchdaemon, and itself.
+
+        This kind of installation package would typically be used in lab enviroments, where users don't have admin 
+        rights.
+        
+        Please see https://github.com/facebook/Recipes-for-AutoPkg for usage</string>
     <key>Input</key>
     <dict>
-        <key>NAME</key>
-        <string>XcodeEdu</string>
-        <key>APPLE_ID</key>
-        <string></string>
-        <key>PASSWORD</key>
-        <string></string>
+		<key>NAME</key>
+		<string>XcodeEdu</string>
+		<key>APPLE_ID</key>
+		<string></string>
+		<key>PASSWORD_FILE</key>
+		<string></string>
+		<key>BETA</key>
+		<string></string>
+		<key>PATTERN</key>
+		<string>((?!.*beta).*\/Xcode_.*\/Xcode.*.xip)</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.1</string>
@@ -65,103 +68,77 @@
                 <key>destination_path</key>
                 <string>%pkgroot%/payload/Applications/Xcode.app</string>
                 <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/Xcode.app</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>PlistEditor</string>
-            <key>Comment</key>
-            <string>Make launchdaemon plist to call xcodeComponentsInstaller.sh
-                    script at /tmp</string>
-            <key>Arguments</key>
-            <dict>
-                <key>output_plist_path</key>
-                <string>%pkgroot%/payload/private/tmp/uk.co.moof-it.xcodeComponentsInstaller.plist</string>
-                <key>plist_data</key>
-                <dict>
-                    <key>Label</key>
-                    <string>uk.co.moof-it.xcodeComponentsInstaller</string>
-                    <key>ProgramArguments</key>
-                    <array>
-                            <string>/tmp/xcodeComponentsInstaller.sh</string>
-                    </array>
-                    <key>RunAtLoad</key>
-                    <true/>
-                </dict>
+                <string>%RECIPE_CACHE_DIR%/%NAME%_unpack/Xcode.app</string>
             </dict>
         </dict>
         <dict>
             <key>Processor</key>
             <string>FileCreator</string>
             <key>Comment</key>
-            <string>Make script to be called by the launchdaemon to install the
-                    additional packages</string>
-            <key>Arguments</key>
-            <dict>
-                <key>file_path</key>
-                <string>%pkgroot%/payload/private/tmp/xcodeComponentsInstaller.sh</string>
-                <key>file_content</key>
-                <string>#!/bin/bash
-
-# Install Xcode components from Xcode.app
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
-
-# Stop and remove LaunchDaemon and script
-/bin/launchctl stop uk.co.moof-it.xcodeComponentsInstaller.plist
-/bin/launchctl remove uk.co.moof-it.xcodeComponentsInstaller.plist
-rm /tmp/uk.co.moof-it.xcodeComponentsInstaller.plist
-rm /tmp/xcodeComponentsInstaller.sh</string>
-                <key>file_mode</key>
-                <string>0755</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>FileCreator</string>
-            <key>Comment</key>
-            <string>Make postinstall script</string>
+            <string>Make postinstall script for use in the package</string>
             <key>Arguments</key>
             <dict>
                 <key>file_path</key>
                 <string>%pkgroot%/scripts/postinstall</string>
                 <key>file_content</key>
-                <string>#!/bin/bash
+                <string>#!/bin/sh
 
-logProcess="xcodeEduPostinstall"
-osVers=$(sw_vers -productVersion | awk -F "." '{print $2}')
-cmdlineToolsTmp="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
+# Author:   Moof IT
+# Name:     xcodeEduPostinstall.sh
+# Version:  1.0.0
+#
+# Purpose:  Postinstall script to install and configure Xcode for use on a device without admin rights, typically for 
+#           use on lab Macs
+#
+# Usage:    Postinstall script
+#
+# Version:  1.0.0, 2020-07-13
+#           SB - Initial Creation
 
-writelog()
+# Use at your own risk. Moof IT will accept no responsibility for loss or damage caused by this script.
+
+##### Declare functions
+
+# This function uses the native system logger to output events in this script. 
+
+writelog ()
 {
-	/usr/bin/logger -is -t "${logProcess}" "${1}"
+	/usr/bin/logger -is -t "${LOG_PROCESS}" "${1}"
 }
 
-writelog "Enabling Development Tools Security..."
+##### Set variables
+
+LOG_PROCESS="xcodeEduPostinstall"
+OS_VERSION=$(/usr/bin/sw_vers -productVersion | awk -F "." '{print $2}')
+XCODE_CLI_TOOLS_TEMP_FILE="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
+
+##### Run script
+
+writelog "Enabling Xcode Development Tools Security..."
 /usr/sbin/DevToolsSecurity -enable
+
+writelog "Accepting Xcode license..."
 /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -license accept
 
-if [[ "${osVers}" -ge 9 ]];
+if [[ "${OS_VERSION}" -ge 9 ]];
 then
     writelog "Installing Xcode command line Tools on 10.9.x or higher..."
 
     # Create the placeholder file which is checked by the softwareupdate
     # tool before allowing the installation of the Xcode command line tools.
-    /usr/bin/touch "${cmdlineToolsTmp}"
+    /usr/bin/touch "${XCODE_CLI_TOOLS_TEMP_FILE}"
 
     # Find the last listed update in the Software Update feed with "Command Line Tools" in the name
-    cmdlineTools=$(softwareupdate -l | awk '/\*\ Command Line Tools/ { $1=$1;print }' | tail -1 | sed 's/^[[ \t]]*//;s/[[ \t]]*$//;s/*//' | cut -c 2-)
+    XCODE_CLI_TOOLS_VERSION=$(/usr/sbin/softwareupdate -l | grep "\*.*Command Line" | awk -F ': ' '/Label: / { print $2 }')
 
     # Install the command line tools
     writelog "Installing via softwareupdate..."
-    /usr/sbin/softwareupdate -i "${cmdlineTools}"
+    /usr/sbin/softwareupdate -i "${XCODE_CLI_TOOLS_VERSION}"
 
     # Remove the temp file
-    if [[ -e "${cmdlineToolsTmp}" ]];
+    if [ -e "${XCODE_CLI_TOOLS_TEMP_FILE}" ]
     then
-        rm "${cmdlineToolsTmp}"
+        rm "${XCODE_CLI_TOOLS_TEMP_FILE}"
     fi
 fi
 
@@ -181,9 +158,55 @@ fi</string>
         </dict>
         <dict>
             <key>Processor</key>
-            <string>PkgCreator</string>
+            <string>FileCreator</string>
             <key>Comment</key>
-            <string>Create package</string>
+            <string>Make script to be called by the launchdaemon to install the additional packages</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%pkgroot%/payload/private/tmp/xcodeComponentsInstaller.sh</string>
+                <key>file_content</key>
+                <string>#!/bin/sh
+
+# Install Xcode components from Xcode.app
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
+
+# Stop and remove LaunchDaemon and script
+/bin/launchctl stop uk.co.moof-it.xcodeComponentsInstaller.plist
+/bin/launchctl remove uk.co.moof-it.xcodeComponentsInstaller.plist
+rm /tmp/uk.co.moof-it.xcodeComponentsInstaller.plist
+rm /tmp/xcodeComponentsInstaller.sh</string>
+                <key>file_mode</key>
+                <string>0755</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PlistEditor</string>
+            <key>Comment</key>
+            <string>Make launchdaemon plist to call xcodeComponentsInstaller.sh script at /tmp</string>
+            <key>Arguments</key>
+            <dict>
+                <key>output_plist_path</key>
+                <string>%pkgroot%/payload/private/tmp/uk.co.moof-it.xcodeComponentsInstaller.plist</string>
+                <key>plist_data</key>
+                <dict>
+                    <key>Label</key>
+                    <string>uk.co.moof-it.xcodeComponentsInstaller</string>
+                    <key>ProgramArguments</key>
+                    <array>
+                        <string>/tmp/xcodeComponentsInstaller.sh</string>
+                    </array>
+                    <key>RunAtLoad</key>
+                    <true/>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
                 <key>pkg_request</key>
@@ -235,12 +258,12 @@ fi</string>
                     <string>com.apple.dt.Xcode</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
                     <key>scripts</key>
                     <string>%pkgroot%/scripts</string>
                     <key>pkgroot</key>
                     <string>%pkgroot%/payload</string>
-                    <key>pkgdir</key>
-                    <string>%RECIPE_CACHE_DIR%</string>
                 </dict>
                 <key>pkgname</key>
                 <string>%NAME%-%version%</string>

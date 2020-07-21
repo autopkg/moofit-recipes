@@ -5,18 +5,23 @@
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.Xcode</string>
     <key>Description</key>
-    <string>Creates an installer package from a supplied .xip file downloaded
-            using Facebook's "xcode.downloader" recipe, and extracted using
-            their "xcode.extract" recipe from their AutoPkg repo
-            "com.github.facebook.Recipes-for-AutoPkg".</string>
+    <string>Creates an installer package from a supplied .xip file downloaded using Facebook's "xcode.downloader" 
+        recipe, and extracted using their "xcode.extract" recipe from their AutoPkg repo 
+        "com.github.facebook.Recipes-for-AutoPkg".
+        
+        Please see https://github.com/facebook/Recipes-for-AutoPkg for usage</string>
     <key>Input</key>
     <dict>
-        <key>NAME</key>
-        <string>Xcode</string>
-        <key>APPLE_ID</key>
-        <string></string>
-        <key>PASSWORD</key>
-        <string></string>
+		<key>NAME</key>
+		<string>Xcode</string>
+		<key>APPLE_ID</key>
+		<string></string>
+		<key>PASSWORD_FILE</key>
+		<string></string>
+		<key>BETA</key>
+		<string></string>
+		<key>PATTERN</key>
+		<string>((?!.*beta).*\/Xcode_.*\/Xcode.*.xip)</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.1</string>
@@ -46,10 +51,12 @@
                 <key>destination_path</key>
                 <string>%pkgroot%/Applications/Xcode.app</string>
                 <key>source_path</key>
-                <string>%RECIPE_CACHE_DIR%/Xcode_unpack/Xcode.app</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%_unpack/Xcode.app</string>
             </dict>
         </dict>
         <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
                 <key>pkg_request</key>
@@ -77,8 +84,6 @@
                 <key>pkgname</key>
                 <string>%NAME%-%version%</string>
             </dict>
-            <key>Processor</key>
-            <string>PkgCreator</string>
         </dict>
     </array>
 </dict>

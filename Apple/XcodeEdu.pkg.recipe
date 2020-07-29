@@ -224,7 +224,7 @@ writelog "Stopping launchdaemon..."
 
 writelog "Self destructing..."
 rm /tmp/uk.co.moof-it.xcodeComponentsInstaller.plist
-rm /tmp/xcodeComponentsInstaller.sh<
+rm /tmp/xcodeComponentsInstaller.sh
 
 writelog "Script completed"</string>
                 <key>file_mode</key>

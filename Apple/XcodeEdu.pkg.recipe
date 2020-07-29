@@ -168,16 +168,65 @@ fi</string>
                 <key>file_content</key>
                 <string>#!/bin/sh
 
+# Author:   Stephen Bygrave - Moof IT
+# Name:     installXcodeComponents.sh
+# Version:  1.0.0
+#
+# Purpose:  This script is called by launchd to install the required "Additional Xcode" components
+#
+# Usage:    Script launched by launchd
+#
+# Version:  1.0.0, 2020-07-29
+#           SB - Initial Creation
+
+# Use at your own risk. Moof IT will accept no responsibility for loss or damage
+# caused by this script.
+
+##### Declare functions
+
+# This function uses the native system logger to output events in this script. 
+
+writelog ()
+{
+    # Write to system log
+    /usr/bin/logger -is -t "${LOG_PROCESS}" "${1}"
+}
+
+# This function outputs all variables set above to stdout and logger, as defined in the writelog function above
+
+echoVariables ()
+{
+    writelog "Log Process is ${LOG_PROCESS}"
+}
+
+##### Set variables
+
+LOG_PROCESS="installXcodeComponents"
+
+##### Run script
+
+echoVariables
+
 # Install Xcode components from Xcode.app
+writelog "Installing MobileDevice components..."
 /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
+
+writelog "Installing MobileDeviceDevelopment components..."
 /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
+
+writelog "Installing Xcode System Resources..."
 /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
 
 # Stop and remove LaunchDaemon and script
+writelog "Stopping launchdaemon..."
 /bin/launchctl stop uk.co.moof-it.xcodeComponentsInstaller.plist
 /bin/launchctl remove uk.co.moof-it.xcodeComponentsInstaller.plist
+
+writelog "Self destructing..."
 rm /tmp/uk.co.moof-it.xcodeComponentsInstaller.plist
-rm /tmp/xcodeComponentsInstaller.sh</string>
+rm /tmp/xcodeComponentsInstaller.sh<
+
+writelog "Script completed"</string>
                 <key>file_mode</key>
                 <string>0755</string>
             </dict>

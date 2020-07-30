@@ -209,13 +209,13 @@ echoVariables
 
 # Install Xcode components from Xcode.app
 writelog "Installing MobileDevice components..."
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose || writelog "MobileDevice.pkg failed to install. Please "
 
 writelog "Installing MobileDeviceDevelopment components..."
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose || writelog "MobileDeviceDevelopment.pkg failed to install."
 
 writelog "Installing Xcode System Resources..."
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose || writelog "XcodeSystemResources.pkg failed to install."
 
 # Stop and remove LaunchDaemon and script
 writelog "Stopping launchdaemon..."

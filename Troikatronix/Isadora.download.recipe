@@ -5,7 +5,9 @@
 	<key>Identifier</key>
 	<string>com.github.amsysuk-recipes.download.Isadora</string>
 	<key>Description</key>
-	<string>Downloads the latest version of Isadora</string>
+	<string>Downloads the latest version of Isadora
+	        
+        As two variants of Isadora are available, the input key VARIANT should be set to either `usb` or `std`</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -16,6 +18,8 @@
 		<string>https://troikatronix.com/files</string>
 		<key>USER_AGENT</key>
 		<string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
+		<key>VARIANT</key>
+		<string></string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.1</string>
@@ -31,7 +35,7 @@
 				<key>result_output_var_name</key>
 				<string>url</string>
 				<key>re_pattern</key>
-				<string>isadoramac-.*-usb\.dmg</string>
+				<string>isadoramac-.*-%VARIANT%\.dmg</string>
 				<key>re_flags</key>
 				<array>
 					<string>IGNORECASE</string>

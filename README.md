@@ -1,10 +1,26 @@
-![Logo](https://www.moof-it.co.uk/moof-blue.png)
+![Logo](https://x1llu7x4a4-flywheel.netdna-ssl.com/wp-content/themes/moof/images/logo.svg)
 
-# Moof IT AutoPkg Recipes
+# Moof IT AutoPkg Recipes 
 
-# Purpose
+## Table of Contents
 
-This repository contains Moof IT recipes for public use.
+  - [Purpose](#purpose)
+  - [Includes](#includes)
+  - [How to contribute](#how-to-contribute)
+  - [Support](#support)
+  - [License](#license)
+  
+## Purpose
+
+This repository contains Moof IT's AutoPkg recipes and processors for public use.
+
+## How to contribute
+
+1. Fork this project, if required
+2. Create a new branch (`git checkout -b myNewBranch`)
+3. Make changes, and commit (`git commit -am "myChanges"`)
+4. Push to the new branch (`git push origin myNewBranch`)
+5. Create new pull request
 
 ## Support
 

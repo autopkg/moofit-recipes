@@ -4,11 +4,10 @@
 
 ## Table of Contents
 
-  - [Purpose](#purpose)
-  - [Includes](#includes)
-  - [How to contribute](#how-to-contribute)
-  - [Support](#support)
-  - [License](#license)
+- [Purpose](#purpose)
+- [How to contribute](#how-to-contribute)
+- [Support](#support)
+- [License](#license)
   
 ## Purpose
 

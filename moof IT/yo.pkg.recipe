@@ -5,16 +5,19 @@
 	<key>Identifier</key>
 	<string>com.github.moofit-recipes.pkg.yo</string>
 	<key>Description</key>
-	<string>Uses parent download recipe com.github.moofit-recipes.download.yo to
-		download the latest yo package.</string>
+	<string>Uses parent download recipe com.github.moofit-recipes.download.yo to download the latest yo package.</string>
 	<key>Input</key>
 	<dict>
         <key>NAME</key>
         <string>yo</string>
-		<key>CLIENT</key>
+        <key>CLIENT</key>
 		<string></string>
-		<key>version</key>
+		<key>VERSION</key>
 		<string></string>
+        <key>INCLUDE_PRERELEASES</key>
+        <string></string>
+        <key>GITHUB_REPO</key>
+        <string>moofit/yo</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.5.0</string>

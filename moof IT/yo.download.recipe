@@ -29,7 +29,7 @@
             <key>Arguments</key>
             <dict>
                 <key>asset_regex</key>
-                <string>^yo-%CLIENT%-%VERSION%.pkg$</string>
+                <string>^yo-%VERSION%.pkg$</string>
                 <key>github_repo</key>
                 <string>%GITHUB_REPO%</string>
                 <key>include_prereleases</key>

@@ -1,0 +1,106 @@
+#!/bin/sh
+
+# Author:   Stephen Warneford-Bygrave - Moof IT
+# Name:     postinstall
+# Version:  1.0.0
+#
+# Purpose:  %NAME% Post-install, installs and activates Autodesk %NAME% %VER%.
+#           
+#           Native Autodesk installer logs are written to ~/Library/Logs/Autodesk/ODIS/Setup.log, if the app supports
+#           ODIS
+#
+# Usage:    Package postinatall
+#
+# Version:  1.0.0, 2020-08-07
+#           SB - Initial Creation
+
+# Use at your own risk. Moof IT will accept no responsibility for loss or damage caused by this script.
+
+##### Declare functions
+
+writelog ()
+{
+    /usr/bin/logger -is -t "${LOG_PROCESS}" "${1}"
+}
+
+##### Run script
+
+# Install %NAME%
+writelog "Installing %NAME% %VER%..."
+
+if [ -e "/tmp/%NAME%.pkg" ]
+then
+    writelog "%NAME% %VER% package installer found."
+    /usr/sbin/installer -pkg "/tmp/%NAME%.pkg" -target /
+elif [ -e "/tmp/%NAME%.app" ]
+then
+    EXIT_CODE=0
+    writelog "Installing all pkgs within %NAME%.app...."
+
+    # It's worthwhile noting that the following lines are a workaround to two issues with Autodesk's non-native PKG 
+    # installers; they don't work when a user isn't logged into the Mac, and they don't work when bundled inside a pkg 
+    # with a postinstall script. Therefore, we need to manually install all pkgs present inside the Setup.app bundle,
+    # with the first pkg always being the AdskLicensing-*.pkg. 
+    #
+    # Le sigh.
+    #
+    for LICENSING_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name *Licensing*.pkg)
+    do
+        IFS=$'\n'
+        /usr/sbin/installer -pkg "${LICENSING_PKG}" -target /
+        if [ $? -ne 0 ]
+        then
+            writelog "Could not install ${LICENSING_PKG}. Please inspect the Autodesk setup logs for more info."
+            EXIT_CODE=1
+        else
+            writelog "${LICENSING_PKG} install successful."
+        fi
+        unset IFS
+    done
+    for COMPONENT_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name *.pkg ! -name *Licensing*.pkg)
+    do
+        IFS=$'\n'
+        /usr/sbin/installer -pkg "${COMPONENT_PKG}" -target /
+        if [ $? -ne 0 ]
+        then
+            writelog "Could not install ${COMPONENT_PKG}. Please inspect the Autodesk setup logs for more info."
+            EXIT_CODE=1
+        else
+            writelog "${COMPONENT_PKG} install successful."
+        fi
+        unset IFS
+    done
+else
+    writelog "No %NAME% %VER% installer binary or package was found. Bailing..."
+    exit 1
+fi
+
+if [ ${EXIT_CODE} -ne 0 ]
+then
+    writelog "Could not install %NAME% %VER%. Please inspect the Autodesk setup logs for more info. Bailing..."
+    exit 1
+else
+    writelog "%NAME% %VER% install successful."
+fi
+
+# Fix permissions on the adlm folder to allow for licensing
+/bin/chmod -R 755 "/Library/Application Support/Autodesk/Adlm"
+
+# activate application
+writelog "Licensing %NAME% %VER%..."
+"/Library/Application Support/Autodesk/AdskLicensing/Current/helper/AdskLicensingInstHelper" \
+    register \
+    --cf "/Library/Application Support/Autodesk/Adlm/.config/ProductInformation.pit" \
+    --prod_key %PK% \
+    --prod_ver %PV% \
+    --eula_locale %EL% \
+    --serial_number %SN% \
+    --lic_method %LM% --lic_servers '@'%LS%
+
+if [ $? -ne 0 ]
+then
+    writelog "Could not license %NAME% %VER%. Please inspect the Autodesk setup logs for more info. Bailing..."
+    exit 1
+else
+    writelog "%NAME% %VER% licensing successful."
+fi

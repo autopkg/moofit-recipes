@@ -68,7 +68,7 @@
                 <key>source</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%_unpack/Xcode.app</string>
                 <key>target</key>
-                <string>%pkgroot%/Applications/Xcode.app</string>
+                <string>%pkgroot%/payload/Applications/Xcode.app</string>
             </dict>
         </dict>
         <dict>

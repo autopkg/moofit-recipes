@@ -11,7 +11,7 @@
 
     The "%ADDITIONAL_COMPONENT%" variable supports one of the following:
 
-    Android
+    Unity Android
     AppleTV
     iOS
     Linux-Mono
@@ -25,9 +25,9 @@
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string></string>
+		<string>Unity iOS</string>
         <key>ADDITIONAL_COMPONENT</key>
-        <string></string>
+        <string>iOS</string>
         <key>URL</key>
         <string>https://unity3d.com/unity-release/latest</string>
 	</dict>
@@ -47,7 +47,7 @@
                     <string>-L</string>
                 </array>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https:\/\/(beta|download)\.unity3d\.com\/download\/.*\/MacEditorTargetInstaller\/UnitySetup-%ADDITIONAL_COMPONENT%-Support-for-Editor-.*\.pkg)</string>
+                <string>(?P&lt;url&gt;https:\/\/(beta|download)\.unity3d\.com\/(download_unity|download)\/.*\/MacEditorTargetInstaller\/UnitySetup-%ADDITIONAL_COMPONENT%-Support-for-Editor-.*\.pkg)</string>
             </dict>
         </dict>
     	<dict>

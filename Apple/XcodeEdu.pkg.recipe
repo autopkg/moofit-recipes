@@ -62,13 +62,13 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>Copier</string>
+            <string>FileMover</string>
             <key>Arguments</key>
             <dict>
-                <key>destination_path</key>
-                <string>%pkgroot%/payload/Applications/Xcode.app</string>
-                <key>source_path</key>
+                <key>source</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%_unpack/Xcode.app</string>
+                <key>target</key>
+                <string>%pkgroot%/Applications/Xcode.app</string>
             </dict>
         </dict>
         <dict>
@@ -316,6 +316,18 @@ writelog "Script completed"</string>
                 </dict>
                 <key>pkgname</key>
                 <string>%NAME%-%version%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%_unpack</string>
+                    <string>%pkgroot%</string>
+                </array>
             </dict>
         </dict>
     </array>

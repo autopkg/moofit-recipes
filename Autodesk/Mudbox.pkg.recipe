@@ -58,13 +58,107 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>Copier</string>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Make postinstall script for use in the package</string>
             <key>Arguments</key>
             <dict>
-                <key>source_path</key>
-                <string>%RECIPE_DIR%/scripts/AutodeskPostInstall</string>
-                <key>destination_path</key>
-                <string>%RECIPE_DIR%/scripts/AutodeskPostInstallTmp</string>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/payload/scripts/postinstall</string>
+                <key>file_content</key>
+                <string>#!/bin/sh
+
+##### Define Functions
+
+writelog ()
+{
+    # Write to system log
+    /usr/bin/logger -is -t "${LOG_PROCESS}" "${1}"
+}
+
+##### Run script
+
+# Install %NAME%
+writelog "Installing %NAME% %VER%..."
+
+if [ -e "/tmp/%NAME%.pkg" ]
+then
+    writelog "%NAME% %VER% package installer found."
+    /usr/sbin/installer -pkg "/tmp/%NAME%.pkg" -target /
+elif [ -e "/tmp/%NAME%.app" ]
+then
+    EXIT_CODE=0
+    writelog "Installing all pkgs within %NAME%.app...."
+
+    # It's worthwhile noting that the following lines are a workaround to two issues with Autodesk's non-native PKG 
+    # installers; they don't work when a user isn't logged into the Mac, and they don't work when bundled inside a pkg 
+    # with a postinstall script. Therefore, we need to manually install all pkgs present inside the Setup.app bundle,
+    # with the first pkg always being the AdskLicensing-*.pkg. 
+    #
+    # Le sigh.
+
+    for LICENSING_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name *Licensing*.pkg)
+    do
+        IFS=$'\n'
+        /usr/sbin/installer -pkg "${LICENSING_PKG}" -target /
+        if [ $? -ne 0 ]
+        then
+            writelog "Could not install ${LICENSING_PKG}. Please inspect the Autodesk setup logs for more info."
+            EXIT_CODE=1
+        else
+            writelog "${LICENSING_PKG} install successful."
+        fi
+        unset IFS
+    done
+    for COMPONENT_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name *.pkg ! -name *Licensing*.pkg)
+    do
+        IFS=$'\n'
+        /usr/sbin/installer -pkg "${COMPONENT_PKG}" -target /
+        if [ $? -ne 0 ]
+        then
+            writelog "Could not install ${COMPONENT_PKG}. Please inspect the Autodesk setup logs for more info."
+            EXIT_CODE=1
+        else
+            writelog "${COMPONENT_PKG} install successful."
+        fi
+        unset IFS
+    done
+else
+    writelog "No %NAME% %VER% installer binary or package was found. Bailing..."
+    exit 1
+fi
+
+if [ ${EXIT_CODE} -ne 0 ]
+then
+    writelog "Could not install %NAME% %VER%. Please inspect the Autodesk setup logs for more info. Bailing..."
+    exit 1
+else
+    writelog "%NAME% %VER% install successful."
+fi
+
+# Fix permissions on the adlm folder to allow for licensing
+/bin/chmod -R 755 "/Library/Application Support/Autodesk/Adlm"
+
+# activate application
+writelog "Licensing %NAME% %VER%..."
+"/Library/Application Support/Autodesk/AdskLicensing/Current/helper/AdskLicensingInstHelper" \
+    register \
+    --cf "/Library/Application Support/Autodesk/Adlm/.config/ProductInformation.pit" \
+    --prod_key %PK% \
+    --prod_ver %PV% \
+    --eula_locale %EL% \
+    --serial_number %SN% \
+    --lic_method %LM% --lic_servers '@'%LS%
+
+if [ $? -ne 0 ]
+then
+    writelog "Could not license %NAME% %VER%. Please inspect the Autodesk setup logs for more info. Bailing..."
+    exit 1
+else
+    writelog "%NAME% %VER% licensing successful."
+fi</string>
+                <key>file_mode</key>
+                <string>0755</string>
             </dict>
         </dict>
         <dict>
@@ -74,28 +168,6 @@
             <dict>
                 <key>PRODUCT_VERSION</key>
                 <string>%VERSION%.0.0.F</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>FileMover</string>
-            <key>Arguments</key>
-            <dict>
-                <key>source</key>
-                <string>%RECIPE_DIR%/scripts/AutodeskPostInstallTmp</string>
-                <key>target</key>
-                <string>%RECIPE_CACHE_DIR%/payload/scripts/postinstall</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>com.github.autopkg.novaksam-recipes.Processors/FileChmodEditor</string>
-            <key>Arguments</key>
-            <dict>
-                <key>modifier</key>
-                <string>755</string>
-                <key>pathname</key>
-                <string>%RECIPE_CACHE_DIR%/payload/scripts/postinstall</string>
             </dict>
         </dict>
         <dict>

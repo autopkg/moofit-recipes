@@ -63,8 +63,9 @@ class AutodeskPostInstallSetup(Processor):
         eula_locale = self.env['EULA_LOCALE']
         serial_number = self.env['SERIAL_NUMBER']
         lic_servers = self.env['LIC_SERVER']
+        postinstall_path = self.env['file_path']
         path = os.path.join(os.path.dirname(__file__),
-                            'scripts/AutodeskPostInstallTmp')
+                            postinstall_path)
         print(path)
         if name:
             filetext = None

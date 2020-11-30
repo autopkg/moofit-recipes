@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Description</key>
+        <string>Downloads latest Simple Apps zip file. Contains both Simple Client and Simple Server</string>
+        <key>Identifier</key>
+        <string>com.github.moofit-recipes.download.simpleapps</string>
+        <key>Input</key>
+        <dict>
+            <key>NAME</key>
+            <string>Simple Apps</string>
+            <key>INCLUDE_PRERELEASES</key>
+            <string></string>
+            <key>GITHUB_REPO</key>
+            <string>Syphon/Simple</string>
+        </dict>
+        <key>MinimumVersion</key>
+        <string>0.2.0</string>
+        <key>Process</key>
+        <array>
+            <dict>
+                <key>Processor</key>
+                <string>GitHubReleasesInfoProvider</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>asset_regex</key>
+                    <string>^Syphon.*.zip$</string>
+                    <key>github_repo</key>
+                    <string>%GITHUB_REPO%</string>
+                    <key>include_prereleases</key>
+                    <string>%INCLUDE_PRERELEASES%</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>URLDownloader</string>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>EndOfCheckPhase</string>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>Unarchiver</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>destination_path</key>
+                    <string>%RECIPE_CACHE_DIR%/unpack</string>
+                </dict>
+            </dict>
+        </array>
+    </dict>
+</plist>

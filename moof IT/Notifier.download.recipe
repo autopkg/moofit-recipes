@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.download.Notifier</string>
+    <key>Description</key>
+    <string>Downloads a Notifier release pkg from Github.</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Notifier</string>
+		<key>VERSION</key>
+		<string></string>
+        <key>INCLUDE_PRERELEASES</key>
+        <string></string>
+        <key>GITHUB_REPO</key>
+        <string>dataJAR/Notifier</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>.*Notifier-%VERSION%.pkg</string>§
+                <key>github_repo</key>
+                <string>%GITHUB_REPO%</string>
+                <key>include_prereleases</key>
+                <string>%INCLUDE_PRERELEASES%</string>
+                <key>sort_by_highest_tag_names</key>>
+                <string>true</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

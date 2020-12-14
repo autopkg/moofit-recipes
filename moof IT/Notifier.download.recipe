@@ -32,7 +32,7 @@
                 <string>%GITHUB_REPO%</string>
                 <key>include_prereleases</key>
                 <string>%INCLUDE_PRERELEASES%</string>
-                <key>sort_by_highest_tag_names</key>>
+                <key>sort_by_highest_tag_names</key>
                 <string>true</string>
             </dict>
         </dict>

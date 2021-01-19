@@ -47,7 +47,7 @@
 			<dict>
 				<key>input_path</key>
 				<string>%RECIPE_CACHE_DIR%/downloads/PhoneGapDesktop.dmg/PhoneGap.app</string>
-				<key>requires</key>
+				<key>requirement</key>
                 <string>identifier "com.electron.phonegap" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Herman Wong (M6QFED29S9)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
 			</dict>
 		</dict>

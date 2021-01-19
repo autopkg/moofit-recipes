@@ -91,10 +91,10 @@ a package at /usr/local/bin/</string>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
-                <key>pkgname</key>
-                <string>%NAME%-%version%</string>
                 <key>pkg_request</key>
                 <dict>
+                    <key>pkgname</key>
+                    <string>%NAME%-%version%</string>
                     <key>pkgdir</key>
                     <string>%pkgroot%</string>
                     <key>id</key>

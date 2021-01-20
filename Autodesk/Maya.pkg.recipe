@@ -175,10 +175,10 @@ fi</string>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
-                <key>pkgname</key>
-                <string>%NAME%-%VERSION%</string>
                 <key>pkg_request</key>
                 <dict>
+                    <key>pkgname</key>
+                    <string>%NAME%-%VERSION%</string>
                     <key>id</key>
                     <string>com.autodesk.Maya%VERSION%</string>
                     <key>options</key>

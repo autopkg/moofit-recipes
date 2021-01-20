@@ -313,9 +313,9 @@ writelog "Script completed"</string>
                     <string>%pkgroot%/scripts</string>
                     <key>pkgroot</key>
                     <string>%pkgroot%/payload</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-%version%</string>
                 </dict>
-                <key>pkgname</key>
-                <string>%NAME%-%version%</string>
             </dict>
         </dict>
         <dict>

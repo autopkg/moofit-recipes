@@ -8,8 +8,6 @@
 	<string>com.github.moofit-recipes.pkg.Zwift</string>
 	<key>Input</key>
 	<dict>
-		<key>BUNDLE_ID</key>
-		<string>com.zwift.ZwiftLauncher</string>
 		<key>NAME</key>
 		<string>Zwift</string>
 	</dict>
@@ -20,15 +18,15 @@
 	<key>Process</key>
 	<array>
 		<dict>
-			 <key>Processor</key>
-			 <string>PkgCopier</string>
-			 <key>Arguments</key>
-			 <dict>
-					<key>source_pkg</key>
-					<string>%pathname%/ZwiftInstaller.pkg</string>
-					<key>pkg_path</key>
-					<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-			 </dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+				<key>source_pkg</key>
+				<string>%pathname%/ZwiftInstaller.pkg</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgCopier</string>
 		</dict>
 	</array>
 </dict>

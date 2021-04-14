@@ -3,9 +3,9 @@
 <plist version="1.0">
     <dict>
         <key>Description</key>
-        <string>Downloads the latest version Rhinoceros and packages into a pkg</string>
+        <string>Downloads the latest version of Rhinoceros 6 and packages into a pkg</string>
         <key>Identifier</key>
-        <string>com.github.moofit-recipes.pkg.Rhinoceros</string>
+        <string>com.github.moofit-recipes.pkg.Rhinoceros6</string>
         <key>ParentRecipe</key>
         <string>com.github.hansen-m.download.Rhinoceros</string>
         <key>Input</key>

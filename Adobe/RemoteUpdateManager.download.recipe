@@ -11,8 +11,6 @@
     <dict>
         <key>NAME</key>
         <string>Adobe RemoteUpdateManager</string>
-        <key>DOWNLOAD_URL</key>
-        <string>https://deploymenttools-prod.s3.amazonaws.com/RUM/RemoteUpdateManager.dmg</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.1</string>
@@ -24,7 +22,7 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
+                <string>https://deploymenttools.acp.adobeoobe.com/RUM/MacUniversal/RemoteUpdateManager.dmg</string>
             </dict>
         </dict>
         <dict>

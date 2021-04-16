@@ -11,12 +11,8 @@
     <dict>
         <key>NAME</key>
         <string>Adobe RemoteUpdateManager</string>
-        <key>DOWNLOAD_URL</key>
-        <string>https://deploymenttools-prod.s3.amazonaws.com/RUM/RemoteUpdateManager.dmg</string>
         <key>IDENTIFIER</key>
         <string>com.adobe.RemoteUpdateManager</string>
-        <key>VERSION</key>
-        <string>2.4.0.3</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.1</string>
@@ -51,6 +47,19 @@
         </dict>
         <dict>
             <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>file://%pkgroot%/usr/local/bin/RemoteUpdateManager</string>
+                <key>re_pattern</key>
+                <string>&lt;key&gt;CFBundleShortVersionString&lt;/key&gt;\s+&lt;string&gt;([\d.]+)</string>
+                <key>result_output_var_name</key>
+                <string>version</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
@@ -74,11 +83,9 @@
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>pkgname</key>
-                    <string>%NAME%-%VERSION%</string>
+                    <string>%NAME%-%version%</string>
                     <key>pkgroot</key>
                     <string>%RECIPE_CACHE_DIR%/payload</string>
-                    <key>version</key>
-                    <string>%VERSION%</string>
                 </dict>
             </dict>
         </dict>

@@ -3,22 +3,18 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads a specific version of DEPNotify, as determined by the
-    input field below, and adds in additional resources to allow for
-    customisation.
+    <string>Downloads a specific version of DEPNotify, as determined by the input field below, and adds in additional
+    resources to allow for customisation.
 
-    The additional resources should belong in a folder alongside this recipe
-    when configuring an override:
+    The additional resources should belong in a folder alongside this recipe when configuring an override:
 
     1. Create a folder next to the override, and add your resources.
     2. Add the name of the folder to the RESOURCES key variable below
-    3. The Copier processor will copy the contents of the folder into the
-    "/Library/Application Support/DEPNotify" folder.
-    4. Call these assets with the various commands after the pkg has been
-    deployed.
+    3. The Copier processor will copy the contents of the folder into the "/Library/Application Support/DEPNotify"
+       folder.
+    4. Call these assets with the various commands after the pkg has been deployed.
 
-    Bear in mind, by repackaging the installer, it will remove the original
-    signature.
+    Bear in mind, by repackaging the installer, it will remove the original signature.
     </string>
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.DEPNotify</string>
@@ -52,6 +48,15 @@
                 <string>%pathname%</string>
             </dict>
         </dict>
+		<dict>
+			<key>Processor</key>
+			<string>FileFinder</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pattern</key>
+				<string>%RECIPE_CACHE_DIR%/**/payload</string>
+			</dict>
+		</dict>
         <dict>
             <key>Processor</key>
             <string>PkgPayloadUnpacker</string>
@@ -60,7 +65,7 @@
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/unpack</string>
                 <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/expanded/DEPNotify-%VERSION%.pkg/Payload</string>
+                <string>%found_filename%</string>
             </dict>
         </dict>
         <dict>
@@ -84,7 +89,8 @@
                 <key>file_content</key>
                 <string>#!/bin/bash
 
-# Setup Path to Plist file
+# Setup "pathToPlistFile" variable in DEPNotify configuration, pointing to 
+# "/Library/Application Support/DEPNotify/DEPNotify.plist" for the root user
 /usr/bin/defaults write menu.nomad.DEPNotify pathToPlistFile "/Library/Application Support/DEPNotify/DEPNotify.plist"</string>
                 <key>file_mode</key>
                 <string>0755</string>

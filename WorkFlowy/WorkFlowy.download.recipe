@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.download.WorkFlowy</string>
+    <key>Description</key>
+    <string>Downloads the latest version of WorkFlowy</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>WorkFlowy</string>
+        <key>INCLUDE_PRERELEASES</key>
+        <string></string>
+        <key>GITHUB_REPO</key>
+        <string>workflowy/desktop</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^WorkFlowy.dmg$</string>
+                <key>github_repo</key>
+                <string>%GITHUB_REPO%</string>
+                <key>include_prereleases</key>
+                <string>%INCLUDE_PRERELEASES%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict> 
+      	<dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>input_path</key>
+				<string>%RECIPE_CACHE_DIR%/downloads/WorkFlowy.dmg/WorkFlowy.app</string>
+				<key>requirement</key>
+                <string>identifier "com.workflowy.desktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = SYB6NBR48V</string>
+			</dict>
+		</dict>
+    </array>
+</dict>
+</plist>

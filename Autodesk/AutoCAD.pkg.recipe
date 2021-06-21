@@ -24,6 +24,8 @@
         <string></string>
         <key>PATH_TO_DMG</key>
         <string></string>
+		<key>CODESIGN_REQUIREMENT</key>
+		<string></string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.moofit-recipes.download.AutoCAD</string>

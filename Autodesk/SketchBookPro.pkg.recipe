@@ -167,7 +167,7 @@ fi</string>
             <key>Arguments</key>
             <dict>
                 <key>PRODUCT_VERSION</key>
-                <string>%VERSION%.0.0.F</string>
+                <string>%VERSION_YEAR%.0.0.F</string>
             </dict>
         </dict>
         <dict>
@@ -178,9 +178,9 @@ fi</string>
                 <key>pkg_request</key>
                 <dict>
                     <key>pkgname</key>
-                    <string>%NAME%-%VERSION%</string>
+                    <string>%NAME%-%VERSION_YEAR%</string>
                     <key>id</key>
-                    <string>com.autodesk.SketchBookPro%VERSION%</string>
+                    <string>com.autodesk.SketchBookPro%VERSION_YEAR%</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>pkgroot</key>
@@ -188,7 +188,7 @@ fi</string>
                     <key>scripts</key>
                     <string>%RECIPE_CACHE_DIR%/payload/scripts</string>
                     <key>version</key>
-                    <string>%VERSION%</string>
+                    <string>%VERSION_YEAR%</string>
                 </dict>
             </dict>
         </dict>

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Author:   Stephen Bygrave - Moof IT
 # Name:     AutodeskPostInstallSetup.sh
@@ -33,7 +33,7 @@ class AutodeskPostInstallSetup(Processor):
             "description": "AutoDesk application product key.",
             "required": True
         },
-        "VERSION": {
+        "VERSION_YEAR": {
             "description": "AutoDesk application version number (i.e. 2021).",
             "required": True
         },
@@ -58,7 +58,7 @@ class AutodeskPostInstallSetup(Processor):
         # Open the postinstall script, substitute the registration info, write changes.
         name = self.env['NAME']
         prod_key = self.env['PRODUCT_KEY']
-        version = self.env['VERSION']
+        version = self.env['VERSION_YEAR']
         prod_ver = self.env['PRODUCT_VERSION']
         eula_locale = self.env['EULA_LOCALE']
         serial_number = self.env['SERIAL_NUMBER']

@@ -58,7 +58,7 @@ class AutodeskPostInstallSetup(Processor):
         # Open the postinstall script, substitute the registration info, write changes.
         name = self.env['NAME']
         prod_key = self.env['PRODUCT_KEY']
-        version = self.env['VERSION_YEAR']
+        version_year = self.env['VERSION_YEAR']
         prod_ver = self.env['PRODUCT_VERSION']
         eula_locale = self.env['EULA_LOCALE']
         serial_number = self.env['SERIAL_NUMBER']
@@ -85,12 +85,12 @@ class AutodeskPostInstallSetup(Processor):
                 with open(path, 'w') as file:
                     file.write(filetext)
 
-        if version:
+        if version_year:
             filetext = None
             with open(path, 'r') as file:
                 filetext = file.read()
             if '%VER%' in filetext:
-                filetext = filetext.replace('%VER%', "%s" % (version))
+                filetext = filetext.replace('%VER%', "%s" % (version_year))
                 with open(path, 'w') as file:
                     file.write(filetext)
 

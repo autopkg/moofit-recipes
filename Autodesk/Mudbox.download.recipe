@@ -14,6 +14,8 @@
         <string></string>
 		<key>PATH_TO_DMG</key>
 		<string></string>
+        <key>VERSION_YEAR</key>
+        <string></string>
 	</dict>
 	<key>Process</key>
 	<array>

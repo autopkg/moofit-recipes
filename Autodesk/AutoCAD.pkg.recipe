@@ -12,7 +12,7 @@
         <string>AutoCAD</string>
         <key>FILE_NAME_SEARCH_TERM</key>
         <string></string>
-        <key>VERSION</key>
+        <key>VERSION_YEAR</key>
         <string></string>
         <key>PRODUCT_KEY</key>
         <string></string>
@@ -24,8 +24,6 @@
         <string></string>
         <key>PATH_TO_DMG</key>
         <string></string>
-		<key>CODESIGN_REQUIREMENT</key>
-		<string></string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.moofit-recipes.download.AutoCAD</string>
@@ -169,7 +167,7 @@ fi</string>
             <key>Arguments</key>
             <dict>
                 <key>PRODUCT_VERSION</key>
-                <string>%VERSION%.0.0.F</string>
+                <string>%VERSION_YEAR%.0.0.F</string>
             </dict>
         </dict>
         <dict>
@@ -180,9 +178,9 @@ fi</string>
                 <key>pkg_request</key>
                 <dict>
                     <key>pkgname</key>
-                    <string>%NAME%-%VERSION%</string>
+                    <string>%NAME%-%VERSION_YEAR%</string>
                     <key>id</key>
-                    <string>com.autodesk.AutoCAD%VERSION%</string>
+                    <string>com.autodesk.AutoCAD%VERSION_YEAR%</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>pkgroot</key>
@@ -190,7 +188,7 @@ fi</string>
                     <key>scripts</key>
                     <string>%RECIPE_CACHE_DIR%/payload/scripts</string>
                     <key>version</key>
-                    <string>%VERSION%</string>
+                    <string>%VERSION_YEAR%</string>
                 </dict>
             </dict>
         </dict>

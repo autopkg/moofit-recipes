@@ -76,6 +76,12 @@ writelog ()
     /usr/bin/logger -is -t "${LOG_PROCESS}" "${1}"
 }
 
+cleanup ()
+{
+    writelog "Cleaning up..."
+    rm -rf "/tmp/%NAME%.pkg"
+}
+
 ##### Run script
 
 # Install %NAME%
@@ -100,6 +106,7 @@ then
     for LICENSING_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name *Licensing*.pkg)
     do
         IFS=$'\n'
+        writelog "Installing ${LICENSING_PKG}..."
         /usr/sbin/installer -pkg "${LICENSING_PKG}" -target /
         if [ $? -ne 0 ]
         then
@@ -113,6 +120,7 @@ then
     for COMPONENT_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name *.pkg ! -name *Licensing*.pkg)
     do
         IFS=$'\n'
+        writelog "Installing ${COMPONENT_PKG}..."
         /usr/sbin/installer -pkg "${COMPONENT_PKG}" -target /
         if [ $? -ne 0 ]
         then
@@ -141,7 +149,7 @@ fi
 
 # activate application
 writelog "Licensing %NAME% %VER%..."
-"/Library/Application Support/Autodesk/AdskLicensing/Current/helper/AdskLicensingInstHelper" \
+if ! "/Library/Application Support/Autodesk/AdskLicensing/Current/helper/AdskLicensingInstHelper" \
     register \
     --cf "/Library/Application Support/Autodesk/Adlm/.config/ProductInformation.pit" \
     --prod_key %PK% \
@@ -149,13 +157,13 @@ writelog "Licensing %NAME% %VER%..."
     --eula_locale %EL% \
     --serial_number %SN% \
     --lic_method %LM% --lic_servers '@'%LS%
-
-if [ $? -ne 0 ]
 then
     writelog "Could not license %NAME% %VER%. Please inspect the Autodesk setup logs for more info. Bailing..."
+    cleanup
     exit 1
 else
     writelog "%NAME% %VER% licensing successful."
+    cleanup
 fi</string>
                 <key>file_mode</key>
                 <string>0755</string>

@@ -63,25 +63,140 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>PkgCopier</string>
-            <key>Arguments</key>
-            <dict>
-                <key>source_pkg</key>
-                <string>%pathname%/Resolume Avenue Installer.pkg</string>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/Avenue-%version%.pkg</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
             <string>PathDeleter</string>
             <key>Arguments</key>
             <dict>
                 <key>path_list</key>
                 <array>
-                    <string>%RECIPE_CACHE_DIR%/unpack</string>
-                    <string>%RECIPE_CACHE_DIR%/expanded</string>
+                    <string>%RECIPE_CACHE_DIR%/downloads/Info.plist</string>
+                    <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Scripts/postinstall</string>
                 </array>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Create postinstall</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg/Scripts/postinstall</string>
+                <key>file_content</key>
+                <string>#!/bin/bash
+
+FILES_TO_REMOVE="libndi.dylib libndi.3.dylib libndi.4.dylib libavcodec.55.dylib libavcodec.57.dylib libavformat.55.dylib libavformat.57.dylib libavutil.52.dylib libavutil.55.dylib libswscale.2.dylib libswscale.4.dylib libArtnet.dylib libltc.dylib libpng16.16.dylib libturbojpeg.0.dylib libfreetype.6.dylib"
+for FILE in ${FILES_TO_REMOVE}; do
+    if [ -e "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/${FILE}" ]; then
+        rm "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/${FILE}"
+    fi
+done
+
+if [ -e "/Library/Application Support/Resolume/beta/nodes/wire/transport.dylib" ]; then
+    rm "/Library/Application Support/Resolume/beta/nodes/wire/transport.dylib";
+fi;
+
+ADOBE_PLUGIN_PATH="/Library/Application Support/Adobe/Common/Plug-ins/7.0/MediaCore/Resolume DXV"
+if [ -e "${ADOBE_PLUGIN_PATH}" ]; then
+    find "${ADOBE_PLUGIN_PATH}" -type d -exec touch {} \;
+fi;
+
+if [ -d "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/BugsplatMac.framework" ]; then
+    rm -r "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/BugsplatMac.framework"
+fi
+if [ -d "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/Sparkle.framework" ]; then
+    rm -r "/Applications/Resolume Avenue/Avenue.app/Contents/MacOS/Sparkle.framework"
+fi
+if [ -d "/Applications/Resolume Avenue/Avenue.app/Contents/Frameworks/Syphon.framework" ]; then
+    rm -r "/Applications/Resolume Avenue/Avenue.app/Contents/Frameworks/Syphon.framework"
+fi
+
+# Remove old plugins if they exist
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/Chromakey.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/Chromakey.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/FFGLBarShift.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/FFGLBarShift.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/FFGLEdgeDetection.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/FFGLEdgeDetection.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/FFGLStopMotion.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/FFGLStopMotion.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/FFGLWaveWarp.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/FFGLWaveWarp.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Fragment.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Fragment.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Goo.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Goo.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Iterate.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Iterate.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Kaleidoscope.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Kaleidoscope.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_RadialBlur.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_RadialBlur.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Ripples.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Ripples.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Stripper.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Stripper.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Tunnel.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_Tunnel.bundle";
+fi
+if [ -d "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_VideoWall.bundle" ]; then
+    rm -rf "/Applications/Resolume Avenue/plugins/ffgl/SyzGL_VideoWall.bundle";
+fi
+
+for DIR in "/Users/Shared/Library/Application Support/Resolume "*; do
+    if [ -d "${DIR}" ]; then
+        rmdir "${DIR}";
+    fi;
+done;
+
+if [ -d "/Users/Shared/Library/Application Support" ]; then
+    rmdir "/Users/Shared/Library/Application Support";
+fi
+if [ -d "/Users/Shared/Library" ]; then
+    rmdir "/Users/Shared/Library";
+fi
+
+if [ -e "/Library/Application Support/Resolume Arena/registration" ]; then
+    chmod ugo+rx "/Library/Application Support/Resolume Arena/";
+    chmod ugo+rwx "/Library/Application Support/Resolume Arena/registration";
+    chmod -R ugo+rw "/Library/Application Support/Resolume Arena/registration";
+fi
+if [ -e "/Library/Application Support/Resolume Avenue/registration" ]; then
+    chmod ugo+rx "/Library/Application Support/Resolume Avenue/";
+    chmod ugo+rwx "/Library/Application Support/Resolume Avenue/registration";
+    chmod -R ugo+rw "/Library/Application Support/Resolume Avenue/registration";
+fi
+if [ -e "/Library/Application Support/Resolume Wire/registration" ]; then
+    chmod ugo+rx "/Library/Application Support/Resolume Wire/";
+    chmod ugo+rwx "/Library/Application Support/Resolume Wire/registration";
+    chmod -R ugo+rw "/Library/Application Support/Resolume Wire/registration";
+fi
+</string>
+                <key>file_mode</key>
+                <string>0755</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                <key>source_flatpkg_dir</key>
+                <string>%RECIPE_CACHE_DIR%/expanded/Resolume_Avenue.pkg</string>
             </dict>
         </dict>
     </array>

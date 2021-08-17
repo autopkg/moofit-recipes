@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Download the latest release of PyCharm (Professional Edition) and capture into a package</string>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.PyCharmPro</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>PyCharmPro</string>
+        <key>PLATFORM</key>
+        <string>mac</string>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.mosen.download.PyCharmPro</string>
+    <key>MinimumVersion</key>
+    <string>0.2.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>AppPkgCreator</string>
+        </dict>
+    </array>
+</dict>
+</plist>

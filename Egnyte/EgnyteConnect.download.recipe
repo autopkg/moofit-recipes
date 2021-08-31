@@ -2,62 +2,47 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Egnyte Connect.</string>
-	<key>Identifier</key>
-	<string>com.github.moofit-recipes.download.EgnyteConnect</string>
-	<key>Input</key>
-	<dict>
-		<key>LOCALE</key>
-		<string>en-us</string>
-		<key>NAME</key>
-		<string>Egnyte Connect</string>
-	</dict>
-	<key>MinimumVersion</key>
-	<string>1.0.1</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>re_pattern</key>
-				<string>"https:\/\/egnyte-cdn\.egnyte\.com\/egnytedrive\/mac\/%LOCALE%\/(?P&lt;version&gt;[\d\.]+)\/EgnyteConnect_[\d\.]+_(?P&lt;match&gt;[\w]+)\.pkg"</string>
-				<key>url</key>
-				<string>https://helpdesk.egnyte.com/hc/%LOCALE%/articles/205237150-Desktop-App-Installers</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>filename</key>
-				<string>%NAME%.pkg</string>
-				<key>url</key>
-				<string>https://egnyte-cdn.egnyte.com/egnytedrive/mac/%LOCALE%/%version%/EgnyteConnect_%version%_%match%.pkg</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>expected_authority_names</key>
-				<array>
-					<string>Developer ID Installer: Egnyte Inc (FELUD555VC)</string>
-					<string>Developer ID Certification Authority</string>
-					<string>Apple Root CA</string>
-				</array>
-				<key>input_path</key>
-				<string>%pathname%</string>
-			</dict>
-			<key>Processor</key>
-			<string>CodeSignatureVerifier</string>
-		</dict>
-	</array>
+    <key>Description</key>
+    <string>Downloads the latest version of Egnyte Connect.</string>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.download.EgnyteConnect</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>EgnyteConnect</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>SparkleUpdateInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>appcast_url</key>
+                <string>https://egnyte-cdn.egnyte.com/egnytedrive/mac/en-us/egd-mac-appcast.xml</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/Egnyte Connect.app</string>
+                <key>requirement</key>
+                <string>identifier "com.egnyte.Egnyte-Drive" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = FELUD555VC</string>
+            </dict>
+        </dict>
+    </array>
 </dict>
 </plist>

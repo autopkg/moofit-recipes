@@ -1,7 +1,0 @@
-#!/bin/bash
-
-## If Chime is open stop the process for a safe upgrade
-if (/usr/bin/pgrep "Amazon Chime"); then
-    echo "Amazon Chime found active, stopping process"
-    /usr/bin/pkill -9 "Amazon Chime"
-fi

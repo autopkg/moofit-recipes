@@ -39,11 +39,13 @@
 			<dict>
 				<key>pkgdirs</key>
 				<dict>
-					<key>Applications</key>
-					<string>0755</string>
+                    <key>payload/Applications</key>
+                    <string>0775</string>
+                    <key>scripts</key>
+                    <string>0755</string>
 				</dict>
 				<key>pkgroot</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<string>%RECIPE_CACHE_DIR%/pkgroot</string>
 			</dict>
 			<key>Processor</key>
 			<string>PkgRootCreator</string>
@@ -52,13 +54,35 @@
 			<key>Arguments</key>
 			<dict>
 				<key>destination_path</key>
-				<string>%pkgroot%/Applications/%app_name%</string>
+				<string>%pkgroot%/payload/Applications/%app_name%</string>
 				<key>source_path</key>
 				<string>%pathname%/%app_name%</string>
 			</dict>
 			<key>Processor</key>
 			<string>Copier</string>
 		</dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+            <key>Comment</key>
+            <string>Make postinstall script</string>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%pkgroot%/scripts/preinstall</string>
+                <key>file_content</key>
+                <string>#!/bin/bash
+
+## If Chime is open stop the process for a safe upgrade
+if (/usr/bin/pgrep "Amazon Chime"); then
+    echo "Amazon Chime found active, stopping process"
+    /usr/bin/pkill -9 "Amazon Chime"
+fi
+</string>
+                <key>file_mode</key>
+                <string>0755</string>
+            </dict>
+        </dict>
 		<dict>
 			<key>Arguments</key>
 			<dict>
@@ -83,8 +107,10 @@
 					<string>purge_ds_store</string>
 					<key>pkgname</key>
 					<string>%NAME%-%version%</string>
+                    <key>pkgroot</key>
+                    <string>%pkgroot%/payload</string>
 					<key>scripts</key>
-					<string>%PKG_SCRIPTS%</string>
+					<string>%pkgroot%/scripts</string>
 					<key>version</key>
 					<string>%version%</string>
 				</dict>

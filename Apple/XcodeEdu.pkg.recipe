@@ -179,7 +179,7 @@ fi</string>
 # 1.0.0:    2020-07-29
 #           SB - Initial Creation
 # 1.0.1:    2021-10-22
-#           SB - Added additional CoreTypes installer
+#           SB - Added additional CoreTypes installer in Xcode 12.5.1
 
 # Use at your own risk. Moof IT will accept no responsibility for loss or damage caused by this script.
 
@@ -209,17 +209,42 @@ LOG_PROCESS="installXcodeComponents"
 echoVariables
 
 # Install Xcode components from Xcode.app
-writelog "Installing Xcode CoreTypes..."
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/CoreTypes.pkg -target / -verbose || writelog "CoreTypes.pkg failed to install."
+if [ -e "/Applications/Xcode.app/Contents/Resources/Packages/CoreTypes.pkg" ]
+then
+    writelog "Installing Xcode CoreTypes..."
+    if ! /usr/sbin/installer -pkg "/Applications/Xcode.app/Contents/Resources/Packages/CoreTypes.pkg" -target / -verbose
+    then
+        writelog "CoreTypes.pkg failed to install."
+    fi
+fi
 
-writelog "Installing MobileDevice components..."
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose || writelog "MobileDevice.pkg failed to install. Please "
+if [ -e "/Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg" ]
+then
+    writelog "Installing MobileDevice components..."
+    if ! /usr/sbin/installer -pkg "/Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg" -target / -verbose
+    then
+        writelog "MobileDevice.pkg failed to install."
+    fi
+fi
 
-writelog "Installing MobileDeviceDevelopment components..."
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg -target / -verbose || writelog "MobileDeviceDevelopment.pkg failed to install."
+if [ -e "/Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg" ]
+then
+    writelog "Installing MobileDeviceDevelopment components..."
+    if ! /usr/sbin/installer -pkg "/Applications/Xcode.app/Contents/Resources/Packages/MobileDeviceDevelopment.pkg" -target / -verbose
+    then
+        writelog "MobileDeviceDevelopment.pkg failed to install."
 
-writelog "Installing Xcode System Resources..."
-/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg -target / -verbose || writelog "XcodeSystemResources.pkg failed to install."
+    fi
+fi
+
+if [ -e "/Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg" ]
+then
+    writelog "Installing Xcode System Resources..."
+    if ! /usr/sbin/installer -pkg "/Applications/Xcode.app/Contents/Resources/Packages/XcodeSystemResources.pkg" -target / -verbose
+    then
+        writelog "XcodeSystemResources.pkg failed to install."
+    fi
+fi
 
 # Stop and remove LaunchDaemon and script
 writelog "Stopping launchdaemon..."

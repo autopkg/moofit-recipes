@@ -92,7 +92,7 @@
 #
 # Usage:    Postinstall script
 #
-# Version:  1.0.0, 2020-07-13
+# 1.0.0:    2020-07-13
 #           SB - Initial Creation
 
 # Use at your own risk. Moof IT will accept no responsibility for loss or damage caused by this script.
@@ -170,17 +170,18 @@ fi</string>
 
 # Author:   Stephen Bygrave - Moof IT
 # Name:     installXcodeComponents.sh
-# Version:  1.0.0
+# Version:  1.0.1
 #
 # Purpose:  This script is called by launchd to install the required "Additional Xcode" components
 #
 # Usage:    Script launched by launchd
 #
-# Version:  1.0.0, 2020-07-29
+# 1.0.0:    2020-07-29
 #           SB - Initial Creation
+# 1.0.1:    2021-10-22
+#           SB - Added additional CoreTypes installer
 
-# Use at your own risk. Moof IT will accept no responsibility for loss or damage
-# caused by this script.
+# Use at your own risk. Moof IT will accept no responsibility for loss or damage caused by this script.
 
 ##### Declare functions
 
@@ -208,6 +209,9 @@ LOG_PROCESS="installXcodeComponents"
 echoVariables
 
 # Install Xcode components from Xcode.app
+writelog "Installing Xcode CoreTypes..."
+/usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/CoreTypes.pkg -target / -verbose || writelog "CoreTypes.pkg failed to install."
+
 writelog "Installing MobileDevice components..."
 /usr/sbin/installer -pkg /Applications/Xcode.app/Contents/Resources/Packages/MobileDevice.pkg -target / -verbose || writelog "MobileDevice.pkg failed to install. Please "
 

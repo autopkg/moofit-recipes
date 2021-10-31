@@ -12,7 +12,7 @@
         <string>Jamf Pro Switcher</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.apfelwerk.download.jamfproswitcher</string>
+    <string>com.github.zentral.download.jamfproswitcher</string>
     <key>Process</key>
     <array>
         <dict>

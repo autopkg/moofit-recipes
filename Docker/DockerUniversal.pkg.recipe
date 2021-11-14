@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest amd64 and arm64 versions of Docker and combines them into a package</string>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.DockerUniversal</string>
+    <key>Input</key>
+    <dict>
+        <key>BUNDLE_ID</key>
+        <string>com.docker.docker</string>
+        <key>NAME</key>
+        <string>Docker</string>
+        <key>AMD64_SPARKLE_FEED_URL</key>
+        <string>https://desktop.docker.com/mac/main/amd64/appcast.xml</string>
+        <key>ARM64_SPARKLE_FEED_URL</key>
+        <string>https://desktop.docker.com/mac/main/arm64/appcast.xml</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.moofit-recipes.download.DockerUniversal</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/amd64</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/downloads/Docker-amd64-*.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%pkgroot%/Applications/Docker.app</string>
+                <key>source_path</key>
+                <string>%found_filename%/Docker.app</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                    </array>
+                    <key>id</key>
+                    <string>%BUNDLE_ID%.amd64</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-amd64-%version%</string>
+                    <key>pkgroot</key>
+                    <string>%RECIPE_CACHE_DIR%/amd64</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0775</string>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/arm64</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/downloads/Docker-arm64-*.dmg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%pkgroot%/Applications/Docker.app</string>
+                <key>source_path</key>
+                <string>%found_filename%/Docker.app</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>chown</key>
+                    <array>
+                        <dict>
+                            <key>group</key>
+                            <string>admin</string>
+                            <key>path</key>
+                            <string>Applications</string>
+                            <key>user</key>
+                            <string>root</string>
+                        </dict>
+                    </array>
+                    <key>id</key>
+                    <string>%BUNDLE_ID%.arm64</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-arm64-%version%</string>
+                    <key>pkgroot</key>
+                    <string>%RECIPE_CACHE_DIR%/arm64</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>scripts</key>
+                    <string>0755</string>
+                    <key>root</key>
+                    <string>0755</string>
+                    <key>root/private</key>
+                    <string>0755</string>
+                    <key>root/private/tmp</key>
+                    <string>0777</string>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/universal</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>overwrite</key>
+                <false/>
+                <key>source</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-amd64-%version%.pkg</string>
+                <key>target</key>
+                <string>%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-amd64-%version%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileMover</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>overwrite</key>
+                <false/>
+                <key>source</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-arm64-%version%.pkg</string>
+                <key>target</key>
+                <string>%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-arm64-%version%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileMover</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/universal/scripts/postinstall</string>
+                <key>file_mode</key>
+                <string>0755</string>
+                <key>file_content</key>
+                <string>#!/bin/zsh
+
+# This script is adapted from Chilcote's Docker recipe, com.github.chilcote.pkg.Docker
+
+# https://forums.docker.com/t/feature-request-cli-tool-for-automated-installation/18334/4
+
+# Set variables
+declare -r INTEL="$3/private/tmp/%NAME%-amd64-%version%.pkg"
+declare -r APPLE_SILICON="$3/private/tmp/%NAME%-arm64-%version%.pkg"
+declare -r DOCKER_BUNDLE_DIR="$3/Applications/Docker.app/Contents"
+declare -r PRIV_HELPER_TOOLS="$3/Library/PrivilegedHelperTools"
+declare -r USR_LOCAL_BIN="$3/usr/local/bin/"
+declare -r USR_LIB_DOCKER="$3/usr/local/lib/docker/"
+
+# Determine architecture
+ARCH=$(/usr/bin/arch)
+
+# Install corresponding package
+if [[ "${ARCH}" == i386 ]]
+then
+    /usr/sbin/installer -pkg "${INTEL}" -target "$3"
+    EXIT_CODE=$?
+else
+    /usr/sbin/installer -pkg "${APPLE_SILICON}" -target "$3"
+    EXIT_CODE=$?
+fi
+
+echo "Cleaning up..."
+/bin/rm -rf "${INTEL}" "${APPLE_SILICON}"
+
+# Check exit code and bail if the package didn't install correctly
+if [[ "${EXIT_CODE}" -ne 0 ]]
+then
+    echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
+    exit 1
+fi
+
+# Create necessary folders
+if [[ ! -d "${USR_LOCAL_BIN}" ]]
+then
+    /bin/mkdir -p "${USR_LOCAL_BIN}"
+    /bin/chmod 1755 "${USR_LOCAL_BIN}"
+fi
+
+if [[ ! -d "${USR_LIB_DOCKER}" ]]
+then
+    /bin/mkdir -p "${USR_LIB_DOCKER}"
+    /bin/chmod 1755 "${USR_LIB_DOCKER}"
+fi
+
+# Create docker binary symlinks
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/com.docker.cli" "$3/usr/local/bin/"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker" "$3/usr/local/bin/"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-compose" "$3/usr/local/bin/"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-compose-v1/docker-compose" "$3/usr/local/bin/docker-compose-v1"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-credential-desktop" "$3/usr/local/bin/"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-credential-ecr-login" "$3/usr/local/bin/"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-credential-osxkeychain" "$3/usr/local/bin/"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/hub-tool" "$3/usr/local/bin/"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/kubectl" "$3/usr/local/bin/"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/kubectl" "$3/usr/local/bin/kubectl.docker"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/com.docker.vpnkit" "$3/usr/local/bin/vpnkit"
+/bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/cli-plugins" "$3${USR_LIB_DOCKER}/cli-plugins"
+
+# Edit hosts file
+if ! /usr/bin/grep kubernetes.docker.internal "$3/etc/hosts"
+then
+    printf "127.0.0.1 kubernetes.docker.internal" >> /etc/hosts
+fi
+
+# Create privileged helper tool
+if [[ ! -d "${PRIV_HELPER_TOOLS}" ]]
+then
+    /bin/mkdir -p "${PRIV_HELPER_TOOLS}"
+    /bin/chmod 1755 "${PRIV_HELPER_TOOLS}"
+fi
+/usr/bin/install -m 0544 -o root -g wheel "${DOCKER_BUNDLE_DIR}/Library/LaunchServices/com.docker.vmnetd" "${PRIV_HELPER_TOOLS}"
+
+# Create LaunchDaemon and load it
+if [[ -e /Library/LaunchDaemons/com.docker.vmnetd.plist ]]
+then
+    /bin/launchctl unload /Library/LaunchDaemons/com.docker.vmnetd.plist
+    /bin/rm /Library/LaunchDaemons/com.docker.vmnetd.plist
+fi
+VMNET_VERSION=$(/usr/bin/defaults read "$3/Applications/Docker.app/Contents/Info.plist" VmnetdVersion)
+/usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" Label -string com.docker.vmnetd
+/usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" Program -string /Library/PrivilegedHelperTools/com.docker.vmnetd
+/usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" RunAtLoad -bool true
+/usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" ProgramArguments -array-add /Library/PrivilegedHelperTools/com.docker.vmnetd
+/usr/libexec/PlistBuddy -c "Add :Sockets dict" "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+/usr/libexec/PlistBuddy -c "Add :Sockets:Listener dict" "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+/usr/libexec/PlistBuddy -c "Add :Sockets:Listener:SockPathMode integer 438" "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+/usr/libexec/PlistBuddy -c "Add :Sockets:Listener:SockPathName string /var/run/com.docker.vmnetd.sock" "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+/usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" Version -string "${VMNET_VERSION}"
+/usr/bin/plutil -convert xml1 "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+/bin/chmod 0644 "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+/bin/launchctl load "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>id</key>
+                    <string>%BUNDLE_ID%</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgname</key>
+                    <string>%NAME%Universal-%version%</string>
+                    <key>pkgroot</key>
+                    <string>%RECIPE_CACHE_DIR%/universal/root</string>
+                    <key>scripts</key>
+                    <string>%RECIPE_CACHE_DIR%/universal/scripts</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/universal</string>
+                    <string>%RECIPE_CACHE_DIR%/amd64</string>
+                    <string>%RECIPE_CACHE_DIR%/arm64</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
+
+

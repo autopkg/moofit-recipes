@@ -41,7 +41,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/Docker-amd64-*.dmg</string>
+                <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-amd64-*.dmg</string>
             </dict>
             <key>Processor</key>
             <string>FileFinder</string>
@@ -106,7 +106,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/Docker-arm64-*.dmg</string>
+                <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-arm64-*.dmg</string>
             </dict>
             <key>Processor</key>
             <string>FileFinder</string>

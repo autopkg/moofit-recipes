@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the current release version of PhpStorm and converts it into a pkg.</string>
     <key>Identifier</key>
-    <string>com.github.chilcote.pkg.PhpStorm</string>
+    <string>com.github.moofit-recipes.pkg.PhpStorm</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

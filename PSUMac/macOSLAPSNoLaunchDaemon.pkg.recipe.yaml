@@ -1,0 +1,59 @@
+Description:
+  Downloads the latest version of macOSLAPS, removes the LaunchDaemon and re-packages. This is used when the execution
+  of the macOSLAPS binary is handled via another method (i.e. via a Jamf Pro policy)
+Identifier: com.github.moofit-recipes.pkg.macOSLAPSNoLaunchDaemon
+MinimumVersion: "2.3"
+ParentRecipe: com.github.neilmartin83.download.macOSLAPS
+
+Input:
+  NAME: macOSLAPS
+  GITHUB_REPO: joshua-d-miller/macOSLAPS
+
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/extract"
+      flat_pkg_path: "%pathname%"
+      purge_destination: true
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%destination_path%/*.pkg"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      destination_path: '%RECIPE_CACHE_DIR%/extract/payload'
+      pkg_payload_path: '%found_filename%/Payload'
+      purge_destination: true
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list: 
+        - "%destination_path%/Library"
+
+  - Processor: com.github.homebysix.VersionSplitter/VersionSplitter
+    Arguments:
+      split_on: (
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: wheel
+            mode: "0755"
+            path: private
+            user: root
+          - group: wheel
+            mode: "0755"
+            path: usr
+            user: root
+        id: edu.psu.macOSLAPS
+        options: purge_ds_store
+        pkgname: "%NAME%-%version%"
+        pkgroot: '%RECIPE_CACHE_DIR%/extract/payload'
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list: 
+        - '%RECIPE_CACHE_DIR%/extract'

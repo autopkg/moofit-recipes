@@ -1,0 +1,49 @@
+Description: Downloads the latest amd64 and arm64 versions of Docker.
+Identifier: com.github.moofit-recipes.download.DockerUniversal
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Docker
+  AMD64_SPARKLE_FEED_URL: https://desktop.docker.com/mac/main/amd64/appcast.xml
+  ARM64_SPARKLE_FEED_URL: https://desktop.docker.com/mac/main/arm64/appcast.xml
+
+Process:
+  - Processor: SparkleUpdateInfoProvider
+    Arguments:
+      appcast_url: "%AMD64_SPARKLE_FEED_URL%"
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-amd64-%version%.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Docker.app"
+      requirement: anchor apple generic and identifier "com.docker.docker" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "9BNSXJN65R")
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Docker.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: SparkleUpdateInfoProvider
+    Arguments:
+      appcast_url: "%ARM64_SPARKLE_FEED_URL%"
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-arm64-%version%.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Docker.app"
+      requirement: anchor apple generic and identifier "com.docker.docker" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "9BNSXJN65R")
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Docker.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString

@@ -44,6 +44,10 @@ Process:
             path: private
             user: root
           - group: wheel
+            mode: "644"
+            path: private/etc/paths.d/laps
+            user: root
+          - group: wheel
             mode: "0755"
             path: usr
             user: root

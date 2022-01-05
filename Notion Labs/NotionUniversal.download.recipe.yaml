@@ -1,0 +1,48 @@
+Description: Downloads the latest amd64 and arm64 versions of Notion
+Identifier: com.github.moofit-recipes.download.NotionUniversal
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Notion
+  AMD64_DOWNLOAD_URL: https://www.notion.so/desktop/mac/download
+  ARM64_DOWNLOAD_URL: https://www.notion.so/desktop/apple-silicon/download
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%AMD64_DOWNLOAD_URL%"
+      filename: "%NAME%-amd64.dmg"
+      request_headers:
+        user-agent: "%USER_AGENT%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Notion.app"
+      requirement: identifier "notion.id" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = LBQJ96FQ8D
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Notion.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%ARM64_DOWNLOAD_URL%"
+      filename: "%NAME%-arm64.dmg"
+      request_headers:
+        user-agent: "%USER_AGENT%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Notion.app"
+      requirement: identifier "notion.id" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = LBQJ96FQ8D
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Notion.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString

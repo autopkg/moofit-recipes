@@ -6,3 +6,7 @@ __pycache__
 ._*
 *.xcuserdatad
 *.xcuserdatad/**
+.markdownlint.yaml
+.isort.cfg
+.flake8
+.trunk

@@ -12,7 +12,7 @@
         <key>NAME</key>
         <string>MediaHuman Audio Converter</string>
         <key>DOWNLOAD_URL</key>
-        <string>https://www.mediahuman.com/download/MHAudioConverter.dmg</string>
+        <string>https://www.mediahuman.net/download/MHAudioConverter.dmg</string>
         <key>USER_AGENT</key>
         <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
     </dict>
@@ -34,6 +34,17 @@
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/MediaHuman Audio Converter.app</string>
+                <key>requirement</key>
+                <string>identifier "com.mediahuman.Audio Converter" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3EULEE7KQ5"</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
         </dict>
     </array>
 </dict>

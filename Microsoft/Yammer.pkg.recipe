@@ -23,7 +23,7 @@
             <key>Arguments</key>
             <dict>
                 <key>warning_message</key>
-                <string>This recipe has been deprecated in favour of com.github.rtrouton.pkg.microsoftyammer.</string>
+                <string>This recipe has been deprecated as Yammer is no longer available as a Mac app. Please use the browser-based desktop app (https://support.microsoft.com/en-us/office/install-the-new-yammer-desktop-app-66ccb412-ca1d-4e43-872c-9705abf11b1b)</string>
             </dict>
         </dict>
         <dict>

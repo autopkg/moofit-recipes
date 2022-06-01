@@ -1,0 +1,34 @@
+Description: Recipe description
+Identifier: com.github.moofit-recipes.download.Reaper
+Input:
+  NAME: REAPER
+  URL: https://www.reaper.fm/download.php
+
+MinimumVersion: '2.3'
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: "reaper.*_universal.dmg"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "https://dlcf.reaper.fm/6.x/%match%"
+      filename: "%NAME%.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/%NAME%.app"
+      requirement: identifier "com.cockos.reaper" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Y3T58622SG
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/Applications/REAPER.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundleid

@@ -1,0 +1,150 @@
+Description: Downloads the latest amd64 and arm64 versions of Notion and combines them into a package
+Identifier: com.github.moofit-recipes.pkg.NotionUniversal
+MinimumVersion: "2.3"
+ParentRecipe: com.github.moofit-recipes.download.NotionUniversal
+
+Input:
+  BUNDLE_ID: notion.id
+  NAME: Notion
+  AMD64_DOWNLOAD_URL: https://www.notion.so/desktop/mac/download
+  ARM64_DOWNLOAD_URL: https://www.notion.so/desktop/apple-silicon/download
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/amd64"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%-amd64.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/Notion.app"
+      source_path: "%found_filename%/Notion.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+          - group: staff
+            mode: "0775"
+            path: Applications/Notion.app
+            user: root
+        id: "%BUNDLE_ID%.amd64"
+        options: purge_ds_store
+        pkgname: "%NAME%-amd64-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/amd64"
+        version: "%version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/arm64"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%-arm64.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/Notion.app"
+      source_path: "%found_filename%/Notion.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+          - group: staff
+            mode: "0775"
+            path: Applications/Notion.app
+            user: root
+        id: "%BUNDLE_ID%.arm64"
+        options: purge_ds_store
+        pkgname: "%NAME%-arm64-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/arm64"
+        version: "%version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        scripts: "0755"
+        root: "0755"
+        root/private: "0755"
+        root/private/tmp: "0777"
+      pkgroot: "%RECIPE_CACHE_DIR%/universal"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%NAME%-amd64-%version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-amd64-%version%.pkg"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%NAME%-arm64-%version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-arm64-%version%.pkg"
+
+  - Processor: FileCreator
+    Arguments:
+      file_path: "%RECIPE_CACHE_DIR%/universal/scripts/postinstall"
+      file_mode: "0755"
+      file_content: |
+        #!/bin/zsh
+
+        # Set variables
+        declare -r INTEL="$3/private/tmp/%NAME%-amd64-%version%.pkg"
+        declare -r APPLE_SILICON="$3/private/tmp/%NAME%-arm64-%version%.pkg"
+
+        # Determine architecture
+        ARCH=$(/usr/bin/arch)
+
+        # Install corresponding package
+        if [[ "${ARCH}" == i386 ]]
+        then
+            /usr/sbin/installer -pkg "${INTEL}" -target "$3"
+            EXIT_CODE=$?
+        else
+            /usr/sbin/installer -pkg "${APPLE_SILICON}" -target "$3"
+            EXIT_CODE=$?
+        fi
+
+        echo "Cleaning up..."
+        /bin/rm -rf "${INTEL}" "${APPLE_SILICON}"
+
+        # Check exit code and bail if the package didn't install correctly
+        if [[ "${EXIT_CODE}" -ne 0 ]]
+        then
+            echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
+            exit 1
+        fi
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        id: "%BUNDLE_ID%"
+        options: purge_ds_store
+        pkgname: "%NAME%Universal-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
+        scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/universal"
+        - "%RECIPE_CACHE_DIR%/amd64"
+        - "%RECIPE_CACHE_DIR%/arm64"

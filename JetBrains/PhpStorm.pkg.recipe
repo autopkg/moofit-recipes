@@ -2,39 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Identifier</key>
-    <string>com.github.amsysuk-recipes.pkg.yammer</string>
     <key>Description</key>
-    <string>Downloads latest Yammer disk image using the parent recipe
-    com.github.jlehikoinen.download.MSYammer and builds a package.
-    </string>
+    <string>Downloads the current release version of PhpStorm and converts it into a pkg.</string>
+    <key>Identifier</key>
+    <string>com.github.moofit-recipes.pkg.PhpStorm</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>Yammer</string>
+        <string>PhpStorm</string>
     </dict>
     <key>ParentRecipe</key>
-    <string>com.github.jlehikoinen.download.MSYammer</string>
+    <string>com.github.mosen.download.PhpStorm</string>
+    <key>MinimumVersion</key>
+    <string>0.6.1</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Processor</key>
-            <string>DeprecationWarning</string>
-            <key>Arguments</key>
-            <dict>
-                <key>warning_message</key>
-                <string>This recipe has been deprecated as Yammer is no longer available as a Mac app. Please use the browser-based desktop app (https://support.microsoft.com/en-us/office/install-the-new-yammer-desktop-app-66ccb412-ca1d-4e43-872c-9705abf11b1b)</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
-            </dict>
-        </dict>
         <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
@@ -55,9 +37,22 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/%app_name%</string>
+                <string>%pathname%/PhpStorm.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%app_name%</string>
+                <string>%pkgroot%/Applications/PhpStorm.app</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Get version from the app</string>
+            <key>Processor</key>
+            <string>Versioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%pkgroot%/Applications/PhpStorm.app/Contents/Info.plist</string>
+                <key>plist_version_key</key>
+                <string>CFBundleShortVersionString</string>
             </dict>
         </dict>
         <dict>
@@ -72,7 +67,7 @@
                     <key>version</key>
                     <string>%version%</string>
                     <key>id</key>
-                    <string>%bundleid%</string>
+                    <string>com.jetbrains.PhpStorm</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>chown</key>

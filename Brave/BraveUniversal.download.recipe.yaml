@@ -1,0 +1,49 @@
+Description: Downloads the latest amd64 and arm64 versions of Brave.
+Identifier: com.github.moofit-recipes.download.BraveUniversal
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Brave
+  AMD64_SPARKLE_FEED_URL: https://updates.bravesoftware.com/sparkle/Brave-Browser/stable/appcast.xml
+  ARM64_SPARKLE_FEED_URL: https://updates.bravesoftware.com/sparkle/Brave-Browser/stable-arm64/appcast.xml
+
+Process:
+  - Processor: SparkleUpdateInfoProvider
+    Arguments:
+      appcast_url: "%AMD64_SPARKLE_FEED_URL%"
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-amd64.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Brave Browser.app"
+      requirement: identifier "com.brave.Browser" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = KL8N8XSYF4
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Brave Browser.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: SparkleUpdateInfoProvider
+    Arguments:
+      appcast_url: "%ARM64_SPARKLE_FEED_URL%"
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-arm64.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Brave Browser.app"
+      requirement: identifier "com.brave.Browser" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = KL8N8XSYF4
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Brave Browser.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString

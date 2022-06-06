@@ -1,0 +1,21 @@
+Description: Downloads an IBM Notifier release pkg from Github. Please note, this has been customised with different icons
+Identifier: com.github.moofit-recipes.download.IBMNotifier
+MinimumVersion: "2.3"
+
+Input:
+  NAME: IBM Notifier
+  VERSION: 2.7.0
+  INCLUDE_PRERELEASES: ""
+  GITHUB_REPO: moofit/ibm-notifier
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      asset_regex: IBM.Notifier-%VERSION%.pkg
+      github_repo: "%GITHUB_REPO%"
+      include_prereleases: "%INCLUDE_PRERELEASES%"
+      sort_by_highest_tag_names: "true"
+
+  - Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase

@@ -2,40 +2,31 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Identifier</key>
-    <string>com.github.amsysuk-recipes.pkg.yammer</string>
-    <key>Description</key>
-    <string>Downloads latest Yammer disk image using the parent recipe
-    com.github.jlehikoinen.download.MSYammer and builds a package.
-    </string>
-    <key>Input</key>
-    <dict>
-        <key>NAME</key>
-        <string>Yammer</string>
+	<key>Description</key>
+	<string>Downloads the latest version of Soundly and turns it into a package</string>
+	<key>Identifier</key>
+	<string>com.github.moofit-recipes.pkg.Soundly</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Soundly</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.4.1</string>
+	<key>ParentRecipe</key>
+	<string>com.github.dataJAR-recipes.download.Soundly</string>
+	<key>Process</key>
+	<array>
+	<dict>
+        <key>Processor</key>
+        <string>AppDmgVersioner</string>
+        <key>Arguments</key>
+        <dict>
+            <key>dmg_path</key>
+            <string>%pathname%</string>
+        </dict>
     </dict>
-    <key>ParentRecipe</key>
-    <string>com.github.jlehikoinen.download.MSYammer</string>
-    <key>Process</key>
-    <array>
-        <dict>
-            <key>Processor</key>
-            <string>DeprecationWarning</string>
-            <key>Arguments</key>
-            <dict>
-                <key>warning_message</key>
-                <string>This recipe has been deprecated as Yammer is no longer available as a Mac app. Please use the browser-based desktop app (https://support.microsoft.com/en-us/office/install-the-new-yammer-desktop-app-66ccb412-ca1d-4e43-872c-9705abf11b1b)</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
-            </dict>
-        </dict>
-        <dict>
+    <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
             <key>Arguments</key>
@@ -89,6 +80,6 @@
                 </dict>
             </dict>
         </dict>
-    </array>
+	</array>
 </dict>
 </plist>

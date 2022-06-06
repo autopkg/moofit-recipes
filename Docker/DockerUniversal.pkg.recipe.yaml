@@ -1,0 +1,208 @@
+Description: Downloads the latest amd64 and arm64 versions of Docker and combines them into a package
+Identifier: com.github.moofit-recipes.pkg.DockerUniversal
+MinimumVersion: "2.3"
+ParentRecipe: com.github.moofit-recipes.download.DockerUniversal
+
+Input:
+  BUNDLE_ID: com.docker.docker
+  NAME: Docker
+  AMD64_SPARKLE_FEED_URL: https://desktop.docker.com/mac/main/amd64/appcast.xml
+  ARM64_SPARKLE_FEED_URL: https://desktop.docker.com/mac/main/arm64/appcast.xml
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/amd64"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%-amd64-*.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/Docker.app"
+      source_path: "%found_filename%/Docker.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: "%BUNDLE_ID%.amd64"
+        options: purge_ds_store
+        pkgname: "%NAME%-amd64-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/amd64"
+        version: "%version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/arm64"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%-arm64-*.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/Docker.app"
+      source_path: "%found_filename%/Docker.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: "%BUNDLE_ID%.arm64"
+        options: purge_ds_store
+        pkgname: "%NAME%-arm64-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/arm64"
+        version: "%version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        scripts: "0755"
+        root: "0755"
+        root/private: "0755"
+        root/private/tmp: "0777"
+      pkgroot: "%RECIPE_CACHE_DIR%/universal"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%NAME%-amd64-%version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-amd64-%version%.pkg"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%NAME%-arm64-%version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-arm64-%version%.pkg"
+
+  - Processor: FileCreator
+    Arguments:
+      file_path: "%RECIPE_CACHE_DIR%/universal/scripts/postinstall"
+      file_mode: "0755"
+      file_content: |
+        #!/bin/zsh
+
+        # This script is adapted from Chilcote's Docker recipe, com.github.chilcote.pkg.Docker
+
+        # https://forums.docker.com/t/feature-request-cli-tool-for-automated-installation/18334/4
+
+        # Set variables
+        declare -r INTEL="$3/private/tmp/%NAME%-amd64-%version%.pkg"
+        declare -r APPLE_SILICON="$3/private/tmp/%NAME%-arm64-%version%.pkg"
+        declare -r DOCKER_BUNDLE_DIR="$3/Applications/Docker.app/Contents"
+        declare -r PRIV_HELPER_TOOLS="$3/Library/PrivilegedHelperTools"
+        declare -r USR_LOCAL_BIN="$3/usr/local/bin/"
+        declare -r USR_LIB_DOCKER="$3/usr/local/lib/docker/"
+
+        # Determine architecture
+        ARCH=$(/usr/bin/arch)
+
+        # Install corresponding package
+        if [[ "${ARCH}" == i386 ]]
+        then
+            /usr/sbin/installer -pkg "${INTEL}" -target "$3"
+            EXIT_CODE=$?
+        else
+            /usr/sbin/installer -pkg "${APPLE_SILICON}" -target "$3"
+            EXIT_CODE=$?
+        fi
+
+        echo "Cleaning up..."
+        /bin/rm -rf "${INTEL}" "${APPLE_SILICON}"
+
+        # Check exit code and bail if the package didn't install correctly
+        if [[ "${EXIT_CODE}" -ne 0 ]]
+        then
+            echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
+            exit 1
+        fi
+
+        # Create necessary folders
+        if [[ ! -d "${USR_LOCAL_BIN}" ]]
+        then
+            /bin/mkdir -p "${USR_LOCAL_BIN}"
+            /bin/chmod 1755 "${USR_LOCAL_BIN}"
+        fi
+
+        if [[ ! -d "${USR_LIB_DOCKER}" ]]
+        then
+            /bin/mkdir -p "${USR_LIB_DOCKER}"
+            /bin/chmod 1755 "${USR_LIB_DOCKER}"
+        fi
+
+        # Create docker binary symlinks
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/com.docker.cli" "$3/usr/local/bin/"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker" "$3/usr/local/bin/"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-compose" "$3/usr/local/bin/"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-compose-v1/docker-compose" "$3/usr/local/bin/docker-compose-v1"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-credential-desktop" "$3/usr/local/bin/"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-credential-ecr-login" "$3/usr/local/bin/"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/docker-credential-osxkeychain" "$3/usr/local/bin/"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/hub-tool" "$3/usr/local/bin/"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/kubectl" "$3/usr/local/bin/"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/kubectl" "$3/usr/local/bin/kubectl.docker"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/bin/com.docker.vpnkit" "$3/usr/local/bin/vpnkit"
+        /bin/ln -sf "${DOCKER_BUNDLE_DIR}/Resources/cli-plugins" "$3${USR_LIB_DOCKER}/cli-plugins"
+
+        # Edit hosts file
+        if ! /usr/bin/grep kubernetes.docker.internal "$3/etc/hosts"
+        then
+            printf "127.0.0.1 kubernetes.docker.internal" >> /etc/hosts
+        fi
+
+        # Create privileged helper tool
+        if [[ ! -d "${PRIV_HELPER_TOOLS}" ]]
+        then
+            /bin/mkdir -p "${PRIV_HELPER_TOOLS}"
+            /bin/chmod 1755 "${PRIV_HELPER_TOOLS}"
+        fi
+        /usr/bin/install -m 0544 -o root -g wheel "${DOCKER_BUNDLE_DIR}/Library/LaunchServices/com.docker.vmnetd" "${PRIV_HELPER_TOOLS}"
+
+        # Create LaunchDaemon and load it
+        if [[ -e /Library/LaunchDaemons/com.docker.vmnetd.plist ]]
+        then
+            /bin/launchctl unload /Library/LaunchDaemons/com.docker.vmnetd.plist
+            /bin/rm /Library/LaunchDaemons/com.docker.vmnetd.plist
+        fi
+        VMNET_VERSION=$(/usr/bin/defaults read "$3/Applications/Docker.app/Contents/Info.plist" VmnetdVersion)
+        /usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" Label -string com.docker.vmnetd
+        /usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" Program -string /Library/PrivilegedHelperTools/com.docker.vmnetd
+        /usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" RunAtLoad -bool true
+        /usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" ProgramArguments -array-add /Library/PrivilegedHelperTools/com.docker.vmnetd
+        /usr/libexec/PlistBuddy -c "Add :Sockets dict" "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+        /usr/libexec/PlistBuddy -c "Add :Sockets:Listener dict" "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+        /usr/libexec/PlistBuddy -c "Add :Sockets:Listener:SockPathMode integer 438" "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+        /usr/libexec/PlistBuddy -c "Add :Sockets:Listener:SockPathName string /var/run/com.docker.vmnetd.sock" "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+        /usr/bin/defaults write "$3/Library/LaunchDaemons/com.docker.vmnetd.plist" Version -string "${VMNET_VERSION}"
+        /usr/bin/plutil -convert xml1 "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+        /bin/chmod 0644 "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+        /bin/launchctl load "$3/Library/LaunchDaemons/com.docker.vmnetd.plist"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        id: "%BUNDLE_ID%"
+        options: purge_ds_store
+        pkgname: "%NAME%Universal-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
+        scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/universal"
+        - "%RECIPE_CACHE_DIR%/amd64"
+        - "%RECIPE_CACHE_DIR%/arm64"

@@ -25,9 +25,7 @@
                 <key>pkgdirs</key>
                 <dict>
                     <key>payload/Applications</key>
-                    <string>0775</string>
-                    <key>payload/Applications/Workplace Chat</key>
-                    <string>0777</string>                    
+                    <string>0775</string>                
                     <key>scripts</key>
                     <string>0755</string>
                 </dict>
@@ -41,26 +39,7 @@
                 <key>source_path</key>
                 <string>%pathname%/%app_name%</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/payload/Applications/Workplace Chat/%app_name%</string>
-            </dict>
-        </dict>
-                <dict>
-            <key>Processor</key>
-            <string>FileCreator</string>
-            <key>Comment</key>
-            <string>Create postinstall</string>
-            <key>Arguments</key>
-            <dict>
-                <key>file_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/scripts/postinstall</string>
-                <key>file_content</key>
-                <string>#!/bin/bash
-
-# Change permissions on the Workplace Chat folder and enclsoed app.
-chmod -R 777 "$3/Applications/Workplace Chat"
-                </string>
-                <key>file_mode</key>
-                <string>0755</string>
+                <string>%pkgroot%/payload/Applications/%app_name%</string>
             </dict>
         </dict>
         <dict>

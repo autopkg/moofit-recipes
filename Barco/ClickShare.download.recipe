@@ -17,11 +17,13 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>PathDeleter</string>
+            <string>com.github.smithjw.processors/FriendlyPathDeleter</string>
             <key>Arguments</key>
             <dict>
+                <key>fail_deleter_silently</key>
+                <true/>
                 <key>path_list</key>
-                <string>%RECIPE_CACHE_DIR%</string>
+                <string>%RECIPE_CACHE_DIR%/downloads/%NAME%.zip</string>
             </dict>
         </dict>
         <dict>
@@ -48,6 +50,10 @@
                 <string>https://www.barco.com/services/website/en/TdeFiles/%match%</string>
             </dict>
         </dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
         <dict>
             <key>Processor</key>
             <string>Unarchiver</string>

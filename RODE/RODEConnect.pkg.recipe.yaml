@@ -1,0 +1,25 @@
+Description: Downloads the current version of RODE Connect as a package.
+Identifier: com.github.moofit-recipes.pkg.RODEConnect
+ParentRecipe: com.github.moofit-recipes.download.RODEConnect
+MinimumVersion: "2.3"
+Input:
+  NAME: RODE Connect
+  DOWNLOAD_URL: "https://rode.com/en/software/rodeconnect#module_17"
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      flat_pkg_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"
+      purge_destination: false
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/RodeConnect.pkg/Payload"
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/unpack/Applications/%NAME%.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      source_pkg: "%RECIPE_CACHE_DIR%/%NAME%.pkg"

@@ -1,0 +1,37 @@
+Description: Downloads the current version of RODE Central.
+Identifier: com.github.moofit-recipes.download.RODECentral
+MinimumVersion: "2.3"
+
+Input:
+  NAME: RODE Central
+  DOWNLOAD_URL: https://edge.rode.com/zip/page/1873/modules/4782/rodecentral_installation_file_mac.zip
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%DOWNLOAD_URL%"
+      filename: "%NAME%.zip"
+
+  - Processor: EndOfCheckPhase
+
+  - Arguments:
+      archive_format: zip
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/unzip"
+      purge_destination: True
+    Comment: Unzipping for code signature verification. Path must be deleted afterwards to prevent unzipping over existing version.
+    Processor: Unarchiver
+
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"
+      source_pkg: "%RECIPE_CACHE_DIR%/unzip/*/RODE Central Installer.pkg"
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"
+      expected_authority_names: 
+       - "Developer ID Installer: FREEDMAN ELECTRONICS PTY LTD (Z9T72PWTJA)"
+       - Developer ID Certification Authority
+       - Apple Root CA
+

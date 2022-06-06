@@ -1,0 +1,24 @@
+Description: Downloads the current version of Lucid.
+Identifier: com.github.moofit-recipes.download.lucid
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Lucid
+  DOWNLOAD_URL: https://www.lucidlink.com/download/latest/osx/stable/
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%DOWNLOAD_URL%"
+      filename: "%NAME%.pkg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%"
+      expected_authority_names: 
+       - "Developer ID Installer: LucidLink Corp. (Y4KMJPU2B4)"
+       - Developer ID Certification Authority
+       - Apple Root CA
+

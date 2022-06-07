@@ -3,11 +3,11 @@
 <plist version="1.0">
     <dict>
         <key>Description</key>
-        <string>Downloads the latest version of Rhinoceros 7 and packages into a pkg</string>
+        <string>Downloads the latest version of Rhino 7 and packages into a pkg</string>
         <key>Identifier</key>
-        <string>com.github.moofit-recipes.pkg.Rhinoceros7</string>
+        <string>com.github.moofit-recipes.pkg.Rhino7</string>
         <key>ParentRecipe</key>
-        <string>com.github.dataJAR-recipes.download.Rhinoceros 7</string>
+        <string>com.github.dataJAR-recipes.download.Rhino 7</string>
         <key>Input</key>
         <dict>
             <key>NAME</key>

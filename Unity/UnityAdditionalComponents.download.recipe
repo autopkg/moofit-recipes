@@ -11,14 +11,17 @@
 
     The "%ADDITIONAL_COMPONENT%" variable supports one of the following:
 
-    Unity Android
+    Android
     AppleTV
     iOS
+    Linux-IL2CPP
     Linux-Mono
-    Lumin
+    Linux-Server
     Mac-IL2CPP
+    Mac-Server
     WebGL
     Windows-Mono
+    Windows-Server
     </string>
     <key>Identifier</key>
 	<string>com.github.moofit-recipes.download.UnityAdditionalComponents</string>

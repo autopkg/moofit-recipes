@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads and packages the latest verison of AutoCAD from a local file.</string>
+    <string>Downloads and packages AutoCAD with built-in licensing information</string>
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.AutoCAD</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>AutoCAD</string>
+        <string>Mudbox</string>
         <key>FILE_NAME_SEARCH_TERM</key>
         <string></string>
         <key>VERSION_YEAR</key>
@@ -17,7 +17,7 @@
         <key>PRODUCT_KEY</key>
         <string></string>
         <key>EULA_LOCALE</key>
-        <string></string>
+        <string>GB</string>
         <key>SERIAL_NUMBER</key>
         <string></string>
         <key>LIC_SERVER</key>
@@ -66,17 +66,17 @@
                 <key>file_path</key>
                 <string>%RECIPE_CACHE_DIR%/payload/scripts/postinstall</string>
                 <key>file_content</key>
-                <string>#!/bin/sh
+                <string>#!/bin/zsh
 
 ##### Define Functions
 
-writelog ()
+writelog()
 {
     # Write to system log
     /usr/bin/logger -is -t "${LOG_PROCESS}" "${1}"
 }
 
-cleanup ()
+cleanup()
 {
     writelog "Cleaning up..."
     rm -rf "/tmp/%NAME%.pkg"
@@ -87,83 +87,94 @@ cleanup ()
 # Install %NAME%
 writelog "Installing %NAME% %VER%..."
 
-if [ -e "/tmp/%NAME%.pkg" ]
-then
-    writelog "%NAME% %VER% package installer found."
-    /usr/sbin/installer -pkg "/tmp/%NAME%.pkg" -target /
-elif [ -e "/tmp/%NAME%.app" ]
-then
+if [[ -e "/tmp/%NAME%.app" ]]; then
     EXIT_CODE=0
     writelog "Installing all pkgs within %NAME%.app...."
 
-    # It's worthwhile noting that the following lines are a workaround to two issues with Autodesk's non-native PKG 
-    # installers; they don't work when a user isn't logged into the Mac, and they don't work when bundled inside a pkg 
+    # It's worthwhile noting that the following lines are a workaround to two issues with Autodesk's non-native PKG
+    # installers; they don't work when a user isn't logged into the Mac, and they don't work when bundled inside a pkg
     # with a postinstall script. Therefore, we need to manually install all pkgs present inside the Setup.app bundle,
-    # with the first pkg always being the AdskLicensing-*.pkg. 
+    # with the first pkg always being the AdskLicensing-*.pkg.
     #
     # Le sigh.
 
-    for LICENSING_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name *Licensing*.pkg)
-    do
-        IFS=$'\n'
+    IFS=$'\n'
+
+    # Install main licensing package
+    for LICENSING_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name "*Licensing*.pkg"); do
         writelog "Installing ${LICENSING_PKG}..."
-        /usr/sbin/installer -pkg "${LICENSING_PKG}" -target /
-        if [ $? -ne 0 ]
-        then
+        if ! /usr/sbin/installer -pkg "${LICENSING_PKG}" -target /; then
             writelog "Could not install ${LICENSING_PKG}. Please inspect the Autodesk setup logs for more info."
             EXIT_CODE=1
         else
             writelog "${LICENSING_PKG} install successful."
         fi
-        unset IFS
     done
-    for COMPONENT_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name *.pkg ! -name *Licensing*.pkg)
-    do
-        IFS=$'\n'
+
+    # Install all other packages
+    for COMPONENT_PKG in $(/usr/bin/find "/tmp/%NAME%.app" -name "*.pkg" ! -name "*Licensing*.pkg"); do
         writelog "Installing ${COMPONENT_PKG}..."
-        /usr/sbin/installer -pkg "${COMPONENT_PKG}" -target /
-        if [ $? -ne 0 ]
-        then
+        if ! /usr/sbin/installer -pkg "${COMPONENT_PKG}" -target /; then
             writelog "Could not install ${COMPONENT_PKG}. Please inspect the Autodesk setup logs for more info."
             EXIT_CODE=1
         else
             writelog "${COMPONENT_PKG} install successful."
         fi
-        unset IFS
     done
+
+    # Install ODIS, if it's there
+    for ODIS_SCRIPT in $(/usr/bin/find "/tmp/%NAME%.app" -name "installbuilder.sh"); do
+        if [[ -n ${ODIS_SCRIPT} ]]; then
+            writelog "Installing ${ODIS_SCRIPT}..."
+            if ! "${ODIS_SCRIPT}" --mode unattended --unattendedmodeui none; then
+                writelog "Could not install ${ODIS_SCRIPT}. Please inspect the Autodesk setup logs for more info."
+                EXIT_CODE=1
+            else
+                writelog "${ODIS_SCRIPT} install successful."
+            fi
+        fi
+    done
+    unset IFS
 else
-    writelog "No %NAME% %VER% installer binary or package was found. Bailing..."
+    writelog "No %NAME% %VER% installer binary was found. Bailing..."
     exit 1
 fi
 
-if [ ${EXIT_CODE} -ne 0 ]
-then
+if [[ ${EXIT_CODE} -ne 0 ]]; then
     writelog "Could not install %NAME% %VER%. Please inspect the Autodesk setup logs for more info. Bailing..."
     exit 1
 else
     writelog "%NAME% %VER% install successful."
 fi
 
-# Fix permissions on the adlm folder to allow for licensing
-/bin/chmod -R 755 "/Library/Application Support/Autodesk/Adlm"
-
-# activate application
+# Activate application
 writelog "Licensing %NAME% %VER%..."
+PIT_FILE=$(/usr/bin/find "/Library/Application Support/Autodesk" -name ProductInformation.pit)
 if ! "/Library/Application Support/Autodesk/AdskLicensing/Current/helper/AdskLicensingInstHelper" \
     register \
-    --cf "/Library/Application Support/Autodesk/Adlm/.config/ProductInformation.pit" \
+    --cf "${PIT_FILE}" \
     --prod_key %PK% \
     --prod_ver %PV% \
     --eula_locale %EL% \
     --serial_number %SN% \
-    --lic_method %LM% --lic_servers '@'%LS%
-then
+    --lic_method %LM% --lic_servers '@'%LS%; then
     writelog "Could not license %NAME% %VER%. Please inspect the Autodesk setup logs for more info. Bailing..."
     cleanup
     exit 1
 else
     writelog "%NAME% %VER% licensing successful."
     cleanup
+fi
+
+# A few permissions and silly installer fixes
+/bin/chmod -R 755 "/Library/Application Support/Autodesk"
+CURRENT_USER=$(/bin/echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }')
+if [[ -n ${CURRENT_USER} ]]; then
+    CURRENT_USER_HOME=$(/usr/bin/finger -m ${CURRENT_USER} | awk '/^Directory/ {print $2}')
+    if [[ -e "${CURRENT_USER_HOME}/Library/Application Support/Autodesk" ]]; then
+        writelog "Fixing a permissions bug for "${CURRENT_USER}"... psssh..."
+        /usr/sbin/chown -R "${CURRENT_USER}" "${CURRENT_USER_HOME}/Library/Application Support/Autodesk"
+    fi
 fi</string>
                 <key>file_mode</key>
                 <string>0755</string>

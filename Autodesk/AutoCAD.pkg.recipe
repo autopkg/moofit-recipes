@@ -135,6 +135,19 @@ if [[ -e "/tmp/%NAME%.app" ]]; then
         fi
     done
     unset IFS
+
+    # Run postInstallODISMaster, if it's there
+    for POSTINSTALLODISMASTER_SH in $(/usr/bin/find "/tmp/%NAME%.app" -name "postInstallODISMaster.sh"); do
+        if [[ -n ${POSTINSTALLODISMASTER_SH} ]]; then
+            writelog "Installing ${POSTINSTALLODISMASTER_SH}..."
+            if ! "${ODIS_SCRIPT}"; then
+                writelog "Could not install ${POSTINSTALLODISMASTER_SH}. Please inspect the Autodesk setup logs for more info."
+                EXIT_CODE=1
+            else
+                writelog "${POSTINSTALLODISMASTER_SH} install successful."
+            fi
+        fi
+    done
 else
     writelog "No %NAME% %VER% installer binary was found. Bailing..."
     exit 1

@@ -140,7 +140,7 @@ if [[ -e "/tmp/%NAME%.app" ]]; then
     for POSTINSTALLODISMASTER_SH in $(/usr/bin/find "/tmp/%NAME%.app" -name "postInstallODISMaster.sh"); do
         if [[ -n ${POSTINSTALLODISMASTER_SH} ]]; then
             writelog "Installing ${POSTINSTALLODISMASTER_SH}..."
-            if ! "${ODIS_SCRIPT}"; then
+            if ! "${POSTINSTALLODISMASTER_SH}" nobody; then
                 writelog "Could not install ${POSTINSTALLODISMASTER_SH}. Please inspect the Autodesk setup logs for more info."
                 EXIT_CODE=1
             else

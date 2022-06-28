@@ -1,0 +1,29 @@
+Description: Downloads VCV Rack 2 Free as a package
+Identifier: com.github.moofit-recipes.pkg.VCVRack2Free
+Input:
+  NAME: VCVRack2Free
+MinimumVersion: '2.3'
+ParentRecipe: com.github.dataJAR-recipes.download.VCV Rack 2 Free
+
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      flat_pkg_path: "%pathname%"
+      purge_destination: false
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      pkg_payload_path: "%destination_path%/Component.pkg/Payload"
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/unpack/VCV Rack 2 Free.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      source_pkg: "%pathname%"
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/unpack"

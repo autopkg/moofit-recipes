@@ -41,13 +41,26 @@
                 </dict>
             </dict>
         </dict>
+       <dict>
+            <key>Arguments</key>
+             <dict>
+            <key>find</key>
+                <string> </string>
+            <key>input_string</key>
+                <string>%url%</string>
+            <key>replace</key>
+            <string>%20</string>
+         </dict>
+        <key>Processor</key>
+        <string>com.github.homebysix.FindAndReplace/FindAndReplace</string>
+</dict>
         <dict>
             <key>Processor</key>
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%DOWNLOAD_PAGE_URL%/%url%</string>
+                <string>%DOWNLOAD_PAGE_URL%/%output_string%</string>
             </dict>
         </dict>
         <dict>

@@ -47,11 +47,24 @@
         </dict>
         <dict>
             <key>Processor</key>
+            <string>com.github.homebysix.FindAndReplace/FindAndReplace</string>
+            <key>Arguments</key>
+            <dict>
+                <key>find</key>
+                <string> </string>
+                <key>input_string</key>
+                <string>%pkgroot%</string>
+                <key>replace</key>
+                <string>%20</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>URLTextSearcher</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>file://%pkgroot%/usr/local/bin/RemoteUpdateManager</string>
+                <string>file://%output_string%/usr/local/bin/RemoteUpdateManager</string>
                 <key>re_pattern</key>
                 <string>&lt;key&gt;CFBundleShortVersionString&lt;/key&gt;\s+&lt;string&gt;([\d.]+)</string>
                 <key>result_output_var_name</key>

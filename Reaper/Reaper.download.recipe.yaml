@@ -28,7 +28,7 @@ Process:
 
   - Processor: PlistReader
     Arguments:
-      info_path: "%pathname%/Applications/REAPER.app/Contents/Info.plist"
+      info_path: "%pathname%/%NAME%.app/Contents/Info.plist"
       plist_keys:
         CFBundleShortVersionString: version
         CFBundleIdentifier: bundleid

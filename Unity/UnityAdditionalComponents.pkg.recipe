@@ -48,6 +48,19 @@
 				<string>%pathname%</string>
 			</dict>
 		</dict>
+        <dict>
+            <key>Processor</key>
+            <string>com.github.homebysix.FindAndReplace/FindAndReplace</string>
+            <key>Arguments</key>
+            <dict>
+                <key>find</key>
+                <string> </string>
+                <key>input_string</key>
+                <string>%RECIPE_CACHE_DIR%</string>
+                <key>replace</key>
+                <string>%20</string>
+            </dict>
+        </dict>
 		<dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -56,7 +69,7 @@
 				<key>re_pattern</key>
 				<string>product version="(?P&lt;version&gt;.*?)"</string>
 				<key>url</key>
-				<string>file:////%RECIPE_CACHE_DIR%/expand/Distribution</string>
+				<string>file:////%output_string%/expand/Distribution</string>
 			</dict>
 		</dict>
 		<dict>

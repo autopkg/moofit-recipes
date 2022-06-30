@@ -6,13 +6,13 @@
     <string>com.github.moofit-recipes.download.RemoteUpdateManager</string>
     <key>Description</key>
     <string>Downloads the latest version of Adobe's RemoteUpdateManager from Adobe. The "ARCH" input variable must be
-    set to either "MacIntel" or "AppleSilicon"</string>
+    set to either "MacIntel" (default) or "AppleSilicon"</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
         <string>Adobe RemoteUpdateManager</string>
         <key>ARCH</key>
-        <string></string>
+        <string>MacIntel</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.1</string>

@@ -1,0 +1,43 @@
+Description: Downloads the latest M1 and Intel versions of Native Instruments Native Access.
+Identifier: com.github.moofit.download.NativeAccess2Universal
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Native Access 2
+  INTEL_URL: https://www.native-instruments.com/fileadmin/downloads/Native-Access_2_Mac_Intel.dmg
+  M1_URL: https://www.native-instruments.com/fileadmin/downloads/Native-Access_2_Mac_M1.dmg
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-Intel.dmg"
+      url: "%INTEL_URL%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Native Access.app"
+      requirement: identifier "com.native-instruments.nativeaccess2" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "83K5EG6Z9V"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Native Access.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-M1.dmg"
+      url: "%M1_URL%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Native Access.app"
+      requirement: identifier "com.native-instruments.nativeaccess2" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "83K5EG6Z9V"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Native Access.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString

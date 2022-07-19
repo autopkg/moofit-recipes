@@ -1,0 +1,199 @@
+Description: Downloads and packages the latest M1 and Intel versions of Native Instruments Native Access into a single installer.
+Identifier: com.github.moofit.pkg.NativeAccess2Universal
+ParentRecipe: com.github.moofit.download.NativeAccess2Universal
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Native Access
+  INTEL_URL: https://www.native-instruments.com/fileadmin/downloads/Native-Access_2_Mac_Intel.dmg
+  M1_URL: https://www.native-instruments.com/fileadmin/downloads/Native-Access_2_Mac_M1.dmg
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/Intel"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%-Intel.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/Native Access.app"
+      source_path: "%found_filename%/Native Access.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+        id: com.native-instruments.nativeaccess2.Intel
+        options: purge_ds_store
+        pkgdir: "%RECIPE_CACHE_DIR%"
+        version: "%version%"
+      pkgname: "%NAME%-Intel-%version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/M1"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%-M1.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/Native Access.app"
+      source_path: "%found_filename%/Native Access.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+        id: com.native-instruments.nativeaccess2.M1
+        options: purge_ds_store
+        pkgdir: "%RECIPE_CACHE_DIR%"
+        version: "%version%"
+      pkgname: "%NAME%-M1-%version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        scripts: "0755"
+        root: "0755"
+        root/private: "0755"
+        root/private/tmp: "0777"
+      pkgroot: "%RECIPE_CACHE_DIR%/universal"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%NAME%-Intel-%version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-Intel-%version%.pkg"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%NAME%-M1-%version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-M1-%version%.pkg"
+
+  - Processor: FileCreator
+    Arguments:
+      file_path: "%RECIPE_CACHE_DIR%/universal/scripts/postinstall"
+      file_mode: "0755"
+      file_content: |
+        #!/bin/zsh
+
+        # Set variables
+        declare -r INTEL="$3/private/tmp/%NAME%-Intel-%version%.pkg"
+        declare -r APPLE_SILICON="$3/private/tmp/%NAME%-M1-%version%.pkg"
+
+        # Determine architecture
+        ARCH=$(/usr/bin/arch)
+
+        # Check if Native Access is open. If it is, close it.
+        NATIVE_ACCESS_PID=$(/usr/bin/pgrep "Native Access")
+        if [[ -n ${NATIVE_ACCESS_PID} ]]; then
+            writelog "Native Access is running. Closing..."
+            kill -9 "${NATIVE_ACCESS_PID}"
+        fi
+
+        # Install corresponding package
+        if [[ "${ARCH}" == i386 ]]
+        then
+            /usr/sbin/installer -pkg "${INTEL}" -target "$3"
+            INSTALL_EXIT_CODE=$?
+        else
+            /usr/sbin/installer -pkg "${APPLE_SILICON}" -target "$3"
+            INSTALL_EXIT_CODE=$?
+        fi
+
+        echo "Cleaning up..."
+        /bin/rm -rf "${INTEL}" "${APPLE_SILICON}"
+
+        # Check exit code and bail if the package didn't install correctly
+        if [[ "${INSTALL_EXIT_CODE}" -ne 0 ]]
+        then
+            echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
+            exit 1
+        fi
+
+        # Verify installation
+        NATIVE_ACCESS_APP_PATH=$(/usr/bin/find /Applications -name "Native Access*".app -maxdepth 1)
+        if [[ -z ${NATIVE_ACCESS_APP_PATH} ]]; then
+            writelog "Native Access is not installed. Bailing..."
+            exit 1
+        fi
+
+        # Check if Native Access helper tool exists, and bail if not
+        if [[ ! -e "${NATIVE_ACCESS_APP_PATH}/Contents/Resources/daemon/mac/NTKDaemon Installer Mac.pkg" ]]; then
+            writelog "Native Access NTKDaemon installer not present. Bailing..."
+            exit 1
+        fi
+
+        # Check if LaunchDaemon exists and is running
+        if [[ "$(/bin/launchctl list | grep -c com.native-instruments.NativeAccess.Helper2)" -ne 0 ]]; then
+            writelog "Launchdaemon already running. Unloading and removing..."
+            /bin/launchctl unload "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+            /bin/rm "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+        fi
+
+        # Create PrivilegedHelperTool directory if not present
+        if [[ ! -e "/Library/PrivilegedHelperTools/" ]]; then
+            writelog "Creating PrivilegedHelperTools directory..."
+            /bin/mkdir -p "/Library/PrivilegedHelperTools/"
+            /bin/chmod 755 "/Library/PrivilegedHelperTools"
+            /usr/sbin/chown root:wheel "/Library/PrivilegedHelperTools"
+        fi
+
+        # Expand the helper tool from the package in order to create helper tools
+        /usr/sbin/pkgutil --expand-full "${NATIVE_ACCESS_APP_PATH}/Contents/Resources/daemon/mac/NTKDaemon Installer Mac.pkg" /tmp/expand
+        PRIVILEGEDHELPERTOOL=$(find /tmp/expand -name com.native-instruments.NativeAccess.Helper2)
+        cp -r "${PRIVILEGEDHELPERTOOL}" "/Library/PrivilegedHelperTools/"
+        /bin/chmod 544 "/Library/PrivilegedHelperTools/com.native-instruments.NativeAccess.helper2"
+        /usr/sbin/chown root:wheel "/Library/PrivilegedHelperTools/com.native-instruments.NativeAccess.helper2"
+
+        # # Create LaunchDaemon and set permissions
+        /usr/libexec/PlistBuddy -c "Add MachServices dict" -c "Add MachServices:com.native-instruments.NativeAccess.Helper2 bool true" "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+        /usr/libexec/PlistBuddy -c "Add Label string com.native-instruments.NativeAccess.Helper2" "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+        /usr/libexec/PlistBuddy -c "Add Program string /Library/PrivilegedHelperTools/com.native-instruments.NativeAccess.Helper2" "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+        /usr/libexec/PlistBuddy -c "Add ProgramArguments array" -c "Add ProgramArguments: string /Library/PrivilegedHelperTools/com.native-instruments.NativeAccess.Helper2" "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+        /bin/chmod 644 "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+        /usr/sbin/chown root:wheel "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+
+        # Launch LaunchDaemon
+        /bin/launchctl load "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
+
+        # Install daemon package
+        if ! installer -pkg "${NATIVE_ACCESS_APP_PATH}/Contents/Resources/daemon/mac/NTKDaemon Installer Mac.pkg" -target /; then
+            writelog "Unable to install NTKDaemon. Bailing..."
+            exit 1
+        fi
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        id: com.native-instruments.nativeaccess2
+        options: purge_ds_store
+        pkgname: "%NAME%-Universal-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
+        scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/universal"
+        - "%RECIPE_CACHE_DIR%/Intel"
+        - "%RECIPE_CACHE_DIR%/M1"

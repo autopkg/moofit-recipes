@@ -10,6 +10,10 @@ Input:
   ARM64_SPARKLE_FEED_URL: https://desktop.docker.com/mac/main/arm64/appcast.xml
 
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "This recipe has been deprecated and is now managed by wegotoeleven @ com.github.wegotoeleven-recipes.pkg.DockerUniversal."
+
   - Processor: PkgRootCreator
     Arguments:
       pkgdirs:

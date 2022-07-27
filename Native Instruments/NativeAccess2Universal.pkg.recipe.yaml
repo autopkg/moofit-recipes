@@ -128,59 +128,6 @@ Process:
             echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
             exit 1
         fi
-
-        # Verify installation
-        NATIVE_ACCESS_APP_PATH=$(/usr/bin/find /Applications -name "Native Access*".app -maxdepth 1)
-        if [[ -z ${NATIVE_ACCESS_APP_PATH} ]]; then
-            writelog "Native Access is not installed. Bailing..."
-            exit 1
-        fi
-
-        # Check if Native Access helper tool exists, and bail if not
-        if [[ ! -e "${NATIVE_ACCESS_APP_PATH}/Contents/Resources/daemon/mac/NTKDaemon Installer Mac.pkg" ]]; then
-            writelog "Native Access NTKDaemon installer not present. Bailing..."
-            exit 1
-        fi
-
-        # Check if LaunchDaemon exists and is running
-        if [[ "$(/bin/launchctl list | grep -c com.native-instruments.NativeAccess.Helper2)" -ne 0 ]]; then
-            writelog "Launchdaemon already running. Unloading and removing..."
-            /bin/launchctl unload "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-            /bin/rm "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-        fi
-
-        # Create PrivilegedHelperTool directory if not present
-        if [[ ! -e "/Library/PrivilegedHelperTools/" ]]; then
-            writelog "Creating PrivilegedHelperTools directory..."
-            /bin/mkdir -p "/Library/PrivilegedHelperTools/"
-            /bin/chmod 755 "/Library/PrivilegedHelperTools"
-            /usr/sbin/chown root:wheel "/Library/PrivilegedHelperTools"
-        fi
-
-        # Expand the helper tool from the package in order to create helper tools
-        /usr/sbin/pkgutil --expand-full "${NATIVE_ACCESS_APP_PATH}/Contents/Resources/daemon/mac/NTKDaemon Installer Mac.pkg" /tmp/expand
-        PRIVILEGEDHELPERTOOL=$(find /tmp/expand -name com.native-instruments.NativeAccess.Helper2)
-        cp -r "${PRIVILEGEDHELPERTOOL}" "/Library/PrivilegedHelperTools/"
-        /bin/chmod 544 "/Library/PrivilegedHelperTools/com.native-instruments.NativeAccess.helper2"
-        /usr/sbin/chown root:wheel "/Library/PrivilegedHelperTools/com.native-instruments.NativeAccess.helper2"
-
-        # # Create LaunchDaemon and set permissions
-        /usr/libexec/PlistBuddy -c "Add MachServices dict" -c "Add MachServices:com.native-instruments.NativeAccess.Helper2 bool true" "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-        /usr/libexec/PlistBuddy -c "Add Label string com.native-instruments.NativeAccess.Helper2" "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-        /usr/libexec/PlistBuddy -c "Add Program string /Library/PrivilegedHelperTools/com.native-instruments.NativeAccess.Helper2" "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-        /usr/libexec/PlistBuddy -c "Add ProgramArguments array" -c "Add ProgramArguments: string /Library/PrivilegedHelperTools/com.native-instruments.NativeAccess.Helper2" "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-        /bin/chmod 644 "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-        /usr/sbin/chown root:wheel "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-
-        # Launch LaunchDaemon
-        /bin/launchctl load "/Library/LaunchDaemons/com.native-instruments.NativeAccess.Helper2.plist"
-
-        # Install daemon package
-        if ! installer -pkg "${NATIVE_ACCESS_APP_PATH}/Contents/Resources/daemon/mac/NTKDaemon Installer Mac.pkg" -target /; then
-            writelog "Unable to install NTKDaemon. Bailing..."
-            exit 1
-        fi
-
   - Processor: PkgCreator
     Arguments:
       pkg_request:

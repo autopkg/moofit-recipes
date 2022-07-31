@@ -3,8 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Creates an installer package from the parent download recipe
-    com.github.joshua-d-miller.autopkg.download.Unity3D
+	<string>Creates an installer package from the parent download recipe com.github.joshua-d-miller.autopkg.download.Unity3D. 
+
+Possible values for "ARCH":
+- Leave blank for "Intel" (Default)
+- "Arm64" for Apple Silicon
     </string>
 	<key>Identifier</key>
 	<string>com.github.amsysuk-recipes.pkg.Unity</string>
@@ -12,6 +15,8 @@
 	<dict>
 		<key>NAME</key>
 		<string>Unity</string>
+        <key>ARCH</key>
+        <string></string>
 	</dict>
 	<key>ParentRecipe</key>
 	<string>com.github.joshua-d-miller.autopkg.download.Unity3D</string>

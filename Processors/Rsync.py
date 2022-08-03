@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/autopkg/python
 #
 #  Copyright (c) 2015, Facebook, Inc.
 #  All rights reserved.

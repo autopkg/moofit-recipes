@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/autopkg/python
 """Unpack an Xcode XIP."""
 #
 # Copyright 2016-present Facebook, Inc.

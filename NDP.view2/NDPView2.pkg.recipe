@@ -37,6 +37,19 @@
                 <string>%NAME%.zip</string>
             </dict>
         </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+            <key>Arguments</key>
+            <dict>
+                <key>archive_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%</string>
+                <key>purge_destination</key>
+                <false/>
+            </dict>
+        </dict>
     </array>
 </dict>
 </plist>

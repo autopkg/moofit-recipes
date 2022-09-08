@@ -52,11 +52,20 @@
         </dict>
         <dict>
             <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/*.dmg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>AppDmgVersioner</string>
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%pathname%</string>
+                <string>%dmg_found_filename%</string>
             </dict>
         </dict>
         <dict>

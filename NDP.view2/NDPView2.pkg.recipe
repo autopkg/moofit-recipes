@@ -23,7 +23,7 @@
                 <key>url</key>
                 <string>https://www.hamamatsu.com/eu/en/product/life-science-and-medical-systems/digital-slide-scanner/U12388-01.html</string>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https://www.hamamatsu.com/content/dam/hamamatsu-photonics/sites/static/sys/en/download/NDP.view%20.*%20RUO\.zip)</string>
+                <string>(?P&lt;url&gt;/content/dam/hamamatsu-photonics/sites/static/sys/en/download/NDP.view%20.*%20RUO\.zip)</string>
             </dict>
         </dict>
         <dict>

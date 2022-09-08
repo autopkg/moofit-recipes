@@ -85,7 +85,7 @@
             <key>Arguments</key>
             <dict>
                 <key>input_plist_path</key>
-                <string>%pkgroot%/Applications/IGV_2.14.1ageJ.app/Contents/Info.plist</string>
+                <string>%pkgroot%/Applications/IGV_2.14.1.app/Contents/Info.plist</string>
                 <key>output_plist_path</key>
                 <string>%pkgroot%/Applications/IGV_2.14.1.app/Contents/Info.plist</string>
                 <key>plist_data</key>

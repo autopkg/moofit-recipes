@@ -23,7 +23,7 @@
                 <key>url</key>
                 <string>https://software.broadinstitute.org/software/igv/download</string>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https://data.broadinstitute.org/igv/projects/downloads/2.14/IGV_MacApp_.*_WithJava\.zip)</string>
+                <string>(?P&lt;url&gt;https://data.broadinstitute.org/igv/projects/downloads/.*/IGV_MacApp_.*_WithJava\.zip)</string>
             </dict>
         </dict>
         <dict>

@@ -88,7 +88,7 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>/Volumes/NDP.view 2/%app_name%</string>
+                <string>%found_filename%/%app_name%</string>
                 <key>destination_path</key>
                 <string>%pkgroot%/Applications/%app_name%</string>
             </dict>

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Download recipe for ImageJ, which downloads a zip file containing the latest stable version of ImageJ for Mac OS X. ImageJ is an image processing package which display, edit, analyze, process, save and print 8-bit, 16-bit and 32-bit images.</string>
+    <string>Download and pkg recipe for ImageJ, which downloads a zip file containing the latest stable version of ImageJ for Mac OS X.</string>
     <key>Identifier</key>
-    <string>com.github.rtrouton.download.ImageJ</string>
+    <string>com.github.moofit-recipes.pkg.ImageJ</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

@@ -5,11 +5,8 @@
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.Xcode</string>
     <key>Description</key>
-    <string>Creates an installer package from a supplied .xip file downloaded using Facebook's "xcode.downloader" 
-        recipe, and extracted using their "xcode.extract" recipe from their AutoPkg repo 
-        "com.github.facebook.Recipes-for-AutoPkg".
-        
-        Please see https://github.com/facebook/Recipes-for-AutoPkg for usage</string>
+    <string>Creates an installer package from a supplied .xip file downloaded using "Xcode.download.recipe" and 
+        extracted using "Xcode.extract.recipe" from "nmcspadden-recipes".</string>
     <key>Input</key>
     <dict>
 		<key>NAME</key>
@@ -26,7 +23,7 @@
     <key>MinimumVersion</key>
     <string>0.5.1</string>
     <key>ParentRecipe</key>
-    <string>com.facebook.autopkg.xcode.extract</string>
+    <string>com.github.nmcspadden.extract.xcode</string>
     <key>Process</key>
     <array>
         <dict>

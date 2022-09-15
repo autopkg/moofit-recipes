@@ -5,9 +5,8 @@
     <key>Identifier</key>
     <string>com.github.moofit-recipes.pkg.XcodeEdu</string>
     <key>Description</key>
-    <string>Creates an installer package from a supplied .xip file downloaded using Facebook's "xcode.downloader" 
-        recipe, and extracted using their "xcode.extract" recipe from their AutoPkg repo 
-        "com.github.facebook.Recipes-for-AutoPkg".
+    <string>Creates an installer package from a supplied .xip file downloaded using "Xcode.download.recipe" and 
+        extracted using "Xcode.extract.recipe" from "nmcspadden-recipes".
 
         This recipe also adds a postflight script to the package, to install the command-line tools and configure these 
         for lab Mac use.
@@ -18,9 +17,7 @@
         additional component packages, and then unloads and deletes the launchdaemon, and itself.
 
         This kind of installation package would typically be used in lab enviroments, where users don't have admin 
-        rights.
-        
-        Please see https://github.com/facebook/Recipes-for-AutoPkg for usage</string>
+        rights.</string>
     <key>Input</key>
     <dict>
 		<key>NAME</key>
@@ -37,7 +34,7 @@
     <key>MinimumVersion</key>
     <string>0.5.1</string>
     <key>ParentRecipe</key>
-    <string>com.facebook.autopkg.xcode.extract</string>
+    <string>com.github.nmcspadden.extract.xcode</string>
     <key>Process</key>
     <array>
         <dict>

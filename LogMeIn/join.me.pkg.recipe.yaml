@@ -1,0 +1,24 @@
+Description: Downloads the current version of join.me as a package.
+Identifier: com.github.moofit-recipes.pkg.join.me
+ParentRecipe: com.github.moofit-recipes.download.join.me
+MinimumVersion: "2.3"
+Input:
+  NAME: join.me
+  DOWNLOAD_URL: https://www.join.me/download.aspx?installer=pkg
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      flat_pkg_path: "%pathname%"
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/tmp.pkg/Payload"
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/unpack/join.me.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+  - Processor: PkgCopier
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      source_pkg: "%pathname%"

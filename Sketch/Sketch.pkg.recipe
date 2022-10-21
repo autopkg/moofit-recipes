@@ -10,6 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>Sketch</string>
+        <key>DOWNLOAD_URL</key>
+        <string>https://www.sketch.com/download/sketch.zip</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.9</string>
@@ -21,7 +23,7 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>https://www.sketchapp.com/download/sketch.zip</string>
+                <string>%DOWNLOAD_URL%</string>
             </dict>
         </dict>
         <dict>

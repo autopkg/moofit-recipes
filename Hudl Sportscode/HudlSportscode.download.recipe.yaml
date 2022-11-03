@@ -1,0 +1,42 @@
+Description: Recipe description
+Identifier: com.github.moofit-recipes.download.HudlSportscode
+Input:
+  NAME: Hudl Sportscode
+  URL: https://www.hudl.com/downloads/elite
+
+MinimumVersion: '2.3'
+Process:
+
+  - Processor: SparkleUpdateInfoProvider
+    Arguments:
+      appcast_url: https://s3.amazonaws.com/sportscode64-updates/sportscode64_appcast.xml
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-%version%.zip"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/%NAME%"
+      purge_destination: true
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/**/Hudl Sportscode*.app"
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%found_filename%"
+      requirement: anchor apple generic and identifier "com.hudl.Sportscode64" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "4M6T2C723P")
+  
+  - Processor: EndOfCheckPhase
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%RECIPE_CACHE_DIR%/Hudl SportsCode/Users/mark.noble/Documents/Sportscode64/Hudl Sportscode.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundleid

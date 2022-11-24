@@ -1,0 +1,40 @@
+Description: Recipe description
+Identifier: com.github.moofit-recipes.download.InTheLoop
+Input:
+  NAME: In The Loop
+  AMD64_URL: https://dl.intheloop.io/Loop-Email.dmg
+  ARM64_URL: https://dl.intheloop.io/Loop-Email-arm64.dmg
+
+MinimumVersion: '2.3'
+Process:
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%AMD64_URL%"
+      filename: "%NAME%-amd64.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Loop Email.app"
+      requirement: identifier "com.intheloop.intheloop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GHQRCL58Q8
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%ARM64_URL%"
+      filename: "%NAME%-arm64.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Loop Email.app"
+      requirement: identifier "com.intheloop.intheloop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = GHQRCL58Q8
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/Loop Email.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundleid

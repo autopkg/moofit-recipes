@@ -1,0 +1,27 @@
+Description: Downloads the current version of join.me.
+Identifier: com.github.moofit-recipes.download.join.me
+MinimumVersion: "2.3"
+
+Input:
+  NAME: join.me
+  DOWNLOAD_URL: https://www.join.me/download.aspx?installer=pkg
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%DOWNLOAD_URL%"
+      filename: "%NAME%.pkg"
+      request_headers:
+        user-agent: "%USER_AGENT%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%"
+      expected_authority_names: 
+       - "Developer ID Installer: LogMeIn, Inc. (GFNFVT632V)"
+       - Developer ID Certification Authority
+       - Apple Root CA
+

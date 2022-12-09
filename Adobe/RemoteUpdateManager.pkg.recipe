@@ -55,7 +55,7 @@
 			<key>Processor</key>
 			<string>com.github.homebysix.BinaryFileVersioner/BinaryFileVersioner</string>
 		</dict>
-        <dict>
+		<dict>
 			<key>Arguments</key>
 			<dict>
 				<key>split_on</key>

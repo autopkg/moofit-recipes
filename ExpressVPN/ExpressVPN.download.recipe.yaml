@@ -1,0 +1,27 @@
+Description: Downloads the current version of ExpressVPN.
+Identifier: com.github.moofit-recipes.download.ExpressVPN
+MinimumVersion: "2.3"
+
+Input:
+  NAME: ExpressVPN
+  DOWNLOAD_URL: https://www.expressvpn.com/clients/latest/mac
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%DOWNLOAD_URL%"
+      filename: "%NAME%.pkg"
+      request_headers:
+        user-agent: "%USER_AGENT%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%"
+      expected_authority_names: 
+       - "Developer ID Installer: ExprsVPN LLC (VMES9GFUQJ)"
+       - Developer ID Certification Authority
+       - Apple Root CA
+

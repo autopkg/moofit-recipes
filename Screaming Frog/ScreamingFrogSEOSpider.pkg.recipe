@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads latest SEO Spider app</string>
+	<string>Downloads latest Intel SEO Spider app</string>
 	<key>Identifier</key>
 	<string>com.github.moofit-recipes.pkg.seospider</string>
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_URL</key>
-		<string>https://download.screamingfrog.co.uk/products/seo-spider/ScreamingFrogSEOSpider-*-aarch64.dmg</string>
+		<string>https://download.screamingfrog.co.uk/products/seo-spider/ScreamingFrogSEOSpider-*-x86_64.dmg</string>
 		<key>NAME</key>
 		<string>Screaming Frog SEO Spider</string>
 	</dict>

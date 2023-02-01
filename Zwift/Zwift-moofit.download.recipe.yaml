@@ -1,0 +1,30 @@
+Description: Recipe description
+Identifier: com.github.moofit-recipes.download.Zwift-moofit
+Input:
+  NAME: Zwift
+  URL: https://zwift.com/download/mac
+
+MinimumVersion: '2.3'
+Process:
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%URL%"
+      filename: "%NAME%.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%pathname%/%NAME%*.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"
+      expected_authority_names:
+        - "Developer ID Installer: Zwift, Inc (C2GM8Y9VFM)"
+        - "Developer ID Certification Authority"
+        - "Apple Root CA"

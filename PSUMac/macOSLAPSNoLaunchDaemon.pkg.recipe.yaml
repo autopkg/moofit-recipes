@@ -26,11 +26,6 @@ Process:
       pkg_payload_path: '%found_filename%/Payload'
       purge_destination: true
 
-  - Processor: PathDeleter
-    Arguments:
-      path_list: 
-        - "%destination_path%/Library"
-
   - Processor: com.github.homebysix.VersionSplitter/VersionSplitter
     Arguments:
       split_on: (

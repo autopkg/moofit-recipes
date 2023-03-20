@@ -1,0 +1,29 @@
+Description: Recipe description
+Identifier: com.github.moofit-recipes.download.Telegram
+Input:
+  NAME: Telegram
+  URL: https://macos.telegram.org/
+
+MinimumVersion: '2.3'
+Process:
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "https://telegram.org/dl/macos"
+      filename: "%NAME%.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/%NAME%.app"
+      requirement: identifier "ru.keepcoder.Telegram" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "6N38VWS5BX"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/%NAME%.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundleid

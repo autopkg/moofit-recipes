@@ -1,0 +1,43 @@
+Description: Recipe description
+Identifier: com.github.moofit-recipes.pkg.Viber
+Input:
+  NAME: Viber
+  URL: https://www.viber.com/en/download/
+
+MinimumVersion: '2.3'
+ParentRecipe: com.github.moofit-recipes.download.Viber
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/root"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg"
+  
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/%NAME%.app"
+      source_path: "%found_filename%/%NAME%.app"
+
+  - Processor: com.github.homebysix.VersionSplitter/VersionSplitter
+    Arguments:
+      version: "%version%"
+      split_on: _
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: "%bundleid%"
+        options: purge_ds_store
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/root"
+        version: "%version%"
+     

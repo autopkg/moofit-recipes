@@ -17,9 +17,11 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>PathDeleter</string>
+            <string>com.github.smithjw.processors/FriendlyPathDeleter</string>
             <key>Arguments</key>
             <dict>
+                <key>fail_deleter_silently</key>
+                <true/>
                 <key>path_list</key>
                 <string>%RECIPE_CACHE_DIR%</string>
             </dict>
@@ -29,12 +31,35 @@
             <string>URLTextSearcher</string>
             <key>Arguments</key>
             <dict>
-                <key>url</key>
-                <string>https://www.barco.com/en/support/mirrorop/drivers</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>Referer</key>
+                    <string>https://www.barco.com/gb-en/support/mirrorop/drivers;auto</string>
+                    <key>user-agent</key>
+                    <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15</string>
+                    <key>Host</key>
+                    <string>www.barco.com</string>
+                    <key>Accept</key>
+                    <string>*/*</string>
+                    <key>Sec-Fetch-Site</key>
+                    <string>same-origin</string>
+                    <key>Sec-Fetch-Dest</key>
+                    <string>empty</string>
+                    <key>Accept-Language</key>
+                    <string>en-GB,en;q=0.9</string>
+                    <key>Sec-Fetch-Mode</key>
+                    <string>cors</string>
+                    <key>Accept-Encoding</key>
+                    <string>gzip, deflate, br</string>
+                    <key>Connection</key>
+                    <string>keep-alive</string>
+                </dict>
                 <key>re_pattern</key>
-                <string>(Download\?FileNumber=R33050100\S*ShowDownloadPage=False)</string>
+                <string>downloadUrl\":\"(.*)\",</string>
                 <key>result_output_var_name</key>
                 <string>match</string>
+                <key>url</key>
+                <string>https://www.barco.com/bin/barco/tde/downloadUrl.json?fileNumber=R33050100&amp;tdeType=3</string>
             </dict>
         </dict>
         <dict>
@@ -44,9 +69,18 @@
             <dict>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>user-agent</key>
+                    <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15</string>
+                </dict>
                 <key>url</key>
-                <string>https://www.barco.com/services/website/en/TdeFiles/%match%</string>
+                <string>%match%</string>
             </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
         </dict>
         <dict>
             <key>Processor</key>

@@ -24,19 +24,29 @@
                 <true/>
                 <key>path_list</key>
                 <string>%RECIPE_CACHE_DIR%/downloads/%NAME%.zip</string>
+                <string>%RECIPE_CACHE_DIR%/downloads/downloadUrl.json</string>
             </dict>
         </dict>
         <dict>
             <key>Processor</key>
-            <string>URLTextSearcher</string>
+            <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
+                <key>filename</key>
+                <string>downloadUrl.json</string>
                 <key>url</key>
-                <string>https://www.barco.com/en/clickshare/app</string>
-                <key>re_pattern</key>
-                <string>(Download\?FileNumber=R3306192\S*ShowDownloadPage=False)</string>
-                <key>result_output_var_name</key>
-                <string>match</string>
+                <string>https://www.barco.com/bin/barco/tde/downloadUrl.json?fileNumber=R3306192&amp;tdeType=3</string>
+            </dict>
+        </dict>
+         <dict>
+            <key>Processor</key>
+            <string>com.github.dataJAR-recipes.Shared Processors/JSONFileReader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>json_key</key>
+                <string>downloadUrl</string>
+                <key>json_path</key>
+                <string>%RECIPE_CACHE_DIR%/downloads/downloadUrl.json</string>
             </dict>
         </dict>
         <dict>
@@ -47,7 +57,7 @@
                 <key>filename</key>
                 <string>%NAME%.zip</string>
                 <key>url</key>
-                <string>https://www.barco.com/services/website/en/TdeFiles/%match%</string>
+                <string>%json_value%</string>
             </dict>
         </dict>
 		<dict>
@@ -69,7 +79,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>pattern</key>
-				<string>%RECIPE_CACHE_DIR%/unpack/*.dmg</string>
+				<string>%RECIPE_CACHE_DIR%/unpack/*/*.dmg</string>
 			</dict>
 		</dict>
         <dict>

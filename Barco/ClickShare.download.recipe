@@ -23,8 +23,10 @@
                 <key>fail_deleter_silently</key>
                 <true/>
                 <key>path_list</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/%NAME%.zip</string>
-                <string>%RECIPE_CACHE_DIR%/downloads/downloadUrl.json</string>
+		<array>
+                    <string>%RECIPE_CACHE_DIR%/downloads/%NAME%.zip</string>
+                    <string>%RECIPE_CACHE_DIR%/downloads/downloadUrl.json</string>
+		</array>
             </dict>
         </dict>
         <dict>

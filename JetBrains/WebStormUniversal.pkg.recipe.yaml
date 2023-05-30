@@ -1,7 +1,7 @@
-Description: Downloads the latest amd64 and arm64 versions of Brave and combines them into a package
+Description: Downloads the latest amd64 and arm64 versions of WebStorm and combines them into a package
 Identifier: com.github.moofit-recipes.pkg.WebStormUniversal
 MinimumVersion: "2.3"
-
+ParentRecipe: com.github.moofit-recipes.download.WebStormUniversal
 Input:
   BUNDLE_ID: com.jetbrains.WebStorm
   NAME: WebStorm

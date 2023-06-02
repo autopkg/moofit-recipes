@@ -1,0 +1,32 @@
+Description: Downloads the latest version of SketchUp Pro 2023 EN
+Identifier: com.github.moofit-recipes.download.SketchUp Pro 2023 EN
+Input:
+  NAME: SketchUp Pro 2023 EN
+  URL: https://www.sketchup.com/sketchup/2023/SketchUpPro-dmg
+
+Based on: com.github.dataJAR-recipes.download.SketchUp Pro 2022 EN
+
+MinimumVersion: '1.0.0'
+Process:
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%URL%"
+      filename: "%NAME%.dmg"
+  
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/SketchUp 2023/LayOut.app"
+      requirement: identifier "com.sketchup.LayOut.2023" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = J8PVMCY7KL
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/SketchUp 2023/SketchUp.app"
+      requirement: identifier "com.sketchup.SketchUp.2023" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = J8PVMCY7KL
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/SketchUp 2023/Style Builder.app"
+      requirement: identifier "com.sketchup.StyleBuilder.2023" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = J8PVMCY7KL

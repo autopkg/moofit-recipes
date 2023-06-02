@@ -1,0 +1,41 @@
+Description: Downloads the latest version of SketchUp Pro 2023 EN and creates a PKG
+Identifier: com.github.moofit-recipes.pkg.SketchUp Pro 2023 EN
+Input:
+  NAME: SketchUp Pro 2023 EN
+  URL: https://www.sketchup.com/sketchup/2023/SketchUpPro-dmg
+
+Based on: com.github.dataJAR-recipes.pkg.SketchUp Pro 2022 EN
+
+MinimumVersion: '1.0.0'
+ParentRecipe: com.github.moofit-recipes.download.SketchUp Pro 2023 EN
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+      pkgdirs:
+        Applications: "0775"
+  
+  - Processor: Copier
+    Arguments:
+      source_path: "%pathname%/SketchUp 2023/"
+      destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/SketchUp 2023/"
+      overwrite: "true"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/SketchUp 2023/SketchUp.app/Contents/Info.plist"
+      plist_version_key: CFBundleVersion
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+      options: purge_ds_store
+      id: "com.sketchup.%NAME%-%version%"
+      pkgname: "%NAME%-%version%"
+      pkgroot: "%pkgroot%"
+      version: "%version%"

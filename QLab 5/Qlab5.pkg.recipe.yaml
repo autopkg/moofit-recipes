@@ -1,0 +1,23 @@
+Description: Downloads and packages QLab5
+Identifier: com.github.moofit-recipes.pkg.Qlab5
+Input:
+  NAME: QLab5
+
+Based on: com.github.dataJAR-recipes.download.QLab5
+
+MinimumVersion: '2.3'
+ParentRecipe: com.github.moofit-recipes.download.Qlab5
+Process:
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: com.figure53.QLab.4
+        options: purge_ds_store
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/%NAME%"
+        version: "%version%"

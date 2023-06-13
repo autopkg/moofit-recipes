@@ -1,0 +1,27 @@
+Description: Downloads Adobe Acrobat Pro
+Identifier: download.Adobe Acrobat Pro
+Input:
+  NAME: Adobe Acrobat Pro
+  URL: https://trials.adobe.com/AdobeProducts/APRO/Acrobat_HelpX/osx10/Acrobat_DC_Web_WWMUI.dmg
+
+MinimumVersion: '1.0.0'
+Process:
+    
+  - Processor: URLDownloader
+    Arguments:
+      url: "%URL%"
+      filename: "%NAME%.dmg"
+    
+  - Processor: EndOfCheckPhase
+    
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%pathname%/*/Acrobat*.pkg"
+      
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      expected_authority_names:
+        - "Developer ID Installer: Adobe Inc. (JQ525L2MZD)"
+        - Developer ID Certification Authority
+        - Apple Root CA
+      input_path: "%pathname%/%dmg_found_filename%"

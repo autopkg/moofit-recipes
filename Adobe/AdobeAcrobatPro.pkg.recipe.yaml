@@ -25,7 +25,7 @@ Process:
 
   - Processor: EndOfCheckPhase
 
-  - Processor: Copier
+  - Processor: PkgCopier
     Arguments:
-      source_path: "%pathname%/%dmg_found_filename%"
-      destination_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      source_pkg: "%pathname%/%dmg_found_filename%"
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"

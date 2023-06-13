@@ -5,7 +5,7 @@ Input:
   URL: https://trials.adobe.com/AdobeProducts/APRO/Acrobat_HelpX/osx10/Acrobat_DC_Web_WWMUI.dmg
 
 MinimumVersion: '1.0.0'
-ParentRecipe: download.Adobe Acrobat Pro
+ParentRecipe: com.github.moofit-recipes.download.AdobeAcrobatPro
 Process:
   
   - Processor: FlatPkgUnpacker

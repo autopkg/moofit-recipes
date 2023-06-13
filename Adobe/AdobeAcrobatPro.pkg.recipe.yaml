@@ -1,5 +1,5 @@
 Description: Downloads and Packages Adobe Acrobat Pro
-Identifier: pkg.Adobe Acrobat Pro
+Identifier: com.github.moofit-recipes.pkg.Adobe Acrobat Pro
 Input:
   NAME: Adobe Acrobat Pro
   URL: https://trials.adobe.com/AdobeProducts/APRO/Acrobat_HelpX/osx10/Acrobat_DC_Web_WWMUI.dmg

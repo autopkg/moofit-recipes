@@ -1,0 +1,46 @@
+Description: Packages the latest version of Max 8
+Identifier: com.github.moofit-recipes.pkg.Max8
+MinimumVersion: "2.3"
+ParentRecipe: com.github.dataJAR-recipes.download.Max 8
+Input:
+  BUNDLE_ID: com.cycling74.Max
+  NAME: "Max 8"
+
+Process:
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/root"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/Max.app"
+      source_path: "%found_filename%/Max.app"
+      
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pkgroot%/Applications/Max.app/Contents/Info.plist"
+      plist_version_key: CFBundleVersion
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+          - group: staff
+            mode: "0775"
+            path: Applications/Max.app
+            user: root
+        id: "%BUNDLE_ID%"
+        options: purge_ds_store
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%pkgroot%"
+        version: "%version%"

@@ -1,0 +1,30 @@
+Description: Downloads the latest version of Read&Write
+Identifier: com.github.moofit-recipes.download.Read&Write
+Input:
+  NAME: Read&Write
+
+Based on: com.github.haircut.download.ReadWrite7
+
+MinimumVersion: '1.0.0'
+Process:
+
+  - Processor: SparkleUpdateInfoProvider
+    Arguments:
+      appcast_url: https://readwrite.texthelp.com/rw7mac/updatesp/appcast.xml
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%.zip"
+  
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/Applications/"
+      purge_destination: true
+  
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/Applications/%NAME%.app"
+      requirement: anchor apple generic and identifier "com.texthelp.Read-Write" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = S98PLZJ32T)

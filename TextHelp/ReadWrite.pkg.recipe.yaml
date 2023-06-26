@@ -1,0 +1,19 @@
+Description: Downloads and packages the latest version of Read&Write
+Identifier: com.github.moofit-recipes.pkg.Read&Write
+Input:
+  NAME: Read&Write
+
+Based on: com.github.haircut.pkg.ReadWrite7
+
+MinimumVersion: '1.0.0'
+ParentRecipe: com.github.moofit-recipes.download.Read&Write
+Process:
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/Applications/%NAME%.app/Contents/Info.plist"
+  
+  - Processor: AppPkgCreator
+    Arguments:
+      app_path: "%RECIPE_CACHE_DIR%/Applications/%NAME%.app"
+      pkg_path: "%RECIPE_CACHE_DIR%/ReadWrite-%version%.pkg"

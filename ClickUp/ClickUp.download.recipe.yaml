@@ -1,0 +1,34 @@
+Description: Recipe description
+Identifier: com.github.moofit-recipes.download.ClickUp
+Input:
+  NAME: ClickUp
+  URL: https://clickup.com/download
+
+MinimumVersion: '2.3'
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: "https://desktop.clickup.com/mac/dmg/arm64"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "https://desktop.clickup.com/mac/dmg/arm64"
+      filename: "%NAME%.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/%NAME%.app"
+      requirement:  identifier "com.clickup.desktop-app" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "5RJWFAUGXQ"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/%NAME%.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundleid

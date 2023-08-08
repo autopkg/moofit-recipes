@@ -11,7 +11,7 @@
         <key>NAME</key>
         <string>Sketch</string>
         <key>DOWNLOAD_URL</key>
-        <string>https://www.sketch.com/download/sketch.zip</string>
+        <string>https://download.sketch.com/sketch.zip</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.9</string>

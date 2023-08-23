@@ -1,0 +1,38 @@
+Description: Downloads the latest version of Studio3T
+Identifier: com.github.moofit-recipes.download.Studio3TUniversal
+MinimumVersion: '2.3'
+Input:
+    NAME: Studio 3T
+    URL: https://studio3t.com/download/
+
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: Studio 3T ([0-9\.]+)
+      result_output_var_name: version
+
+  - Processor: URLDownloader
+    Arguments:
+      url: https://download.studio3t.com/studio-3t/mac/%version%/Studio-3T.dmg
+      filename: "%NAME%-Intel.dmg"
+
+  - Processor: EndOfCheckPhase
+  
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/%NAME%.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+  
+  - Processor: URLDownloader
+    Arguments:
+      url: https://download.studio3t.com/studio-3t/mac-aarch64/%version%/Studio-3T.dmg
+      filename: "%NAME%-Silicon.dmg"
+
+  - Processor: EndOfCheckPhase
+  
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/%NAME%.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString

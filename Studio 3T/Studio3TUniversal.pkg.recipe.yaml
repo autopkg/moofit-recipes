@@ -94,8 +94,8 @@ Process:
         #!/bin/zsh
 
         # Set variables
-        declare -r INTEL="$3/private/tmp/%NAME%-Intel-%version%"
-        declare -r APPLE_SILICON="$3/private/tmp/%NAME%-Silicon-%version%"
+        declare -r INTEL="$3/private/tmp/%NAME%-Intel-%version%.pkg"
+        declare -r APPLE_SILICON="$3/private/tmp/%NAME%-Silicon-%version%.pkg"
 
         # Determine architecture
         ARCH=$(/usr/bin/arch)

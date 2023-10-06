@@ -1,0 +1,38 @@
+Description: Packages the latest version of Azure Data Studio
+Identifier: com.github.moofit-recipes.pkg.AzureDataStudio
+ParentRecipe: com.github.moofit-recipes.download.AzureDataStudio
+MinimumVersion: '1.1.0'
+Input:
+    NAME: Azure Data Studio
+    URL: https://github.com/microsoft/azuredatastudio/releases
+
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+        pkgroot: "%RECIPE_CACHE_DIR%/pkgroot"
+        pkgdirs:
+            Applications: "0775"
+
+  - Processor: Copier
+    Arguments:
+        source_path: "%RECIPE_CACHE_DIR%/%NAME%/%NAME%.app"
+        destination_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/%NAME%.app"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/pkgroot/Applications/%NAME%.app/Contents/Info.plist"
+      plist_version_key: CFBundleVersion
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+      options: purge_ds_store
+      id: "com.azuredatastudio.oss"
+      pkgname: "%NAME%-%version%"
+      pkgroot: "%pkgroot%"
+      version: "%version%"

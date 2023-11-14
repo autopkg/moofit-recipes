@@ -11,7 +11,7 @@
         <key>NAME</key>
         <string>Amazon Chime</string>
         <key>DOWNLOAD_URL</key>
-        <string>https://clients.chime.aws/mac/latest</string>
+        <string>https://clients.chime.aws/mac-nme/latest</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.1</string>
@@ -25,7 +25,7 @@
                 <key>url</key>
                 <string>%DOWNLOAD_URL%</string>
                 <key>filename</key>
-				<string>AmazonChime.dmg</string>
+                <string>AmazonChime.dmg</string>
             </dict>
         </dict>
         <dict>

@@ -1,0 +1,77 @@
+Identifier: com.github.moofit-recipes.download.BlenderUniversal
+Description: Downloads both Intel and Silicon versions of Blender to be packaged into a universal installer 
+Input:
+  INTEL_ARCH: x64
+  SILICON_ARCH: arm64
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "https://www.blender.org/download/"
+      re_pattern: (https://www.blender.org/download/release/([B-b]lender[0-9].[0-9])/(blender-[0-9].[0-9].[0-9])-macos-%INTEL_ARCH%.dmg)
+      result_output_var_name: intel_download_path
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%intel_download_path%"
+      re_pattern: \"(https://.*/release/([B-b]lender[0-9].[0-9])/(blender-[0-9].[0-9].[0-9])-macos-%INTEL_ARCH%.dmg)\"
+      result_output_var_name: intel_dmg_download_path
+
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%intel_dmg_download_path%"
+      filename: "Blender-%INTEL_ARCH%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Blender.app"
+      requirement: identifier "org.blenderfoundation.blender" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "68UA947AUU"
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/Blender.app/Contents/Info.plist"
+      plist_keys: 
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: app_name
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "https://www.blender.org/download/"
+      re_pattern: (https://www.blender.org/download/release/([B-b]lender[0-9].[0-9])/(blender-[0-9].[0-9].[0-9])-macos-%SILICON_ARCH%.dmg)
+      result_output_var_name: silicon_download_path
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%silicon_download_path%"
+      re_pattern: \"(https://.*/release/([B-b]lender[0-9].[0-9])/(blender-[0-9].[0-9].[0-9])-macos-%SILICON_ARCH%.dmg)\"
+      result_output_var_name: silicon_dmg_download_path
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%silicon_dmg_download_path%"
+      filename: "Blender-%SILICON_ARCH%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Blender.app"
+      requirement: identifier "org.blenderfoundation.blender" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "68UA947AUU"
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/Blender.app/Contents/Info.plist"
+      plist_keys: 
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: app_name
+
+  - Processor: EndOfCheckPhase

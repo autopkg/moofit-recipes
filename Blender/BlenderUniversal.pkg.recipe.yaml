@@ -1,0 +1,145 @@
+Identifier: com.github.moofit-recipes.pkg.BlenderUniversal
+Description: Downloads both Intel and Silicon versions of Blender to be packaged into a universal installer
+ParentRecipe: com.github.moofit-recipes.download.BlenderUniversal
+Input:
+  INTEL_ARCH: x64
+  SILICON_ARCH: arm64
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/%INTEL_ARCH%"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/Downloads/%app_name%-%INTEL_ARCH%.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/%app_name%.app"
+      source_path: "%found_filename%/%app_name%.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+          - group: staff
+            mode: "0775"
+            path: Applications/%app_name%.app
+            user: root
+        id: "%bundle_id%.%INTEL_ARCH%"
+        options: purge_ds_store
+        pkgname: "%app_name%-%INTEL_ARCH%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/%INTEL_ARCH%"
+        version: "%version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/%SILICON_ARCH%"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/Downloads/%app_name%-%SILICON_ARCH%.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/%app_name%.app"
+      source_path: "%found_filename%/%app_name%.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+          - group: staff
+            mode: "0775"
+            path: Applications/%app_name%.app
+            user: root
+        id: "%bundle_id%.%SILICON_ARCH%"
+        options: purge_ds_store
+        pkgname: "%app_name%-%SILICON_ARCH%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/%SILICON_ARCH%"
+        version: "%version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        scripts: "0755"
+        root: "0755"
+        root/private: "0755"
+        root/private/tmp: "0777"
+      pkgroot: "%RECIPE_CACHE_DIR%/universal"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%app_name%-%INTEL_ARCH%-%version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%app_name%-%INTEL_ARCH%-%version%.pkg"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%app_name%-%SILICON_ARCH%-%version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%app_name%-%SILICON_ARCH%-%version%.pkg"
+
+  - Processor: FileCreator
+    Arguments:
+      file_path: "%RECIPE_CACHE_DIR%/universal/scripts/postinstall"
+      file_mode: "0755"
+      file_content: |
+        #!/bin/zsh
+
+        # Set variables
+        declare -r INTEL="$3/private/tmp/%app_name%-%INTEL_ARCH%-%version%.pkg"
+        declare -r APPLE_SILICON="$3/private/tmp/%app_name%-%SILICON_ARCH%-%version%.pkg"
+
+        # Determine architecture
+        ARCH=$(/usr/bin/arch)
+
+        # Install corresponding package
+        if [[ "${ARCH}" == i386 ]]
+        then
+            /usr/sbin/installer -pkg "${INTEL}" -target "$3"
+            EXIT_CODE=$?
+        else
+            /usr/sbin/installer -pkg "${APPLE_SILICON}" -target "$3"
+            EXIT_CODE=$?
+        fi
+
+        echo "Cleaning up..."
+        /bin/rm -rf "${INTEL}" "${APPLE_SILICON}"
+
+        # Check exit code and bail if the package didn't install correctly
+        if [[ "${EXIT_CODE}" -ne 0 ]]
+        then
+            echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
+            exit 1
+        fi
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        id: "%bundle_id%.universal"
+        options: purge_ds_store
+        pkgname: "%app_name%-Universal-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
+        scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
+        version: "%version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/universal"
+        - "%RECIPE_CACHE_DIR%/%INTEL_ARCH%"
+        - "%RECIPE_CACHE_DIR%/%SILICON_ARCH%"

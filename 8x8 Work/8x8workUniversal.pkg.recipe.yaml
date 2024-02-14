@@ -132,7 +132,7 @@ Process:
       pkg_request:
         id: "%bundle_id%.universal"
         options: purge_ds_store
-        pkgname: "%app_name%-Universal-%version%"
+        pkgname: "%app_name%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
         version: "%version%"

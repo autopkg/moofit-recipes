@@ -1,0 +1,39 @@
+Identifier: com.github.moofit-recipes.download.CatoClient
+Description: Downloads the latest Cato Client application
+Input:
+  RECIPE_APP_NAME: CatoClient
+MinimumVersion: '1.0.0'
+Process:
+
+  - Processor: URLDownloader
+    Arguments:
+      url: https://clientdownload.catonetworks.com/public/clients/%RECIPE_APP_NAME%.pkg
+      filename: "%RECIPE_APP_NAME%.pkg"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      flat_pkg_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/Unpack"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/Cato_Client.pkg/Payload"
+      destination_path: "%RECIPE_CACHE_DIR%/Unpack"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/Unpack/%RECIPE_APP_NAME%.app"
+      requirement: anchor apple generic and identifier "com.catonetworks.mac.CatoClient" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = CKGSB8CH43)
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%RECIPE_CACHE_DIR%/Unpack/%RECIPE_APP_NAME%.app/Contents/Info.plist"
+      plist_keys: 
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: real_app_name

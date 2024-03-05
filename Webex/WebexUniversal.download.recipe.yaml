@@ -1,0 +1,47 @@
+Identifier: com.github.moofit-recipes.download.WebexUniversal
+Description: Downloads both Intel and Silicon versions of Webex to be packaged into a universal installer 
+Input:
+  RECIPE_APP_NAME: Webex
+  INTEL_ARCH: MACOS-Gold
+  SILICON_ARCH: MACOS-Apple-Silicon-Gold
+  URL: "https://www.webex.com/downloads.html"
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: (https://binaries.webex.com/WebexTeamsDesktop-%INTEL_ARCH%/Webex.dmg)
+      result_output_var_name: intel_download_path
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%intel_download_path%"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+      filename: "%RECIPE_APP_NAME%-Intel.dmg"
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: (https://binaries.webex.com/WebexDesktop-%SILICON_ARCH%/Webex.dmg)
+      result_output_var_name: silicon_download_path
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%silicon_download_path%"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+      filename: "%RECIPE_APP_NAME%-Silicon.dmg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Webex.app"
+      requirement: identifier "Cisco-Systems.Spark" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = DE8Y96K9QP
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/Webex.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleIdentifier: bundle_id
+        CFBundleShortVersionString: bundle_version
+        CFBundleName: bundle_name

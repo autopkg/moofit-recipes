@@ -1,0 +1,147 @@
+Identifier: com.github.moofit-recipes.pkg.WebexUniversal
+Description: Downloads both Intel and Silicon versions of Webex to be packaged into a universal installer
+ParentRecipe: com.github.moofit-recipes.download.WebexUniversal
+Input:
+  RECIPE_bundle_name: Webex
+  Intel: MACOS-Gold
+  Silicon: MACOS-Apple-Silicon-Gold
+  URL: "https://www.webex.com/downloads.html"
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/Intel"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/Downloads/%bundle_name%-Intel.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/%bundle_name%.app"
+      source_path: "%found_filename%/%bundle_name%.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+          - group: staff
+            mode: "0775"
+            path: Applications/%bundle_name%.app
+            user: root
+        id: "%bundle_id%.Intel"
+        options: purge_ds_store
+        pkgname: "%bundle_name%-Intel-%bundle_version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/Intel"
+        version: "%bundle_version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/Silicon"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/Downloads/%bundle_name%-Silicon.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/%bundle_name%.app"
+      source_path: "%found_filename%/%bundle_name%.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            mode: "0775"
+            path: Applications
+            user: root
+          - group: staff
+            mode: "0775"
+            path: Applications/%bundle_name%.app
+            user: root
+        id: "%bundle_id%.Silicon"
+        options: purge_ds_store
+        pkgname: "%bundle_name%-Silicon-%bundle_version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/Silicon"
+        version: "%bundle_version%"
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        scripts: "0755"
+        root: "0755"
+        root/private: "0755"
+        root/private/tmp: "0777"
+      pkgroot: "%RECIPE_CACHE_DIR%/universal"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%bundle_name%-Intel-%bundle_version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%bundle_name%-Intel-%bundle_version%.pkg"
+
+  - Processor: FileMover
+    Arguments:
+      overwrite: false
+      source: "%RECIPE_CACHE_DIR%/%bundle_name%-Silicon-%bundle_version%.pkg"
+      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%bundle_name%-Silicon-%bundle_version%.pkg"
+
+  - Processor: FileCreator
+    Arguments:
+      file_path: "%RECIPE_CACHE_DIR%/universal/scripts/postinstall"
+      file_mode: "0755"
+      file_content: |
+        #!/bin/zsh
+
+        # Set variables
+        declare -r INTEL="$3/private/tmp/%bundle_name%-Intel-%bundle_version%.pkg"
+        declare -r APPLE_SILICON="$3/private/tmp/%bundle_name%-Silicon-%bundle_version%.pkg"
+
+        # Determine architecture
+        ARCH=$(/usr/bin/arch)
+
+        # Install corresponding package
+        if [[ "${ARCH}" == i386 ]]
+        then
+            /usr/sbin/installer -pkg "${INTEL}" -target "$3"
+            EXIT_CODE=$?
+        else
+            /usr/sbin/installer -pkg "${APPLE_SILICON}" -target "$3"
+            EXIT_CODE=$?
+        fi
+
+        echo "Cleaning up..."
+        /bin/rm -rf "${INTEL}" "${APPLE_SILICON}"
+
+        # Check exit code and bail if the package didn't install correctly
+        if [[ "${EXIT_CODE}" -ne 0 ]]
+        then
+            echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
+            exit 1
+        fi
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        id: "%bundle_id%.universal"
+        options: purge_ds_store
+        pkgname: "%bundle_name%-Universal-%bundle_version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
+        scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
+        version: "%bundle_version%"
+
+  - Processor: PathDeleter
+    Arguments:
+      path_list:
+        - "%RECIPE_CACHE_DIR%/universal"
+        - "%RECIPE_CACHE_DIR%/Intel"
+        - "%RECIPE_CACHE_DIR%/Silicon"

@@ -1,34 +1,33 @@
 Description: Recipe description
 Identifier: com.github.moofit-recipes.download.Reaper
 Input:
-  NAME: REAPER
-  URL: https://www.reaper.fm/download.php
+  RECIPE_APP_NAME: REAPER
+  URL: https://www.reaper.fm
 
 MinimumVersion: '2.3'
 Process:
 
   - Processor: URLTextSearcher
     Arguments:
-      url: "%URL%"
-      re_pattern: "reaper.*_universal.dmg"
+      url: "%URL%/download.php"
+      re_pattern: "files/.*/reaper.*_universal.dmg"
+      result_output_var_name: reaper_url
 
   - Processor: URLDownloader
     Arguments:
-      url: "https://dlcf.reaper.fm/6.x/%match%"
-      filename: "%NAME%.dmg"
-
-  - Processor: EndOfCheckPhase
+      url: "%URL%/%reaper_url%"
+      filename: "%RECIPE_APP_NAME%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
 
   - Processor: CodeSignatureVerifier
     Arguments:
-      input_path: "%pathname%/%NAME%.app"
+      input_path: "%pathname%/REAPER.app"
       requirement: identifier "com.cockos.reaper" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Y3T58622SG
-
-  - Processor: EndOfCheckPhase
 
   - Processor: PlistReader
     Arguments:
-      info_path: "%pathname%/%NAME%.app/Contents/Info.plist"
+      info_path: "%pathname%/REAPER.app/Contents/Info.plist"
       plist_keys:
-        CFBundleShortVersionString: version
-        CFBundleIdentifier: bundleid
+        CFBundleShortVersionString: bundle_version
+        CFBundleIdentifier: bundle_identifier
+        CFBundleExecutable: bundle_name

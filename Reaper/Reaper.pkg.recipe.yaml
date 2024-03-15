@@ -1,11 +1,11 @@
 Description: Recipe description
 Identifier: com.github.moofit-recipes.pkg.Reaper
+ParentRecipe: com.github.moofit-recipes.download.Reaper
 Input:
-  NAME: REAPER
-  URL: https://www.reaper.fm/download.php
+  RECIPE_APP_NAME: REAPER
+  URL: https://www.reaper.fm
 
 MinimumVersion: '2.3'
-ParentRecipe: com.github.moofit-recipes.download.Reaper
 Process:
 
   - Processor: PkgRootCreator
@@ -16,16 +16,16 @@ Process:
 
   - Processor: FileFinder
     Arguments:
-      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg"
+      pattern: "%RECIPE_CACHE_DIR%/Downloads/%bundle_name%.dmg"
   
   - Processor: Copier
     Arguments:
-      destination_path: "%pkgroot%/Applications/%NAME%.app"
-      source_path: "%found_filename%/%NAME%.app"
+      destination_path: "%pkgroot%/Applications/%bundle_name%.app"
+      source_path: "%found_filename%/%bundle_name%.app"
 
   - Processor: com.github.homebysix.VersionSplitter/VersionSplitter
     Arguments:
-      version: "%version%"
+      version: "%bundle_version%"
       split_on: _
 
   - Processor: PkgCreator
@@ -35,8 +35,8 @@ Process:
           - group: admin
             path: Applications
             user: root
-        id: "%bundleid%"
+        id: "%bundle_identifier%"
         options: purge_ds_store
-        pkgname: "%NAME%-%version%"
+        pkgname: "%bundle_name%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/root"
         version: "%version%"

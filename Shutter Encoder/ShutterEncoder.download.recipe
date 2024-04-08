@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.moofit-recipes.download.ShutterEncoder
+    <string>com.github.moofit-recipes.download.ShutterEncoder</string>
+    <key>Description</key>
+    <string>Downloads the latest version of Shutter Encoder
 
 To Download the Intel version use "Mac 64bits" in the DOWNLOAD_TYPE variable
 To Download the Apple Silicon version use "Apple Silicon" in the DOWNLOAD_TYPE variable</string>
-    <key>Description</key>
-    <string>Downloads the latest version of Shutter Encoder</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -71,6 +71,21 @@ To Download the Apple Silicon version use "Apple Silicon" in the DOWNLOAD_TYPE v
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%</string>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Codebase Media UG (haftungsbeschrankt) (LZ28YRG3Q4)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
         </dict>
     </array>
 </dict>

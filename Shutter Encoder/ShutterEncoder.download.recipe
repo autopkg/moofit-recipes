@@ -3,7 +3,10 @@
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
-    <string>com.github.moofit-recipes.download.ShutterEncoder</string>
+    <string>com.github.moofit-recipes.download.ShutterEncoder
+
+To Download the Intel version use "Mac 64bits" in the DOWNLOAD_TYPE variable
+To Download the Apple Silicon version use "Apple Silicon" in the DOWNLOAD_TYPE variable</string>
     <key>Description</key>
     <string>Downloads the latest version of Shutter Encoder</string>
     <key>Input</key>
@@ -13,7 +16,9 @@
         <key>DOWNLOAD_PAGE_URL</key>
         <string>https://www.shutterencoder.com</string>
         <key>USER_AGENT</key>
-        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
+        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15'</string>
+        <key>DOWNLOAD_TYPE</key>
+        <string>Mac 64bits</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.1</string>
@@ -29,7 +34,7 @@
                 <key>result_output_var_name</key>
                 <string>url</string>
                 <key>re_pattern</key>
-                <string>Shutter Encoder .* Mac 64bits.pkg</string>
+                <string>Shutter Encoder .* %DOWNLOAD_TYPE%.pkg</string>
                 <key>re_flags</key>
                 <array>
                     <string>IGNORECASE</string>

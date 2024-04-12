@@ -1,0 +1,34 @@
+Description: Recipe to download Protonvpn
+Identifier: com.github.moofit-recipes.pkg.ProtonVPN
+Input:
+  RECIPE_NAME: ProtonVPN
+ParentRecipe: com.github.moofit-recipes.download.ProtonVPN
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/root"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%RECIPE_NAME%.dmg"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/%RECIPE_NAME%.app"
+      source_path: "%found_filename%/%RECIPE_NAME%.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: "%bundleid%"
+        options: purge_ds_store
+        pkgname: "%real_app_name%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/root"
+        version: "%version%"

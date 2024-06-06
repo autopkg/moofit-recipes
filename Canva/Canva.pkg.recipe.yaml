@@ -1,0 +1,36 @@
+Description: Downloads and packages Canva
+Identifier: com.github.moofit-recipes.pkg.Canva
+Input:
+  NAME: Canva
+
+MinimumVersion: '2.3'
+ParentRecipe: com.github.moofit-recipes.download.Canva
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/root"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/Downloads/%bundle_name%.dmg"
+  
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/%bundle_name%.app"
+      source_path: "%found_filename%/%bundle_name%.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: "%bundle_id%"
+        options: purge_ds_store
+        pkgname: "%bundle_name%-%bundle_version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/root"
+        version: "%bundle_version%"

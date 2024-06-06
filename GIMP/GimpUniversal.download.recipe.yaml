@@ -1,0 +1,49 @@
+Description: Downloads both intel and silicon versions of GIMP to be packaged
+Identifier: com.github.moofit-recipes.download.gimp
+Input:
+  RECIPE_APP_NAME: GIMP
+  INTEL: x86_64
+  SILICON: arm64
+
+Notes: Code requirement will need to be renewed on each new version as it contains the version number
+
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "https://www.gimp.org/downloads/"
+      re_pattern: \"(//download.gimp.org/gimp/v[0-9]+.[0-9]+/macos/gimp-[0-9]+.[0-9]+.[0-9]+-%INTEL%-[0-9]+.dmg)\"
+      result_output_var_name: intel_installer
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "https:%intel_installer%"
+      filename: "%RECIPE_APP_NAME%-%INTEL%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "https://www.gimp.org/downloads/"
+      re_pattern: \"(//download.gimp.org/gimp/v[0-9]+.[0-9]+/macos/gimp-[0-9]+.[0-9]+.[0-9]+-%SILICON%-[0-9]+.dmg)\"
+      result_output_var_name: silicon_installer
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "https:%silicon_installer%"
+      filename: "%RECIPE_APP_NAME%-%SILICON%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/GIMP.app"
+      requirement: identifier "org.gimp.gimp-2.10" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = T25BQ8HSJF
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/GIMP.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: bundle_version
+        CFBundleIdentifier: bundle_identifier
+        CFBundleName: bundle_name

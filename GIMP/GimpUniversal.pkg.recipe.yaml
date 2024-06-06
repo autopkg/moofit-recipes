@@ -1,7 +1,7 @@
 Identifier: com.github.moofit-recipes.pkg.gimp
 ParentRecipe: com.github.moofit-recipes.download.gimp
 Input:
-  RECIPE_bundle_name: GIMP
+  RECIPE_APP_NAME: GIMP
   INTEL: x86_64
   SILICON: arm64
 

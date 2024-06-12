@@ -1,29 +1,21 @@
-Description: Recipe description
+Description: Downloads Canva to be packaged
 Identifier: com.github.moofit-recipes.download.Canva
 Input:
   NAME: Canva
-  AMD64_URL: https://www.canva.com/download/mac/intel/canva-desktop/
-  ARM64_URL: https://www.canva.com/download/mac/arm/canva-desktop/
   
 MinimumVersion: '2.3'
 Process:
 
-  - Processor: URLDownloader
+  - Processor: URLTextSearcher
     Arguments:
-      url: "%AMD64_URL%"
-      filename: "%NAME%-amd64.dmg"
-
-  - Processor: EndOfCheckPhase
-
-  - Processor: CodeSignatureVerifier
-    Arguments:
-      input_path: "%pathname%/Canva.app"
-      requirement: identifier "com.canva.CanvaDesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "5HD2ARTBFS"
+      url: "https://desktop-release.canva.com/latest-mac.yml"
+      re_pattern: (Canva.*?\.dmg)
 
   - Processor: URLDownloader
     Arguments:
-      url: "%ARM64_URL%"
-      filename: "%NAME%-arm64.dmg"
+      url: "https://desktop-release.canva.com/%match%"
+      filename: "%NAME%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
 
   - Processor: EndOfCheckPhase
 
@@ -36,5 +28,6 @@ Process:
     Arguments:
       info_path: "%pathname%/Canva.app/Contents/Info.plist"
       plist_keys:
-        CFBundleShortVersionString: version
-        CFBundleIdentifier: bundleid 
+        CFBundleShortVersionString: bundle_version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: bundle_name

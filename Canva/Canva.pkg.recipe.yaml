@@ -1,9 +1,7 @@
-Description: Recipe description
+Description: Downloads and packages Canva
 Identifier: com.github.moofit-recipes.pkg.Canva
 Input:
   NAME: Canva
-  AMD64_URL: https://www.canva.com/download/mac/intel/canva-desktop/
-  ARM64_URL: https://www.canva.com/download/mac/arm/canva-desktop/
 
 MinimumVersion: '2.3'
 ParentRecipe: com.github.moofit-recipes.download.Canva
@@ -13,16 +11,16 @@ Process:
     Arguments:
       pkgdirs:
         Applications: "0775"
-      pkgroot: "%RECIPE_CACHE_DIR%/amd64"
+      pkgroot: "%RECIPE_CACHE_DIR%/root"
 
   - Processor: FileFinder
     Arguments:
-      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%-amd64.dmg"
-
+      pattern: "%RECIPE_CACHE_DIR%/Downloads/%bundle_name%.dmg"
+  
   - Processor: Copier
     Arguments:
-      destination_path: "%pkgroot%/Applications/Canva.app"
-      source_path: "%found_filename%/Canva.app"
+      destination_path: "%pkgroot%/Applications/%bundle_name%.app"
+      source_path: "%found_filename%/%bundle_name%.app"
 
   - Processor: PkgCreator
     Arguments:
@@ -31,108 +29,8 @@ Process:
           - group: admin
             path: Applications
             user: root
-        id: "%bundleid%.amd64"
+        id: "%bundle_id%"
         options: purge_ds_store
-        pkgname: "%NAME%-amd64-%version%"
-        pkgroot: "%RECIPE_CACHE_DIR%/amd64"
-        version: "%version%"
-
-  - Processor: PkgRootCreator
-    Arguments:
-      pkgdirs:
-        Applications: "0775"
-      pkgroot: "%RECIPE_CACHE_DIR%/arm64"
-
-  - Processor: FileFinder
-    Arguments:
-      pattern: "%RECIPE_CACHE_DIR%/downloads/%NAME%-arm64.dmg"
-
-  - Processor: Copier
-    Arguments:
-      destination_path: "%pkgroot%/Applications/Canva.app"
-      source_path: "%found_filename%/Canva.app"
-
-  - Processor: PkgCreator
-    Arguments:
-      pkg_request:
-        chown:
-          - group: admin
-            path: Applications
-            user: root
-        id: "%bundleid%.arm64"
-        options: purge_ds_store
-        pkgname: "%NAME%-arm64-%version%"
-        pkgroot: "%RECIPE_CACHE_DIR%/arm64"
-        version: "%version%"
-
-  - Processor: PkgRootCreator
-    Arguments:
-      pkgdirs:
-        scripts: "0755"
-        root: "0755"
-        root/private: "0755"
-        root/private/tmp: "0777"
-      pkgroot: "%RECIPE_CACHE_DIR%/universal"
-
-  - Processor: FileMover
-    Arguments:
-      overwrite: false
-      source: "%RECIPE_CACHE_DIR%/%NAME%-amd64-%version%.pkg"
-      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-amd64-%version%.pkg"
-
-  - Processor: FileMover
-    Arguments:
-      overwrite: false
-      source: "%RECIPE_CACHE_DIR%/%NAME%-arm64-%version%.pkg"
-      target: "%RECIPE_CACHE_DIR%/universal/root/private/tmp/%NAME%-arm64-%version%.pkg"
-
-  - Processor: FileCreator
-    Arguments:
-      file_path: "%RECIPE_CACHE_DIR%/universal/scripts/postinstall"
-      file_mode: "0755"
-      file_content: |
-        #!/bin/zsh
-
-        # Set variables
-        declare -r INTEL="$3/private/tmp/%NAME%-amd64-%version%.pkg"
-        declare -r APPLE_SILICON="$3/private/tmp/%NAME%-arm64-%version%.pkg"
-
-        # Determine architecture
-        ARCH=$(/usr/bin/arch)
-
-        # Install corresponding package
-        if [[ "${ARCH}" == i386 ]]
-        then
-            /usr/sbin/installer -pkg "${INTEL}" -target "$3"
-            EXIT_CODE=$?
-        else
-            /usr/sbin/installer -pkg "${APPLE_SILICON}" -target "$3"
-            EXIT_CODE=$?
-        fi
-
-        echo "Cleaning up..."
-        /bin/rm -rf "${INTEL}" "${APPLE_SILICON}"
-
-        # Check exit code and bail if the package didn't install correctly
-        if [[ "${EXIT_CODE}" -ne 0 ]]
-        then
-            echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
-            exit 1
-        fi
-
-  - Processor: PkgCreator
-    Arguments:
-      pkg_request:
-        id: "%bundleid%"
-        options: purge_ds_store
-        pkgname: "%NAME%Universal-%version%"
-        pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
-        scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
-        version: "%version%"
-
-  - Processor: PathDeleter
-    Arguments:
-      path_list:
-        - "%RECIPE_CACHE_DIR%/universal"
-        - "%RECIPE_CACHE_DIR%/amd64"
-        - "%RECIPE_CACHE_DIR%/arm64"
+        pkgname: "%bundle_name%-%bundle_version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/root"
+        version: "%bundle_version%"

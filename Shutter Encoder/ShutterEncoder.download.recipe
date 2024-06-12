@@ -61,11 +61,28 @@
             <dict>
                 <key>url</key>
                 <string>%DOWNLOAD_PAGE_URL%/%output_string%</string>
+                <key>filename</key>
+                <string>%NAME%.pkg</string>
             </dict>
         </dict>
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%</string>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Codebase Media UG (haftungsbeschrankt) (LZ28YRG3Q4)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
         </dict>
     </array>
 </dict>

@@ -1,0 +1,51 @@
+Description: Downloads both intel and silicon versions of OBS to be packaged
+Identifier: com.github.moofit-recipes.download.OBSUniversal
+Input:
+  RECIPE_APP_NAME: OBS
+  INTEL: intel
+  SILICON_URL: apple
+  SILICON: Silicon
+  URL: https://obsproject.com/download
+
+Notes: Additonal "Silicon" variable required as the vendor uses "apple" to denote the silicon installer...
+
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: \"(.*%INTEL%.dmg)\"
+      result_output_var_name: intel_installer
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%intel_installer%"
+      filename: "%RECIPE_APP_NAME%-%INTEL%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: \"(.*%SILICON_URL%.dmg)\"
+      result_output_var_name: silicon_installer
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%silicon_installer%"
+      filename: "%RECIPE_APP_NAME%-%SILICON%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/%RECIPE_APP_NAME%.app"
+      requirement: anchor apple generic and identifier "com.obsproject.obs-studio" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "2MMRE5MTB8")
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/%RECIPE_APP_NAME%.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: bundle_version
+        CFBundleIdentifier: bundle_identifier
+        CFBundleName: bundle_name

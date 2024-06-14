@@ -1,0 +1,35 @@
+Description: Downloads Teemyco to prepare for packaging
+Identifier: com.github.moofit-recipes.pkg.Teemyco
+ParentRecipe: com.github.moofit-recipes.download.Teemyco
+Input:
+  URL: https://www.teemyco.com/platform/download
+  RECIPE_APP_NAME: Teemyco
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/root"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/downloads/%bundle_name%.dmg"
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%found_filename%/%bundle_name%.app"
+      destination_path: "%pkgroot%/Applications/%bundle_name%.app"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
+        id: "%bundle_id%"
+        options: purge_ds_store
+        pkgname: "%bundle_name%-%bundle_version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/root"
+        version: "%bundle_version%"

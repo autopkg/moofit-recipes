@@ -1,0 +1,29 @@
+Description: Downloads Teemyco to prepare for packaging
+Identifier: com.github.moofit-recipes.download.Teemyco
+Input:
+  URL: https://www.teemyco.com/platform/download
+  RECIPE_APP_NAME: Teemyco
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: \"(https://storage.googleapis.com/teemyco-releases/releases/Teemyco-[0-9]+.[0-9]+.[0-9]+.dmg)\"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%match%"
+      filename: "%RECIPE_APP_NAME%.dmg"
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Teemyco.app"
+      requirement: identifier "com.teemyco.teemyco-desktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = V5942M57RR
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%pathname%/Teemyco.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: bundle_version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: bundle_name

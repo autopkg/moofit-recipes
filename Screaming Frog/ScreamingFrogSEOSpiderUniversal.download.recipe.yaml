@@ -1,0 +1,64 @@
+Identifier: com.github.moofit-recipes.download.ScreamingFrogSEO
+Description: Downloads both Intel and Silicon versions of Screaming Frog SEO Spider to be packaged into a universal installer
+Input:
+  INTEL_ARCH: x86_64
+  SILICON_ARCH: aarch64
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "https://www.screamingfrog.co.uk/seo-spider/"
+      re_pattern: (https://download\.screamingfrog\.co\.uk/products/seo-spider/ScreamingFrogSEOSpider-([A-Za-z0-9]+(\.[A-Za-z0-9]+)+)-%INTEL_ARCH%.dmg)
+      result_output_var_name: intel_download_path
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%intel_download_path%"
+      filename: "ScreamingFrogSEOSpider-%INTEL_ARCH%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Screaming Frog SEO Spider.app"
+      requirement: identifier "uk.co.screamingfrog.seo.spider" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = CAHEVC3HZC
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "/Applications/Screaming Frog SEO Spider.app/Contents/Info.plist"
+      plist_keys: 
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: app_name
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "https://www.screamingfrog.co.uk/seo-spider/"
+      re_pattern: (https://download\.screamingfrog\.co\.uk/products/seo-spider/ScreamingFrogSEOSpider-([A-Za-z0-9]+(\.[A-Za-z0-9]+)+)-%SILICON_ARCH%.dmg)
+      result_output_var_name: silicon_download_path
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%silicon_download_path%"
+      filename: "ScreamingFrogSEOSpider-%SILICON_ARCH%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Screaming Frog SEO Spider.app"
+      requirement: identifier "uk.co.screamingfrog.seo.spider" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = CAHEVC3HZC
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "/Applications/Screaming Frog SEO Spider.app/Contents/Info.plist"
+      plist_keys: 
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: app_name
+
+  - Processor: EndOfCheckPhase

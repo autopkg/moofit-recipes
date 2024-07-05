@@ -1,0 +1,59 @@
+Description: Downloads both intel and silicon versions of WordPress to be packaged
+Identifier: com.github.moofit-recipes.download.WordPress
+Input:
+  RECIPE_APP_NAME: WordPress
+  URL: https://apps.wordpress.com
+  INTEL_ARCH: Intel
+  SILICON_ARCH: Silicon
+
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: \"(/d/osx)\"
+      result_output_var_name: intel_link
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%%intel_link%"
+      re_pattern: \"(https://.*=dmg)\"
+      result_output_var_name: intel_installer_url
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%intel_installer_url%"
+      filename: "%RECIPE_APP_NAME%_%INTEL_ARCH%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: \"(/d/osx-silicon)\"
+      result_output_var_name: silicon_link
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%%silicon_link%"
+      re_pattern: \"(https://.*/osx-silicon/.*=dmg)\"
+      result_output_var_name: silicon_installer_url
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%silicon_installer_url%"
+      filename: "%RECIPE_APP_NAME%_%SILICON_ARCH%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/downloads/%RECIPE_APP_NAME%_%INTEL_ARCH%.dmg/%RECIPE_APP_NAME%.com.app"
+      requirement: identifier "com.automattic.wordpress" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PZYM8XX95Q
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%RECIPE_CACHE_DIR%/downloads/%RECIPE_APP_NAME%_%INTEL_ARCH%.dmg/%RECIPE_APP_NAME%.com.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: bundle_version
+        CFBundleIdentifier: bundle_identifier

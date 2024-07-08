@@ -138,11 +138,3 @@ Process:
         pkgname: "%RECIPE_APP_NAME%_Universal-%bundle_version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
-        version: "%bundle_version%"
-
-  - Processor: PathDeleter
-    Arguments:
-      path_list:
-        - "%RECIPE_CACHE_DIR%/%INTEL_ARCH%"
-        - "%RECIPE_CACHE_DIR%/%SILICON_ARCH%"
-        - "%RECIPE_CACHE_DIR%/universal"

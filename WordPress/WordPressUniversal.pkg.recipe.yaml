@@ -138,3 +138,4 @@ Process:
         pkgname: "%RECIPE_APP_NAME%_Universal-%bundle_version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
+        version: "%bundle_version%"

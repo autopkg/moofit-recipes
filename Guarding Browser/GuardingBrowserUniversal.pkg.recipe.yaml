@@ -1,7 +1,7 @@
 Description: Downloads the latest amd64 and arm64 versions of Guarding Browser and combines them into a package
 Identifier: com.github.moofit-recipes.pkg.GuardingBrowserUniversal
 MinimumVersion: "2.3"
-ParentRecipe: com.github.user.recipes.download.GuardingBrowser
+ParentRecipe: com.github.moofit-recipes.download.GuardingBrowser
 Input:
   BUNDLE_ID: com.proctoru.guardian-browser
   NAME: Guarding Browser

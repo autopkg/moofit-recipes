@@ -1,4 +1,4 @@
-Identifier: com.github.user.recipes.download.GuardingBrowser
+Identifier: com.github.moofit-recipes.download.GuardingBrowser
 Input:
   AMD64_URL: https://production-archimedes-secure-browser-artifacts.s3.amazonaws.com/latest/mac-x64/guardian-browser-x64.dmg
   ARM64_URL: https://production-archimedes-secure-browser-artifacts.s3.amazonaws.com/latest/mac-arm64/guardian-browser-arm64.dmg

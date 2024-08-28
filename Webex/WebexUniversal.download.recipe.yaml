@@ -2,32 +2,19 @@ Identifier: com.github.moofit-recipes.download.WebexUniversal
 Description: Downloads both Intel and Silicon versions of Webex to be packaged into a universal installer 
 Input:
   RECIPE_APP_NAME: Webex
-  INTEL_ARCH: MACOS-Gold
-  SILICON_ARCH: MACOS-Apple-Silicon-Gold
-  URL: "https://www.webex.com/downloads.html"
+  INTEL_URL: 'https://binaries.webex.com/webex-macos-intel/Webex.dmg'
+  SILICON_URL: 'https://binaries.webex.com/webex-macos-apple-silicon/Webex.dmg'
+
 Process:
-
-  - Processor: URLTextSearcher
-    Arguments:
-      url: "%URL%"
-      re_pattern: (https://binaries.webex.com/WebexTeamsDesktop-%INTEL_ARCH%/Webex.dmg)
-      result_output_var_name: intel_download_path
-
   - Processor: URLDownloader
     Arguments:
-      url: "%intel_download_path%"
+      url: "%INTEL_URL%"
       download_dir: "%RECIPE_CACHE_DIR%/Downloads"
       filename: "%RECIPE_APP_NAME%-Intel.dmg"
 
-  - Processor: URLTextSearcher
-    Arguments:
-      url: "%URL%"
-      re_pattern: (https://binaries.webex.com/WebexDesktop-%SILICON_ARCH%/Webex.dmg)
-      result_output_var_name: silicon_download_path
-
   - Processor: URLDownloader
     Arguments:
-      url: "%silicon_download_path%"
+      url: "%SILICON_URL%"
       download_dir: "%RECIPE_CACHE_DIR%/Downloads"
       filename: "%RECIPE_APP_NAME%-Silicon.dmg"
 

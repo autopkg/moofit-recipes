@@ -1,0 +1,41 @@
+Identifier: com.github.moofit-recipes.download.PyCharmCEUniversal
+Input:
+  AMD64_URL: https://download.jetbrains.com/python/pycharm-community-2024.2.1.dmg
+  ARM64_URL: https://download.jetbrains.com/python/pycharm-community-2024.2.1-aarch64.dmg
+  BUNDLE_ID: com.jetbrains.pycharm.ce
+  NAME: PyCharm CE
+Process:
+
+  - Processor: URLDownloader
+    Arguments:
+      url:   "%AMD64_URL%"
+      filename: "%NAME%-amd64.dmg"
+
+  - Processor: EndOfCheckPhase
+  
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/PyCharm CE.app"
+      requirement: identifier "com.jetbrains.pycharm.ce" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "2ZEFAR8TH3"
+      
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/PyCharm CE.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: URLDownloader
+    Arguments:
+      url:   "%ARM64_URL%"
+      filename: "%NAME%-arm64.dmg"
+
+  - Processor: EndOfCheckPhase
+  
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/PyCharm CE.app"
+      requirement: identifier "com.jetbrains.pycharm.ce" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "2ZEFAR8TH3"
+
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/PyCharm CE.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString

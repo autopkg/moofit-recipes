@@ -1,0 +1,24 @@
+Identifier: com.github.moofit.download.swiftDialog
+Description: Download swiftDialog, an admin utility app for macOS 11+ written in SwiftUI that displays a popup dialog, displaying the content to your users that you want to display.
+MinimumVersion: "2.3"
+
+Input:
+  NAME: swiftDialog
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      github_repo: 'bartreardon/swiftDialog'
+      asset_regex: '.*\.pkg'
+
+  - Processor: URLDownloader
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      expected_authority_names:
+        - "Developer ID Installer: Commonwealth Scientific and Industrial Research Organisation (PWA5E9TQ59)"
+        - "Developer ID Certification Authority"
+        - "Apple Root CA"
+      input_path: "%pathname%"

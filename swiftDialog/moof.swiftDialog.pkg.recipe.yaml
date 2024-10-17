@@ -36,7 +36,7 @@ Process:
   - Processor: Copier
     Arguments:
       destination_path: "%RECIPE_CACHE_DIR%/unpack/Library/Application Support/Dialog"
-      source_path: "%RECIPE_DIR%/%RESOURCES%/*"
+      source_path: "%RESOURCES%"
 
   - Processor: PkgCreator
     Arguments:

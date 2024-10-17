@@ -1,0 +1,55 @@
+Identifier: com.github.moofit.pkg.swiftDialog
+Description: Downloads and packages swiftDialog with company resources
+MinimumVersion: "2.3"
+
+Input:
+  NAME: swiftDialog
+  BUNDLE_ID: au.csiro.dialog
+  RESOURCES: ""
+
+ParentRecipe: com.github.moofit.download.swiftDialog
+
+Process:
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/expanded"
+      flat_pkg_path: "%pathname%"
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/**/payload"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack"
+      pkg_payload_path: "%found_filename%"
+
+  - Processor: com.github.amsysuk-recipes.Processors/PathCreator
+    Arguments:
+      path_to_create: "%RECIPE_CACHE_DIR%/unpack/Library/Application Support/Dialog"
+      
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%RECIPE_CACHE_DIR%/unpack/Library/Application Support/Dialog/Dialog.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%RECIPE_CACHE_DIR%/unpack/Library/Application Support/Dialog"
+      source_path: "%RECIPE_DIR%/%RESOURCES%/*"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: /Library/Application Support/Dialog
+            user: root
+        chown:
+          - group: admin
+            path: /usr/local/bin/dialog
+            user: root
+        id: "%BUNDLE_ID%"
+        options: "purge_ds_store"
+        pkgname: "%NAME%-%version%"
+        pkgroot: "%RECIPE_CACHE_DIR%/unpack"

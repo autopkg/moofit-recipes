@@ -1,0 +1,74 @@
+Description: Downloads both Intel and Silicon versions of VirtualBox
+Identifier: com.github.moofit-recipes.download.VirtualBox-Universal
+Input:
+  NAME: VirtualBox
+  URL: https://www.virtualbox.org/wiki/Downloads
+  ARM: Silicon
+  INTEL: Intel
+
+MinimumVersion: '2.3'
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: https://download\.virtualbox\.org/virtualbox/.*?/VirtualBox-.*?-OSX.dmg
+      result_output_var_name: intel_url
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%intel_url%"
+      filename: "%NAME%_%INTEL%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: https://download\.virtualbox\.org/virtualbox/.*?/VirtualBox-.*?-macOSArm64.dmg
+      result_output_var_name: silicon_url
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%silicon_url%"
+      filename: "%NAME%_%ARM%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      flat_pkg_path: "%RECIPE_CACHE_DIR%/downloads/%NAME%_%INTEL%.dmg/%NAME%.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/extract"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/extract/%NAME%.pkg/Payload"
+      destination_path: "%RECIPE_CACHE_DIR%/Applications/%INTEL%"
+
+  - Processor: FlatPkgUnpacker
+    Arguments:
+      flat_pkg_path: "%RECIPE_CACHE_DIR%/downloads/%NAME%_%ARM%.dmg/%NAME%.pkg"
+      destination_path: "%RECIPE_CACHE_DIR%/extract"
+
+  - Processor: PkgPayloadUnpacker
+    Arguments:
+      pkg_payload_path: "%RECIPE_CACHE_DIR%/extract/%NAME%.pkg/Payload"
+      destination_path: "%RECIPE_CACHE_DIR%/Applications/%ARM%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: FileFinder
+    Arguments:
+      pattern: "%RECIPE_CACHE_DIR%/Applications/*/*.app"
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%found_filename%"
+      requirement: identifier "org.virtualbox.app.VirtualBox" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = VB5E2TV963
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%found_filename%"
+      plist_keys:
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundleid

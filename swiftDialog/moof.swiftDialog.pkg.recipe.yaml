@@ -27,7 +27,7 @@ Process:
   - Processor: com.github.amsysuk-recipes.Processors/PathCreator
     Arguments:
       path_to_create: "%RECIPE_CACHE_DIR%/unpack/Library/Application Support/Dialog"
-      path_to_create: "%RECIPE_CACHE_DIR%/unpack/scripts"
+      path_to_create: "%RECIPE_CACHE_DIR%/scriptsToUpload"
       
   - Processor: Versioner
     Arguments:
@@ -41,7 +41,7 @@ Process:
       
   - Processor: FileCreator
     Arguments:
-      file_path: "%RECIPE_CACHE_DIR%/unpack/scripts/postinstall"
+      file_path: "%RECIPE_CACHE_DIR%/scriptsToUpload/postinstall"
       file_mode: "0755"
       overwrite: true
       file_content: |
@@ -80,7 +80,7 @@ Process:
                
   - Processor: FileCreator
     Arguments:
-      file_path: "%RECIPE_CACHE_DIR%/unpack/scripts/fileicon"
+      file_path: "%RECIPE_CACHE_DIR%/scriptsToUpload/fileicon"
       file_mode: "0755"
       file_content: |
         #!/usr/bin/env bash
@@ -831,4 +831,4 @@ Process:
         options: "purge_ds_store"
         pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/unpack"
-        scripts: "%RECIPE_CACHE_DIR%/unpack/scripts"
+        scripts: "%RECIPE_CACHE_DIR%/scriptsToUpload"

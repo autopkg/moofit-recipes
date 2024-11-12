@@ -1,0 +1,65 @@
+Description: Downloads both Intel and Silicon versions of FileZilla to be packaged into a universal installer
+Identifier: com.github.moofit-recipes.download.FileZilla-Universal
+Input:
+  NAME: FileZilla
+  URL: https://filezilla-project.org/download.php?show_all=1
+  INTEL_ARCH: x86
+  SILICON_ARCH: arm64
+Process:
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: \"(http[s]?.*?(FileZilla_([\d.]+)_macos-%INTEL_ARCH%.*?\.tar\.bz2).*?)\"
+      request_headers:
+        user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 14_7_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15
+      result_output_var_name: intel_url
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%intel_url%"
+      filename: "%NAME%-%INTEL_ARCH%.app.tar.bz2"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%URL%"
+      re_pattern: \"(http[s]?.*?(FileZilla_([\d.]+)_macos-%SILICON_ARCH%.*?\.tar\.bz2).*?)\"
+      request_headers:
+        user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 14_7_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15
+      result_output_var_name: silicon_url
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "%silicon_url%"
+      filename: "%NAME%-%SILICON_ARCH%.app.tar.bz2"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%RECIPE_CACHE_DIR%/Downloads/%NAME%-%INTEL_ARCH%.app.tar.bz2"
+      destination_path: "%RECIPE_CACHE_DIR%/Extract/%INTEL_ARCH%"
+      purge_destination: true
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%RECIPE_CACHE_DIR%/Downloads/%NAME%-%SILICON_ARCH%.app.tar.bz2"
+      destination_path: "%RECIPE_CACHE_DIR%/Extract/%SILICON_ARCH%"
+      purge_destination: true
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/Extract/%INTEL_ARCH%/%NAME%.app"
+      requirement: identifier "org.filezilla-project.filezilla" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "5VPGKXL75N"
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%RECIPE_CACHE_DIR%/Extract/%INTEL_ARCH%/%NAME%.app/Contents/Info.plist"
+      plist_keys: 
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: app_name

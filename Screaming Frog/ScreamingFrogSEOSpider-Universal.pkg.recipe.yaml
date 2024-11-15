@@ -133,7 +133,7 @@ Process:
       pkg_request:
         id: "%bundle_id%"
         options: purge_ds_store
-        pkgname: "ScreamingFrogSEOSpider-Universal-%version%"
+        pkgname: "%app_name%_Universal-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
         version: "%version%"

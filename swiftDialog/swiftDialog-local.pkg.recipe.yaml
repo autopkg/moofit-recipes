@@ -2,7 +2,7 @@ Identifier: com.github.moofit-recipes.pkg.swiftDialog-Client
 Description: Recipe rsyncs the already built swift package in preperation to be built into the custom package
 ParentRecipe: com.github.moofit-recipes.download.swiftDialog-Client
 Input:
-  NAME: swiftdialog
+  NAME: swiftDialog
   BUNDLE_ID: au.csiro.dialog
   RESOURCES: ""
 

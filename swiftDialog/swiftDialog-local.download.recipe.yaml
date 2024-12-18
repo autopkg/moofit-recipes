@@ -3,7 +3,6 @@ Description: Recipes does nothing as pkg recipe uses rsync to copy package from 
 Input:
   NAME: swiftdialog
   BUNDLE_ID: au.csiro.dialog
-  RESOURCES: ""
 
 MinimumVersion: '2.3'
 Process:

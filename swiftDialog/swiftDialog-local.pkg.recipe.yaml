@@ -4,6 +4,7 @@ ParentRecipe: com.github.moofit-recipes.download.swiftDialog-Client
 Input:
   NAME: swiftdialog
   BUNDLE_ID: au.csiro.dialog
+  RESOURCES: ""
 
 MinimumVersion: '2.3'
 Process:

@@ -1,8 +1,7 @@
 Identifier: com.github.moofit-recipes.download.swiftDialog-Client
 Description: Recipes does nothing as pkg recipe uses rsync to copy package from OnedDrive to Recipe Cache Dir
 Input:
-  NAME: swiftdialog
-  BUNDLE_ID: au.csiro.dialog
+  NAME: swiftDialog
 
 MinimumVersion: '2.3'
 Process:

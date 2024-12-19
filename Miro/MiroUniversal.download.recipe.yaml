@@ -1,7 +1,7 @@
 Identifier: com.github.moofit-recipes.download.MiroUniversal
 Input:
-  AMD64_URL: https://desktop.miro.com/platforms/darwin/Miro.dmg
-  ARM64_URL: https://desktop.miro.com/platforms/darwin-arm64/Miro.dmg
+  AMD64_URL: https://desktop.miro.com/platforms/darwin/Install-Miro.dmg
+  ARM64_URL: https://desktop.miro.com/platforms/darwin-arm64/Install-Miro.dmg
   BUNDLE_ID: com.electron.realtimeboard
   NAME: Miro
 Process:

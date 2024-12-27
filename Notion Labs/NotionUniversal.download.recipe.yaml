@@ -9,6 +9,10 @@ Input:
   USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
 
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "Consider switching to the Notion recipes in the swy-recipes repo, which already provide a Universal download. This recipe is deprecated and will be removed in the future."
+
   - Processor: URLDownloader
     Arguments:
       url: "%AMD64_DOWNLOAD_URL%"

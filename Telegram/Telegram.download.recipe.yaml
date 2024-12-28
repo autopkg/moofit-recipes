@@ -6,6 +6,9 @@ Input:
 
 MinimumVersion: '2.3'
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "Consider switching to the Telegram recipes in the tallfunnyjew-recipes repo. This recipe is deprecated and will be removed in the future."
 
   - Processor: URLDownloader
     Arguments:

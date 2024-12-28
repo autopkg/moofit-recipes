@@ -13,7 +13,7 @@
         <key>SEARCH_URL</key>
         <string>https://fxfactory.com/download</string>
         <key>SEARCH_PATTERN</key>
-        <string>(?P&lt;url&gt;https:\/\/fxfactory.s3.amazonaws.com\/noiseindustries\/fxfactory\/FxFactory(-|_)(?P&lt;version&gt;([0-9]+|\.)+)(-|_)\d+.zip)</string>
+        <string>(?P&lt;url&gt;https://files\.fxfactory\.com/fxfactory/FxFactory-(?P&lt;version&gt;[\d\.-]+)\.zip)</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.0</string>

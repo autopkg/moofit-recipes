@@ -30,13 +30,16 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>"downloadUrl":\"(https://.+)",</string>
+				<string>"downloadUrl":"(https://.+)",</string>
 				<key>result_output_var_name</key>
 				<string>match</string>
 				<key>curl_opts</key>
-				 <array>
-					 <string>-b ClickShare.txt -L</string>
-				 </array>
+				<array>
+					<string>--cookie-jar</string>
+					<string>%RECIPE_CACHE_DIR%/cookies.txt</string>
+					<string>--cookie</string>
+					<string>%RECIPE_CACHE_DIR%/cookies.txt</string>
+				</array>
 				<key>request_headers</key>
 				<dict>
 					<key>user-agent</key>
@@ -69,6 +72,16 @@
 				<string>%NAME%.zip</string>
 				<key>url</key>
 				<string>%match%</string>
+				<key>curl_opts</key>
+				<array>
+					<string>--cookie</string>
+					<string>%RECIPE_CACHE_DIR%/cookies.txt</string>
+				</array>
+				<key>request_headers</key>
+				<dict>
+					<key>user-agent</key>
+					<string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15</string>
+				</dict>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>

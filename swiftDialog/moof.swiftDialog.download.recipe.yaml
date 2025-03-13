@@ -9,7 +9,7 @@ Process:
   - Processor: GitHubReleasesInfoProvider
     Arguments:
       github_repo: 'bartreardon/swiftDialog'
-      asset_regex: '.*\.pkg'
+      asset_regex: '.*2\.5\.4-4793\.pkg'
 
   - Processor: URLDownloader
 

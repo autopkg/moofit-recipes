@@ -12,7 +12,7 @@ Process:
   - Processor: URLTextSearcher
     Arguments:
       url: "https://www.gimp.org/downloads/"
-      re_pattern: \"(//download.gimp.org/gimp/v[0-9]+.[0-9]+/macos/gimp-[0-9]+.[0-9]+.[0-9]+-%INTEL%-[0-9]+.dmg)\"
+      re_pattern: \"(//download.gimp.org/gimp/v[0-9]+.[0-9]+/macos/gimp-[0-9]+.[0-9]+.[0-9]+-%INTEL%.dmg)\"
       result_output_var_name: intel_installer
 
   - Processor: URLDownloader
@@ -24,7 +24,7 @@ Process:
   - Processor: URLTextSearcher
     Arguments:
       url: "https://www.gimp.org/downloads/"
-      re_pattern: \"(//download.gimp.org/gimp/v[0-9]+.[0-9]+/macos/gimp-[0-9]+.[0-9]+.[0-9]+-%SILICON%-[0-9]+.dmg)\"
+      re_pattern: \"(//download.gimp.org/gimp/v[0-9]+.[0-9]+/macos/gimp-[0-9]+.[0-9]+.[0-9]+-%SILICON%.dmg)\"
       result_output_var_name: silicon_installer
 
   - Processor: URLDownloader

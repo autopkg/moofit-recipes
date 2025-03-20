@@ -10,12 +10,8 @@
     <dict>
         <key>NAME</key>
         <string>Notifier</string>
-		<key>VERSION</key>
-		<string></string>
         <key>INCLUDE_PRERELEASES</key>
         <string></string>
-        <key>GITHUB_REPO</key>
-        <string>dataJAR/Notifier</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.5.0</string>
@@ -27,9 +23,9 @@
             <key>Arguments</key>
             <dict>
                 <key>asset_regex</key>
-                <string>.*Notifier-%VERSION%.pkg</string>
+                <string>Notifier.*\.pkg</string>
                 <key>github_repo</key>
-                <string>%GITHUB_REPO%</string>
+                <string>dataJAR/Notifier</string>
                 <key>include_prereleases</key>
                 <string>%INCLUDE_PRERELEASES%</string>
                 <key>sort_by_highest_tag_names</key>
@@ -43,6 +39,21 @@
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%</string>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Data JAR Ltd (82K2XFN8L6)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+            </dict>
         </dict>
     </array>
 </dict>

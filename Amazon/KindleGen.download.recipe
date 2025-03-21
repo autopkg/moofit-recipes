@@ -28,7 +28,7 @@ Zip file)</string>
             <key>Arguments</key>
             <dict>
                 <key>warning_message</key>
-                <string>KindleGen is no longer available for download (https://www.amazon.com/b?node=23972728011&ref_=cs_fdm_1000765211-23972728011). This recipe is deprecated and will be removed in the future.</string>
+                <string>KindleGen is no longer available for download. This recipe is deprecated and will be removed in the future.</string>
             </dict>
         </dict>
         <dict>

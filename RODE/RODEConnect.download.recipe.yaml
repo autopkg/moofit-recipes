@@ -4,24 +4,12 @@ MinimumVersion: "2.3"
 
 Input:
   NAME: RODE Connect
-  URL: https://rode.com/en/software/rodeconnect#module_17
 
 Process:
 
-  - Processor: URLTextSearcher
-    Arguments:
-      re_pattern: https.+?RODE Connect macOS.+?zip
-      url: "%URL%"
-
-  - Processor: com.github.homebysix.FindAndReplace/FindAndReplace
-    Arguments:
-      find: " "
-      input_string: "%match%"
-      replace: "%20"
-
   - Processor: URLDownloader
     Arguments:
-      url: "%output_string%"
+      url: "https://update.rode.com/connect/RODE_Connect_MACOS.zip"
       filename: "%NAME%.zip"
 
   - Processor: EndOfCheckPhase
@@ -34,16 +22,14 @@ Process:
     Comment: Unzipping for code signature verification. Path must be deleted afterwards to prevent unzipping over existing version.
     Processor: Unarchiver
 
-  - Processor: PkgCopier
+  - Processor: FileFinder
     Arguments:
-      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"
-      source_pkg: "%RECIPE_CACHE_DIR%/unzip/*/RODE Connect.pkg"
+      pattern: "%RECIPE_CACHE_DIR%/unzip/*.pkg"
 
   - Processor: CodeSignatureVerifier
     Arguments:
-      input_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"
+      input_path: "%found_filename%"
       expected_authority_names: 
        - "Developer ID Installer: FREEDMAN ELECTRONICS PTY LTD (Z9T72PWTJA)"
        - Developer ID Certification Authority
        - Apple Root CA
-

@@ -11,11 +11,9 @@
         <key>NAME</key>
         <string>MIDI Control Center</string>
         <key>CHECK_PAGE_URL</key>
-        <string>https://www.arturia.com/support/updates&amp;manuals/</string>
+        <string>https://www.arturia.com/api/resources?slugs=mccu&amp;types=soft</string>
         <key>CHECK_PAGE_PATTERN</key>
-        <string>http:\/\/downloads\.arturia\.com\/extra\/mcc\/MIDI_Control_Center_.*.pkg</string>
-        <key>USER_AGENT</key>
-        <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
+        <string>"(https://dl\.arturia\.net/products/mccu/soft/MIDI_Control_Center[\d_]+\.pkg)"</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.1</string>
@@ -30,27 +28,13 @@
                 <string>%CHECK_PAGE_URL%</string>
                 <key>re_pattern</key>
                 <string>%CHECK_PAGE_PATTERN%</string>
-                <key>re_flags</key>
-                <array>
-                    <string>IGNORECASE</string>
-                </array>
-                <key>request_headers</key>
-                <dict>
-                        <key>user-agent</key>
-                        <string>%USER_AGENT%</string>
-                </dict>
                 <key>result_output_var_name</key>
-                <string>download_url</string>
+                <string>url</string>
             </dict>
         </dict>
         <dict>
             <key>Processor</key>
             <string>URLDownloader</string>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>%download_url%</string>
-            </dict>
         </dict>
         <dict>
             <key>Processor</key>

@@ -10,7 +10,7 @@ Process:
 
   - Processor: SparkleUpdateInfoProvider
     Arguments:
-      appcast_url: https://readwrite.texthelp.com/rw7mac/updatesp/appcast.xml
+      appcast_url: https://fastdownloads2.texthelp.com/readwritemac7/updates/live/appcast.xml
 
   - Processor: URLDownloader
     Arguments:

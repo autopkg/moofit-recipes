@@ -34,7 +34,6 @@ Process:
             path: Applications/Screaming Frog SEO Spider.app
             user: root
         id: "%bundle_id%"
-        options: purge_ds_store
         pkgname: "ScreamingFrogSEOSpider-%INTEL_ARCH%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/%INTEL_ARCH%"
         version: "%version%"
@@ -67,7 +66,6 @@ Process:
             path: Applications/Screaming Frog SEO Spider.app
             user: root
         id: "%bundle_id%"
-        options: purge_ds_store
         pkgname: "ScreamingFrogSEOSpider-%SILICON_ARCH%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/%SILICON_ARCH%"
         version: "%version%"
@@ -132,7 +130,6 @@ Process:
     Arguments:
       pkg_request:
         id: "%bundle_id%"
-        options: purge_ds_store
         pkgname: "%app_name%_Universal-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"

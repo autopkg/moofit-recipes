@@ -30,7 +30,6 @@ Process:
             path: Applications
             user: root
         id: "%bundle_id%"
-        options: purge_ds_store
         pkgname: "%bundle_name%-%bundle_version%"
         pkgroot: "%RECIPE_CACHE_DIR%/root"
         version: "%bundle_version%"

@@ -61,8 +61,6 @@
                     <string>%pkgroot%/scripts</string>
                     <key>id</key>
                     <string>com.facebook.workplacechat</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>chown</key>
                     <array>
                         <dict>

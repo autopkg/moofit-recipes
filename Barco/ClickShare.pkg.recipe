@@ -99,8 +99,6 @@ fi</string>
                 <dict>
                     <key>pkgname</key>
                     <string>%NAME%-%version%</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>scripts</key>
                     <string>%pkgroot%/scripts</string>
                     <key>pkgroot</key>

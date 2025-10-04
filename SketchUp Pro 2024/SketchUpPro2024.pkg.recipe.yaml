@@ -34,7 +34,6 @@ Process:
           - group: admin
             path: Applications
             user: root
-      options: purge_ds_store
       id: "com.sketchup.%NAME%-%version%"
       pkgname: "%NAME%-%version%"
       pkgroot: "%pkgroot%"

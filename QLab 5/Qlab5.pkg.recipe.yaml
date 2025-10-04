@@ -17,7 +17,6 @@ Process:
             path: Applications
             user: root
         id: com.figure53.QLab.4
-        options: purge_ds_store
         pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/%NAME%"
         version: "%version%"

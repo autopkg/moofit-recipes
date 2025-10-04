@@ -88,8 +88,6 @@ chmod -R 777 /Applications/Waves
                     <string>%version%</string>
                     <key>id</key>
                     <string>%bundleid%</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>scripts</key>
                     <string>%RECIPE_CACHE_DIR%/payload/scripts/</string>
                     <key>chown</key>

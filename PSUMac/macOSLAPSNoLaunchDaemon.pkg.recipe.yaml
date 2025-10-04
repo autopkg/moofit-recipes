@@ -47,7 +47,6 @@ Process:
             path: usr
             user: root
         id: edu.psu.macOSLAPS
-        options: purge_ds_store
         pkgname: "%NAME%-%version%"
         pkgroot: '%RECIPE_CACHE_DIR%/extract/payload'
         version: "%version%"

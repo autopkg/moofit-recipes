@@ -31,7 +31,6 @@ Process:
           - group: admin
             path: Applications
             user: root
-      options: purge_ds_store
       id: "com.azuredatastudio.oss"
       pkgname: "%NAME%-%version%"
       pkgroot: "%pkgroot%"

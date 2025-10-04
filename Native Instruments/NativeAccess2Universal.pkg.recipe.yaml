@@ -33,7 +33,6 @@ Process:
             path: Applications
             user: root
         id: com.native-instruments.nativeaccess2.Intel
-        options: purge_ds_store
         pkgdir: "%RECIPE_CACHE_DIR%"
         version: "%version%"
       pkgname: "%NAME%-Intel-%version%"
@@ -62,7 +61,6 @@ Process:
             path: Applications
             user: root
         id: com.native-instruments.nativeaccess2.M1
-        options: purge_ds_store
         pkgdir: "%RECIPE_CACHE_DIR%"
         version: "%version%"
       pkgname: "%NAME%-M1-%version%"
@@ -132,7 +130,6 @@ Process:
     Arguments:
       pkg_request:
         id: com.native-instruments.nativeaccess2
-        options: purge_ds_store
         pkgname: "%NAME%-Universal-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"

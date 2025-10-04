@@ -828,7 +828,6 @@ Process:
             path: /usr/local/bin/dialog
             user: root
         id: "%BUNDLE_ID%"
-        options: "purge_ds_store"
         pkgname: "%NAME%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/unpack"
         scripts: "%RECIPE_CACHE_DIR%/scriptsToUpload"

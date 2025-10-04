@@ -32,7 +32,6 @@ Process:
             path: Applications
             user: root
         id: "%bundle_id%.%INTEL_ARCH%"
-        options: purge_ds_store
         pkgname: "%NAME%_%INTEL_ARCH%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/%INTEL_ARCH%"
         version: "%version%"
@@ -60,7 +59,6 @@ Process:
             path: Applications
             user: root
         id: "%bundle_id%.%SILICON_ARCH%"
-        options: purge_ds_store
         pkgname: "%NAME%_%SILICON_ARCH%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/%SILICON_ARCH%"
         version: "%version%"
@@ -124,7 +122,6 @@ Process:
     Arguments:
       pkg_request:
         id: "%bundle_id%"
-        options: purge_ds_store
         pkgname: "%app_name%_Universal-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/Universal/root"
         scripts: "%RECIPE_CACHE_DIR%/Universal/scripts"

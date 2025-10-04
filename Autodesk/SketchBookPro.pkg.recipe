@@ -198,8 +198,6 @@ fi</string>
                     <string>%NAME%-%VERSION_YEAR%</string>
                     <key>id</key>
                     <string>com.autodesk.SketchBookPro%VERSION_YEAR%</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>pkgroot</key>
                     <string>%RECIPE_CACHE_DIR%/payload/root</string>
                     <key>scripts</key>

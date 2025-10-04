@@ -88,8 +88,6 @@
                     <string>%RECIPE_CACHE_DIR%/pkgroot</string>
                     <key>id</key>
                     <string>com.paulpacifico.shutterencoder</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
                     <key>chown</key>
                     <array>
                         <dict>

@@ -40,7 +40,6 @@ Process:
             path: Applications/Max.app
             user: root
         id: "%BUNDLE_ID%"
-        options: purge_ds_store
         pkgname: "%NAME%-%version%"
         pkgroot: "%pkgroot%"
         version: "%version%"

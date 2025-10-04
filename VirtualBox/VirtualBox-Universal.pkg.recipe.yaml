@@ -33,7 +33,6 @@ Process:
             path: Applications
             user: root
         id: "%bundleid%.%INTEL%"
-        options: purge_ds_store
         pkgname: "%NAME%_%INTEL%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/%INTEL%"
         version: "%version%"
@@ -61,7 +60,6 @@ Process:
             path: Applications
             user: root
         id: "%bundleid%.%ARM%"
-        options: purge_ds_store
         pkgname: "%NAME%_%ARM%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/%ARM%"
         version: "%version%"
@@ -125,7 +123,6 @@ Process:
     Arguments:
       pkg_request:
         id: "%bundleid%"
-        options: purge_ds_store
         pkgname: "%NAME%_Universal-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"

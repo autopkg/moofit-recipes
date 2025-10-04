@@ -32,7 +32,6 @@ Process:
             path: Applications
             user: root
         id: "%bundleid%.amd64"
-        options: purge_ds_store
         pkgname: "%NAME%-amd64-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/amd64"
         version: "%version%"
@@ -60,7 +59,6 @@ Process:
             path: Applications
             user: root
         id: "%bundleid%.arm64"
-        options: purge_ds_store
         pkgname: "%NAME%-arm64-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/arm64"
         version: "%version%"
@@ -124,7 +122,6 @@ Process:
     Arguments:
       pkg_request:
         id: "%bundleid%"
-        options: purge_ds_store
         pkgname: "%NAME%_Universal-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"

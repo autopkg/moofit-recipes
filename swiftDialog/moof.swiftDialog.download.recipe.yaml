@@ -6,6 +6,11 @@ Input:
   NAME: swiftDialog
 
 Process:
+
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "Consider switching to the swiftDialog recipes in the zentral-recipes repo. This recipe is deprecated and will be removed in the future."
+
   - Processor: GitHubReleasesInfoProvider
     Arguments:
       github_repo: 'bartreardon/swiftDialog'

@@ -7,7 +7,7 @@ Input:
   BUNDLE_ID: au.csiro.dialog
   RESOURCES: ""
 
-ParentRecipe: com.github.moofit.download.swiftDialog
+ParentRecipe: com.github.zentralpro.download.swiftDialog
 
 Process:
   - Processor: FlatPkgUnpacker

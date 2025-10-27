@@ -1,6 +1,6 @@
 Description: Packages the latest version of Azure Data Studio
 Identifier: com.github.moofit-recipes.pkg.AzureDataStudio
-ParentRecipe: com.github.moofit-recipes.download.AzureDataStudio
+ParentRecipe: com.github.dataJAR-recipes.download.AzureDataStudio
 MinimumVersion: '1.1.0'
 Input:
     NAME: Azure Data Studio

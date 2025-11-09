@@ -2,8 +2,12 @@ Identifier: com.github.moofit-recipes.download.CatoClient
 Description: Downloads the latest Cato Client application
 Input:
   RECIPE_APP_NAME: CatoClient
-MinimumVersion: '1.0.0'
+MinimumVersion: '2.3'
 Process:
+
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: Consider switching to the CatoClient recipes in the dataJAR-recipes repo. This recipe is deprecated and will be removed in the future.
 
   - Processor: URLDownloader
     Arguments:

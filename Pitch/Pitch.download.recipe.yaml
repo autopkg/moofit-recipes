@@ -7,6 +7,10 @@ Input:
   URL: https://desktop.pitch.com/mac/Pitch.dmg
 
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: Consider switching to the Pitch recipes in the dataJAR-recipes repo. This recipe is deprecated and will be removed in the future.
+
   - Processor: URLDownloader
     Arguments:
       url: "%URL%"

@@ -9,6 +9,10 @@ Based on: com.github.dataJAR-recipes.download.AzureDataStudio
 
 Process:
 
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: Consider switching to the AzureDataStudio recipes in the dataJAR-recipes repo. This recipe is deprecated and will be removed in the future.
+  
   - Processor: URLTextSearcher
     Arguments:
       url: "%URL%"

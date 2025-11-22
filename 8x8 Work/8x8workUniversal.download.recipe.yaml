@@ -18,6 +18,8 @@ Process:
       filename: "8x8 Work-%INTEL%.dmg"
       download_dir: "%RECIPE_CACHE_DIR%/Downloads"
 
+  - Processor: EndOfCheckPhase
+
   - Processor: CodeSignatureVerifier
     Arguments:
       input_path: "%pathname%/8x8 Work.app"
@@ -26,12 +28,10 @@ Process:
   - Processor: PlistReader
     Arguments:
       info_path: "%pathname%/8x8 Work.app/Contents/Info.plist"
-      plist_keys: 
+      plist_keys:
         CFBundleShortVersionString: version
         CFBundleIdentifier: bundle_id
         CFBundleName: app_name
-
-  - Processor: EndOfCheckPhase
 
   - Processor: URLTextSearcher
     Description: find the url for the Silicon installer and store it as the silicon_url variable
@@ -56,9 +56,7 @@ Process:
   - Processor: PlistReader
     Arguments:
       info_path: "%pathname%/8x8 Work.app/Contents/Info.plist"
-      plist_keys: 
+      plist_keys:
         CFBundleShortVersionString: version
         CFBundleIdentifier: bundle_id
         CFBundleName: app_name
-
-  - Processor: EndOfCheckPhase

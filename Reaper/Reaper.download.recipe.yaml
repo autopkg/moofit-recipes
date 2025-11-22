@@ -19,6 +19,8 @@ Process:
       filename: "%RECIPE_APP_NAME%.dmg"
       download_dir: "%RECIPE_CACHE_DIR%/Downloads"
 
+  - Processor: EndOfCheckPhase
+
   - Processor: CodeSignatureVerifier
     Arguments:
       input_path: "%pathname%/REAPER.app"

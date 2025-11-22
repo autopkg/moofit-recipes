@@ -27,8 +27,6 @@ Process:
       pkg_payload_path: "%RECIPE_CACHE_DIR%/unpack/Cato_Client.pkg/Payload"
       destination_path: "%RECIPE_CACHE_DIR%/Unpack"
 
-  - Processor: EndOfCheckPhase
-
   - Processor: CodeSignatureVerifier
     Arguments:
       input_path: "%RECIPE_CACHE_DIR%/Unpack/%RECIPE_APP_NAME%.app"
@@ -37,7 +35,7 @@ Process:
   - Processor: PlistReader
     Arguments:
       info_path: "%RECIPE_CACHE_DIR%/Unpack/%RECIPE_APP_NAME%.app/Contents/Info.plist"
-      plist_keys: 
+      plist_keys:
         CFBundleShortVersionString: version
         CFBundleIdentifier: bundle_id
         CFBundleName: real_app_name

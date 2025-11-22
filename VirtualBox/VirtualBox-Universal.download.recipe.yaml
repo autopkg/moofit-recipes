@@ -55,8 +55,6 @@ Process:
       pkg_payload_path: "%RECIPE_CACHE_DIR%/extract/%NAME%.pkg/Payload"
       destination_path: "%RECIPE_CACHE_DIR%/Applications/%ARM%"
 
-  - Processor: EndOfCheckPhase
-
   - Processor: FileFinder
     Arguments:
       pattern: "%RECIPE_CACHE_DIR%/Applications/*/*.app"

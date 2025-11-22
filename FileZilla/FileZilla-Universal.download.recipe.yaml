@@ -49,8 +49,6 @@ Process:
       destination_path: "%RECIPE_CACHE_DIR%/Extract/%SILICON_ARCH%"
       purge_destination: true
 
-  - Processor: EndOfCheckPhase
-
   - Processor: CodeSignatureVerifier
     Arguments:
       input_path: "%RECIPE_CACHE_DIR%/Extract/%INTEL_ARCH%/%NAME%.app"
@@ -59,7 +57,7 @@ Process:
   - Processor: PlistReader
     Arguments:
       info_path: "%RECIPE_CACHE_DIR%/Extract/%INTEL_ARCH%/%NAME%.app/Contents/Info.plist"
-      plist_keys: 
+      plist_keys:
         CFBundleShortVersionString: version
         CFBundleIdentifier: bundle_id
         CFBundleName: app_name

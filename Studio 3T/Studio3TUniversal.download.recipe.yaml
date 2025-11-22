@@ -19,19 +19,19 @@ Process:
       filename: "%NAME%-Intel.dmg"
 
   - Processor: EndOfCheckPhase
-  
+
   - Processor: Versioner
     Arguments:
       input_plist_path: "%pathname%/%NAME%.app/Contents/Info.plist"
       plist_version_key: CFBundleShortVersionString
-  
+
   - Processor: URLDownloader
     Arguments:
       url: https://download.studio3t.com/studio-3t/mac-aarch64/%version%/Studio-3T.dmg
       filename: "%NAME%-Silicon.dmg"
 
   - Processor: EndOfCheckPhase
-  
+
   - Processor: Versioner
     Arguments:
       input_plist_path: "%pathname%/%NAME%.app/Contents/Info.plist"

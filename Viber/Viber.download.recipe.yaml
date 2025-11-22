@@ -24,8 +24,6 @@ Process:
       input_path: "%pathname%/%NAME%.app"
       requirement: anchor apple generic and identifier "com.viber.osx" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "86ZW9CB9ZQ")
 
-  - Processor: EndOfCheckPhase
-
   - Processor: PlistReader
     Arguments:
       info_path: "%pathname%/%NAME%.app/Contents/Info.plist"

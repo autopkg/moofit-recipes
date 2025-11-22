@@ -19,8 +19,6 @@ Process:
       source_path: "%pathname%/%NAME%*.pkg"
       destination_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"
 
-  - Processor: EndOfCheckPhase
-
   - Processor: CodeSignatureVerifier
     Arguments:
       input_path: "%RECIPE_CACHE_DIR%/%NAME%.pkg"

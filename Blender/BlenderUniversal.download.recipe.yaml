@@ -1,5 +1,5 @@
 Identifier: com.github.moofit-recipes.download.BlenderUniversal
-Description: Downloads both Intel and Silicon versions of Blender to be packaged into a universal installer 
+Description: Downloads both Intel and Silicon versions of Blender to be packaged into a universal installer
 Input:
   INTEL_ARCH: x64
   SILICON_ARCH: arm64
@@ -34,12 +34,10 @@ Process:
   - Processor: PlistReader
     Arguments:
       info_path: "%pathname%/Blender.app/Contents/Info.plist"
-      plist_keys: 
+      plist_keys:
         CFBundleShortVersionString: version
         CFBundleIdentifier: bundle_id
         CFBundleName: app_name
-
-  - Processor: EndOfCheckPhase
 
   - Processor: URLTextSearcher
     Arguments:
@@ -69,9 +67,7 @@ Process:
   - Processor: PlistReader
     Arguments:
       info_path: "%pathname%/Blender.app/Contents/Info.plist"
-      plist_keys: 
+      plist_keys:
         CFBundleShortVersionString: version
         CFBundleIdentifier: bundle_id
         CFBundleName: app_name
-
-  - Processor: EndOfCheckPhase

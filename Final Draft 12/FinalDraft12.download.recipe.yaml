@@ -24,13 +24,11 @@ Process:
       archive_path: "%pathname%"
       destination_path: "%RECIPE_CACHE_DIR%/%NAME%"
       purge_destination: true
-  
+
   - Processor: CodeSignatureVerifier
     Arguments:
       input_path: "%RECIPE_CACHE_DIR%/%NAME%/Final Draft 12.dmg/Final Draft 12.app"
       requirement: anchor apple generic and identifier "com.finaldraft.finaldraft.v12" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "7XUZ8R5736")
-  
-  - Processor: EndOfCheckPhase
 
   - Processor: PlistReader
     Arguments:

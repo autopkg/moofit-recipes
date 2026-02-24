@@ -12,6 +12,8 @@
     <dict>
         <key>NAME</key>
         <string>Visual Studio Code</string>
+        <key>DOWNLOAD_ARCH</key>
+        <string>universal</string>
     </dict>
     <key>ParentRecipe</key>
     <string>com.github.jc0b.download.VisualStudioCode</string>

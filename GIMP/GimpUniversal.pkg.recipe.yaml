@@ -1,3 +1,4 @@
+Description: Creates Intel, Apple Silicon, and Universal packages for GIMP
 Identifier: com.github.moofit-recipes.pkg.gimp
 ParentRecipe: com.github.moofit-recipes.download.gimp
 Input:
@@ -17,7 +18,7 @@ Process:
 
   - Processor: FileFinder
     Arguments:
-      pattern: "%RECIPE_CACHE_DIR%/downloads/%bundle_name%-%INTEL%.dmg"
+      pattern: "%RECIPE_CACHE_DIR%/downloads/gimp-%version%-%INTEL%.dmg"
 
   - Processor: Copier
     Arguments:
@@ -50,7 +51,7 @@ Process:
 
   - Processor: FileFinder
     Arguments:
-      pattern: "%RECIPE_CACHE_DIR%/downloads/%bundle_name%-%SILICON%.dmg"
+      pattern: "%RECIPE_CACHE_DIR%/downloads/gimp-%version%-%SILICON%.dmg"
 
   - Processor: Copier
     Arguments:
@@ -67,7 +68,7 @@ Process:
             user: root
           - group: staff
             mode: "0775"
-            path: Applications/%bundle_name%.app
+            path: "Applications/%bundle_name%.app"
             user: root
         id: "%bundle_identifier%.%SILICON%"
         options: purge_ds_store
@@ -103,14 +104,11 @@ Process:
       file_content: |
         #!/bin/zsh
 
-        # Set variables
         declare -r INTEL="$3/private/tmp/%bundle_name%-%INTEL%-%bundle_version%.pkg"
         declare -r APPLE_SILICON="$3/private/tmp/%bundle_name%-%SILICON%-%bundle_version%.pkg"
 
-        # Determine architecture
         ARCH=$(/usr/bin/arch)
 
-        # Install corresponding package
         if [[ "${ARCH}" == i386 ]]
         then
             /usr/sbin/installer -pkg "${INTEL}" -target "$3"
@@ -123,7 +121,6 @@ Process:
         echo "Cleaning up..."
         /bin/rm -rf "${INTEL}" "${APPLE_SILICON}"
 
-        # Check exit code and bail if the package didn't install correctly
         if [[ "${EXIT_CODE}" -ne 0 ]]
         then
             echo "Something went wrong during package installation. Please check install.log and try again. Bailing..."
@@ -135,10 +132,10 @@ Process:
       pkg_request:
         id: "%bundle_identifier%.Universal"
         options: purge_ds_store
-        pkgname: "%bundle_name%-Universal-%bundle_version%"
+        pkgname: "%bundle_name%-%version%"
         pkgroot: "%RECIPE_CACHE_DIR%/universal/root"
         scripts: "%RECIPE_CACHE_DIR%/universal/scripts"
-        version: "%bundle_version%"
+        version: "%version%"
 
   - Processor: PathDeleter
     Arguments:

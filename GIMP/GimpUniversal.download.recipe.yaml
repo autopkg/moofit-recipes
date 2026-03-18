@@ -1,7 +1,6 @@
 Description: Downloads both intel and silicon versions of GIMP to be packaged
 Identifier: com.github.moofit-recipes.download.gimp
 Input:
-  RECIPE_APP_NAME: GIMP
   INTEL: x86_64
   SILICON: arm64
 
@@ -11,26 +10,26 @@ Process:
 
   - Processor: URLTextSearcher
     Arguments:
-      url: "https://www.gimp.org/downloads/"
-      re_pattern: \"(//download.gimp.org/gimp/v[0-9]+.[0-9]+/macos/gimp-[0-9]+.[0-9]+.[0-9]+-%INTEL%-[0-9]+.dmg)\"
-      result_output_var_name: intel_installer
-
-  - Processor: URLDownloader
-    Arguments:
-      url: "https:%intel_installer%"
-      filename: "%RECIPE_APP_NAME%-%INTEL%.dmg"
-      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+      url: "https://download.gimp.org/gimp/"
+      re_pattern: '(?s).*(v3\.[0-9]+)/'
+      result_output_var_name: gimp_series
 
   - Processor: URLTextSearcher
     Arguments:
-      url: "https://www.gimp.org/downloads/"
-      re_pattern: \"(//download.gimp.org/gimp/v[0-9]+.[0-9]+/macos/gimp-[0-9]+.[0-9]+.[0-9]+-%SILICON%-[0-9]+.dmg)\"
-      result_output_var_name: silicon_installer
+      url: "https://download.gimp.org/gimp/%gimp_series%/macos/"
+      re_pattern: '0\.0_LATEST-IS-([0-9]+\.[0-9]+\.[0-9]+(?:-[0-9]+)?)'
+      result_output_var_name: version
 
   - Processor: URLDownloader
     Arguments:
-      url: "https:%silicon_installer%"
-      filename: "%RECIPE_APP_NAME%-%SILICON%.dmg"
+      url: "https://download.gimp.org/gimp/%gimp_series%/macos/gimp-%version%-%INTEL%.dmg"
+      filename: "gimp-%version%-%INTEL%.dmg"
+      download_dir: "%RECIPE_CACHE_DIR%/downloads"
+
+  - Processor: URLDownloader
+    Arguments:
+      url: "https://download.gimp.org/gimp/%gimp_series%/macos/gimp-%version%-%SILICON%.dmg"
+      filename: "gimp-%version%-%SILICON%.dmg"
       download_dir: "%RECIPE_CACHE_DIR%/downloads"
 
   - Processor: EndOfCheckPhase
@@ -38,7 +37,7 @@ Process:
   - Processor: CodeSignatureVerifier
     Arguments:
       input_path: "%pathname%/GIMP.app"
-      requirement: identifier "org.gimp.gimp-2.10" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = T25BQ8HSJF
+      requirement: identifier "org.gimp.gimp" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = T25BQ8HSJF
 
   - Processor: PlistReader
     Arguments:
